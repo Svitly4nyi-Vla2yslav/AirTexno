@@ -1,5 +1,142 @@
 import styled, { keyframes } from "styled-components";
 
+export const HeroContainer = styled.div`
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: auto;
+  flex-shrink: 0;
+`;
+
+export const HeroImage = styled.img`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  flex-shrink: 0;
+`;
+
+export const ContentWrapper = styled.div`
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  width: 343px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 24px;
+`;
+
+export const TextBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+`;
+
+export const HeroTitle = styled.p`
+  color: #fff;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 0.9em;
+  width: 100%;
+`;
+
+export const HeroSubtitle = styled.p`
+  color: #fff;
+  font-family: "Geist", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25em;
+  width: 100%;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  gap: 8px;
+  width: fit-content;
+`;
+
+export const PrimaryButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #3098ee;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Geist", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+`;
+
+export const SecondaryButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Geist", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 119px;
+  background: transparent;
+`;
+
+export const HeaderBar = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+`;
+
+export const HeaderInner = styled.div`
+  padding: 0 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const HeaderRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const LogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 156px;
+`;
+
+export const LogoImage = styled.img`
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  max-width: none;
+`;
+
 export const Container = styled.div`
   position: absolute;
   top: 100%;
@@ -64,52 +201,7 @@ export const Container = styled.div`
   }
 `;
 
-export const HeroImage = styled.img`
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 1400px;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 100;
 
-    /* Тіні */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, transparent 100%);
-    z-index: 2;
-    pointer-events: none;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 100%);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-    @media screen and (max-width: 767px) {
-    height: 100vh;
-    z-index: -2; /* Поміщаємо під інші елементи */
-    
-    &::before,
-    &::after {
-      height: 50px;
-    }
-  }
-`;
 
 export const HeroWrapper = styled.div`
   margin: 0 auto;
@@ -184,25 +276,6 @@ export const SpanUnicorn = styled.span`
 `;
 
 
-export const HeroTitle = styled.h1`
-  margin: 0 auto;
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 110%;
-  text-align: center;
-  background: linear-gradient(142deg, #fff 0%, #f7f8fd 28.77%, #b6b8ee 86.41%, #6a82fc 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 36px;
-
-  @media screen and (min-width: 1440px) {
-    font-size: 72px;
-    line-height: 112%;
-    max-width: 935px;
-  }
-`;
 
 export const HeroText = styled.p`
 font-family: var(--font-family);

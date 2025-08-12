@@ -73,30 +73,27 @@ export const GlobalStyle = css`
   }
 
   :root {
-    --black: #000;
-    --purple-800: #1a1f37;
-    --gray-500: #c4c4c4;
-    --purple-400: #8082ff;
-    --purple-500: #4c4eec;
-    --white-50: rgba(255, 255, 255, 0.5);
-    --white-75: rgba(255, 255, 255, 0.75);
-    --white-80: rgba(255, 255, 255, 0.8);
-    --white-60: rgba(255, 255, 255, 0.6);
-    --white-25: rgba(255, 255, 255, 0.25);
-    --white-70: rgba(255, 255, 255, 0.7);
-    --white-6: rgba(255, 255, 255, 0.06);
-    --white-24: rgba(255, 255, 255, 0.24);
-    --white-30: rgba(255, 255, 255, 0.3);
-    --white-100: #fff;
+   :root {
+	--black-500: #242424;
+	--white: #fff;
+	--blue-500: #3098ee;
+	--white-500: rgba(255, 255, 255, 0.5);
+	--white-320: rgba(255, 255, 255, 0.32);
+	--blue-form: #f5faff;
+	--black-500: rgba(33, 33, 33, 0.5);
+	--black-100: rgba(33, 33, 33, 0.1);
+	--gray: #dbdbd8;
+	--black-300: rgba(33, 33, 33, 0.3);
+	--black-800: rgba(0, 0, 0, 0.8);
+	--white-800: rgba(255, 255, 255, 0.8);
+	--blue-350: #c6e6ff;
+	--blue-450: #6abcff;
+}
     
     /* Fonts */
-    --font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    --second-family: "Plus Jakarta Display", -apple-system, BlinkMacSystemFont, sans-serif;
-    --third-family: "Helvetica", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font3: "Font Awesome 5 Free", sans-serif;
-    --font4: "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font5: "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif;
-
+   --font-family: "Geist", sans-serif;
+  --second-family: "Bebas Neue", sans-serif;
+  --third-family: "Inter", sans-serif;
     /* Додаткові змінні для узгодженості */
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
@@ -118,8 +115,8 @@ export const GlobalStyle = css`
 
   body {
     font-family: var(--font-family);
-    background-color: #000;
-    color: #fff;
+    background-color: #f8f8f8ff;
+    color: #706b6bff;
     min-height: 100vh;
     min-height: -webkit-fill-available; /* Фікс для мобільних браузерів */
     transition-duration: 300ms;

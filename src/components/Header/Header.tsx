@@ -13,15 +13,14 @@ import {
 } from './Header.styled';
 import { useMediaQuery } from 'react-responsive';
 
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import BurgerMenu from '../MobileMenu/MobileMenu';
+import logo from "../../assets/icons/LogoandTextContainer.svg"
+import { PrimaryButton } from '../Hero/Hero.styled';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -56,13 +55,13 @@ const Header: React.FC = () => {
     <NavbarContainer $isScrolled={isScrolled}>
       <HeaderWrapper id="header">
         <Logo to="/home#hero" onClick={handleLogoClick}>
-        
+        <img src={logo} alt="Logo" />
         </Logo>
 
         {!isMobile && (
           <NavList>
             <NavItem>
-              <StyledNavLink to="/home#hero">{t('header.nav.home')}</StyledNavLink>
+              <StyledNavLink to="/home#hero"></StyledNavLink>
             </NavItem>
 
             <NavItem
@@ -77,37 +76,30 @@ const Header: React.FC = () => {
                   <DropdownMenu>
                     <DropdownItem>
                       <StyledNavLink to="/service/customer-experience#ap">
-                        {t('header.services.customerExperience')}
                       </StyledNavLink>
                     </DropdownItem>
                     <DropdownItem>
                       <StyledNavLink to="/service/pos-staff-operations#ap">
-                        {t('header.services.posStaff')}
                       </StyledNavLink>
                     </DropdownItem>
                     <DropdownItem>
                       <StyledNavLink to="/service/kitchen-fulfillment#ap">
-                        {t('header.services.kitchen')}
                       </StyledNavLink>
                     </DropdownItem>
                     <DropdownItem>
                       <StyledNavLink to="/service/inventory-warehousing#ap">
-                        {t('header.services.inventory')}
                       </StyledNavLink>
                     </DropdownItem>
                     <DropdownItem>
                       <StyledNavLink to="/service/analytics-management#ap">
-                        {t('header.services.analytics')}
                       </StyledNavLink>
                     </DropdownItem>
                     <DropdownItem>
                       <StyledNavLink to="/service/marketing-customization#ap">
-                        {t('header.services.marketing')}
                       </StyledNavLink>
                     </DropdownItem>
                     <DropdownItem>
                       <StyledNavLink to="/service/integration-scaling#ap">
-                        {t('header.services.integration')}
                       </StyledNavLink>
                     </DropdownItem>
                   </DropdownMenu>
@@ -120,7 +112,6 @@ const Header: React.FC = () => {
                 // style={{ pointerEvents: 'none', opacity: 0.5 }}
                 to="/about#ap"
               >
-                {t('header.nav.about')}
               </StyledNavLink>
             </NavItem>
             <NavItem>
@@ -128,7 +119,6 @@ const Header: React.FC = () => {
                 // style={{ pointerEvents: 'none', opacity: 0.5 }}
                 to="/pricing#app"
               >
-                {t('header.nav.pricing')}
               </StyledNavLink>
             </NavItem>
             <NavItem>
@@ -136,7 +126,6 @@ const Header: React.FC = () => {
                 // style={{ pointerEvents: 'none', opacity: 0.5 }}
                 to="/contact#ap"
               >
-                {t('header.nav.contacts')}
               </StyledNavLink>
             </NavItem>
           </NavList>
@@ -144,7 +133,7 @@ const Header: React.FC = () => {
 
         <LangButtonContainer>
           <div style={{ display: 'flex' }}>
-            <LanguageSwitcher />
+               <PrimaryButton>Contact Us</PrimaryButton>
           {isMobile && (<BurgerMenu/>)}  
           </div>
         </LangButtonContainer>

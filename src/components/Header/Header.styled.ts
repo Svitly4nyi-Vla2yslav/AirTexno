@@ -53,10 +53,10 @@ export const DropdownItem = styled.div`
 
 export const NavbarContainer = styled.header<{ $isScrolled: boolean }>`
   display: flex;
+  border-bottom: 1px solid var(--white-320);
   justify-content: space-between;
   align-items: center;
   background: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(16px);
   padding: 1rem ;
   position: fixed;
   top: 0;

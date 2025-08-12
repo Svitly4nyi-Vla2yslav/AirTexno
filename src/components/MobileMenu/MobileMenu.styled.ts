@@ -18,19 +18,13 @@ export const BurgerButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 6px;
-  border-radius: 12px;
   padding: 8px;
   width: 36px;
   height: 36px;
   cursor: pointer;
   z-index: 1001;
-  backdrop-filter: blur(16px);
-  box-shadow: 
-    inset 0 -8px 24px 0 rgba(255, 255, 255, 0.03), 
-    inset 0 -5px 6px 0 rgba(255, 255, 255, 0.03), 
-    0 8px 16px -8px rgba(0, 0, 0, 0.03), 
-    0 2px 4px -2px rgba(0, 0, 0, 0.08);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 7%, rgba(255, 255, 255, 0) 86%);
+
+  background: transparent;
   border: none;
 `;
 

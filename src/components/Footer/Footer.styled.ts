@@ -1,6 +1,81 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+
+export const FooterWrapper = styled.footer`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 32px 16px 24px 16px;
+  background: #242424;
+  min-width: 100vw;
+
+  overflow: auto;
+`;
+
+export const FooterContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 338px;
+`;
+
+export const InfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+`;
+
+export const Text = styled.p<{ size?: string; weight?: string }>`
+  color: #fff;
+  font-family: "Geist", sans-serif;
+  font-size: ${({ size }) => size || "15px"};
+  font-weight: ${({ weight }) => weight || "normal"};
+  line-height: 1.2em;
+  width: fit-content;
+`;
+
+export const FullWidthText = styled(Text)`
+  width: 100%;
+  font-family: var(--font-family);
+font-weight: 400;
+font-size: 15px;
+color: var(--white);
+ line-height: 1.6em;
+`;
+
+export const LinksWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+export const BottomBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+`;
+
+export const Divider = styled.div<{ opacity?: number }>`
+  background: rgba(255, 255, 255, ${({ opacity }) => opacity || 0.5});
+  width: 100%;
+  height: 1px;
+`;
+
+export const LogoSVG = styled.svg`
+  width: 100vw;
+  height: 55px;
+`;
+
 export const FooterContainer = styled.footer`
 
 text-align: center;
