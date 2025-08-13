@@ -1,19 +1,15 @@
 import "modern-normalize";
 import { css } from "@emotion/react";
-import FontAwesome5Free from "../src/assets/fonts/fa-regular-400.ttf"
-import Helvetica from "../src/assets/fonts/Helvetica.ttf"
-import HelveticaBold from "../src/assets/fonts/Helvetica-Bold.ttf"
-import HelveticaNeueRoman from "../src/assets/fonts/HelveticaNeueRoman.otf"
-// import Inter_18ptMedium from "../src/assets/fonts/Inter_18pt-Medium.ttf"
-// import Inter_18ptSemiBold from "../src/assets/fonts/Inter_18pt-SemiBold.ttf"
+import GeistRegular from "../src/assets/fonts/Geist-Regular.ttf"; 
+import GeistMedium from "../src/assets/fonts/Geist-Medium.ttf";
+import BebasNeueRegular from "../src/assets/fonts/BebasNeue-Regular.ttf"; 
 import Inter_24ptRegular from "../src/assets/fonts/Inter_24pt-Regular.ttf"
-import PlusJakartaSans from "../src/assets/fonts/PlusJakartaSans[wght].ttf"
 
 export const GlobalStyle = css`
   /* Font Awesome */
   @font-face {
-    font-family: 'Font Awesome 5 Free';
-    src: url(${FontAwesome5Free}) format('truetype');
+    font-family: 'Geist Regular';
+    src: url(${GeistRegular}) format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap; /* Додано для кращого відображення шрифтів */
@@ -21,26 +17,17 @@ export const GlobalStyle = css`
 
   /* Helvetica */
   @font-face {
-    font-family: 'Helvetica';
-    src: url(${Helvetica}) format('truetype');
+    font-family: 'Geist Medium';
+    src: url(${GeistMedium}) format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Helvetica';
-    src: url(${HelveticaBold}) format('truetype');
+    font-family: 'Bebas Neue Regular';
+    src: url(${BebasNeueRegular}) format('truetype');
     font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  /* Helvetica Neue */
-  @font-face {
-    font-family: 'Helvetica Neue';
-    src: url(${HelveticaNeueRoman}) format('opentype');
-    font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
@@ -54,23 +41,6 @@ export const GlobalStyle = css`
     font-display: swap;
   }
 
-  /* Plus Jakarta Sans */
-  @font-face {
-    font-family: 'Plus Jakarta Display';
-    src: url(${PlusJakartaSans}) format('truetype-variations');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  /* SF Pro */
-  @font-face {
-    font-family: 'SF Pro';
-    src: url('../src/assets/fonts/SFPRODISPLAYSEMIBOLDITALIC.OTF') format('opentype');
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-  }
 
   :root {
 	--black-500: #242424;
@@ -90,8 +60,8 @@ export const GlobalStyle = css`
 
     
     /* Fonts */
-   --font-family: "Geist", sans-serif;
-  --second-family: "Bebas Neue", sans-serif;
+   --font-family: "Geist Regular", sans-serif;
+  --second-family: "Bebas Neue Regular", sans-serif;
   --third-family: "Inter", sans-serif;
     /* Додаткові змінні для узгодженості */
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
@@ -244,8 +214,8 @@ export const GlobalStyle = css`
 
   @media (prefers-color-scheme: dark) {
     body {
-      background-color: #000;
-      color: #fff;
+      background-color: #ffffffff;
+      color: #6b6666ff;
     }
   }
 

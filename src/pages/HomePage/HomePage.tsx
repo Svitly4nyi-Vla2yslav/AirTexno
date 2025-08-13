@@ -1,19 +1,17 @@
 import { Hero } from '../../components/Hero/Hero';
-
+import ServicesSection from '../../components/ServicesSection/ServicesSection';
+import WhyAirtexnoSection from '../../components/WhyAirtexnoSection/WhyAirtexnoSection';
 
 import { HomeContainer } from './HomePage.styled';
 import React from 'react';
 
-
-
 const Home: React.FC = () => {
-  
   return (
     <>
-      <HomeContainer   id="hero">
+      <HomeContainer id="hero">
         <Hero />
-      
-       
+        <ServicesSection />
+        <WhyAirtexnoSection />
       </HomeContainer>
     </>
   );

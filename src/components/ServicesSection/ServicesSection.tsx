@@ -1,0 +1,80 @@
+import React from 'react';
+import ServicesImage from '../../assets/icons/Services Image.png'; // Adjust the path as necessary
+import {
+  Section,
+  SmallText,
+  ContentWrapper,
+  ServiceBlock,
+  TitleRow,
+  TitleBlue,
+  Title,
+  ServiceImage,
+  InfoBlock,
+  InfoText,
+  ButtonText,
+  Button,
+  Number,
+  ButtonRow,
+  ButtonTextBlack,
+  ButtonTextWhite,
+  Container,
+  Description,
+  HeaderWrapper,
+  PrimaryButton,
+  SecondaryButton,
+  TextBlock,
+  ImageSection,
+} from './ServicesSection.styled';
+
+const ServicesSection: React.FC = () => {
+  return (
+    <Section>
+      <SmallText>Our Service</SmallText>
+      <ContentWrapper>
+        <ServiceBlock>
+          <TitleRow>
+            <Number>01.</Number>
+            <TitleBlue>Appliance Care & Tune-Ups</TitleBlue>
+          </TitleRow>
+          <Title>Professional Installations</Title>
+          <Title>Fast & Reliable Emergency Repairs</Title>
+        </ServiceBlock>
+        <ImageSection>
+          <ServiceImage src={ServicesImage} alt="Services Image" />
+          <Container>
+            <HeaderWrapper>
+              <TitleRow>
+                <Title>Preventive Care</Title>
+              </TitleRow>
+              <TextBlock>
+                <Description>
+                  Preventive Care to Keep Your Appliances Running Longer Regular
+                  maintenance keeps your appliances working smoothly, prevents
+                  costly breakdowns, and extends their lifespan. We take the
+                  time to inspect and fine-tune your appliances, so they perform
+                  at their best and last longer.
+                </Description>
+              </TextBlock>
+            </HeaderWrapper>
+            <ButtonRow>
+              <PrimaryButton>
+                <ButtonTextWhite>Contact Us</ButtonTextWhite>
+              </PrimaryButton>
+              <SecondaryButton>
+                <ButtonTextBlack>Call Us</ButtonTextBlack>
+              </SecondaryButton>
+            </ButtonRow>
+          </Container>
+        </ImageSection>
+        <InfoBlock>
+          <InfoText>Do you want to know more about our service?</InfoText>
+          <Button>
+            <ButtonText>Know More</ButtonText>
+          </Button>
+        </InfoBlock>
+      </ContentWrapper>
+    </Section>
+  );
+};
+
+export default ServicesSection;
