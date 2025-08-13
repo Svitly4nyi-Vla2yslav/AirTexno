@@ -62,10 +62,10 @@ export const NavbarContainer = styled.header<{ $isScrolled: boolean }>`
   top: 0;
   left: 0;
  width: 100%;
- 
+ z-index: 3100;
   margin: 0 auto;
   transition: all 0.3s ease;
-  z-index: 99;
+ 
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -92,6 +92,7 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 2px;
+   z-index: 1199;
 `;
 
 export const LangButtonContainer = styled.div`
@@ -136,27 +137,21 @@ display: flex;
   }
 `;
 
-export const Logo = styled(NavLink)`
+export const Logo = styled(NavLink) <{ $overlayOpen?: boolean }>`
   font-size: 1.5rem;
   font-weight: bold;
-  color: #00d1ff;
   text-decoration: none;
   z-index: 10;
+
   img {
- width: 142px;
-height: auto;
-  overflov: hidden;
-
-  
-  &:hover,
-  &:focus,
-  &.active {
-    color: #00ffe7;
-    fill: #00ffe7;
+    width: 142px;
+    height: auto;
+    overflow: hidden;
+    transition: filter 0.25s ease;
+    filter: ${({ $overlayOpen }) =>
+    $overlayOpen ? 'brightness(0) saturate(100%)' : 'none'};
   }
-    }
 `;
-
 
 
 // export const NavList = styled.ul`
@@ -283,3 +278,5 @@ color: var(--white-50);
      color: var(--purple-400);
   }
 `;
+
+

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { NavLink } from 'react-router';
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
   z-index: 1000;
+
+
 
   @media screen and (min-width: 1440px) {
     display: none;
@@ -28,11 +31,12 @@ export const BurgerButton = styled.button`
   border: none;
 `;
 
-export const Line = styled(motion.div)`
+export const Line = styled(motion.div) <{ $isOpen?: boolean }>`
   width: 20px;
   height: 2px;
-  background: white;
+  background: ${({ $isOpen }) => ($isOpen ? "black" : "white")};
   border-radius: 2px;
+  transition: background 0.3s ease;
 `;
 
 export const MenuOverlay = styled(motion.div)`
@@ -41,7 +45,7 @@ export const MenuOverlay = styled(motion.div)`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.96);
+  background: rgba(254, 254, 254, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,9 +54,18 @@ export const MenuOverlay = styled(motion.div)`
   padding: 20px;
   z-index: 1000;
   overflow-y: auto;
+
+  &::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid rgba(195, 187, 187, 1);
+}
 `;
 
-export const MenuLink = styled(motion.span)`
+export const MenuLink = styled(NavLink)`
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 56px;
@@ -65,6 +78,22 @@ export const MenuLink = styled(motion.span)`
   &:hover {
     color: var(--purple-400);
   }
+`;
+export const MenuItem = styled.p<{ $active?: boolean }>`
+  color: ${({ $active }) => ($active ? "#3098EE" : "#242424")};
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 0.9em;
+  width: 100%;
+  transition: color 0.3s ease;
+
+
+  
+  &:hover,
+  &.active {
+    color: #3098EE;
+    }
 `;
 
 export const ServiceLinkMobile = styled.div`
@@ -108,4 +137,17 @@ export const ServiceTitleWrapper = styled.div`
     padding: 8px;
     margin-right: -8px;
   }
+`;
+
+export const Divider = styled.div<{ $active?: boolean }>`
+  background-color: ${({ $active }) => ($active ? "#3098EE" : "#c3c2c2ff")};
+  position: absolute;
+  width: 90%;
+  height: 1px;
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &.active {
+    background-color: #3098EE;
+    }
 `;

@@ -73,7 +73,6 @@ export const GlobalStyle = css`
   }
 
   :root {
-   :root {
 	--black-500: #242424;
 	--white: #fff;
 	--blue-500: #3098ee;
@@ -88,7 +87,7 @@ export const GlobalStyle = css`
 	--white-800: rgba(255, 255, 255, 0.8);
 	--blue-350: #c6e6ff;
 	--blue-450: #6abcff;
-}
+
     
     /* Fonts */
    --font-family: "Geist", sans-serif;

@@ -6,14 +6,95 @@ import {
   Line,
   MenuOverlay,
   MenuLink,
-  DropdownMenuMobile,
-  DropdownItemMobile,
-  ServiceLinkMobile,
-  ServiceTitleWrapper,
+  MenuItem,
+  Divider,
 } from './MobileMenu.styled';
-import { StyledNavLink, StyledNavLinkDrop } from '../Header/Header.styled';
 import { useTranslation } from 'react-i18next';
+import { styled } from 'styled-components';
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100vw;
+  overflow: auto;
+  margin-top: 40px;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 166px;
+`;
+
+const Item = styled.p`
+  color: #242424;
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25em;
+  width: 100%;
+`;
+
+// Контейнер для всього футера
+const FooterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem; /* 3.5 * 0.25rem */
+  width: 92%;
+  overflow: auto;
+  position: absolute;
+  bottom: 2%;
+
+    &::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid rgba(195, 187, 187, 1);
+}
+`;
+
+// Верхня напівпрозора смужка
+const OverlayBar = styled.div`
+  background: rgba(33, 33, 33, 0.3);
+  width: 100%;
+`;
+
+// Контейнер для тексту
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem; /* 2 * 0.25rem */
+  width: 100%;
+`;
+
+// Стиль для тексту "Designed by TRBN"
+const TextBold = styled.p`
+  color: #242424;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;
+  line-height: 1.2em;
+  width: fit-content;
+`;
+
+// Стиль для тексту "Copyright ..."
+const TextNormal = styled.p`
+  color: #242424;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 400;
+  line-height: 1.2em;
+  width: fit-content;
+`;
 const topLineVariants = {
   open: { rotate: 45, y: 8 },
   closed: { rotate: 0, y: 0 },
@@ -34,9 +115,19 @@ const menuVariants = {
   closed: { opacity: 0, x: '-100%' },
 };
 
-const BurgerMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
+type NavLink = {
+  to: string;
+  label: string;
+  active?: boolean;
+};
+
+type BurgerMenuProps = {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
+  const [, setIsServicesOpen] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -45,57 +136,17 @@ const BurgerMenu = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
-
-  const toggleServicesMenu = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsServicesOpen(!isServicesOpen);
-  };
-
   const closeMenu = () => {
     setIsOpen(false);
     setIsServicesOpen(false);
   };
 
-  const navLinks = [
-    { to: '/home#hero', labelKey: 'header.nav.home' },
-    {
-      labelKey: 'header.nav.service',
-      isDropdown: true,
-      subItems: [
-        {
-          to: '/service/customer-experience#ap',
-          labelKey: 'header.services.customerExperience',
-        },
-        {
-          to: '/service/pos-staff-operations#ap',
-          labelKey: 'header.services.posStaff',
-        },
-        {
-          to: '/service/kitchen-fulfillment#ap',
-          labelKey: 'header.services.kitchen',
-        },
-        {
-          to: '/service/inventory-warehousing#ap',
-          labelKey: 'header.services.inventory',
-        },
-        {
-          to: '/service/analytics-management#ap',
-          labelKey: 'header.services.analytics',
-        },
-        {
-          to: '/service/marketing-customization#ap',
-          labelKey: 'header.services.marketing',
-        },
-        {
-          to: '/service/integration-scaling#ap',
-          labelKey: 'header.services.integration',
-        },
-      ],
-    },
-    { to: '/about#ap', labelKey: 'header.nav.about' },
-    { to: '/pricing#app', labelKey: 'header.nav.pricing' },
-    { to: '/contact#ap', labelKey: 'header.nav.contacts' },
+  const navLinks: NavLink[] = [
+    { to: '/home#hero', label: 'Home', active: true },
+    { to: '/service', label: 'Services' },
+    { to: '/about#ap', label: 'About Us' },
+    { to: '/tips#app', label: 'Tips' },
+    { to: '/contact#ap', label: 'Contact' },
   ];
 
   return (
@@ -104,17 +155,22 @@ const BurgerMenu = () => {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
-        <Line animate={isOpen ? 'open' : 'closed'} variants={topLineVariants} />
         <Line
+          $isOpen={isOpen}
+          animate={isOpen ? 'open' : 'closed'}
+          variants={topLineVariants}
+        />
+        <Line
+          $isOpen={isOpen}
           animate={isOpen ? 'open' : 'closed'}
           variants={middleLineVariants}
         />
         <Line
+          $isOpen={isOpen}
           animate={isOpen ? 'open' : 'closed'}
           variants={bottomLineVariants}
         />
       </BurgerButton>
-
       <AnimatePresence>
         {isOpen && (
           <MenuOverlay
@@ -126,48 +182,35 @@ const BurgerMenu = () => {
           >
             {navLinks.map((link, index) => (
               <div key={index}>
-                {link.isDropdown ? (
-                  <ServiceLinkMobile
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
-                  >
-                    <MenuLink onClick={toggleServicesMenu}>
-                      <ServiceTitleWrapper>
-                        <span>{t(link.labelKey)}</span>
-                     
-                      </ServiceTitleWrapper>
-                    </MenuLink>
-                    <AnimatePresence>
-                      {isServicesOpen && (
-                        <DropdownMenuMobile
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {link.subItems.map((subItem, subIndex) => (
-                            <DropdownItemMobile key={subIndex}>
-                              <StyledNavLinkDrop
-                                to={subItem.to}
-                                onClick={closeMenu}
-                              >
-                                {t(subItem.labelKey)}
-                              </StyledNavLinkDrop>
-                            </DropdownItemMobile>
-                          ))}
-                        </DropdownMenuMobile>
-                      )}
-                    </AnimatePresence>
-                  </ServiceLinkMobile>
-                ) : link.to ? (
-                  <MenuLink onClick={closeMenu}>
-                    <StyledNavLink to={link.to}>
-                      {t(link.labelKey)}
-                    </StyledNavLink>
-                  </MenuLink>
-                ) : null}
+                <MenuLink to={link.to} onClick={closeMenu}>
+                  <MenuItem $active={link.active}>{t(link.label)}</MenuItem>
+                </MenuLink>
+                <Divider />
               </div>
             ))}
+            <Container>
+              <Column>
+                <Item>Washing Machine Fix</Item>
+                <Item>Dishwasher Repair</Item>
+                <Item>Oven Maintenance</Item>
+                <Item>Dryer Troubleshooting</Item>
+              </Column>
+              <Column>
+                <Item>Microwave Service</Item>
+                <Item>Air Conditioner Repair</Item>
+                <Item>Coffee Maker Repair</Item>
+                <Item>Blender Maintenance</Item>
+              </Column>
+            </Container>
+            <FooterContainer>
+              <OverlayBar />
+              <TextContainer>
+                <TextBold>Designed by TRBN</TextBold>
+                <TextNormal>
+                  Copyright © 2025 Airtexno - All Rights Reserved.
+                </TextNormal>
+              </TextContainer>
+            </FooterContainer>
           </MenuOverlay>
         )}
       </AnimatePresence>

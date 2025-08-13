@@ -76,6 +76,7 @@ export const PrimaryButton = styled.button`
   cursor: pointer;
   white-space: nowrap;
   border: none;
+   z-index: 1100;
 `;
 
 export const SecondaryButton = styled.button`
