@@ -1,5 +1,7 @@
+import CasesSection from '../../components/CasesSection/CasesSection';
 import { Hero } from '../../components/Hero/Hero';
 import ServicesSection from '../../components/ServicesSection/ServicesSection';
+import ServingVentura from '../../components/ServingVentura/ServingVentura';
 import WhyAirtexnoSection from '../../components/WhyAirtexnoSection/WhyAirtexnoSection';
 
 import { HomeContainer } from './HomePage.styled';
@@ -12,6 +14,8 @@ const Home: React.FC = () => {
         <Hero />
         <ServicesSection />
         <WhyAirtexnoSection />
+        <CasesSection/>
+        <ServingVentura/>
       </HomeContainer>
     </>
   );

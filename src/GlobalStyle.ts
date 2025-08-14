@@ -49,7 +49,7 @@ export const GlobalStyle = css`
 	--white-500: rgba(255, 255, 255, 0.5);
 	--white-320: rgba(255, 255, 255, 0.32);
 	--blue-form: #f5faff;
-	--black-500: rgba(33, 33, 33, 0.5);
+	--black-500: rgba(14, 13, 13, 1);
 	--black-100: rgba(33, 33, 33, 0.1);
 	--gray: #dbdbd8;
 	--black-300: rgba(33, 33, 33, 0.3);
@@ -85,7 +85,7 @@ export const GlobalStyle = css`
   body {
     font-family: var(--font-family);
     background-color: #f8f8f8ff;
-    color: #706b6bff;
+    // color: #706b6bff;
     min-height: 100vh;
     min-height: -webkit-fill-available; /* Фікс для мобільних браузерів */
     transition-duration: 300ms;
@@ -121,7 +121,7 @@ export const GlobalStyle = css`
     text-decoration: none;
     transition: all 0.3s ease-in-out;
     &:hover {
-      color: #808080;
+      // color: #808080;
       transition: all 0.3s ease-in-out;
     }
   }
@@ -215,7 +215,7 @@ export const GlobalStyle = css`
   @media (prefers-color-scheme: dark) {
     body {
       background-color: #ffffffff;
-      color: #6b6666ff;
+      // color: #6b6666ff;
     }
   }
 
