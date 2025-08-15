@@ -1,5 +1,7 @@
 import CasesSection from '../../components/CasesSection/CasesSection';
+import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { Hero } from '../../components/Hero/Hero';
+import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ServicesSection from '../../components/ServicesSection/ServicesSection';
 import ServingVentura from '../../components/ServingVentura/ServingVentura';
 import WhyAirtexnoSection from '../../components/WhyAirtexnoSection/WhyAirtexnoSection';
@@ -16,6 +18,8 @@ const Home: React.FC = () => {
         <WhyAirtexnoSection />
         <CasesSection/>
         <ServingVentura/>
+        <Partners/>
+        <ReviewCardContainer/>
       </HomeContainer>
     </>
   );

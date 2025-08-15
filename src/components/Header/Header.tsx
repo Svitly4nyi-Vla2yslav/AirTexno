@@ -44,14 +44,33 @@ const Header: React.FC = () => {
     setIsServicesOpen(!isServicesOpen);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      setIsScrolled(!entry.isIntersecting);
+    },
+    { 
+      threshold: 0.1,
+      rootMargin: '50px 0px 0px 0px' // Додаємо відступ для більш плавного переходу
+    }
+  );
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const target = document.createElement('div');
+  target.style.position = 'absolute';
+  target.style.top = '50px';
+  target.style.height = '1px';
+  target.style.pointerEvents = 'none'; // Щоб не заважав інтеракції
+  document.body.appendChild(target);
+  
+  observer.observe(target);
+
+  return () => {
+    observer.disconnect();
+    if (document.body.contains(target)) {
+      document.body.removeChild(target);
+    }
+  };
+}, []);
 
   const isMobile = useMediaQuery({ query: '(max-width: 1439px)' });
 

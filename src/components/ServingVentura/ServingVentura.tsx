@@ -42,20 +42,23 @@ export const SubtitleServing = styled.p`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  min-width: 100vw;
-  max-width: 100vw;
-  padding: 0 5px;
-margin-top: 40px;
+display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-width: 100vw;
+    max-width: 100vw;
+    padding: 0 5px;
+    margin-top: 40px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const Card = styled.div`
   background: #fff;
   border-radius: 8px;
   padding: 16px;
-  flex: 1 1 calc(50% - 12px);
+  // flex: 1 1 calc(50% - 12px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,10 +88,11 @@ export const County = styled.p`
 `;
 
 export const City = styled.p`
-  color: #3098ee;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 32px;
-  font-weight: 400;
+font-family: var(--second-family);
+font-weight: 400;
+font-size: 32px;
+line-height: 90%;
+color: var(--blue-500);
 `;
 interface ServiceArea {
   county: string;
@@ -128,8 +132,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
     {
-    county: "Ventura County",
-    city: "Thousand Oaks",
+    county: "Los Angeles County",
+    city: "Westlake Village",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
@@ -144,7 +148,7 @@ const serviceAreas: ServiceArea[] = [
   },
   {
     county: "Ventura County",
-    city: "Newbury Park",
+    city: "Oak Park",
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -159,7 +163,7 @@ const serviceAreas: ServiceArea[] = [
   },
   {
     county: "Ventura County",
-    city: "Westlake Village",
+    city: "Lake Sherwood",
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -174,7 +178,7 @@ const serviceAreas: ServiceArea[] = [
   },
   {
     county: "Ventura County",
-    city: "Camarillo",
+    city: "Hidden Valley",
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -189,7 +193,7 @@ const serviceAreas: ServiceArea[] = [
   },
     {
     county: "Ventura County",
-    city: "Thousand Oaks",
+    city: "Camarillo",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
@@ -203,8 +207,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Newbury Park",
+    county: "Los Angeles County",
+    city: "Agoura Hills",
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -219,7 +223,7 @@ const serviceAreas: ServiceArea[] = [
   },
     {
     county: "Ventura County",
-    city: "Thousand Oaks",
+    city: "Moorpark",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
@@ -233,8 +237,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Newbury Park",
+    county: "Los Angeles County",
+    city: "Calabasas",
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -249,7 +253,7 @@ const serviceAreas: ServiceArea[] = [
   },
   {
     county: "Ventura County",
-    city: "Westlake Village",
+    city: "Santa Rosa Valley",
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -263,8 +267,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Camarillo",
+    county: "Los Angeles County",
+    city: "Malibu",
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path

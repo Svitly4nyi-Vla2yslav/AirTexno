@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 export const ServiceLink = styled.div`
   position: relative;
@@ -53,36 +53,38 @@ export const DropdownItem = styled.div`
 
 export const NavbarContainer = styled.header<{ $isScrolled: boolean }>`
   display: flex;
-  border-bottom: 1px solid var(--white-320);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0);
-  padding: 1rem ;
+  background: transparent;
+  padding: 1rem;
   position: fixed;
   top: 0;
   left: 0;
- width: 100%;
- z-index: 3100;
+  width: 100%;
+  z-index: 3100;
   margin: 0 auto;
-  transition: all 0.3s ease;
- 
+  transition: all 180ms ease;
+  will-change: transform;
+
+  /* Стилі для скролу */
+ ${({ $isScrolled }) =>
+  $isScrolled &&
+  css`
+    background: rgba(0, 0, 0, 0.39);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  `}
 
   @media (max-width: 768px) {
     padding: 1rem;
-    max-width: 768px;
   }
-    @media screen and (min-width: 1440px){
-    width: 100%;
-margin: 0 auto;
-}
-
-  &:hover,
-  &:focus,
-  &.active {
   
-    transition: all 0.4s ease-in-out;
+  @media screen and (min-width: 1440px) {
+    width: 100%;
   }
 `;
+
 
 
 export const HeaderWrapper = styled.div`
@@ -166,9 +168,7 @@ export const Logo = styled(NavLink) <{ $overlayOpen?: boolean }>`
 // width: 404px;
 // height: 42px;
 
-// backdrop-filter: blur(16px);
-// box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.08), inset 0 -8px 24px 0 rgba(255, 255, 255, 0.03), inset 0 -5px 6px 0 rgba(255, 255, 255, 0.03);
-// background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 7%, rgba(255, 255, 255, 0) 86%), rgba(255, 255, 255, 0.03);
+
 
 // }`;
 
