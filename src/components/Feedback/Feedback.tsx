@@ -203,6 +203,42 @@ const BackgroundBottom = styled.div`
   pointer-events: none;
 `;
 const ReviewCardContainer: React.FC = () => {
+  const [, setIsScrolling] = React.useState(false);
+  const swiperRef = React.useRef<any>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // Функція для обробки скролу
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!swiperRef.current || !containerRef.current) return;
+    
+    const swiper = swiperRef.current;
+    const container = containerRef.current;
+    const touchY = e.touches[0].clientY;
+    const { top, bottom } = container.getBoundingClientRect();
+    const isAtTop = swiper.isBeginning && touchY > top + 50;
+    const isAtBottom = swiper.isEnd && touchY < bottom - 50;
+
+    // Якщо свайпер в крайньому положенні і користувач хоче скролити сторінку
+    if (isAtTop || isAtBottom) {
+      setIsScrolling(true);
+      swiper.allowTouchMove = false;
+    } else {
+      setIsScrolling(false);
+      swiper.allowTouchMove = true;
+    }
+  };
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    return () => {
+      container.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
+
   return (
     <div>
       <TextContainer>
@@ -211,36 +247,48 @@ const ReviewCardContainer: React.FC = () => {
           Discover why clients <span> trust </span> our repairs
         </TitleFeedback>
       </TextContainer>
-      <Container>
-           <BackgroundTop />
+      <Container ref={containerRef}>
+        <BackgroundTop />
         <BackgroundBottom />
         <Swiper
+          ref={swiperRef}
           direction="vertical"
           slidesPerView={1}
           spaceBetween={20}
           mousewheel={{
-            forceToAxis: true, // Обмежуємо скрол тільки по вертикалі
-            sensitivity: 1, // Чутливість скролу
-            releaseOnEdges: true, // Дозволяємо "відскок" на краях
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
           }}
-          modules={[Mousewheel, Autoplay, FreeMode]} // Додано FreeMode
+          touchEventsTarget="container"
+          modules={[Mousewheel, Autoplay, FreeMode]}
           freeMode={{
-            enabled: true, // Включаємо вільний режим
-            momentum: true, // Інерція після перетягування
-            momentumBounce: true, // Дозволяємо "відскок"
-            momentumRatio: 1, // Співвідношення інерції
-            momentumVelocityRatio: 1, // Співвідношення швидкості
+            enabled: true,
+            momentum: true,
+            momentumBounce: true,
+            momentumRatio: 1,
+            momentumVelocityRatio: 1,
+            sticky: true, // Додаємо "липкість" для кращого контролю
           }}
           autoplay={{
             delay: 3000,
-            disableOnInteraction: true, // Зупиняємо при взаємодії
+            disableOnInteraction: true,
             pauseOnMouseEnter: true,
             waitForTransition: true,
           }}
           speed={9000}
-          grabCursor={true} // Показуємо курсор "grab"
-          resistance={true} // Додаємо опір при досягненні країв
-          resistanceRatio={0.85} // Сила опору
+          grabCursor={true}
+          resistance={true}
+          resistanceRatio={0.85}
+          onReachBeginning={() => setIsScrolling(false)}
+          onReachEnd={() => setIsScrolling(false)}
+          onTouchEnd={() => {
+            setTimeout(() => {
+              if (swiperRef.current) {
+                swiperRef.current.allowTouchMove = true;
+              }
+            }, 100);
+          }}
         >
           {reviews.map((review, index) => (
             <SwiperSlide key={index}>
