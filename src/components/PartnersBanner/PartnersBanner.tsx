@@ -54,157 +54,126 @@ const Partners: React.FC = () => {
     {
       id: 1,
       imageUrl: i1,
-      link: 'https://example.com',
     },
     {
       id: 2,
       imageUrl: i2,
-      link: 'https://example.com',
     },
     {
       id: 3,
       imageUrl: i3,
-      link: 'https://example.com',
     },
     {
       id: 4,
       imageUrl: i4,
-      link: 'https://example.com',
     },
     {
       id: 5,
       imageUrl: i5,
-      link: 'https://example.com',
     },
     {
       id: 6,
       imageUrl: i6,
-      link: 'https://example.com',
     },
     {
       id: 7,
       imageUrl: i7,
-      link: 'https://example.com',
     },
     {
       id: 8,
       imageUrl: i8,
-      link: 'https://example.com',
     },
     {
       id: 9,
       imageUrl: i9,
-      link: 'https://example.com',
     },
     {
       id: 10,
       imageUrl: i10,
-      link: 'https://example.com',
     },
     {
       id: 11,
       imageUrl: i11,
-      link: 'https://example.com',
     },
     {
       id: 12,
       imageUrl: i12,
-      link: 'https://example.com',
     },
     {
       id: 13,
       imageUrl: i13,
-      link: 'https://example.com',
     },
     {
       id: 14,
       imageUrl: i14,
-      link: 'https://example.com',
     },
     {
       id: 15,
       imageUrl: i15,
-      link: 'https://example.com',
     },
     {
       id: 16,
       imageUrl: i16,
-      link: 'https://example.com',
     },
     {
       id: 17,
       imageUrl: i17,
-      link: 'https://example.com',
     },
     {
       id: 18,
       imageUrl: i18,
-      link: 'https://example.com',
     },
     {
       id: 19,
       imageUrl: i19,
-      link: 'https://example.com',
     },
     {
       id: 20,
       imageUrl: i20,
-      link: 'https://example.com',
     },
     {
       id: 21,
       imageUrl: i21,
-      link: 'https://example.com',
     },
     {
       id: 22,
       imageUrl: i22,
-      link: 'https://example.com',
     },
     {
       id: 23,
       imageUrl: i23,
-      link: 'https://example.com',
     },
     {
       id: 24,
       imageUrl: i24,
-      link: 'https://example.com',
     },
     {
       id: 25,
       imageUrl: i25,
-      link: 'https://example.com',
     },
     {
       id: 26,
       imageUrl: i26,
-      link: 'https://example.com',
     },
     {
       id: 27,
       imageUrl: i27,
-      link: 'https://example.com',
     },
     {
       id: 28,
       imageUrl: i28,
-      link: 'https://example.com',
     },
     {
       id: 29,
       imageUrl: i29,
-      link: 'https://example.com',
     },
     {
       id: 30,
       imageUrl: i30,
-      link: 'https://example.com',
     },
     {
       id: 31,
       imageUrl: i31,
-      link: 'https://example.com',
     },
   ];
 
@@ -229,7 +198,7 @@ const Partners: React.FC = () => {
           speed={4000} // Зменшено швидкість для плавності
           modules={[Autoplay]}
           className="mySwiper"
-          style={{ width: '100%' , paddingBottom: '20px' }}
+          style={{ width: '100%', paddingBottom: '20px' }}
         >
           {partners.map(partner => (
             <SwiperSlide
@@ -242,18 +211,12 @@ const Partners: React.FC = () => {
                 paddingTop: 10,
               }}
             >
-              {partner.link ? (
-                <a
-                  href={partner.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src={partner.imageUrl}
-                    alt={`Partner ${partner.id}`}
-                    loading="lazy"
-                  />
-                </a>
+              {partner.imageUrl ? (
+                <Image
+                  src={partner.imageUrl}
+                  alt={`Partner ${partner.id}`}
+                  loading="lazy"
+                />
               ) : (
                 <Image
                   src={partner.imageUrl}
@@ -294,18 +257,12 @@ const Partners: React.FC = () => {
                 paddingTop: 10,
               }}
             >
-              {partner.link ? (
-                <a
-                  href={partner.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src={partner.imageUrl}
-                    alt={`Partner ${partner.id}`}
-                    loading="lazy"
-                  />
-                </a>
+              {partner.imageUrl ? (
+                <Image
+                  src={partner.imageUrl}
+                  alt={`Partner ${partner.id}`}
+                  loading="lazy"
+                />
               ) : (
                 <Image
                   src={partner.imageUrl}

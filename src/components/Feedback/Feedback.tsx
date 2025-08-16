@@ -105,9 +105,9 @@ export const TextFeedback = styled.p`
 const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 784px;
+  height: 684px;
   overflow: hidden;
-  margin-bottom: 140px;
+  margin-bottom: 0px;
   
   .swiper {
     height: 100%;

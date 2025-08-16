@@ -4,6 +4,7 @@ import { Hero } from '../../components/Hero/Hero';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ServicesSection from '../../components/ServicesSection/ServicesSection';
 import ServingVentura from '../../components/ServingVentura/ServingVentura';
+import { TeamMember } from '../../components/TeamMember/TeamMember';
 import WhyAirtexnoSection from '../../components/WhyAirtexnoSection/WhyAirtexnoSection';
 
 import { HomeContainer } from './HomePage.styled';
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
         <ServingVentura/>
         <Partners/>
         <ReviewCardContainer/>
+        <TeamMember />
       </HomeContainer>
     </>
   );
