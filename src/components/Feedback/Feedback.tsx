@@ -103,17 +103,24 @@ export const TextFeedback = styled.p`
 `;
 
 const Container = styled.div`
-  position: relative; /* Додаємо для позиціонування тіней */
+  position: relative;
   width: 100%;
   height: 784px;
-  overflow: hidden; /* Ховаємо виступаючий контент */
+  overflow: hidden;
   margin-bottom: 140px;
+  
   .swiper {
     height: 100%;
     cursor: grab;
+    -webkit-overflow-scrolling: touch; /* Покращує скрол на iOS */
     
     &:active {
       cursor: grabbing;
+    }
+    
+    /* Стилі для мобільних пристроїв */
+    @media (hover: none) and (pointer: coarse) {
+      touch-action: pan-y;
     }
   }
 `;
@@ -238,6 +245,8 @@ const ReviewCardContainer: React.FC = () => {
       container.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
+
+  
 
   return (
     <div>
