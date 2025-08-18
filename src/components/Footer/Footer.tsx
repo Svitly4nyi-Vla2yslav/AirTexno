@@ -40,8 +40,16 @@ const Footer: React.FC = () => {
       <FooterContent>
         <InfoBlock>
           <FullWidthText>
-            801 Tioga pl, Newbury Park, CA 91320 <br /> +1 (805) 500-2705
-            <br /> airtexno@gmail.com
+            <a
+              href="http://maps.google.com/?q=801+Tioga+pl,+Newbury+Park,+CA+91320"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              801 Tioga pl, Newbury Park, CA 91320
+            </a>{' '}
+            <br />
+            <a href="tel:+18055002705">+1 (805) 500-2705</a>
+            <br /> <a href="mailto:airtexno@gmail.com">airtexno@gmail.com</a>
           </FullWidthText>
 
           <LinksWrapper>
@@ -60,7 +68,7 @@ const Footer: React.FC = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-                   <path
+            <path
               d="M0 54.8045L19.396 1.71207H26.1359L45.457 54.8045H39.9152L34.2238 38.8768H11.2332L5.5417 54.8045H0ZM12.9556 33.9414H32.5013L22.7659 6.27353L12.9556 33.9414Z"
               fill="#3098EE"
             />

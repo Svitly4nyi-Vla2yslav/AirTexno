@@ -1,541 +1,566 @@
-import { motion } from 'framer-motion';
-import React, { useState, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { HeroInnovative, HeroTitle } from '../Hero/Hero.styled';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { AnimatePresence } from 'framer-motion';
 import { Alert, AlertType } from './Alert';
 
-export const ContactWrapper = styled.div`
+export const ContactForm: React.FC = (): JSX.Element => {
+  const [service, setService] = useState<string>('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    location: '',
+    appliance: '',
+    brand: '',
+    power: '',
+    details: '',
+  });
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [alert, setAlert] = useState<{
+    type: AlertType;
+    message: string;
+  } | null>(null);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: false }));
+  };
+
+  const validate = () => {
+    const newErrors: Record<string, boolean> = {};
+    if (!service) newErrors.service = true;
+    if (!formData.name) newErrors.name = true;
+    if (!formData.email) newErrors.email = true;
+    if (!formData.phone) newErrors.phone = true;
+    if (!formData.location) newErrors.location = true;
+    if (!formData.appliance) newErrors.appliance = true;
+    if (!formData.brand) newErrors.brand = true;
+    if (!formData.power) newErrors.power = true;
+    return newErrors;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setAlert({ type: 'error', message: 'Please fill all required fields' });
+      return;
+    }
+
+    // 🔹 Успішна відправка
+    console.log('Form submitted:', { service, ...formData });
+
+    // Очистка
+    setService('');
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      location: '',
+      appliance: '',
+      brand: '',
+      power: '',
+      details: '',
+    });
+    setErrors({});
+    setAlert({ type: 'success', message: 'Form submitted successfully!' });
+  };
+
+  return (
+    <Container>
+      <Section>
+        <SubSection>
+          <Title>
+            {' '}
+            <span>Contact</span> our team
+          </Title>
+          <Text>
+            We love our customers, so feel free to call during normal business
+            hours
+          </Text>
+        </SubSection>
+        <Button>
+          <ButtonText>Call Us for Fast Repair</ButtonText>
+        </Button>
+      </Section>
+
+      <Section>
+        <Divider />
+        <InfoBlock>
+          <InfoSection width="251px">
+            <InfoTitle>Service Hours</InfoTitle>
+            <SubSection>
+              <Text>Mon—Sat: 8:00 AM—6:00 PM</Text>
+              <Text>Sun: 9:00 AM—4:00 PM</Text>
+            </SubSection>
+          </InfoSection>
+
+          <InfoSection>
+            <InfoTitle>Our Location</InfoTitle>
+            <SubSection>
+              <Text>801 Tioga Pl, Newbury Park, CA 91320</Text>
+              <Text>+1 (805) 500-2705</Text>
+            </SubSection>
+          </InfoSection>
+        </InfoBlock>
+      </Section>
+      <FormContainer onSubmit={handleSubmit}>
+        <Label>What service do you need for your appliances?</Label>
+        <CheckboxGroup>
+          <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
+            <HiddenRadio
+              name="service"
+              value="Repair"
+              checked={service === 'Repair'}
+              onChange={e => setService(e.target.value)}
+            />
+            <CustomRadio checked={service === 'Repair'} />
+            Repair
+          </RadioLabel>
+
+          <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
+            <HiddenRadio
+              name="service"
+              value="Installation"
+              checked={service === 'Installation'}
+              onChange={e => setService(e.target.value)}
+            />
+            <CustomRadio checked={service === 'Installation'} />
+            Installation
+          </RadioLabel>
+        </CheckboxGroup>
+
+        <Label>Name</Label>
+        <Input
+          name="name"
+          type="text"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          style={errors.name ? { borderBottom: '1px solid red' } : {}}
+        />
+
+        <Label>Email</Label>
+        <Input
+          name="email"
+          type="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          style={errors.email ? { borderBottom: '1px solid red' } : {}}
+        />
+
+        <Label>Phone Number</Label>
+        <Input
+          name="phone"
+          type="tel"
+          placeholder="Your Phone Number"
+          value={formData.phone}
+          onChange={handleChange}
+          style={errors.phone ? { borderBottom: '1px solid red' } : {}}
+        />
+
+        <Label>In what location do you need the service?</Label>
+        <SelectWrapper>
+          <Select
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            style={errors.location ? { borderBottom: '1px solid red' } : {}}
+          >
+            <option value="">Select location</option>
+            <option>Malibu</option>
+            <option>Los Angeles County</option>
+            <option>Thousand Oaks</option>
+            <option>Newbury Park</option>
+            <option>Westlake Village</option>
+            <option>Oak Park</option>
+            <option>Lake Sherwood</option>
+            <option>Hidden Valley</option>
+            <option>Camarillo</option>
+            <option>Agoura Hills</option>
+            <option>Moorpark</option>
+            <option>Calabasas</option>
+            <option>Santa Rosa Valley</option>
+            <option>Other</option>
+          </Select>
+        </SelectWrapper>
+
+        <Label>What do you need repaired?</Label>
+        <SelectWrapper>
+          <Select
+            name="appliance"
+            value={formData.appliance}
+            onChange={handleChange}
+            style={errors.appliance ? { borderBottom: '1px solid red' } : {}}
+          >
+            <option value="">Select appliance</option>
+            <option>Cooktop</option>
+            <option>Oven</option>
+            <option>Range</option>
+            <option>Washer</option>
+            <option>Refrigerator</option>
+            <option>Microwave</option>
+            <option>Dishwasher</option>
+            <option>Dryer</option>
+            <option>Washing Machine</option>
+            <option>Freezer</option>
+            <option>Stove</option>
+            <option>Wine Cooler</option>
+            <option>Other</option>
+          </Select>
+        </SelectWrapper>
+
+        <Label>Brand of appliance</Label>
+        <SelectWrapper>
+          <Select
+            name="brand"
+            value={formData.brand}
+            onChange={handleChange}
+            style={errors.brand ? { borderBottom: '1px solid red' } : {}}
+          >
+            <option value="">Select brand</option>
+            <option>LG</option>
+            <option>Samsung</option>
+            <option>Whirlpool</option>
+            <option>Bosch</option>
+            <option>GE</option>
+            <option>Frigidaire</option>
+            <option>Maytag</option>
+            <option>KitchenAid</option>
+            <option>Viking</option>
+            <option>Fisher & Paykel</option>
+            <option>Amana</option>
+            <option>JennAir</option>
+            <option>Haier</option>
+            <option>Sharp</option>
+            <option>Electrolux</option>
+            <option>Sub-Zero</option>
+            <option>Thermador</option>
+            <option>Wolf</option>
+            <option>Other</option>
+          </Select>
+        </SelectWrapper>
+
+        <Label>What type of power does this appliance use?</Label>
+        <SelectWrapper>
+          <Select
+            name="power"
+            value={formData.power}
+            onChange={handleChange}
+            style={errors.power ? { borderBottom: '1px solid red' } : {}}
+          >
+            <option value="">Select power</option>
+            <option>Electric</option>
+            <option>Gas</option>
+            <option>Dual Fuel</option>
+            <option>Induction</option>
+            <option>Solar</option>
+            <option>Propane</option>
+            <option>Natural Gas</option>
+            <option>Other</option>
+          </Select>
+        </SelectWrapper>
+
+        <Label>Any details you'd like to add?</Label>
+        <Textarea
+          name="details"
+          placeholder="Any details you'd like to add?"
+          value={formData.details}
+          onChange={handleChange}
+        />
+
+        <Disclaimer>
+          By clicking "Submit" you hereby agree to our <a href="http://#">Privacy Policy</a> .
+        </Disclaimer>
+
+        <ButtonSubmit type="submit">Submit</ButtonSubmit>
+      </FormContainer>
+
+      {/* 🔔 Алерт */}
+      <AnimatePresence>
+        {alert && (
+          <Alert
+            type={alert.type}
+            message={alert.message}
+            onClose={() => setAlert(null)}
+          />
+        )}
+      </AnimatePresence>
+    </Container>
+  );
+};
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  top: 140px;
-  margin-bottom: 200px;
-  @media screen and (min-width: 768px) {
-    max-width: 518px;
-    width: 100%;
-  }
-  @media screen and (min-width: 1440px) {
-  }
-`;
-
-export const CostomerWrapp = styled.div`
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
-  text-align: center;
-  z-index: 3;
-
-  @media screen and (min-width: 768px) {
-    max-width: 518px;
-    width: 100%;
-  }
-  @media screen and (min-width: 1440px) {
-  }
-`;
-
-export const pulse = keyframes`
-  0% {
-    box-shadow: 0 0 0 0 rgba(73, 75, 236, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(73, 75, 236, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(73, 75, 236, 0);
-  }
-`;
-
-export const clickEffect = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
-export const gradientFlow = keyframes`
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-`;
-
-export const ButtonFree = styled.button`
-  z-index: 10;
+  padding: 10px;
+  background: var(--blue-form);
   border-radius: 12px;
-  min-width: 343px;
-  height: 46px;
-  margin-bottom: 32px;
-  position: relative;
-  overflow: hidden;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 15px;
-  color: var(--white-100);
-  box-shadow: inset 0 0 6px 0 rgba(255, 255, 255, 0.54);
-  background: linear-gradient(139deg, #494bec, #6a6bff, #494bec, #3a3bc7);
-  background-size: 300% 300%;
-  animation:
-    ${pulse} 2s infinite,
-    ${gradientFlow} 6s ease infinite;
-  transition: all 0.4s ease;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow:
-      inset 0 0 8px 0 rgba(255, 255, 255, 0.74),
-      0 0 15px rgba(73, 75, 236, 0.5);
-    transform: perspective(500px) rotateX(10deg) translateY(-2px);
-    animation:
-      ${pulse} 2s infinite,
-      ${gradientFlow} 3s ease infinite;
-    background-size: 200% 200%;
-  }
-
-  &:active {
-    animation:
-      ${clickEffect} 0.3s ease,
-      ${gradientFlow} 6s ease infinite;
-    background: linear-gradient(139deg, #3a3bc7, #494bec, #3a3bc7);
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 518px;
-  }
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  top: 300px;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    max-width: 518px;
-    width: 100%;
-    margin-top: 62px;
-  }
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 `;
 
 const Label = styled.label`
   font-family: var(--font-family);
   font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--black-500);
+`;
+
+const CheckboxGroup = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #242424;
+  border: 1px solid var(--black-500);
+  border-radius: 8px;
+  padding: 10px 16px;
+`;
+
+const HiddenRadio = styled.input.attrs({ type: 'radio' })`
+  display: none;
+`;
+
+const CustomRadio = styled.span<{ checked: boolean }>`
+  width: 18px;
+  height: 18px;
+  border: 2px solid #242424;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+
+  ${({ checked }) =>
+    checked &&
+    `
+    border-color: #242424;
+    &::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: #4478e7ff;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 0.3s ease;
+    }
+  `}
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 12px;
   font-size: 14px;
-  line-height: 130%;
-  color: var(--white-100);
-  margin-bottom: 20px;
-  padding-bottom: 8px;
-  width: 343px;
-  @media screen and (min-width: 768px) {
-    max-width: 518px;
-    width: 100%;
+  transition: all 0.3s ease;
+  border: none;
+  border-bottom: 1px solid var(--black-300);
+  background: var(--blue-form);
+
+  &:focus {
+    border-color: var(--blue-form);
+    outline: none;
+    background: #bbe5f6ff;
   }
 `;
 
-const Input = styled.input<{ $error?: boolean }>`
-  border: 1px solid ${props => (props.$error ? '#ff4d4f' : '#212121')};
-  border-radius: 8px;
-  padding: 12px 16px;
+const SelectWrapper = styled.div`
+  position: relative;
   width: 100%;
-  height: 46px;
-  margin-top: 8px;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 130%;
-  color: rgba(161, 161, 170, 0.8);
-  backdrop-filter: blur(16px);
-  box-shadow:
-    inset 0 -8px 24px 0 rgba(255, 255, 255, 0.03),
-    inset 0 -5px 6px 0 rgba(255, 255, 255, 0.03),
-    0 8px 16px -8px rgba(0, 0, 0, 0.03),
-    0 2px 4px -2px rgba(0, 0, 0, 0.08);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.12) 7%,
-    rgba(255, 255, 255, 0) 86%
-  );
-  transition: border-color 0.3s ease;
 
-  &:focus {
-    outline: none;
-    border-color: ${props => (props.$error ? '#ff4d4f' : '#494bec')};
-  }
-
-  @media screen and (min-width: 768px) {
-    max-width: 518px;
-    width: 100%;
+  &::after {
+    content: '🢗';
+    font-size: 24px;
+    color: #242424;
+    position: absolute;
+    right: 16px;
+    top: 70%;
+    transform: translateY(-50%);
+    pointer-events: none;
   }
 `;
 
 const Select = styled.select`
-  border: 1px solid #212121;
-  border-radius: 8px;
-  padding: 12px 16px 12px 16px; /* Залишаємо стандартні падінги */
   width: 100%;
-  height: 46px;
-  margin-bottom: 32px;
-  margin-top: 8px;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 130%;
-  color: rgba(161, 161, 170, 0.8);
-  backdrop-filter: blur(16px);
-  box-shadow:
-    inset 0 -8px 24px 0 rgba(255, 255, 255, 0.03),
-    inset 0 -5px 6px 0 rgba(255, 255, 255, 0.03),
-    0 8px 16px -8px rgba(0, 0, 0, 0.03),
-    0 2px 4px -2px rgba(0, 0, 0, 0.08);
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.12) 7%,
-      rgba(255, 255, 255, 0) 86%
-    )
-    no-repeat;
-  background-position: right 10px center; /* Відступ стрілки від правого краю */
-  cursor: pointer;
-  appearance: none; /* Вимкнення стандартного вигляду */
-  -webkit-appearance: none; /* Для Safari */
-  -moz-appearance: none; /* Для Firefox */
-
-  /* Додаємо власну стрілку */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a1a1aa'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-size: 26px;
-
-  option {
-    background-color: rgba(25, 24, 24, 1);
-    color: rgba(161, 161, 170, 0.8);
-  }
+  padding: 12px;
+  padding-right: 40px; /* щоб стрілка не накладалась на текст */
+  transition: all 0.3s ease;
+  border: none;
+  border-bottom: 1px solid var(--black-300);
+  background: var(--blue-form);
+  font-size: 14px;
+  background: var(--blue-form);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: all 0.3s ease;
 
   &:focus {
+    border-color: var(--blue-form);
     outline: none;
-    border-color: #494bec;
-  }
-
-  @media screen and (min-width: 768px) {
-    max-width: 518px;
-    width: 100%;
+    background: #bbe5f6ff;
   }
 `;
 
-const ContactDescription = styled.p`
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--white-100);
-  text-align: center;
-  max-width: 343px;
-  @media screen and (min-width: 768px) {
-    max-width: 518px;
-    width: 100%;
-  }
-`;
-
-const ErrorMessage = styled.div`
-  color: #ff4d4f;
-  font-size: 12px;
-  margin-top: 4px;
-`;
-
-export const ContactUsWrapper = styled.div`
-  margin-top: 380px;
-  text-align: center;
+const Textarea = styled.textarea`
   width: 100%;
-  max-width: 518px;
-`;
+  min-height: 120px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  border: none;
+  border-bottom: 1px solid var(--black-300);
+  background: var(--blue-form);
+  font-size: 14px;
+  resize: vertical;
+  transition: all 0.3s ease;
 
-export const ContactUsTitle = styled.h2`
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-size: 24px;
-  color: var(--white-100);
-  margin-bottom: 24px;
-`;
-
-export const ContactEmail = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 24px;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--white-100);
-`;
-
-export const EmailLink = styled.a`
-  color: #6a6bff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #8a8bff;
-    text-decoration: underline;
+  &:focus {
+    border-color: var(--blue-form);
+    outline: none;
+    background: #bbe5f6ff;
   }
 `;
 
-export const SupportBadge = styled.span`
-  background: rgba(73, 75, 236, 0.2);
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 12px;
-  color: #6a6bff;
-`;
-
-export const HelpCenterButton = styled.a`
-  display: inline-block;
-  padding: 12px 24px;
+const ButtonSubmit = styled.button`
   border-radius: 8px;
-  background: linear-gradient(139deg, #494bec, #6a6bff);
-  background-size: 200% 200%;
-  color: var(--white-100);
+  padding: 10px 20px;
   font-family: var(--font-family);
   font-weight: 500;
-  text-decoration: none;
-  margin-bottom: 12px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  background: var(--blue-500);
   &:hover {
-    background-position: 100% 50%;
-    box-shadow: 0 4px 12px rgba(73, 75, 236, 0.3);
-    transform: translateY(-2px);
+    transform: scale(1.05);
+    background: #79caf5ff;
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
-export const HelpCenterText = styled.p`
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 300px;
-  margin: 0 auto;
+const Disclaimer = styled.p`
+  font-size: 12px;
+  color: #666;
+  text-align: center;
 `;
 
-const ContactForm: React.FC = () => {
-  const { t } = useTranslation();
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState(false);
-  const [teammates, setTeammates] = useState('');
-  const formRef = useRef<HTMLFormElement>(null);
-  const linkRef = useRef<HTMLAnchorElement>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [alert, setAlert] = useState<{
-    type: AlertType;
-    message: string;
-    show: boolean;
-  }>({ type: 'success', message: '', show: false });
-  const validateEmail = (email: string) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  overflow: auto;
+  margin-bottom: 40px;
+`;
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (value) {
-      setEmailError(!validateEmail(value));
-    } else {
-      setEmailError(false);
-    }
-  };
+const Section = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+`;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const SubSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+`;
 
-    if (!validateEmail(email)) {
-      setEmailError(true);
-      return;
-    }
+const Title = styled.p`
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 90%;
+  color: var(--black-500);
 
-    setIsSubmitting(true);
+  span {
+    color: var(--blue-500);
+  }
+`;
 
-    try {
-     
+const Text = styled.p`
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--black-500);
+`;
 
-      setEmail('');
-      setTeammates('');
+const Button = styled.button`
+  cursor: pointer;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #242424;
+  width: fit-content;
+  background: transparent;
+  margin-left: 20px;
+`;
 
-      setAlert({
-        type: 'success',
-        message: t('contact2.form.success'),
-        show: true,
-      });
+const ButtonText = styled.p`
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--black-500);
+`;
 
-      const link = document.createElement('a');
-      link.href =
-        'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0ECvny1g7NCJmXnJvrxrsWKg2y5eT86f1mR9n1l9UrYrnw-7NiuMqc4TMfcRIFUTVGIyVyufmB?gv=true';
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.click();
-    } catch (error) {
-      console.error('Error:', error);
-      setAlert({
-        type: 'error',
-        message: t('contact2.form.error'),
-        show: true,
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+const Divider = styled.div`
+  background: rgba(33, 33, 33, 0.3);
+  width: 100%;
+  height: 1px;
+`;
 
-  return (
-    <ContactWrapper>
-      <CostomerWrapp>
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: false, amount: 0.3 }}
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            width: '100%',
-          }}
-        >
-          <HeroInnovative>
-            {t('contact.getStarted')}
-          </HeroInnovative>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <HeroTitle>{t('contact.title')}</HeroTitle>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-         
-        </motion.div>
-      </CostomerWrapp>
+const InfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+`;
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <Label>
-          {t('contact.form.emailLabel')}
-          <Input
-            type="email"
-            placeholder={t('contact.form.emailPlaceholder')}
-            value={email}
-            onChange={handleEmailChange}
-            $error={emailError}
-          />
-          {emailError && (
-            <ErrorMessage>{t('contact.form.emailError')}</ErrorMessage>
-          )}
-        </Label>
+const InfoSection = styled.div<{ width?: string }>`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: ${props => props.width || '100%'};
+`;
 
-        <Label htmlFor="teammates-select">
-          {t('contact.form.teammatesLabel')}
-          <Select
-            id="teammates-select"
-            name="teammates"
-            value={teammates}
-            onChange={e => setTeammates(e.target.value)}
-          >
-            <option value="">
-              {t('contact.form.teammatesOptions.select')}
-            </option>
-            <option value="from-1-to-5">
-              {t('contact.form.teammatesOptions.1-5')}
-            </option>
-            <option value="from-5-to-15">
-              {t('contact.form.teammatesOptions.5-15')}
-            </option>
-            <option value="from-15-to-30">
-              {t('contact.form.teammatesOptions.15-30')}
-            </option>
-            <option value="from-30-to-50">
-              {t('contact.form.teammatesOptions.30-50')}
-            </option>
-            <option value="from-50-to-100">
-              {t('contact.form.teammatesOptions.50-100')}
-            </option>
-          </Select>
-        </Label>
-        <a
-          ref={linkRef}
-          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0ECvny1g7NCJmXnJvrxrsWKg2y5eT86f1mR9n1l9UrYrnw-7NiuMqc4TMfcRIFUTVGIyVyufmB?gv=true"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ButtonFree type="submit" disabled={isSubmitting}>
-            {isSubmitting
-              ? t('contact.form.submitting')
-              : t('contact.form.submit')}
-          </ButtonFree>
-        </a>
-
-        <ContactDescription>{t('contact.form.terms')}</ContactDescription>
-        <a
-          ref={linkRef}
-          href="https://sabsus.app/registrcompany/web/PRO"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: 'none' }}
-        />
-      </Form>
-      <ContactUsWrapper>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <ContactUsTitle>{t('contact.help.title')}</ContactUsTitle>
-
-          <ContactEmail>
-            <span>{t('contact.help.support')}</span>
-            <EmailLink href="mailto:support@sabsus.com">
-              {t('contact.help.supportEmail')}
-            </EmailLink>
-            <SupportBadge>{t('contact.help.supportBadge')}</SupportBadge>
-          </ContactEmail>
-          <a href="https://sabsus.info" target="_blank" rel="noopener">
-            <ButtonFree>{t('contact.help.helpCenter')}</ButtonFree>
-          </a>
-
-          <HelpCenterText>{t('contact.help.helpText')}</HelpCenterText>
-        </motion.div>
-      </ContactUsWrapper>
-      {alert.show && (
-        <Alert
-          type={alert.type}
-          message={alert.message}
-          onClose={() => setAlert(prev => ({ ...prev, show: false }))}
-        />
-      )}
-    </ContactWrapper>
-  );
-};
-
-export default ContactForm;
+const InfoTitle = styled.p`
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 90%;
+  color: var(--black-500);
+`;

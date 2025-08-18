@@ -47,6 +47,15 @@ font-weight: 400;
 font-size: 15px;
 color: var(--white);
  line-height: 1.6em;
+
+ a {
+   color: var(--white);
+   text-decoration: none;
+
+   &:hover {
+     text-decoration: underline;
+   }
+ }
 `;
 
 export const LinksWrapper = styled.div`

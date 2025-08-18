@@ -69,7 +69,7 @@ const ServicesSection: React.FC = () => {
         <InfoBlock>
           <InfoText>Do you want to know more about our service?</InfoText>
           <Button>
-            <ButtonText>Know More</ButtonText>
+            <ButtonText>Learn more</ButtonText>
           </Button>
         </InfoBlock>
       </ContentWrapper>

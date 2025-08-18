@@ -10,10 +10,8 @@ import {
   ButtonGroup,
   PrimaryButton,
   SecondaryButton,
-
 } from './Hero.styled';
-import HeroImages from "../../assets/icons/Hero Image.png"
-
+import HeroImages from '../../assets/icons/Hero Image.png';
 
 export const Hero: React.FC = () => {
   return (
@@ -26,9 +24,8 @@ export const Hero: React.FC = () => {
             Your Local Appliance Repair &amp; Maintenance Specialists
           </HeroTitle>
           <HeroSubtitle>
-            We specialize in expert appliance repairs, bringing your home
-            essentials back to life with care and precision — so your family can
-            get back to what matters.
+            We provide reliable appliance repair services, so your fridge, oven,
+            or washer works like new — and you can get back to your day.
           </HeroSubtitle>
         </TextBlock>
 
@@ -37,8 +34,6 @@ export const Hero: React.FC = () => {
           <SecondaryButton>Call Us</SecondaryButton>
         </ButtonGroup>
       </ContentWrapper>
-
-   
     </HeroContainer>
   );
 };

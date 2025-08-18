@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContactContainer } from './Contact.styled';
-import ContactForm from '../../components/ContactComponents/ContactForm';
+import { ContactForm } from '../../components/ContactComponents/ContactForm';
 
 const Contact: React.FC = () => {
   return (

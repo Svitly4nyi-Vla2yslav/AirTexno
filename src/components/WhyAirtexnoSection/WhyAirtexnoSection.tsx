@@ -28,22 +28,28 @@ import 'swiper/css/bundle';
 const WhyAirtexnoSection: React.FC = () => {
   const slides = [
     {
-      title: 'Tailored to your appliance needs',
-      text: 'Are you interested in learning how our service can meet your appliance needs?',
+      title: 'Manufacturer-Trained Technicians',
+      text: 'Our team is trained to service leading brands like Sub-Zero, Viking, GE Monogram, and more — ensuring expert repairs done right the first time.',
       image: WhyAirtexnoImage1,
       icon: buildung,
     },
     {
-      title: '0 waiting time, 0 hassle',
-      text: '',
+      title: 'Genuine Parts in Stock',
+      text: 'We use only original manufacturer parts. With our fully stocked local warehouse, most repairs are done without waiting for delivery.',
       image: WhyAirtexnoImage2,
       icon: clock,
     },
     {
-      title: '',
-      text: '',
+      title: 'Fast, Hassle-Free Service',
+      text: 'One quick call and our Thousand Oaks team is on the way — no long waits, no hassle.',
       image: WhyAirtexnoImage3,
-      icon: '',
+      icon: buildung,
+    },
+    {
+      title: 'Local & Fair Pricing',
+      text: 'As a local Thousand Oaks company, we treat our community like neighbors. With direct access to parts and highly trained techs, we keep our prices fair — without steep markups. While costs keep rising everywhere, we work hard to keep appliance repair affordable.',
+      image: WhyAirtexnoImage3,
+      icon: buildung,
     },
   ];
 
@@ -52,7 +58,7 @@ const WhyAirtexnoSection: React.FC = () => {
       <TextWrapper>
         <SubTitle>why airtexno</SubTitle>
         <Title>
-          GET YOUR APPLIANCE FIXED <Blue>QUICKLY, SAME DAY</Blue>{' '}
+          Same-Day Appliance Repair <Blue>You Can Rely On</Blue>{' '}
         </Title>
       </TextWrapper>
       <ImageSection>
