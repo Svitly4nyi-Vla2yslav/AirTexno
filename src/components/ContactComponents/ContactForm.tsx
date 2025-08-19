@@ -44,34 +44,51 @@ export const ContactForm: React.FC = (): JSX.Element => {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setAlert({ type: 'error', message: 'Please fill all required fields' });
-      return;
-    }
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const validationErrors = validate();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    setAlert({ type: 'error', message: 'Please fill all required fields' });
+    return;
+  }
 
-    // 🔹 Успішна відправка
-    console.log('Form submitted:', { service, ...formData });
-
-    // Очистка
-    setService('');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      location: '',
-      appliance: '',
-      brand: '',
-      power: '',
-      details: '',
+  try {
+    // Відправка даних на Netlify Function
+    const response = await fetch('/.netlify/functions/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        service,
+        ...formData
+      }),
     });
-    setErrors({});
-    setAlert({ type: 'success', message: 'Form submitted successfully!' });
-  };
 
+    if (response.ok) {
+      // Успішна відправка
+      setService('');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        location: '',
+        appliance: '',
+        brand: '',
+        power: '',
+        details: '',
+      });
+      setErrors({});
+      setAlert({ type: 'success', message: 'Form submitted successfully! We will contact you soon.' });
+    } else {
+      throw new Error('Failed to submit form');
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    setAlert({ type: 'error', message: 'There was an error submitting the form. Please try again.' });
+  }
+};
   return (
     <Container>
       <Section>
@@ -96,8 +113,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
           <InfoSection width="251px">
             <InfoTitle>Service Hours</InfoTitle>
             <SubSection>
-              <Text>Mon—Sat: 8:00 AM—6:00 PM</Text>
-              <Text>Sun: 9:00 AM—4:00 PM</Text>
+              <Text>Mon–Sat: 8AM–6PM <br/> Sun: 9AM–4PM </Text>
             </SubSection>
           </InfoSection>
 
