@@ -6,6 +6,14 @@ export const HeroContainer = styled.div`
   min-height: 100vh;
   overflow: auto;
   flex-shrink: 0;
+   @media screen and (min-width: 768px){
+   
+   
+   }
+
+   @media screen and (min-width: 1440px){
+    
+  }
 `;
 
 export const HeroImage = styled.img`
@@ -16,18 +24,35 @@ export const HeroImage = styled.img`
   height: 100%;
   max-width: none;
   flex-shrink: 0;
+     @media screen and (min-width: 768px){
+   
+   
+   }
+
+   @media screen and (min-width: 1440px){
+    
+  }
 `;
 
 export const ContentWrapper = styled.div`
   position: absolute;
   left: 16px;
   bottom: 16px;
-  width: 343px;
+  min-width: 343px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
   gap: 24px;
+
+     @media screen and (min-width: 768px){
+   
+   
+   }
+
+   @media screen and (min-width: 1440px){
+    
+  }
 `;
 
 export const TextBlock = styled.div`
@@ -35,30 +60,72 @@ export const TextBlock = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 100%;
+
+     @media screen and (min-width: 768px){
+   
+   
+   }
+
+   @media screen and (min-width: 1440px){
+    
+  }
 `;
 
 export const HeroTitle = styled.p`
   color: #fff;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: var(--second-family);
   font-size: 56px;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
+     @media screen and (min-width: 768px){
+   font-family: var(--second-family);
+font-weight: 400;
+font-size: 85px;
+line-height: 90%;
+color: var(--white);
+   
+   }
+
+   @media screen and (min-width: 1440px){
+    
+  }
 `;
 
 export const HeroSubtitle = styled.p`
   color: #fff;
-  font-family: "Geist", sans-serif;
+ font-family: var(--font-family);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.25em;
   width: 100%;
+
+@media screen and (min-width: 768px){
+font-family: var(--font-family);
+font-weight: 400;
+font-size: 17px;
+line-height: 125%;
+color: var(--white);   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const ButtonGroup = styled.div`
   display: flex;
   gap: 8px;
   width: fit-content;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const PrimaryButton = styled.button`
@@ -69,14 +136,27 @@ export const PrimaryButton = styled.button`
   padding: 10px 20px;
   background: #3098ee;
   border-radius: 8px;
-  color: #fff;
-  font-family: "Geist", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
   border: none;
    z-index: 1100;
+   font-family: var(--font-family);
+font-weight: 500;
+font-size: 15px;
+color: var(--white);
+
+@media screen and (min-width: 768px){
+   
+font-family: var(--font-family);
+font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+color: var(--white);   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const SecondaryButton = styled.button`
@@ -87,14 +167,26 @@ export const SecondaryButton = styled.button`
   padding: 10px 20px;
   border: 1px solid #fff;
   border-radius: 8px;
-  color: #fff;
-  font-family: "Geist", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
   width: 119px;
   background: transparent;
+  font-family: var(--font-family);
+font-weight: 500;
+font-size: 15px;
+color: var(--white);
+@media screen and (min-width: 768px){
+  font-family: var(--font-family);
+font-weight: 500;
+font-size: 16px;
+line-height: 125%;
+color: var(--white); 
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const HeaderBar = styled.div`
@@ -107,6 +199,15 @@ export const HeaderBar = styled.div`
   flex-direction: column;
   gap: 12px;
   align-items: flex-start;
+
+@media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const HeaderInner = styled.div`
@@ -115,6 +216,14 @@ export const HeaderInner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const HeaderRow = styled.div`
@@ -122,6 +231,14 @@ export const HeaderRow = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const LogoWrapper = styled.div`
@@ -129,6 +246,14 @@ export const LogoWrapper = styled.div`
   align-items: center;
   gap: 7px;
   width: 156px;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const LogoImage = styled.img`
@@ -136,6 +261,14 @@ export const LogoImage = styled.img`
   width: 32px;
   height: 32px;
   max-width: none;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const Container = styled.div`
@@ -200,6 +333,15 @@ export const Container = styled.div`
       opacity: 0.7; /* Додаткове затемнення для мобільних */
     }
   }
+
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 

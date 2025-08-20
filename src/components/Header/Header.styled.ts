@@ -66,11 +66,13 @@ export const NavbarContainer = styled.header<{ $isScrolled: boolean }>`
   margin: 0 auto;
   transition: all 180ms ease;
   will-change: transform;
-
+flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
   /* Стилі для скролу */
  ${({ $isScrolled }) =>
-  $isScrolled &&
-  css`
+    $isScrolled &&
+    css`
     background: rgba(0, 0, 0, 0.39);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
@@ -279,4 +281,76 @@ color: var(--white-50);
   }
 `;
 
+export const TabletContainer = styled.div`
+display: none;
+ @media screen and (min-width: 768px){
+display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 8px 0 0px 5px;
+ }
 
+
+`;
+
+export const ContainerLink = styled.div`
+display: none;
+ @media screen and (min-width: 768px){
+ display: flex;
+ flex-direction: column;
+
+ }
+`;
+
+export const LinkInfo = styled.p`
+display: none;
+ @media screen and (min-width: 768px){
+ display: flex;
+font-family: var(--font-family);
+font-weight: 400;
+font-size: 13px;
+line-height: 125%;
+color: var(--white);
+width: max-content;
+a{
+font-family: var(--font-family);
+font-weight: 400;
+font-size: 13px;
+line-height: 125%;
+color: var(--white);
+}
+
+img{
+margin-right: 5px;
+}
+
+ }
+`;
+
+export const TransparentButton = styled.button`
+display: none;
+ @media screen and (min-width: 768px){
+
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 119px;
+  background: transparent;
+  font-family: var(--font-family);
+font-weight: 500;
+font-size: 15px;
+color: var(--white);
+margin-left: 8px;
+a{
+color: var(--white);
+}
+ }
+`;

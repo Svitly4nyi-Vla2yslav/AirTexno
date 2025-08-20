@@ -28,13 +28,20 @@ text-align: center;
 color: var(--black-500);
 `;
 
-export const Title = styled.p`
+export const Title = styled.h3`
 font-family: var(--second-family);
 font-weight: 400;
 font-size: 52px;
 line-height: 90%;
 text-align: center;
 color: var(--black-500);
+@media screen and (min-width: 768px){
+font-size: 72px;
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const Blue = styled.span`
@@ -44,6 +51,13 @@ font-size: 52px;
 line-height: 90%;
 text-align: center;
 color: var(--blue-500);
+@media screen and (min-width: 768px){
+font-size: 72px;
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const BlueCard = styled.div`
@@ -52,6 +66,13 @@ font-weight: 400;
 font-size: 32px;
 line-height: 100%;
 color: var(--blue-500);
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const StyledImage = styled.img`
@@ -65,12 +86,19 @@ export const StyledImage = styled.img`
 width: 343px;
 height: 485px;
   object-fit: cover;
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const SwiperContainer = styled.div`
   position: relative;
   border-radius: 4px;
-  width: 320px;
+ width: 320px;
   // height: 184px;
   overflow: hidden; /* важливо для слайдів */
   background: transparent; /* щоб не було прозорим */
@@ -95,6 +123,14 @@ export const SwiperContainer = styled.div`
   .swiper-pagination-bullet-active {
     background: #005fa3;
   }
+
+ @media screen and (min-width: 768px){
+width: 760px;
+}
+
+@media screen and (min-width: 1440px){
+    
+} 
 `;
 
 export const SlideContainer = styled.div`
@@ -126,6 +162,13 @@ position: absolute;
     bottom: 0;
     box-sizing: border-box;
   }
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}    
 `;
 
 export const Header = styled.div`
@@ -133,6 +176,14 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: fit-content;
+
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 
@@ -144,6 +195,14 @@ export const IconWrapper = styled.div`
   width: 32px;
   height: 32px;
   padding-bottom: 14px;
+
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const Text = styled.p`
@@ -154,6 +213,14 @@ export const Text = styled.p`
   line-height: 1.25em;
   padding-bottom: 20px;
   // width: 225px;
+
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const ImageSection = styled.div`
@@ -164,6 +231,14 @@ export const ImageSection = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 

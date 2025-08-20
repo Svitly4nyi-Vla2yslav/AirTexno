@@ -1,5 +1,5 @@
 import React from 'react';
-import ServicesImage from '../../assets/icons/Services Image.png'; // Adjust the path as necessary
+import ServicesImage from '../../assets/icons/ServicesImage.png'; // Adjust the path as necessary
 import {
   Section,
   SmallText,
@@ -24,6 +24,7 @@ import {
   SecondaryButton,
   TextBlock,
   ImageSection,
+  TitleCard,
 } from './ServicesSection.styled';
 
 const ServicesSection: React.FC = () => {
@@ -44,7 +45,7 @@ const ServicesSection: React.FC = () => {
           <Container>
             <HeaderWrapper>
               <TitleRow>
-                <Title>Preventive Care</Title>
+                <TitleCard>Preventive Care</TitleCard>
               </TitleRow>
               <TextBlock>
                 <Description>
@@ -61,7 +62,9 @@ const ServicesSection: React.FC = () => {
                 <ButtonTextWhite>Contact Us</ButtonTextWhite>
               </PrimaryButton>
               <SecondaryButton>
-                <ButtonTextBlack>Call Us</ButtonTextBlack>
+                <a href="tel:+18055002705">
+                  <ButtonTextBlack>Call Us</ButtonTextBlack>
+                </a>
               </SecondaryButton>
             </ButtonRow>
           </Container>

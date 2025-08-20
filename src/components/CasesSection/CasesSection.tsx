@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Navigation} from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
@@ -24,8 +24,9 @@ import {
 } from './CasesSection.styled';
 
 import ReviewImage2 from '../../assets/icons/cases/Review Image 3.png';
+import ReviewImage1 from '../../assets/icons/cases/Review Image 1.png';
 import ReviewImage3 from '../../assets/icons/cases/Review Image 2.png';
-import ReviewImage4 from '../../assets/icons/cases/Review Image 3.png';
+import ReviewImage4 from '../../assets/icons/cases/Review Image 5.png';
 import ReviewImage5 from '../../assets/icons/cases/Review Image 4.png';
 import { Blue } from '../WhyAirtexnoSection/WhyAirtexnoSection.styled';
 
@@ -33,8 +34,43 @@ export default function CasesSection() {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
-  const images = [ReviewImage2, ReviewImage3, ReviewImage4, ReviewImage5];
-
+  const cards = [
+    {
+      image: ReviewImage2,
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
+      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      type: 'Washing Machine Repair',
+    },
+    {
+      image: ReviewImage3,
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
+      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      type: 'Washing Machine Repair',
+    },
+    {
+      image: ReviewImage4,
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
+      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      type: 'Washing Machine Repair',
+    },
+    {
+      image: ReviewImage5,
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
+      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      type: 'Washing Machine Repair',
+    },
+    {
+      image: ReviewImage1,
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
+      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+      type: 'Washing Machine Repair',
+    },
+  ];
   return (
     <Section>
       <Header>
@@ -45,30 +81,6 @@ export default function CasesSection() {
       </Header>
 
       {/* Кнопки навігації — винесені поза слайди */}
-      {/* <IconRow>
-        <IconButton ref={prevRef} $bg="#DBDBD8">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M15 18L9 12L15 6"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </IconButton>
-        <IconButton ref={nextRef} $bg="#3098EE">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 18L15 12L9 6"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </IconButton>
-      </IconRow> */}
 
       <StyledSwiper
         modules={[Navigation, Autoplay]}
@@ -91,10 +103,10 @@ export default function CasesSection() {
           swiper.navigation.update();
         }}
       >
-        {images.map((src, i) => (
-          <StyledSwiperSlide key={i}>
+        {cards.map(({ image, description, title, type }) => (
+          <StyledSwiperSlide key={image}>
             <SlideWrapper>
-              <SlideImage src={src} alt={`Slide ${i + 1}`} />
+              <SlideImage src={image} alt={type} style={{borderRadius: 8}}/>
               <Container>
                 <IconRow>
                   <IconButton ref={prevRef} $bg="#DBDBD8">
@@ -122,20 +134,11 @@ export default function CasesSection() {
                 </IconRow>
                 <ContentWrapper>
                   <TopSection>
-                    <ReviewText>
-                      "Our client's washing machine started making horrible
-                      noises and leaking everywhere, causing water damage. Our
-                      technicians quickly diagnosed the issue as a faulty water
-                      pump and explained the repair process clearly. We
-                      efficiently replaced the pump and tested the machine,
-                      fixing it for much less than buying a new one. The client
-                      was highly satisfied with the prompt and effective
-                      solution!"
-                    </ReviewText>
+                    <ReviewText>{description}</ReviewText>
                   </TopSection>
                   <BottomSection>
-                    <BlueCard>Washing Machine Leak Repair</BlueCard>
-                    <ReviewText>Washing Machine Repair</ReviewText>
+                    <BlueCard>{title}</BlueCard>
+                    <ReviewText>{type}</ReviewText>
                   </BottomSection>
                 </ContentWrapper>
               </Container>

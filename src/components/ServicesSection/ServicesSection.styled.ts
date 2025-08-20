@@ -8,6 +8,14 @@ export const Section = styled.div`
   min-width: 100vw;
   overflow: auto;
   padding: 1rem;
+@media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const SmallText = styled.p`
@@ -17,6 +25,20 @@ export const SmallText = styled.p`
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
+  @media screen and (min-width: 768px){
+   font-family: var(--font-family);
+font-weight: 400;
+font-size: 14px;
+line-height: 90%;
+text-transform: uppercase;
+color: var(--black-500);
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
+
 `;
 
 export const ContentWrapper = styled.div`
@@ -25,6 +47,14 @@ export const ContentWrapper = styled.div`
   align-items: flex-start;
   gap: 3rem;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const ServiceBlock = styled.div`
@@ -33,6 +63,15 @@ export const ServiceBlock = styled.div`
   align-items: flex-start;
   gap: 0.25rem;
   width: 100%;
+
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const TitleRow = styled.div`
@@ -40,15 +79,35 @@ export const TitleRow = styled.div`
   align-items: center;
   gap: 0.25rem;
   width: 100%;
+
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const Number = styled.p`
   color: #242424;
-  font-family: "Bebas Neue", sans-serif;
   font-family: var(--second-family);
 font-weight: 400;
 font-size: 35px;
 line-height: 90%;
+@media screen and (min-width: 768px){
+font-family: var(--second-family);
+font-weight: 400;
+font-size: 56px;
+line-height: 90%;
+color: var(--black-500);  
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const TitleBlue = styled.p`
@@ -57,6 +116,14 @@ font-weight: 400;
 font-size: 35px;
 line-height: 90%;
 color: var(--blue-500);
+@media screen and (min-width: 768px){
+font-size: 56px;  
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const Title = styled.p`
@@ -66,19 +133,59 @@ export const Title = styled.p`
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
+  @media screen and (min-width: 768px){
+font-size: 56px;  
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
+`;
+
+export const TitleCard = styled.p`
+  color: #242424;
+   font-family: var(--second-family);
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 0.9em;
+  width: 100%;
+  @media screen and (min-width: 768px){
+   font-family: var(--second-family);
+font-weight: 400;
+font-size: 38px;
+line-height: 90%;
+color: var(--black-500);
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const ServiceImage = styled.img`
-  display: flex;
+   display: block; /* Для зображень краще використовувати block або inline-block */
+  width: 100%; /* Займає всю ширину свого контейнера */
+  height: 647px; /* Фіксована висота для мобільних пристроїв */
+  
+  /* Ключові властивості для обрізки та позиціонування вмісту: */
+  object-fit: cover; /* Обрізає зображення, заповнюючи блок */
+  object-position: left center; /* ЗСУВАЄ фокус обрізки вправо! */
+
+  /* Стилі */
   padding: 0.5rem;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.5rem;
   border-radius: 0.5rem;
+
+  @media screen and (min-width: 768px){
   width: 100%;
-  height: 647px;
-  object-fit: cover;
+height: min-content; 
+object-position: center center;
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const InfoBlock = styled.div`
@@ -87,6 +194,14 @@ export const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const InfoText = styled.p`
@@ -96,6 +211,14 @@ export const InfoText = styled.p`
   font-weight: 400;
   line-height: 1.25em;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const Button = styled.button`
@@ -110,6 +233,14 @@ export const Button = styled.button`
   border: 1px solid #242424;
   width: fit-content;
   background: transparent;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const ButtonText = styled.p`
@@ -119,6 +250,14 @@ export const ButtonText = styled.p`
   font-weight: 500;
   line-height: 1.25em;
   width: fit-content;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const Container = styled.div`
@@ -134,6 +273,14 @@ export const Container = styled.div`
   overflow: auto;
   margin: 0 auto;
   margin: 16px;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const HeaderWrapper = styled.div`
@@ -142,6 +289,14 @@ export const HeaderWrapper = styled.div`
   align-items: flex-start;
   gap: 8px;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 // const TitleRow = styled.div`
@@ -166,15 +321,31 @@ export const TextBlock = styled.div`
   align-items: flex-start;
   gap: 8px;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const Description = styled.p`
-  color: #242424;
-  font-family: "Geist", sans-serif;
+color: var(--black-500);
+  font-family: var(--font-family);
   font-size: 1rem; /* 16px */
   font-weight: 400;
   line-height: 1.25em;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   font-size: 17px;
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const ButtonRow = styled.div`
@@ -182,6 +353,14 @@ export const ButtonRow = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const PrimaryButton = styled.button`
@@ -194,8 +373,23 @@ export const PrimaryButton = styled.button`
   gap: 8px;
   border-radius: 8px;
   background: #3098ee;
-  width: 100%;
+  border-radius: 8px;
+padding: 10px 20px;
+width: 124px;
+height: 40px;
   border: none;
+
+  a{
+  text-decoration: none;
+  }
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const SecondaryButton = styled.button`
@@ -206,10 +400,20 @@ export const SecondaryButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border-radius: 8px;
-  border: 1px solid #242424;
-  width: 100%;
+border: 1px solid var(--black-500);
+border-radius: 8px;
+padding: 10px 20px;
+width: 119px;
+height: 40px;
   background: transparent;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const ButtonTextWhite = styled.p`
@@ -219,6 +423,14 @@ export const ButtonTextWhite = styled.p`
   font-weight: 500;
   line-height: 1.25em;
   width: fit-content;
+  @media screen and (min-width: 768px){
+   
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;
 
 export const ButtonTextBlack = styled(ButtonTextWhite)`
@@ -229,5 +441,11 @@ export const ImageSection = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  
+  @media screen and (min-width: 768px){
+   
+}
+
+@media screen and (min-width: 1440px){
+    
+}
 `;

@@ -11,16 +11,21 @@ export const StyledSwiper = styled(SwiperBase)`
   background: transparent; /* щоб не було прозорим */
   z-index: 1;
   margin: px;
+border-radius: 8px !important;
 
   .swiper {
     width: 100%;
     height: 100%;
+    border-radius: 8px !important;
+
   }
 
   .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 8px !important;
+
   }
 
   .swiper-pagination-bullet {
@@ -30,12 +35,36 @@ export const StyledSwiper = styled(SwiperBase)`
   .swiper-pagination-bullet-active {
     background: #005fa3;
   }
+
+  img{
+ border-radius: 8px !important;
+
+  }
+
+  @media screen and (min-width: 768px){
+width: 760px;
+border-radius: 8px !important;
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const StyledSwiperSlide = styled(SwiperSlideBase)`
   display: flex;
   justify-content: center;
   align-items: center;
+border-radius: 8px !important;
+
+ @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}   
 `;
 
 
@@ -47,6 +76,13 @@ export const Section = styled.section`
   padding: 0 1rem;
   overflow: hidden;
   margin-bottom: 2rem;
+  @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const Header = styled.div`
@@ -55,6 +91,14 @@ export const Header = styled.div`
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
+
+ @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}   
 `;
 
 export const Subtitle = styled.p`
@@ -64,6 +108,14 @@ font-size: 14px;
 line-height: 90%;
 text-transform: uppercase;
 color: var(--black-500);
+
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const Title = styled.p`
@@ -72,6 +124,14 @@ font-weight: 400;
 font-size: 52px;
 line-height: 90%;
 color: var(--black-500);
+
+@media screen and (min-width: 768px){
+font-size: 72px;
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const SlideImage = styled.img`
@@ -85,12 +145,28 @@ export const SlideImage = styled.img`
     width: 100%;
     height: 647px;
     object-fit: cover;
+
+ @media screen and (min-width: 768px){
+height: 760px;
+width: 696px;
+}
+
+@media screen and (min-width: 1440px){
+    
+}     
 `;
 
 export const NavButtons = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}    
 `;
 
 export const Button = styled.button`
@@ -100,10 +176,21 @@ export const Button = styled.button`
   color: #242424;
   cursor: pointer;
   transition: background 0.2s;
+
+  
   &:hover {
     background: #242424;
     color: #fff;
   }
+
+}  
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+} 
 `;
 
 
@@ -112,6 +199,13 @@ export const SlideWrapper = styled.div`
  position: relative;
     width: auto;
     height: 692px;
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}     
 `;
 
 export const Container = styled.div`
@@ -124,6 +218,13 @@ export const Container = styled.div`
     margin-bottom: 56px;
     background-color: rgba(255, 255, 255, 1);
     border-radius:  8px;
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}     
 `;
 
 export const ContentWrapper = styled.div`
@@ -132,6 +233,13 @@ export const ContentWrapper = styled.div`
   align-items: flex-start;
   gap: 10px;
   width: 100%;
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}   
 `;
 
 export const TopSection = styled.div`
@@ -140,6 +248,13 @@ export const TopSection = styled.div`
   align-items: flex-start;
   gap: 16px;
   width: 100%;
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}   
 `;
 
 export const IconRow = styled.div`
@@ -148,9 +263,13 @@ export const IconRow = styled.div`
     gap: 8px;
     width: fit-content;
     position: relative;
-    // top: 40vh;
-    // right: 10vh;
-    // z-index: 400;
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+} 
 `;
 
 export const IconButton = styled.button<{ $bg: string }>`
@@ -168,6 +287,13 @@ export const IconButton = styled.button<{ $bg: string }>`
   svg {
     pointer-events: cursor;
   }
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}     
 `;
 
 
@@ -177,6 +303,14 @@ font-weight: 400;
 font-size: 16px;
 line-height: 125%;
 color: var(--black-500);
+
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+} 
 `;
 
 export const BottomSection = styled.div`
@@ -185,6 +319,14 @@ export const BottomSection = styled.div`
   align-items: flex-start;
   gap: 4px;
   width: 100%;
+
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}   
 `;
 export const BlueCard = styled.div`
 font-family: var(--second-family);
@@ -192,5 +334,12 @@ font-weight: 400;
 font-size: 28px;
 line-height: 90%;
 color: var(--blue-500);
+@media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+} 
 `;
 

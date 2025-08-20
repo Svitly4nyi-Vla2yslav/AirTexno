@@ -48,7 +48,7 @@ exports.handler = async function(event, context) {
     // Email content
     const mailOptions = {
       from: process.env.GMAIL_USER,
-      to: 'airtexno@gmail.com',
+      to: 'Airtexnola@gmail.com',
       subject: `New Service Request: ${formData.service} for ${formData.appliance}`,
       html: `
         <h2>New Service Request</h2>

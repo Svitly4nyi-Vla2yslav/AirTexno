@@ -31,7 +31,7 @@ export const Hero: React.FC = () => {
 
         <ButtonGroup>
           <PrimaryButton>Contact Us</PrimaryButton>
-          <SecondaryButton>Call Us</SecondaryButton>
+          <SecondaryButton> <a href="tel:+18055002705"> Call Us</a></SecondaryButton>
         </ButtonGroup>
       </ContentWrapper>
     </HeroContainer>

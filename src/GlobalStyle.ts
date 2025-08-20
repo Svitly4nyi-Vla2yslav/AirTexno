@@ -118,10 +118,11 @@ export const GlobalStyle = css`
   }
 
   a {
-    text-decoration: none;
+    text-decoration: none !important;
+    color: color: var(--white);
     transition: all 0.3s ease-in-out;
     &:hover {
-      // color: #808080;
+      color: #919191ff;
       transition: all 0.3s ease-in-out;
     }
   }
