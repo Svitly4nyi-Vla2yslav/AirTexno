@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -11,7 +11,6 @@ import {
   ContentWrapper,
   Header,
   IconButton,
-  IconRow,
   ReviewText,
   Section,
   SlideImage,
@@ -21,6 +20,7 @@ import {
   Subtitle,
   Title,
   TopSection,
+  NavigationWrapper, // Додаємо новий компонент
 } from './CasesSection.styled';
 
 import ReviewImage2 from '../../assets/icons/cases/Review Image 3.png';
@@ -33,6 +33,16 @@ import { Blue } from '../WhyAirtexnoSection/WhyAirtexnoSection.styled';
 export default function CasesSection() {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (swiperRef.current && prevRef.current && nextRef.current) {
+      swiperRef.current.params.navigation.prevEl = prevRef.current;
+      swiperRef.current.params.navigation.nextEl = nextRef.current;
+      swiperRef.current.navigation.init();
+      swiperRef.current.navigation.update();
+    }
+  }, []);
 
   const cards = [
     {
@@ -71,6 +81,7 @@ export default function CasesSection() {
       type: 'Washing Machine Repair',
     },
   ];
+
   return (
     <Section>
       <Header>
@@ -80,10 +91,16 @@ export default function CasesSection() {
         </Title>
       </Header>
 
-      {/* Кнопки навігації — винесені поза слайди */}
+      {/* Кнопки навігації ВИНЕСЕНІ ПОЗА СЛАЙДЕР */}
+    
 
       <StyledSwiper
+        ref={swiperRef}
         modules={[Navigation, Autoplay]}
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }}
         pagination={{ clickable: true }}
         spaceBetween={20}
         slidesPerView={1}
@@ -94,13 +111,8 @@ export default function CasesSection() {
           pauseOnMouseEnter: true,
         }}
         speed={6000}
-        onInit={swiper => {
-          // @ts-ignore
-          swiper.params.navigation.prevEl = prevRef.current;
-          // @ts-ignore
-          swiper.params.navigation.nextEl = nextRef.current;
-          swiper.navigation.init();
-          swiper.navigation.update();
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
         }}
       >
         {cards.map(({ image, description, title, type }) => (
@@ -108,30 +120,7 @@ export default function CasesSection() {
             <SlideWrapper>
               <SlideImage src={image} alt={type} style={{borderRadius: 8}}/>
               <Container>
-                <IconRow>
-                  <IconButton ref={prevRef} $bg="#DBDBD8">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M15 18L9 12L15 6"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </IconButton>
-                  <IconButton ref={nextRef} $bg="#3098EE">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M9 18L15 12L9 6"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </IconButton>
-                </IconRow>
+                {/* ВИДАЛЯЄМО КНОПКИ ЗСЕРЕДИНИ СЛАЙДІВ */}
                 <ContentWrapper>
                   <TopSection>
                     <ReviewText>{description}</ReviewText>
@@ -146,6 +135,30 @@ export default function CasesSection() {
           </StyledSwiperSlide>
         ))}
       </StyledSwiper>
+        <NavigationWrapper>
+        <IconButton ref={prevRef} $bg="#DBDBD8">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </IconButton>
+        <IconButton ref={nextRef} $bg="#3098EE">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </IconButton>
+      </NavigationWrapper>
     </Section>
   );
 }

@@ -1,99 +1,17 @@
 import React from 'react';
 import BackgroundImage from '../../assets/icons/Service Area Section.webp';
-import styled from 'styled-components';
+import {
+  MainContainer,
+  TitleServing,
+  SubtitleServing,
+  Wrapper,
+  Card,
+  CardHeader,
+  IconWrapper,
+  County,
+  City,
+} from './ServingVentura.styled';
 
-export const MainContainer = styled.div<{ $bg: string }>`
-  background-image: url(${({ $bg }) => $bg});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100vh;
-  height: 1413px; /* щоб було видно фон */
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 100px;
-  flex-direction: column;
-  flex-wrap: nowrap;
-`;
-
-export const TitleServing = styled.h2`
-  font-family: var(--second-family);
-  font-weight: 400;
-  font-size: 52px;
-  line-height: 90%;
-  text-align: center;
-  color: var(--white);
-  margin: 0 auto;
-  max-width: 343px;
-  padding-top: 40px;
-`;
-
-export const SubtitleServing = styled.p`
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 125%;
-  text-align: center;
-  color: var(--white);
-    margin: 0 auto;
-  max-width: 343px;
-  padding-top: 40px;
-`;
-
-export const Wrapper = styled.div`
-display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    min-width: 100vw;
-    max-width: 100vw;
-    padding: 0 5px;
-    margin-top: 40px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const Card = styled.div`
-  background: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  // flex: 1 1 calc(50% - 12px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 165px;
-height: 164px;
-`;
-
-export const CardHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-`;
-
-export const IconWrapper = styled.div`
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const County = styled.p`
-  color: #3098ee;
-  font-family: "Geist", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-`;
-
-export const City = styled.p`
-font-family: var(--second-family);
-font-weight: 400;
-font-size: 32px;
-line-height: 90%;
-color: var(--blue-500);
-`;
 interface ServiceArea {
   county: string;
   city: string;
@@ -102,8 +20,8 @@ interface ServiceArea {
 
 const serviceAreas: ServiceArea[] = [
   {
-    county: "Ventura County",
-    city: "Thousand Oaks",
+    county: 'Ventura County',
+    city: 'Thousand Oaks',
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
@@ -117,8 +35,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Newbury Park",
+    county: 'Ventura County',
+    city: 'Newbury Park',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -131,9 +49,9 @@ const serviceAreas: ServiceArea[] = [
       </svg>
     ),
   },
-    {
-    county: "Los Angeles County",
-    city: "Westlake Village",
+  {
+    county: 'Los Angeles County',
+    city: 'Westlake Village',
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
@@ -147,8 +65,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Oak Park",
+    county: 'Ventura County',
+    city: 'Oak Park',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -162,8 +80,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Lake Sherwood",
+    county: 'Ventura County',
+    city: 'Lake Sherwood',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -177,8 +95,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Hidden Valley",
+    county: 'Ventura County',
+    city: 'Hidden Valley',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -191,9 +109,9 @@ const serviceAreas: ServiceArea[] = [
       </svg>
     ),
   },
-    {
-    county: "Ventura County",
-    city: "Camarillo",
+  {
+    county: 'Ventura County',
+    city: 'Camarillo',
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
@@ -207,8 +125,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Los Angeles County",
-    city: "Agoura Hills",
+    county: 'Los Angeles County',
+    city: 'Agoura Hills',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -221,9 +139,9 @@ const serviceAreas: ServiceArea[] = [
       </svg>
     ),
   },
-    {
-    county: "Ventura County",
-    city: "Moorpark",
+  {
+    county: 'Ventura County',
+    city: 'Moorpark',
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path
@@ -237,8 +155,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Los Angeles County",
-    city: "Calabasas",
+    county: 'Los Angeles County',
+    city: 'Calabasas',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -252,8 +170,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Ventura County",
-    city: "Santa Rosa Valley",
+    county: 'Ventura County',
+    city: 'Santa Rosa Valley',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -267,8 +185,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    county: "Los Angeles County",
-    city: "Malibu",
+    county: 'Los Angeles County',
+    city: 'Malibu',
     icon: (
       <svg width="17" height="16" viewBox="0 0 17 16" fill="none">
         <path
@@ -283,8 +201,6 @@ const serviceAreas: ServiceArea[] = [
   },
 ];
 const ServingVentura: React.FC = () => {
-
-
   return (
     <MainContainer $bg={BackgroundImage}>
       <TitleServing>Serving Ventura and Los Angeles Counties</TitleServing>
@@ -292,16 +208,16 @@ const ServingVentura: React.FC = () => {
         We provide expert service throughout the greater Los Angeles area.
       </SubtitleServing>
       <Wrapper>
-      {serviceAreas.map((area, index) => (
-        <Card key={index}>
-          <CardHeader>
-            <IconWrapper>{area.icon}</IconWrapper>
-            <County>{area.county}</County>
-          </CardHeader>
-          <City>{area.city}</City>
-        </Card>
-      ))}
-    </Wrapper>
+        {serviceAreas.map((area, index) => (
+          <Card key={index}>
+            <CardHeader>
+              <IconWrapper>{area.icon}</IconWrapper>
+              <County>{area.county}</County>
+            </CardHeader>
+            <City>{area.city}</City>
+          </Card>
+        ))}
+      </Wrapper>
     </MainContainer>
   );
 };

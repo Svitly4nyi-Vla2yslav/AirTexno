@@ -85,6 +85,15 @@ export const Section = styled.section`
 }  
 `;
 
+export const NavigationWrapper = styled.div`
+display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+`;
+
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
