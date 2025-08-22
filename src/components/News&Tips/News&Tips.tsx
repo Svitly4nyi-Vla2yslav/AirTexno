@@ -1,75 +1,59 @@
-import React, { useRef } from 'react'
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import image1 from "../../assets/icons/news&tips/News Article 2 Image Container.png"
-import image2 from "../../assets/icons/news&tips/Review Image-Elizabeth Castorena.png"
-import image3 from "../../assets/icons/news&tips/Review Image-Wendy Bailey.png"
-import image4 from "../../assets/icons/news&tips/Review Image-sanal-avatar.png"; 
+import React, { useRef } from 'react';
+import styled from 'styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import image1 from '../../assets/icons/news&tips/News Article 2 Image Container.png';
+import image2 from '../../assets/icons/news&tips/Review Image-Elizabeth Castorena.png';
+import image3 from '../../assets/icons/news&tips/Review Image-Wendy Bailey.png';
+import image4 from '../../assets/icons/news&tips/Review Image-sanal-avatar.png';
 import { Autoplay, Navigation } from 'swiper/modules';
+import { useMediaQuery } from 'react-responsive';
 
 // Дані для слайдів
 const slides = [
   {
     img: image1,
-    title: "APPLIANCE INSTALLATION SERVICES",
-    description: "Professional installation for appliances, ensuring safety.",
+    title: 'APPLIANCE INSTALLATION SERVICES',
+    description: 'Professional installation for appliances, ensuring safety.',
   },
   {
     img: image2,
-    title: "WHEN YOUR REFRIGERATOR STOPS COOLING: URGENT REPAIR SIGNS",
-    description: "Don't wait for food to spoil. Know the signs needing urgent help.",
+    title: 'WHEN YOUR REFRIGERATOR STOPS COOLING: URGENT REPAIR SIGNS',
+    description:
+      "Don't wait for food to spoil. Know the signs needing urgent help.",
   },
   {
     img: image3,
-    title: "WASHING MACHINE TROUBLESHOOTING",
-    description: "Quick solutions for common washing machine issues.",
+    title: 'WASHING MACHINE TROUBLESHOOTING',
+    description: 'Quick solutions for common washing machine issues.',
   },
   {
     img: image4,
-    title: "DISHWASHER MAINTENANCE TIPS",
-    description: "Keep your dishwasher running smoothly with these tips.",
+    title: 'DISHWASHER MAINTENANCE TIPS',
+    description: 'Keep your dishwasher running smoothly with these tips.',
   },
 ];
 
 const NewsAndTips: React.FC = () => {
   const swiperRef = useRef<any>(null);
+  const isMobile = useMediaQuery({ query: '(max-width: 743px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 744px) and (max-width: 1023px)',
+  });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
+
+  const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 3;
+  const shouldLoop = slides.length > slidesPerView;
 
   return (
     <Wrapper>
       <HeaderSection>
         <Subtitle>NEWS &amp; TIPS</Subtitle>
-        <Title>APPLIANCE <span>ADVICE</span> REPAIR  <span>TIPS</span> BLOG</Title>
+        <Title>
+          APPLIANCE <span>ADVICE</span> REPAIR <span>TIPS</span> BLOG
+        </Title>
       </HeaderSection>
-
-      <Swiper
-       modules={[Navigation, Autoplay]}
-        onSwiper={(swiper) => (swiperRef.current = swiper)} // записуємо інстанс у реф
-        spaceBetween={20}
-           autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-          waitForTransition: true,
-          pauseOnMouseEnter: true,
-        }}
-        speed={6000}
-        slidesPerView={1}
-        style={{ width: "100%", padding: "20px 0" }}
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <Card>
-              <Image src={slide.img} alt={slide.title} />
-              <CardText>
-                <CardTitle>{slide.title}</CardTitle>
-                <CardDescription>{slide.description}</CardDescription>
-              </CardText>
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      <NavigationContainer>
+    <NavigationContainer>
         <NavButton onClick={() => swiperRef.current?.slidePrev()} bg="#DBDBD8">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
@@ -94,6 +78,35 @@ const NewsAndTips: React.FC = () => {
           </svg>
         </NavButton>
       </NavigationContainer>
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        onSwiper={swiper => (swiperRef.current = swiper)} // записуємо інстанс у реф
+        spaceBetween={20}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+          waitForTransition: true,
+          pauseOnMouseEnter: true,
+        }}
+        speed={6000}
+         loop={shouldLoop}
+          slidesPerView={slidesPerView}
+        style={{ width: '100%', padding: '20px 0' }}
+      >
+        {slides.map((slide, index) => (
+          <SwiperSlide key={index}>
+            <Card>
+              <Image src={slide.img} alt={slide.title} />
+              <CardText>
+                <CardTitle>{slide.title}</CardTitle>
+                <CardDescription>{slide.description}</CardDescription>
+              </CardText>
+            </Card>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+  
     </Wrapper>
   );
 };
@@ -106,7 +119,8 @@ const NavigationContainer = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 10px;
-  justify-content: center; /* центрування */
+  width: 100%;
+justify-content: flex-end;
 `;
 
 const NavButton = styled.button<{ bg: string }>`
@@ -116,7 +130,7 @@ const NavButton = styled.button<{ bg: string }>`
   width: 40px;
   height: 40px;
   border-radius: 6px;
-  background-color: ${(props) => props.bg};
+  background-color: ${props => props.bg};
   border: none;
   cursor: pointer;
 `;
@@ -139,24 +153,41 @@ const HeaderSection = styled.div`
 `;
 
 const Subtitle = styled.p`
- font-family: var(--font-family);
- font-weight: 400;
- font-size: 14px;
- line-height: 90%;
- text-transform: uppercase;
- color: var(--black-500);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 90%;
+  text-transform: uppercase;
+  color: var(--black-500);
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Title = styled.p`
- font-family: var(--second-family);
- font-weight: 400;
- font-size: 52px;
- line-height: 90%;
- color: var(--black-500);
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 90%;
+  color: var(--black-500);
 
- span{
-   color: var(--blue-500);
- }
+  span {
+    color: var(--blue-500);
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 72px;
+    min-width: 750px;
+    span {
+      font-size: 72px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Card = styled.div`
@@ -182,17 +213,17 @@ const CardText = styled.div`
 `;
 
 const CardTitle = styled.p`
- font-family: var(--second-family);
- font-weight: 400;
- font-size: 32px;
- line-height: 90%;
- color: var(--black-500);
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 90%;
+  color: var(--black-500);
 `;
 
 const CardDescription = styled.p`
- font-family: var(--font-family);
- font-weight: 400;
- font-size: 16px;
- line-height: 125%;
- color: var(--black-500);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--black-500);
 `;

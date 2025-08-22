@@ -10,6 +10,7 @@ import {
   LogoSVG,
   Divider,
   Text,
+  CopyrightContainer,
 } from './Footer.styled';
 
 const Footer: React.FC = () => {
@@ -104,14 +105,14 @@ const Footer: React.FC = () => {
 
           <Divider opacity={0.5} />
 
-          <div>
+          <CopyrightContainer>
             <Text size="14px" weight="500">
               Designed by TRBN
             </Text>
             <Text size="14px">
               Copyright © 2025 Airtexno - All Rights Reserved.
             </Text>
-          </div>
+          </CopyrightContainer>
         </BottomBlock>
       </FooterContent>
     </FooterWrapper>

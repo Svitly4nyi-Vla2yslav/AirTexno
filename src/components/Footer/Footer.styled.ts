@@ -12,6 +12,15 @@ export const FooterWrapper = styled.footer`
   min-width: 100vw;
 
   overflow: auto;
+
+  @media screen and (min-width: 768px){
+
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const FooterContent = styled.div`
@@ -21,6 +30,13 @@ export const FooterContent = styled.div`
   align-items: flex-start;
   width: 100%;
   height: 338px;
+  @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const InfoBlock = styled.div`
@@ -29,6 +45,13 @@ export const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 32px;
   width: 100%;
+  @media screen and (min-width: 768px){
+    flex-direction: row;
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const Text = styled.p<{ size?: string; weight?: string }>`
@@ -38,9 +61,30 @@ export const Text = styled.p<{ size?: string; weight?: string }>`
   font-weight: ${({ weight }) => weight || "normal"};
   line-height: 1.2em;
   width: fit-content;
+  display: flex;
+  @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
-export const FullWidthText = styled(Text)`
+export const CopyrightContainer = styled.div`
+  @media screen and (min-width: 768px){
+display: flex;
+ flex-direction: row;
+ width: 100%;
+ justify-content: space-between;
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
+`;
+
+export const FullWidthText = styled.p`
   width: 100%;
   font-family: var(--font-family);
 font-weight: 400;
@@ -56,6 +100,14 @@ color: var(--white);
      text-decoration: underline;
    }
  }
+
+ @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const LinksWrapper = styled.div`
@@ -64,6 +116,13 @@ export const LinksWrapper = styled.div`
   gap: 13px;
   flex-wrap: wrap;
   width: 100%;
+  @media screen and (min-width: 768px){
+justify-content: flex-end;
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const BottomBlock = styled.div`
@@ -72,17 +131,40 @@ export const BottomBlock = styled.div`
   align-items: flex-start;
   gap: 14px;
   width: 100%;
+  @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const Divider = styled.div<{ opacity?: number }>`
   background: rgba(255, 255, 255, ${({ opacity }) => opacity || 0.5});
   width: 100%;
   height: 1px;
+  @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const LogoSVG = styled.svg`
-  width: 100vw;
-  height: 55px;
+  width: 100%;
+  height: auto;
+
+  @media screen and (min-width: 768px){
+    width: 100%;
+    height: 114px;
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const FooterContainer = styled.footer`
@@ -173,6 +255,13 @@ export const Container = styled.div`
     flex-wrap: nowrap;
     align-items: flex-start;
     gap: 5px;
+    @media screen and (min-width: 768px){
+
+}
+
+@media screen and (min-width: 1440px){
+    
+}  
 `;
 
 export const Logo = styled.a`

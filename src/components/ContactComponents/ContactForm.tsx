@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import { Alert, AlertType } from './Alert';
+import Cont from '../../assets/icons/ContactFormImage.png';
 
 export const ContactForm: React.FC = (): JSX.Element => {
   const [service, setService] = useState<string>('');
@@ -45,50 +46,56 @@ export const ContactForm: React.FC = (): JSX.Element => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const validationErrors = validate();
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors);
-    setAlert({ type: 'error', message: 'Please fill all required fields' });
-    return;
-  }
-
-  try {
-    // Відправка даних на Netlify Function
-    const response = await fetch('/.netlify/functions/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        service,
-        ...formData
-      }),
-    });
-
-    if (response.ok) {
-      // Успішна відправка
-      setService('');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        location: '',
-        appliance: '',
-        brand: '',
-        power: '',
-        details: '',
-      });
-      setErrors({});
-      setAlert({ type: 'success', message: 'Form submitted successfully! We will contact you soon.' });
-    } else {
-      throw new Error('Failed to submit form');
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setAlert({ type: 'error', message: 'Please fill all required fields' });
+      return;
     }
-  } catch (error) {
-    console.error('Error submitting form:', error);
-    setAlert({ type: 'error', message: 'There was an error submitting the form. Please try again.' });
-  }
-};
+
+    try {
+      // Відправка даних на Netlify Function
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service,
+          ...formData,
+        }),
+      });
+
+      if (response.ok) {
+        // Успішна відправка
+        setService('');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          location: '',
+          appliance: '',
+          brand: '',
+          power: '',
+          details: '',
+        });
+        setErrors({});
+        setAlert({
+          type: 'success',
+          message: 'Form submitted successfully! We will contact you soon.',
+        });
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setAlert({
+        type: 'error',
+        message: 'There was an error submitting the form. Please try again.',
+      });
+    }
+  };
   return (
     <Container>
       <Section>
@@ -113,10 +120,11 @@ export const ContactForm: React.FC = (): JSX.Element => {
           <InfoSection width="251px">
             <InfoTitle>Service Hours</InfoTitle>
             <SubSection>
-              <Text>Mon–Sat: 8AM–6PM <br/> Sun: 9AM–4PM </Text>
+              <Text>
+                Mon–Sat: 8AM–6PM <br /> Sun: 9AM–4PM{' '}
+              </Text>
             </SubSection>
           </InfoSection>
-
           <InfoSection>
             <InfoTitle>Our Location</InfoTitle>
             <SubSection>
@@ -125,6 +133,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             </SubSection>
           </InfoSection>
         </InfoBlock>
+        <ImageContact src={Cont} alt="contact image" />
       </Section>
       <FormContainer onSubmit={handleSubmit}>
         <Label>What service do you need for your appliances?</Label>
@@ -152,117 +161,125 @@ export const ContactForm: React.FC = (): JSX.Element => {
           </RadioLabel>
         </CheckboxGroup>
 
-        <Label>Name</Label>
-        <Input
-          name="name"
-          type="text"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          style={errors.name ? { borderBottom: '1px solid red' } : {}}
-        />
+        <TabletContainer>
+          <LeftColumn>
+            <Label>Name</Label>
+            <Input
+              name="name"
+              type="text"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              style={errors.name ? { borderBottom: '1px solid red' } : {}}
+            />
 
-        <Label>Email</Label>
-        <Input
-          name="email"
-          type="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          style={errors.email ? { borderBottom: '1px solid red' } : {}}
-        />
+            <Label>Email</Label>
+            <Input
+              name="email"
+              type="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              style={errors.email ? { borderBottom: '1px solid red' } : {}}
+            />
 
-        <Label>Phone Number</Label>
-        <Input
-          name="phone"
-          type="tel"
-          placeholder="Your Phone Number"
-          value={formData.phone}
-          onChange={handleChange}
-          style={errors.phone ? { borderBottom: '1px solid red' } : {}}
-        />
+            <Label>Phone Number</Label>
+            <Input
+              name="phone"
+              type="tel"
+              placeholder="Your Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+              style={errors.phone ? { borderBottom: '1px solid red' } : {}}
+            />
+          </LeftColumn>
 
-        <Label>In what location do you need the service?</Label>
-        <SelectWrapper>
-          <Select
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            style={errors.location ? { borderBottom: '1px solid red' } : {}}
-          >
-            <option value="">Select location</option>
-            <option>Malibu</option>
-            <option>Los Angeles County</option>
-            <option>Thousand Oaks</option>
-            <option>Newbury Park</option>
-            <option>Westlake Village</option>
-            <option>Oak Park</option>
-            <option>Lake Sherwood</option>
-            <option>Hidden Valley</option>
-            <option>Camarillo</option>
-            <option>Agoura Hills</option>
-            <option>Moorpark</option>
-            <option>Calabasas</option>
-            <option>Santa Rosa Valley</option>
-            <option>Other</option>
-          </Select>
-        </SelectWrapper>
+          <RightColumn>
+            <Label>In what location do you need the service?</Label>
+            <SelectWrapper>
+              <Select
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                style={errors.location ? { borderBottom: '1px solid red' } : {}}
+              >
+                <option value="">Select location</option>
+                <option>Malibu</option>
+                <option>Los Angeles County</option>
+                <option>Thousand Oaks</option>
+                <option>Newbury Park</option>
+                <option>Westlake Village</option>
+                <option>Oak Park</option>
+                <option>Lake Sherwood</option>
+                <option>Hidden Valley</option>
+                <option>Camarillo</option>
+                <option>Agoura Hills</option>
+                <option>Moorpark</option>
+                <option>Calabasas</option>
+                <option>Santa Rosa Valley</option>
+                <option>Other</option>
+              </Select>
+            </SelectWrapper>
 
-        <Label>What do you need repaired?</Label>
-        <SelectWrapper>
-          <Select
-            name="appliance"
-            value={formData.appliance}
-            onChange={handleChange}
-            style={errors.appliance ? { borderBottom: '1px solid red' } : {}}
-          >
-            <option value="">Select appliance</option>
-            <option>Cooktop</option>
-            <option>Oven</option>
-            <option>Range</option>
-            <option>Washer</option>
-            <option>Refrigerator</option>
-            <option>Microwave</option>
-            <option>Dishwasher</option>
-            <option>Dryer</option>
-            <option>Washing Machine</option>
-            <option>Freezer</option>
-            <option>Stove</option>
-            <option>Wine Cooler</option>
-            <option>Other</option>
-          </Select>
-        </SelectWrapper>
+            <Label>What do you need repaired?</Label>
+            <SelectWrapper>
+              <Select
+                name="appliance"
+                value={formData.appliance}
+                onChange={handleChange}
+                style={
+                  errors.appliance ? { borderBottom: '1px solid red' } : {}
+                }
+              >
+                <option value="">Select appliance</option>
+                <option>Cooktop</option>
+                <option>Oven</option>
+                <option>Range</option>
+                <option>Washer</option>
+                <option>Refrigerator</option>
+                <option>Microwave</option>
+                <option>Dishwasher</option>
+                <option>Dryer</option>
+                <option>Washing Machine</option>
+                <option>Freezer</option>
+                <option>Stove</option>
+                <option>Wine Cooler</option>
+                <option>Other</option>
+              </Select>
+            </SelectWrapper>
 
-        <Label>Brand of appliance</Label>
-        <SelectWrapper>
-          <Select
-            name="brand"
-            value={formData.brand}
-            onChange={handleChange}
-            style={errors.brand ? { borderBottom: '1px solid red' } : {}}
-          >
-            <option value="">Select brand</option>
-            <option>LG</option>
-            <option>Samsung</option>
-            <option>Whirlpool</option>
-            <option>Bosch</option>
-            <option>GE</option>
-            <option>Frigidaire</option>
-            <option>Maytag</option>
-            <option>KitchenAid</option>
-            <option>Viking</option>
-            <option>Fisher & Paykel</option>
-            <option>Amana</option>
-            <option>JennAir</option>
-            <option>Haier</option>
-            <option>Sharp</option>
-            <option>Electrolux</option>
-            <option>Sub-Zero</option>
-            <option>Thermador</option>
-            <option>Wolf</option>
-            <option>Other</option>
-          </Select>
-        </SelectWrapper>
+            <Label>Brand of appliance</Label>
+            <SelectWrapper>
+              <Select
+                name="brand"
+                value={formData.brand}
+                onChange={handleChange}
+                style={errors.brand ? { borderBottom: '1px solid red' } : {}}
+              >
+                <option value="">Select brand</option>
+                <option>LG</option>
+                <option>Samsung</option>
+                <option>Whirlpool</option>
+                <option>Bosch</option>
+                <option>GE</option>
+                <option>Frigidaire</option>
+                <option>Maytag</option>
+                <option>KitchenAid</option>
+                <option>Viking</option>
+                <option>Fisher & Paykel</option>
+                <option>Amana</option>
+                <option>JennAir</option>
+                <option>Haier</option>
+                <option>Sharp</option>
+                <option>Electrolux</option>
+                <option>Sub-Zero</option>
+                <option>Thermador</option>
+                <option>Wolf</option>
+                <option>Other</option>
+              </Select>
+            </SelectWrapper>
+          </RightColumn>
+        </TabletContainer>
 
         <Label>What type of power does this appliance use?</Label>
         <SelectWrapper>
@@ -293,7 +310,8 @@ export const ContactForm: React.FC = (): JSX.Element => {
         />
 
         <Disclaimer>
-          By clicking "Submit" you hereby agree to our <a href="http://#">Privacy Policy</a> .
+          By clicking "Submit" you hereby agree to our{' '}
+          <a href="http://#">Privacy Policy</a> .
         </Disclaimer>
 
         <ButtonSubmit type="submit">Submit</ButtonSubmit>
@@ -317,12 +335,18 @@ const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: 10px;
   background: var(--blue-form);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Label = styled.label`
@@ -331,11 +355,24 @@ const Label = styled.label`
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
+  margin-top: 30px;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const CheckboxGroup = styled.div`
   display: flex;
   gap: 20px;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const RadioLabel = styled.label`
@@ -348,10 +385,22 @@ const RadioLabel = styled.label`
   border: 1px solid var(--black-500);
   border-radius: 8px;
   padding: 10px 16px;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const HiddenRadio = styled.input.attrs({ type: 'radio' })`
   display: none;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const CustomRadio = styled.span<{ checked: boolean }>`
@@ -380,6 +429,12 @@ const CustomRadio = styled.span<{ checked: boolean }>`
       transition: all 0.3s ease;
     }
   `}
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Input = styled.input`
@@ -390,18 +445,24 @@ const Input = styled.input`
   border: none;
   border-bottom: 1px solid var(--black-300);
   background: var(--blue-form);
+  margin-bottom: 20px;
 
   &:focus {
     border-color: var(--blue-form);
     outline: none;
     background: #bbe5f6ff;
   }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const SelectWrapper = styled.div`
   position: relative;
   width: 100%;
-
+  margin-bottom: 20px;
   &::after {
     content: '🢗';
     font-size: 24px;
@@ -411,6 +472,11 @@ const SelectWrapper = styled.div`
     top: 70%;
     transform: translateY(-50%);
     pointer-events: none;
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -434,6 +500,12 @@ const Select = styled.select`
     outline: none;
     background: #bbe5f6ff;
   }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Textarea = styled.textarea`
@@ -452,6 +524,12 @@ const Textarea = styled.textarea`
     border-color: var(--blue-form);
     outline: none;
     background: #bbe5f6ff;
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -476,12 +554,22 @@ const ButtonSubmit = styled.button`
   &:active {
     transform: scale(0.95);
   }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Disclaimer = styled.p`
   font-size: 12px;
   color: #666;
   text-align: center;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Container = styled.div`
@@ -491,6 +579,11 @@ const Container = styled.div`
   gap: 28px;
   overflow: auto;
   margin-bottom: 40px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Section = styled.div`
@@ -499,6 +592,12 @@ const Section = styled.div`
   align-items: flex-start;
   gap: 20px;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    width: 750px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const SubSection = styled.div`
@@ -507,6 +606,11 @@ const SubSection = styled.div`
   align-items: flex-start;
   gap: 12px;
   width: 100%;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Title = styled.p`
@@ -519,6 +623,12 @@ const Title = styled.p`
   span {
     color: var(--blue-500);
   }
+  @media screen and (min-width: 768px) {
+  font-size: 72px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Text = styled.p`
@@ -527,6 +637,12 @@ const Text = styled.p`
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
+  @media screen and (min-width: 768px) {
+  font-size: 17px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Button = styled.button`
@@ -541,6 +657,11 @@ const Button = styled.button`
   width: fit-content;
   background: transparent;
   margin-left: 20px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const ButtonText = styled.p`
@@ -549,12 +670,22 @@ const ButtonText = styled.p`
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const Divider = styled.div`
   background: rgba(33, 33, 33, 0.3);
   width: 100%;
   height: 1px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const InfoBlock = styled.div`
@@ -563,6 +694,11 @@ const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 24px;
   width: 100%;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const InfoSection = styled.div<{ width?: string }>`
@@ -571,6 +707,11 @@ const InfoSection = styled.div<{ width?: string }>`
   align-items: flex-start;
   gap: 12px;
   width: ${props => props.width || '100%'};
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const InfoTitle = styled.p`
@@ -579,4 +720,47 @@ const InfoTitle = styled.p`
   font-size: 24px;
   line-height: 90%;
   color: var(--black-500);
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const ImageContact = styled.img`
+  min-width: 343px;
+`;
+
+const TabletContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+const LeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 48%;
+  }
+`;
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 48%;
+  }
 `;
