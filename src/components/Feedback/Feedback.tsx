@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode, Mousewheel } from 'swiper/modules';
+import { Autoplay,  Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/mousewheel';
 import avatarAlex from '../../assets/icons/feedback/Ellipse 4aleksey.png';
@@ -13,6 +13,7 @@ import reviewImageAlex from '../../assets/icons/feedback/Review Image-alexey.png
 import reviewImageSanal from '../../assets/icons/feedback/Review Image-sanal-avatar.png';
 import reviewImageWendy from '../../assets/icons/feedback/Review Image-Wendy Bailey.png';
 import reviewImageElizabeth from '../../assets/icons/feedback/Review Image-Elizabeth Castorena.png';
+import { useMediaQuery } from 'react-responsive';
 
 interface Review {
   avatar: string;
@@ -75,6 +76,10 @@ export const TextContainer = styled.div`
   width: 375px;
   height: 170px;
   margin-bottom: 36px;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const TitleFeedback = styled.h2`
@@ -90,6 +95,17 @@ export const TitleFeedback = styled.h2`
     line-height: 90%;
     color: var(--blue-500);
   }
+
+  @media screen and (min-width: 768px) {
+    font-size: 72px;
+    min-width: 750px;
+    span {
+      font-size: 72px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+  }   
 `;
 
 export const TextFeedback = styled.p`
@@ -100,28 +116,40 @@ export const TextFeedback = styled.p`
   text-transform: uppercase;
   padding-bottom: 16px;
   color: var(--black-500);
+
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }  
 `;
 
-const Container = styled.div`
+// Новий контейнер для двох свайперів на планшетах
+const SwipersContainer = styled.div`
   position: relative;
   width: 100%;
   height: 684px;
   overflow: hidden;
   margin-bottom: 0px;
-  
-  .swiper {
-    height: 100%;
-    cursor: grab;
-    -webkit-overflow-scrolling: touch; /* Покращує скрол на iOS */
-    
-    &:active {
-      cursor: grabbing;
-    }
-    
-    /* Стилі для мобільних пристроїв */
-    @media (hover: none) and (pointer: coarse) {
-      touch-action: pan-y;
-    }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 20px;
+    height: 800px; /* Збільшуємо висоту для двох колонок */
+  }
+`;
+
+const SingleSwiperContainer = styled.div<{ $isVisible?: boolean }>`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: ${props => props.$isVisible ? 'block' : 'none'};
+
+  @media screen and (min-width: 768px) {
+    width: 50%; /* Два свайпери займають по половині ширини */
+    display: block;
   }
 `;
 
@@ -132,6 +160,7 @@ const Card = styled.div`
   padding: 20px;
   background-color: #f5faff;
   border-radius: 8px;
+  height: 600px; /* Фіксована висота картки */
 `;
 
 const Header = styled.div`
@@ -171,6 +200,8 @@ const Text = styled.p`
   font-family: 'Geist', sans-serif;
   font-size: 1rem;
   line-height: 1.25em;
+  flex-grow: 1;
+  overflow: hidden;
 `;
 
 const ReviewImage = styled.img`
@@ -185,7 +216,7 @@ const BackgroundTop = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px; /* Змініть висоту за потребою */
+  height: 100px;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 0%,
@@ -200,7 +231,7 @@ const BackgroundBottom = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100px; /* Змініть висоту за потребою */
+  height: 100px;
   background: linear-gradient(
     0deg,
     rgba(255, 255, 255, 1) 0%,
@@ -209,16 +240,19 @@ const BackgroundBottom = styled.div`
   z-index: 10;
   pointer-events: none;
 `;
+
 const ReviewCardContainer: React.FC = () => {
   const [, setIsScrolling] = React.useState(false);
-  const swiperRef = React.useRef<any>(null);
+  const swiperRefTop = React.useRef<any>(null);
+  const swiperRefBottom = React.useRef<any>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
 
   // Функція для обробки скролу
   const handleTouchMove = (e: TouchEvent) => {
-    if (!swiperRef.current || !containerRef.current) return;
+    if (!swiperRefTop.current || !containerRef.current) return;
     
-    const swiper = swiperRef.current;
+    const swiper = swiperRefTop.current;
     const container = containerRef.current;
     const touchY = e.touches[0].clientY;
     const { top, bottom } = container.getBoundingClientRect();
@@ -246,8 +280,6 @@ const ReviewCardContainer: React.FC = () => {
     };
   }, []);
 
-  
-
   return (
     <div>
       <TextContainer>
@@ -256,69 +288,137 @@ const ReviewCardContainer: React.FC = () => {
           Discover why clients <span> trust </span> our repairs
         </TitleFeedback>
       </TextContainer>
-      <Container ref={containerRef}>
-        <BackgroundTop />
-        <BackgroundBottom />
-        <Swiper
-          ref={swiperRef}
-          direction="vertical"
-          slidesPerView={1}
-          spaceBetween={20}
-          mousewheel={{
-            forceToAxis: true,
-            sensitivity: 1,
-            releaseOnEdges: true,
-          }}
-          touchEventsTarget="container"
-          modules={[Mousewheel, Autoplay, FreeMode]}
-          freeMode={{
-            enabled: true,
-            momentum: true,
-            momentumBounce: true,
-            momentumRatio: 1,
-            momentumVelocityRatio: 1,
-            sticky: true, // Додаємо "липкість" для кращого контролю
-          }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: true,
-            pauseOnMouseEnter: true,
-            waitForTransition: true,
-          }}
-          speed={9000}
-          grabCursor={true}
-          resistance={true}
-          resistanceRatio={0.85}
-          onReachBeginning={() => setIsScrolling(false)}
-          onReachEnd={() => setIsScrolling(false)}
-          onTouchEnd={() => {
-            setTimeout(() => {
-              if (swiperRef.current) {
-                swiperRef.current.allowTouchMove = true;
-              }
-            }, 100);
-          }}
-        >
-          {reviews.map((review, index) => (
-            <SwiperSlide key={index}>
-              <Card>
-                <Header>
-                  <Avatar src={review.avatar} alt={review.name} />
-                  <UserInfo>
-                    <Name>{review.name}</Name>
-                    <Time>{review.time}</Time>
-                  </UserInfo>
-                </Header>
-                <Text>{review.text}</Text>
-                <ReviewImage
-                  src={review.image}
-                  alt={`Review by ${review.name}`}
-                />
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Container>
+      
+      <SwipersContainer ref={containerRef}>
+        {/* Перший свайпер (зверху вниз) - завжди видимий */}
+        <SingleSwiperContainer $isVisible={true}>
+          <BackgroundTop />
+          <BackgroundBottom />
+          <Swiper
+            ref={swiperRefTop}
+            direction="vertical"
+            slidesPerView={1}
+            spaceBetween={20}
+            freeMode={{
+              enabled: false, // Вимкнути freeMode для автопрокрутки
+            }}
+            mousewheel={{
+              enabled: true,
+              forceToAxis: true,
+              sensitivity: 1,
+              releaseOnEdges: true,
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+              waitForTransition: true,
+            }}
+            speed={6000}
+            loop={true}
+            touchEventsTarget="container"
+            modules={[Mousewheel, Autoplay]}
+            grabCursor={true}
+            resistance={true}
+            resistanceRatio={0.85}
+            onReachBeginning={() => setIsScrolling(false)}
+            onReachEnd={() => setIsScrolling(false)}
+            onTouchEnd={() => {
+              setTimeout(() => {
+                if (swiperRefTop.current) {
+                  swiperRefTop.current.allowTouchMove = true;
+                }
+              }, 100);
+            }}
+            style={{ height: '100%' }}
+          >
+            {reviews.map((review, index) => (
+              <SwiperSlide key={`top-${index}`}>
+                <Card>
+                  <Header>
+                    <Avatar src={review.avatar} alt={review.name} />
+                    <UserInfo>
+                      <Name>{review.name}</Name>
+                      <Time>{review.time}</Time>
+                    </UserInfo>
+                  </Header>
+                  <Text>{review.text}</Text>
+                  <ReviewImage
+                    src={review.image}
+                    alt={`Review by ${review.name}`}
+                  />
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </SingleSwiperContainer>
+
+        {/* Другий свайпер (знизу вгору) - тільки для планшетів */}
+        <SingleSwiperContainer $isVisible={isTablet}>
+          <BackgroundTop />
+          <BackgroundBottom />
+          <Swiper
+            ref={swiperRefBottom}
+            direction="vertical"
+            slidesPerView={1}
+            spaceBetween={20}
+            freeMode={{
+              enabled: false, // Вимкнути freeMode для автопрокрутки
+            }}
+            mousewheel={{
+              enabled: true,
+              forceToAxis: true,
+              sensitivity: 1,
+              releaseOnEdges: true,
+              invert: true, // Інвертуємо напрямок скролу
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+              waitForTransition: true,
+              reverseDirection: true, // Автопрокрутка в зворотньому напрямку
+            }}
+            speed={6000}
+            loop={true}
+            touchEventsTarget="container"
+            modules={[Mousewheel, Autoplay]}
+            grabCursor={true}
+            resistance={true}
+            resistanceRatio={0.85}
+            initialSlide={reviews.length - 1}
+            onReachBeginning={() => setIsScrolling(false)}
+            onReachEnd={() => setIsScrolling(false)}
+            onTouchEnd={() => {
+              setTimeout(() => {
+                if (swiperRefBottom.current) {
+                  swiperRefBottom.current.allowTouchMove = true;
+                }
+              }, 100);
+            }}
+            style={{ height: '100%' }}
+          >
+            {reviews.map((review, index) => (
+              <SwiperSlide key={`bottom-${index}`}>
+                <Card>
+                  <Header>
+                    <Avatar src={review.avatar} alt={review.name} />
+                    <UserInfo>
+                      <Name>{review.name}</Name>
+                      <Time>{review.time}</Time>
+                    </UserInfo>
+                  </Header>
+                  <Text>{review.text}</Text>
+                  <ReviewImage
+                    src={review.image}
+                    alt={`Review by ${review.name}`}
+                  />
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </SingleSwiperContainer>
+      </SwipersContainer>
     </div>
   );
 };
