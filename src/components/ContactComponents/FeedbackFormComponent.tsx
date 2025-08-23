@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { HeroTitle, HeroInnovative } from '../Hero/Hero.styled';
+import { HeroTitle } from '../Hero/Hero.styled';
 import { Alert, AlertType } from './Alert';
 const FeedbackWrapper = styled.div`
   margin: 80px auto;
@@ -240,9 +240,7 @@ const FeedbackFormComponent: React.FC = () => {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <HeroInnovative>
-          {t('feedback1.title')}
-        </HeroInnovative>
+      
         <HeroTitle>{t('feedback1.subtitle')}</HeroTitle>
       
 
