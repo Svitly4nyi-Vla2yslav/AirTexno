@@ -1,9 +1,9 @@
-import "modern-normalize";
-import { css } from "@emotion/react";
-import GeistRegular from "../src/assets/fonts/Geist-Regular.ttf"; 
-import GeistMedium from "../src/assets/fonts/Geist-Medium.ttf";
-import BebasNeueRegular from "../src/assets/fonts/BebasNeue-Regular.ttf"; 
-import Inter_24ptRegular from "../src/assets/fonts/Inter_24pt-Regular.ttf"
+import 'modern-normalize';
+import { css } from '@emotion/react';
+import GeistRegular from '../src/assets/fonts/Geist-Regular.ttf';
+import GeistMedium from '../src/assets/fonts/Geist-Medium.ttf';
+import BebasNeueRegular from '../src/assets/fonts/BebasNeue-Regular.ttf';
+import Inter_24ptRegular from '../src/assets/fonts/Inter_24pt-Regular.ttf';
 
 export const GlobalStyle = css`
   /* Font Awesome */
@@ -57,7 +57,7 @@ export const GlobalStyle = css`
 	--white-800: rgba(255, 255, 255, 0.8);
 	--blue-350: #c6e6ff;
 	--blue-450: #6abcff;
-
+--purple-400: #a66affff;
     
     /* Fonts */
    --font-family: "Geist Regular", sans-serif;
@@ -119,7 +119,7 @@ export const GlobalStyle = css`
 
   a {
     text-decoration: none !important;
-    color: color: var(--white);
+    color: var(--white);
     transition: all 0.3s ease-in-out;
     &:hover {
       color: #919191ff;

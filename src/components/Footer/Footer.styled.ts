@@ -189,7 +189,7 @@ z-index: 1;
   padding: 0 auto;
   }`;
 
-  export const Deckstop = styled.div`
+export const Deckstop = styled.div`
    @media screen and (min-width: 768px) {
   display: flex;
  gap: 74px;
@@ -273,7 +273,7 @@ export const Logo = styled.a`
   img {
  width: 142px;
 height: 19px;
-  overflov: hidden;
+  overflow: hidden;
 
   
   &:hover,

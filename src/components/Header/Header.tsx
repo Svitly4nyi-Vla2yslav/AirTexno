@@ -7,9 +7,6 @@ import {
   NavItem,
   NavList,
   StyledNavLink,
-  DropdownMenu,
-  DropdownItem,
-  ServiceLink,
   TabletContainer,
   ContainerLink,
   LinkInfo,
@@ -25,7 +22,7 @@ import location from '../../assets/icons/location.png';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isServicesOpen] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   // об’єднаний тригер оверлею
@@ -43,10 +40,6 @@ const Header: React.FC = () => {
     if (window.location.pathname !== '/home') {
       navigate('/home');
     }
-  };
-
-  const toggleServicesMenu = () => {
-    setIsServicesOpen(!isServicesOpen);
   };
 
   useEffect(() => {
@@ -78,87 +71,81 @@ const Header: React.FC = () => {
   }, []);
 
   const isMobile = useMediaQuery({ query: '(max-width: 1439px)' });
-
+  const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1439px)' });
+  const isDeckstop = useMediaQuery({ query: '(min-width: 1440px)' });
   return (
     <NavbarContainer $isScrolled={isScrolled}>
-      <HeaderWrapper id="header">
+      <HeaderWrapper id='header'>
         <Logo
-          to="/home#hero"
+          to='/home#hero'
           onClick={handleLogoClick}
           $overlayOpen={isOverlayOpen} // ← передаємо в styled
         >
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt='Logo' />
         </Logo>
 
         {!isMobile && (
           <NavList>
             <NavItem>
-              <StyledNavLink to="/home#hero"></StyledNavLink>
+              <StyledNavLink to='/home#hero'>Home</StyledNavLink>
             </NavItem>
 
-            <NavItem
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
-              onClick={toggleServicesMenu}
-            >
-              <ServiceLink>
-                <StyledNavLink
-                  to="/service#all"
-                  style={{ padding: '10px 0px' }}
-                ></StyledNavLink>
-                {isServicesOpen && (
-                  <DropdownMenu>
-                    <DropdownItem>
-                      <StyledNavLink to="/service/customer-experience#ap"></StyledNavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <StyledNavLink to="/service/pos-staff-operations#ap"></StyledNavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <StyledNavLink to="/service/kitchen-fulfillment#ap"></StyledNavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <StyledNavLink to="/service/inventory-warehousing#ap"></StyledNavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <StyledNavLink to="/service/analytics-management#ap"></StyledNavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <StyledNavLink to="/service/marketing-customization#ap"></StyledNavLink>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <StyledNavLink to="/service/integration-scaling#ap"></StyledNavLink>
-                    </DropdownItem>
-                  </DropdownMenu>
-                )}
-              </ServiceLink>
+            <NavItem>
+              <StyledNavLink to='/service#all' style={{ padding: '10px 0px' }}>
+                Services
+              </StyledNavLink>
             </NavItem>
 
             <NavItem>
               <StyledNavLink
                 // style={{ pointerEvents: 'none', opacity: 0.5 }}
-                to="/about#ap"
-              ></StyledNavLink>
+                to='/about#ap'
+              >About Us</StyledNavLink>
             </NavItem>
             <NavItem>
               <StyledNavLink
                 // style={{ pointerEvents: 'none', opacity: 0.5 }}
-                to="/pricing#app"
-              ></StyledNavLink>
+                to='/pricing#app'
+              >Tips</StyledNavLink>
             </NavItem>
             <NavItem>
               <StyledNavLink
                 // style={{ pointerEvents: 'none', opacity: 0.5 }}
-                to="/contact#ap"
-              ></StyledNavLink>
+                to='/contact#ap'
+              >Contact</StyledNavLink>
             </NavItem>
           </NavList>
         )}
-
+        {isDeckstop && (
+          <TabletContainer>
+            <ContainerLink>
+              <LinkInfo>
+                <a href='tel:+18055002705'>+1 (805) 500-2705</a>
+              </LinkInfo>
+              <LinkInfo>Mon–Sat: 8AM–6PM | Sun: 9AM–4PM</LinkInfo>
+            </ContainerLink>
+            <ContainerLink>
+              <LinkInfo>
+                {' '}
+                <img src={location} alt='🗺️' />{' '}
+                <a
+                  href='https://www.google.com/maps/place/%D0%A2%D0%B0%D1%83%D0%B7%D0%B5%D0%BD%D0%B4-%D0%9E%D1%83%D0%BA%D1%81,+%D0%9A%D0%B0%D0%BB%D1%96%D1%84%D0%BE%D1%80%D0%BD%D1%96%D1%8F,+%D0%A1%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D1%96+%D0%A8%D1%82%D0%B0%D1%82%D0%B8+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B8/@34.1878421,-118.9303503,16784m/data=!3m1!1e3!4m6!3m5!1s0x80e8255670288891:0x8d2e7a0147cc2e26!8m2!3d34.1761133!4d-118.8487793!16zL20vMHI4Yzg?authuser=0&entry=ttu&g_ep=EgoyMDI1MDgxNy4wIKXMDSoASAFQAw%3D%3D'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Thousand Oaks
+                </a>
+              </LinkInfo>
+              <LinkInfo> & Nearby Cities</LinkInfo>
+            </ContainerLink>
+          </TabletContainer>
+        )}
         <LangButtonContainer>
           <div style={{ display: 'flex' }}>
             <PrimaryButton>Contact Us</PrimaryButton>
-            <TransparentButton><a href="tel:+18055002705"> Call Us</a></TransparentButton>
+            <TransparentButton>
+              <a href='tel:+18055002705'> Call Us</a>
+            </TransparentButton>
             {isMobile && (
               <BurgerMenu
                 isOpen={isBurgerOpen}
@@ -168,28 +155,30 @@ const Header: React.FC = () => {
           </div>
         </LangButtonContainer>
       </HeaderWrapper>
-      <TabletContainer>
-        <ContainerLink>
-          <LinkInfo>
-            <a href="tel:+18055002705">+1 (805) 500-2705</a>
-          </LinkInfo>
-          <LinkInfo>Mon–Sat: 8AM–6PM | Sun: 9AM–4PM</LinkInfo>
-        </ContainerLink>
-        <ContainerLink>
-          <LinkInfo>
-            {' '}
-            <img src={location} alt="" />{' '}
-            <a
-              href="https://www.google.com/maps/place/%D0%A2%D0%B0%D1%83%D0%B7%D0%B5%D0%BD%D0%B4-%D0%9E%D1%83%D0%BA%D1%81,+%D0%9A%D0%B0%D0%BB%D1%96%D1%84%D0%BE%D1%80%D0%BD%D1%96%D1%8F,+%D0%A1%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D1%96+%D0%A8%D1%82%D0%B0%D1%82%D0%B8+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B8/@34.1878421,-118.9303503,16784m/data=!3m1!1e3!4m6!3m5!1s0x80e8255670288891:0x8d2e7a0147cc2e26!8m2!3d34.1761133!4d-118.8487793!16zL20vMHI4Yzg?authuser=0&entry=ttu&g_ep=EgoyMDI1MDgxNy4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Thousand Oaks
-            </a>
-          </LinkInfo>
-          <LinkInfo> & Nearby Cities</LinkInfo>
-        </ContainerLink>
-      </TabletContainer>
+      {isTablet && (
+        <TabletContainer>
+          <ContainerLink>
+            <LinkInfo>
+              <a href='tel:+18055002705'>+1 (805) 500-2705</a>
+            </LinkInfo>
+            <LinkInfo>Mon–Sat: 8AM–6PM | Sun: 9AM–4PM</LinkInfo>
+          </ContainerLink>
+          <ContainerLink>
+            <LinkInfo>
+              {' '}
+              <img src={location} alt='🗺️' />{' '}
+              <a
+                href='https://www.google.com/maps/place/%D0%A2%D0%B0%D1%83%D0%B7%D0%B5%D0%BD%D0%B4-%D0%9E%D1%83%D0%BA%D1%81,+%D0%9A%D0%B0%D0%BB%D1%96%D1%84%D0%BE%D1%80%D0%BD%D1%96%D1%8F,+%D0%A1%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D1%96+%D0%A8%D1%82%D0%B0%D1%82%D0%B8+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B8/@34.1878421,-118.9303503,16784m/data=!3m1!1e3!4m6!3m5!1s0x80e8255670288891:0x8d2e7a0147cc2e26!8m2!3d34.1761133!4d-118.8487793!16zL20vMHI4Yzg?authuser=0&entry=ttu&g_ep=EgoyMDI1MDgxNy4wIKXMDSoASAFQAw%3D%3D'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Thousand Oaks
+              </a>
+            </LinkInfo>
+            <LinkInfo> & Nearby Cities</LinkInfo>
+          </ContainerLink>
+        </TabletContainer>
+      )}
     </NavbarContainer>
   );
 };
