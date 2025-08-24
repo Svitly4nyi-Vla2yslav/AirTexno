@@ -1,15 +1,21 @@
+import { NavLink } from 'react-router';
 import styled, { keyframes } from 'styled-components';
 
 export const HeroContainer = styled.div`
-  position: relative;
+ position: relative;
   min-width: 100vw;
   min-height: 100vh;
   overflow: auto;
   flex-shrink: 0;
+  
   @media screen and (min-width: 768px) {
   }
 
   @media screen and (min-width: 1440px) {
+    display: flex;
+    justify-content: flex-end; /* Вирівнюємо контент справа */
+    align-items: center;
+    padding-right: 120px; /* Відступ від правої сторони */
   }
 `;
 
@@ -33,6 +39,7 @@ export const ContentWrapper = styled.div`
   left: 16px;
   bottom: 16px;
   min-width: 343px;
+  max-width: 668px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -42,7 +49,15 @@ export const ContentWrapper = styled.div`
   @media screen and (min-width: 768px) {
   }
 
-  @media screen and (min-width: 1440px) {
+   @media screen and (min-width: 1440px) {
+    position: relative; /* Змінюємо на relative для flex-розташування */
+    left: auto;
+    bottom: auto;
+    width: 45%; /* Ширина контенту */
+    max-width: 600px;
+    margin-left: auto; /* Вирівнюємо справа */
+    margin-right: 0;
+    margin-top: 20%;
   }
 `;
 
@@ -109,7 +124,7 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const PrimaryButton = styled.button`
+export const PrimaryButton = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;

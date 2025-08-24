@@ -8,8 +8,6 @@ export const Wrapper = styled.div`
   position: relative;
   z-index: 1000;
 
-
-
   @media screen and (min-width: 1440px) {
     display: none;
   }
@@ -31,10 +29,10 @@ export const BurgerButton = styled.button`
   border: none;
 `;
 
-export const Line = styled(motion.div) <{ $isOpen?: boolean }>`
+export const Line = styled(motion.div)<{ $isOpen?: boolean }>`
   width: 20px;
   height: 2px;
-  background: ${({ $isOpen }) => ($isOpen ? "black" : "white")};
+  background: ${({ $isOpen }) => ($isOpen ? 'black' : 'white')};
   border-radius: 2px;
   transition: background 0.3s ease;
 `;
@@ -56,13 +54,26 @@ export const MenuOverlay = styled(motion.div)`
   overflow-y: auto;
 
   &::before {
-  content: '';
-  position: absolute;
-  top: 8%;
-  left: 0;
-  width: 100%;
-  border-top: 1px solid rgba(195, 187, 187, 1);
-}
+    content: '';
+    position: absolute;
+    top: 8%;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid rgba(195, 187, 187, 1);
+  }
+  @media screen and (min-width: 768px) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 13%;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid rgba(195, 187, 187, 1);
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const MenuLink = styled(NavLink)`
@@ -80,20 +91,18 @@ export const MenuLink = styled(NavLink)`
   }
 `;
 export const MenuItem = styled.p<{ $active?: boolean }>`
-  color: ${({ $active }) => ($active ? "#3098EE" : "#242424")};
-  font-family: "Bebas Neue", sans-serif;
+  color: ${({ $active }) => ($active ? '#3098EE' : '#242424')};
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 56px;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
   transition: color 0.3s ease;
 
-
-  
   &:hover,
   &.active {
-    color: #3098EE;
-    }
+    color: #3098ee;
+  }
 `;
 
 export const ServiceLinkMobile = styled.div`
@@ -119,7 +128,7 @@ export const DropdownItemMobile = styled.div`
 export const ArrowDownMobile = styled.img<{ $isOpen: boolean }>`
   margin-left: 8px;
   transition: transform 0.3s ease;
-  transform: ${({ $isOpen }) => $isOpen ? 'rotate(180deg)' : 'rotate(0)'};
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
 `;
 
 export const ServiceTitleWrapper = styled.div`
@@ -128,11 +137,11 @@ export const ServiceTitleWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   cursor: pointer;
-  
+
   span {
     flex-grow: 1;
   }
-  
+
   ${ArrowDownMobile} {
     padding: 8px;
     margin-right: -8px;
@@ -140,7 +149,7 @@ export const ServiceTitleWrapper = styled.div`
 `;
 
 export const Divider = styled.div<{ $active?: boolean }>`
-  background-color: ${({ $active }) => ($active ? "#3098EE" : "#c3c2c2ff")};
+  background-color: ${({ $active }) => ($active ? '#3098EE' : '#c3c2c2ff')};
   position: absolute;
   width: 90%;
   height: 1px;
@@ -148,6 +157,6 @@ export const Divider = styled.div<{ $active?: boolean }>`
 
   &:hover,
   &.active {
-    background-color: #3098EE;
-    }
+    background-color: #3098ee;
+  }
 `;

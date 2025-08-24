@@ -380,7 +380,7 @@ export const ContainerLink = styled.div`
   }
 `;
 
-export const LinkInfo = styled.p`
+export const LinkInfo = styled.p<{ $overlayOpen?: boolean }>`
   display: none;
   @media screen and (min-width: 768px) {
     display: flex;
@@ -388,7 +388,7 @@ export const LinkInfo = styled.p`
     font-weight: 400;
     font-size: 13px;
     line-height: 125%;
-    color: var(--white);
+    color: ${({ $overlayOpen }) => ($overlayOpen ? 'black' : 'white')};
     width: max-content;
     transition: all 0.3s ease;
     
@@ -408,7 +408,7 @@ export const LinkInfo = styled.p`
       font-weight: 400;
       font-size: 13px;
       line-height: 125%;
-      color: var(--white);
+      color: ${({ $overlayOpen }) => ($overlayOpen ? 'black' : 'white')};
       transition: color 0.3s ease;
       
       &:hover {
@@ -425,9 +425,12 @@ export const LinkInfo = styled.p`
     img {
       margin-right: 5px;
       transition: all 0.3s ease;
+      filter: ${({ $overlayOpen }) => ($overlayOpen ? 'brightness(0) saturate(100%)' : 'none')};
       
       &:hover {
         transform: scale(1.1);
+        filter: ${({ $overlayOpen }) => 
+          $overlayOpen ? 'brightness(0) saturate(100%)' : 'brightness(1.2)'};
       }
     }
   }
@@ -435,15 +438,16 @@ export const LinkInfo = styled.p`
   }
 `;
 
-export const TransparentButton = styled.button`
+export const TransparentButton = styled.button<{ $overlayOpen?: boolean }>`
   display: none;
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    z-index: 1100;
     padding: 12px 24px;
-    border: 1px solid #fff;
+    border: 1px solid ${({ $overlayOpen }) => ($overlayOpen ? 'black' : 'white')};
     border-radius: 8px;
     cursor: pointer;
     white-space: nowrap;
@@ -453,12 +457,13 @@ export const TransparentButton = styled.button`
     font-family: var(--font-family);
     font-weight: 500;
     font-size: 15px;
-    color: var(--white);
+    color: ${({ $overlayOpen }) => ($overlayOpen ? 'black' : 'white')};
     margin-left: 8px;
     transition: all 0.3s ease;
     
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: ${({ $overlayOpen }) => 
+        $overlayOpen ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
       border-color: var(--purple-400);
       color: var(--purple-400);
       transform: translateY(-2px);
@@ -468,17 +473,19 @@ export const TransparentButton = styled.button`
     &:focus {
       outline: 2px solid var(--purple-400);
       outline-offset: 2px;
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: ${({ $overlayOpen }) => 
+        $overlayOpen ? 'rgba(0, 0, 0, 0.15)' : 'rgba(255, 255, 255, 0.15)'};
     }
     
     &:active {
       transform: translateY(0);
       box-shadow: 0 2px 6px rgba(109, 135, 239, 0.1);
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: ${({ $overlayOpen }) => 
+        $overlayOpen ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'};
     }
 
     a {
-      color: var(--white);
+      color: ${({ $overlayOpen }) => ($overlayOpen ? 'black' : 'white')};
       transition: color 0.3s ease;
       
       &:hover {
