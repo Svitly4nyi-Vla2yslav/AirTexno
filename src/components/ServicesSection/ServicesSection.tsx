@@ -26,8 +26,10 @@ import {
   ImageSection,
   TitleCard,
 } from './ServicesSection.styled';
+import { useMediaQuery } from 'react-responsive';
 
 const ServicesSection: React.FC = () => {
+  const isDeckstop = useMediaQuery({ query: '(min-width: 1440px)' });
   return (
     <Section>
       <SmallText>Our Service</SmallText>
@@ -39,9 +41,17 @@ const ServicesSection: React.FC = () => {
           </TitleRow>
           <Title>Professional Installations</Title>
           <Title>Fast & Reliable Emergency Repairs</Title>
+          {isDeckstop && (
+            <InfoBlock>
+              <InfoText>Do you want to know more about our service?</InfoText>
+              <Button>
+                <ButtonText>Learn more</ButtonText>
+              </Button>
+            </InfoBlock>
+          )}
         </ServiceBlock>
         <ImageSection>
-          <ServiceImage src={ServicesImage} alt="Services Image" />
+          <ServiceImage src={ServicesImage} alt='Services Image' />
           <Container>
             <HeaderWrapper>
               <TitleRow>
@@ -49,11 +59,10 @@ const ServicesSection: React.FC = () => {
               </TitleRow>
               <TextBlock>
                 <Description>
-                  Preventive Care to Keep Your Appliances Running Longer Regular
-                  maintenance keeps your appliances working smoothly, prevents
-                  costly breakdowns, and extends their lifespan. We take the
-                  time to inspect and fine-tune your appliances, so they perform
-                  at their best and last longer.
+                  Preventive Care to Keep Your Appliances Running Longer Regular maintenance keeps
+                  your appliances working smoothly, prevents costly breakdowns, and extends their
+                  lifespan. We take the time to inspect and fine-tune your appliances, so they
+                  perform at their best and last longer.
                 </Description>
               </TextBlock>
             </HeaderWrapper>
@@ -62,19 +71,21 @@ const ServicesSection: React.FC = () => {
                 <ButtonTextWhite>Contact Us</ButtonTextWhite>
               </PrimaryButton>
               <SecondaryButton>
-                <a href="tel:+18055002705">
+                <a href='tel:+18055002705'>
                   <ButtonTextBlack>Call Us</ButtonTextBlack>
                 </a>
               </SecondaryButton>
             </ButtonRow>
           </Container>
         </ImageSection>
-        <InfoBlock>
-          <InfoText>Do you want to know more about our service?</InfoText>
-          <Button>
-            <ButtonText>Learn more</ButtonText>
-          </Button>
-        </InfoBlock>
+        {!isDeckstop && (
+          <InfoBlock>
+            <InfoText>Do you want to know more about our service?</InfoText>
+            <Button>
+              <ButtonText>Learn more</ButtonText>
+            </Button>
+          </InfoBlock>
+        )}
       </ContentWrapper>
     </Section>
   );

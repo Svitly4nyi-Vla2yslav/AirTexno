@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const Section = styled.div`
   display: flex;
@@ -8,37 +8,34 @@ export const Section = styled.div`
   min-width: 100vw;
   overflow: auto;
   padding: 1rem;
-@media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
+  }
 `;
 
 export const SmallText = styled.p`
   color: #242424;
-  font-family: "Geist", sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
-  @media screen and (min-width: 768px){
-   font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-line-height: 90%;
-text-transform: uppercase;
-color: var(--black-500);
-   
-}
+  @media screen and (min-width: 768px) {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 90%;
+    text-transform: uppercase;
+    color: var(--black-500);
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
-
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -47,14 +44,14 @@ export const ContentWrapper = styled.div`
   align-items: flex-start;
   gap: 3rem;
   width: 100%;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
 `;
 
 export const ServiceBlock = styled.div`
@@ -64,14 +61,11 @@ export const ServiceBlock = styled.div`
   gap: 0.25rem;
   width: 100%;
 
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const TitleRow = styled.div`
@@ -80,112 +74,116 @@ export const TitleRow = styled.div`
   gap: 0.25rem;
   width: 100%;
 
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const Number = styled.p`
   color: #242424;
   font-family: var(--second-family);
-font-weight: 400;
-font-size: 35px;
-line-height: 90%;
-@media screen and (min-width: 768px){
-font-family: var(--second-family);
-font-weight: 400;
-font-size: 56px;
-line-height: 90%;
-color: var(--black-500);  
-   
-}
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 90%;
+  @media screen and (min-width: 768px) {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 90%;
+    color: var(--black-500);
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const TitleBlue = styled.p`
- font-family: var(--second-family);
-font-weight: 400;
-font-size: 35px;
-line-height: 90%;
-color: var(--blue-500);
-@media screen and (min-width: 768px){
-font-size: 56px;  
-   
-}
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 90%;
+  color: var(--blue-500);
+  @media screen and (min-width: 768px) {
+    font-size: 56px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const Title = styled.p`
   color: #242424;
-   font-family: var(--second-family);
+  font-family: var(--second-family);
   font-size: 35px;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
-  @media screen and (min-width: 768px){
-font-size: 56px;  
-   
-}
+  @media screen and (min-width: 768px) {
+    font-size: 56px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const TitleCard = styled.p`
   color: #242424;
-   font-family: var(--second-family);
+  font-family: var(--second-family);
   font-size: 35px;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
-  @media screen and (min-width: 768px){
-   font-family: var(--second-family);
-font-weight: 400;
-font-size: 38px;
-line-height: 90%;
-color: var(--black-500);
-}
+  @media screen and (min-width: 768px) {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 90%;
+    color: var(--black-500);
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ServiceImage = styled.img`
-   display: block; /* Для зображень краще використовувати block або inline-block */
-  width: 100%; /* Займає всю ширину свого контейнера */
-  height: 647px; /* Фіксована висота для мобільних пристроїв */
-  
-  /* Ключові властивості для обрізки та позиціонування вмісту: */
-  object-fit: cover; /* Обрізає зображення, заповнюючи блок */
-  object-position: left center; /* ЗСУВАЄ фокус обрізки вправо! */
-
-  /* Стилі */
+  display: block;
+  width: 100%;
+  height: 647px;
+  object-fit: cover;
+  object-position: left center;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
 
-  @media screen and (min-width: 768px){
-  width: 100%;
-height: min-content; 
-object-position: center center;
-   
-}
+  /* Ховер ефекти для картинки */
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.05);
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  /* Фокус для доступності */
+  &:focus {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 2px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    height: min-content;
+    object-position: center center;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 563px;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
 `;
 
 export const InfoBlock = styled.div`
@@ -194,31 +192,26 @@ export const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+    padding-top: 40%;
+  }
 `;
 
 export const InfoText = styled.p`
   color: #242424;
-  font-family: "Geist", sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.25em;
   width: 100%;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const Button = styled.button`
@@ -233,31 +226,53 @@ export const Button = styled.button`
   border: 1px solid #242424;
   width: fit-content;
   background: transparent;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  transition: all 0.3s ease;
 
-@media screen and (min-width: 1440px){
-    
-}
+  /* Ховер ефекти */
+  &:hover {
+    background-color: #242424;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Фокус для доступності */
+  &:focus {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 2px;
+  }
+
+  /* Активний стан */
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ButtonText = styled.p`
   color: #242424;
-  font-family: "Geist", sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.25em;
   width: fit-content;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  transition: color 0.3s ease;
 
-@media screen and (min-width: 1440px){
-    
-}
+  ${Button}:hover & {
+    color: white;
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const Container = styled.div`
@@ -273,14 +288,13 @@ export const Container = styled.div`
   overflow: auto;
   margin: 0 auto;
   margin: 16px;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+    max-width: 537px;
+    margin: 12px;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -289,31 +303,12 @@ export const HeaderWrapper = styled.div`
   align-items: flex-start;
   gap: 8px;
   width: 100%;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
-
-// const TitleRow = styled.div`
-//   display: flex;
-//   align-items: flex-start;
-//   gap: 20px;
-//   width: 100%;
-// `;
-
-// const Title = styled.p`
-//   color: #242424;
-//   font-family: "Bebas Neue", sans-serif;
-//   font-size: 2.25rem; /* 36px */
-//   font-weight: 400;
-//   line-height: 0.9em;
-//   width: fit-content;
-// `;
 
 export const TextBlock = styled.div`
   display: flex;
@@ -321,31 +316,26 @@ export const TextBlock = styled.div`
   align-items: flex-start;
   gap: 8px;
   width: 100%;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const Description = styled.p`
-color: var(--black-500);
+  color: var(--black-500);
   font-family: var(--font-family);
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.25em;
   width: 100%;
-  @media screen and (min-width: 768px){
-   
-   font-size: 17px;
-}
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ButtonRow = styled.div`
@@ -353,14 +343,11 @@ export const ButtonRow = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  @media screen and (min-width: 768px) {
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const PrimaryButton = styled.button`
@@ -374,22 +361,40 @@ export const PrimaryButton = styled.button`
   border-radius: 8px;
   background: #3098ee;
   border-radius: 8px;
-padding: 10px 20px;
-width: 124px;
-height: 40px;
+  padding: 10px 20px;
+  width: 124px;
+  height: 40px;
   border: none;
+  transition: all 0.3s ease;
 
-  a{
-  text-decoration: none;
+  /* Ховер ефекти */
+  &:hover {
+    background: #1a7bc9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
   }
-  @media screen and (min-width: 768px){
-   
-   
-}
 
-@media screen and (min-width: 1440px){
-    
-}
+  /* Фокус для доступності */
+  &:focus {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 2px;
+  }
+
+  /* Активний стан */
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(48, 152, 238, 0.2);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const SecondaryButton = styled.button`
@@ -400,52 +405,77 @@ export const SecondaryButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-border: 1px solid var(--black-500);
-border-radius: 8px;
-padding: 10px 20px;
-width: 119px;
-height: 40px;
+  border: 1px solid var(--black-500);
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: 119px;
+  height: 40px;
   background: transparent;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  transition: all 0.3s ease;
 
-@media screen and (min-width: 1440px){
-    
-}
+  /* Ховер ефекти */
+  &:hover {
+    background-color: #242424;
+    border-color: #242424;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Фокус для доступності */
+  &:focus {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 2px;
+  }
+
+  /* Активний стан */
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ButtonTextWhite = styled.p`
   color: #fff;
-  font-family: "Geist", sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.25em;
   width: fit-content;
-  @media screen and (min-width: 768px){
-   
-   
-}
+  transition: color 0.3s ease;
 
-@media screen and (min-width: 1440px){
-    
-}
+  ${SecondaryButton}:hover & {
+    color: white;
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ButtonTextBlack = styled(ButtonTextWhite)`
   color: #242424;
+
+  ${SecondaryButton}:hover & {
+    color: white;
+  }
 `;
 
 export const ImageSection = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  @media screen and (min-width: 768px){
-   
-}
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;

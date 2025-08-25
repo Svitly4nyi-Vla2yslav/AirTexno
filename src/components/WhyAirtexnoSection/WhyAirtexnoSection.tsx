@@ -4,7 +4,6 @@ import {
   Header,
   IconWrapper,
   Section,
-  SlideContainer,
   SubTitle,
   TextWrapper,
   Title,
@@ -12,6 +11,7 @@ import {
   SwiperContainer,
   BlueCard,
   ImageSection,
+  CenteredSlideContainer,
 } from './WhyAirtexnoSection.styled';
 import WhyAirtexnoImage1 from '../../assets/icons/WhyAirtexnoImage.png';
 import WhyAirtexnoImage2 from '../../assets/icons/WhyAirtexnoImage2.png';
@@ -24,8 +24,16 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css/bundle';
+import { useMediaQuery } from 'react-responsive';
 
 const WhyAirtexnoSection: React.FC = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 743px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 744px) and (max-width: 1023px)',
+  });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
+  const isLargeDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
+
   const slides = [
     {
       title: 'Manufacturer-Trained Technicians',
@@ -48,10 +56,13 @@ const WhyAirtexnoSection: React.FC = () => {
     {
       title: 'Local & Fair Pricing',
       text: 'As a local Thousand Oaks company, we treat our community like neighbors. With direct access to parts and highly trained techs, we keep our prices fair — without steep markups. While costs keep rising everywhere, we work hard to keep appliance repair affordable.',
-      image: WhyAirtexnoImage3,
+      image: WhyAirtexnoImage2,
       icon: buildung,
     },
   ];
+
+  const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 3;
+  const shouldLoop = slides.length > slidesPerView;
 
   return (
     <Section>
@@ -62,13 +73,14 @@ const WhyAirtexnoSection: React.FC = () => {
         </Title>
       </TextWrapper>
       <ImageSection>
-        {/* <StyledImage src={WhyAirtexnoImage1} alt="Why Airtexno Image 1" /> */}
-        <SwiperContainer>
+        <SwiperContainer $isLargeDesktop={isLargeDesktop}>
           <Swiper
             modules={[Pagination, Autoplay]}
             pagination={{ clickable: true }}
-            spaceBetween={20}
-            slidesPerView={1}
+            spaceBetween={isLargeDesktop ? 0 : 20}
+            loop={shouldLoop}
+            slidesPerView={slidesPerView}
+            centeredSlides={isLargeDesktop}
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
@@ -76,32 +88,35 @@ const WhyAirtexnoSection: React.FC = () => {
               pauseOnMouseEnter: true,
             }}
             speed={6000}
-            className="businessSwiper"
+            className='businessSwiper'
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>
-                <SlideContainer
+                <CenteredSlideContainer
                   style={{ backgroundImage: `url(${slide.image})` }}
+                  $isLargeDesktop={isLargeDesktop}
+                  className="slide-container" // Додаємо клас для стилізації
                 >
                   {(slide.title || slide.text || slide.icon) && (
-                    <div className="overlay">
+                    <div className='overlay'>
                       {(slide.title || slide.icon) && (
                         <Header>
                           {slide.title && <BlueCard>{slide.title}</BlueCard>}
                           {slide.icon && (
-                            <IconWrapper>
-                              <img
-                                src={slide.icon}
-                                alt={slide.title || 'icon'}
+                            <IconWrapper className="icon-wrapper">
+                              <img 
+                                src={slide.icon} 
+                                alt={slide.title || 'icon'} 
+                                className="icon-image"
                               />
                             </IconWrapper>
                           )}
                         </Header>
                       )}
-                      {slide.text && <Text>{slide.text}</Text>}
+                      {slide.text && <Text className="slide-text">{slide.text}</Text>}
                     </div>
                   )}
-                </SlideContainer>
+                </CenteredSlideContainer>
               </SwiperSlide>
             ))}
           </Swiper>

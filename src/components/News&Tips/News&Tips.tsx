@@ -19,8 +19,7 @@ const slides = [
   {
     img: image2,
     title: 'WHEN YOUR REFRIGERATOR STOPS COOLING: URGENT REPAIR SIGNS',
-    description:
-      "Don't wait for food to spoil. Know the signs needing urgent help.",
+    description: "Don't wait for food to spoil. Know the signs needing urgent help.",
   },
   {
     img: image3,
@@ -53,27 +52,27 @@ const NewsAndTips: React.FC = () => {
           APPLIANCE <span>ADVICE</span> REPAIR <span>TIPS</span> BLOG
         </Title>
       </HeaderSection>
-    <NavigationContainer>
-        <NavButton onClick={() => swiperRef.current?.slidePrev()} bg="#DBDBD8">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <NavigationContainer>
+        <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
+          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
             <path
-              d="M15 18L9 12L15 6"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d='M15 18L9 12L15 6'
+              stroke='white'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
             />
           </svg>
         </NavButton>
 
-        <NavButton onClick={() => swiperRef.current?.slideNext()} bg="#3098EE">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
+          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
             <path
-              d="M9 18L15 12L9 6"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d='M9 18L15 12L9 6'
+              stroke='white'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
             />
           </svg>
         </NavButton>
@@ -89,8 +88,8 @@ const NewsAndTips: React.FC = () => {
           pauseOnMouseEnter: true,
         }}
         speed={6000}
-         loop={shouldLoop}
-          slidesPerView={slidesPerView}
+        loop={shouldLoop}
+        slidesPerView={slidesPerView}
         style={{ width: '100%', padding: '20px 0' }}
       >
         {slides.map((slide, index) => (
@@ -105,8 +104,6 @@ const NewsAndTips: React.FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-  
     </Wrapper>
   );
 };
@@ -120,7 +117,7 @@ const NavigationContainer = styled.div`
   gap: 12px;
   margin-top: 10px;
   width: 100%;
-justify-content: flex-end;
+  justify-content: flex-end;
 `;
 
 const NavButton = styled.button<{ bg: string }>`
