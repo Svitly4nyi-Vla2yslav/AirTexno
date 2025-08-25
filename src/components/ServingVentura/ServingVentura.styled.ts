@@ -14,13 +14,14 @@ export const MainContainer = styled.div<{ $bg: string }>`
   flex-direction: column;
   flex-wrap: nowrap;
 
- @media screen and (min-width: 768px){
-height: 1092px;
-}
+  @media screen and (min-width: 768px) {
+    height: 1092px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}  
+  @media screen and (min-width: 1440px) {
+    height: 800px;
+    width: 1440px;
+  }
 `;
 
 export const TitleServing = styled.h2`
@@ -34,14 +35,13 @@ export const TitleServing = styled.h2`
   max-width: 343px;
   padding-top: 40px;
 
-    @media screen and (min-width: 768px){
-font-size: 72px;
-min-width: 750px;
-}
+  @media screen and (min-width: 768px) {
+    font-size: 72px;
+    min-width: 750px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}  
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const SubtitleServing = styled.p`
@@ -51,38 +51,37 @@ export const SubtitleServing = styled.p`
   line-height: 125%;
   text-align: center;
   color: var(--white);
-    margin: 0 auto;
+  margin: 0 auto;
   max-width: 343px;
   padding-top: 40px;
 
-  @media screen and (min-width: 768px){
-font-size: 17px;
-}
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}    
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const Wrapper = styled.div`
-display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    min-width: 100vw;
-    max-width: 100vw;
-    padding: 0 5px;
-    margin-top: 40px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 100vw;
+  padding: 0 5px;
+  margin-top: 40px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-@media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
+  }
 
-}
-
-@media screen and (min-width: 1440px){
-    
-}     
+  @media screen and (min-width: 1440px) {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 `;
 
 export const Card = styled.div`
@@ -94,16 +93,15 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 165px;
-height: 164px;
+  height: 164px;
 
-  @media screen and (min-width: 768px){
-width: 221px;
-height: 164px;
-}
+  @media screen and (min-width: 768px) {
+    width: 221px;
+    height: 164px;
+  }
 
-@media screen and (min-width: 1440px){
-    
-}  
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const CardHeader = styled.div`
@@ -111,13 +109,11 @@ export const CardHeader = styled.div`
   flex-direction: column;
   gap: 6px;
 
-    @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
+  }
 
-}
-
-@media screen and (min-width: 1440px){
-    
-}  
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -127,40 +123,34 @@ export const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-    @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
+  }
 
-}
-
-@media screen and (min-width: 1440px){
-    
-}  
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const County = styled.p`
   color: #3098ee;
-  font-family: "Geist", sans-serif;
+  font-family: 'Geist', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
+  }
 
-}
-
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const City = styled.p`
-font-family: var(--second-family);
-font-weight: 400;
-font-size: 32px;
-line-height: 90%;
-color: var(--blue-500);
-@media screen and (min-width: 768px){
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 90%;
+  color: var(--blue-500);
+  @media screen and (min-width: 768px) {
+  }
 
-}
-
-@media screen and (min-width: 1440px){
-    
-}
+  @media screen and (min-width: 1440px) {
+  }
 `;

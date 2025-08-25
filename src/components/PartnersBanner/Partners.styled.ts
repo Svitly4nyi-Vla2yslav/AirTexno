@@ -88,7 +88,7 @@ export const Image = styled.img`
   }
 
   @media screen and (min-width: 1440px) {
-    height: 52px;
+    height: 42px;
     
     /* Збільшуємо ефект для десктопів */
     &:hover,

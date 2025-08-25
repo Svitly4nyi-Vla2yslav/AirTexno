@@ -43,7 +43,7 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 3rem;
-  width: 100%;
+  width: auto;
   @media screen and (min-width: 768px) {
   }
 
