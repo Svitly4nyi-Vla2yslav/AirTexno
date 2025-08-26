@@ -8,6 +8,7 @@ import Info from './pages/Info/Info';
 
 import { Time } from './components/ScrollToTop';
 import { useEffect } from 'react';
+import Service from './pages/ServicePages/Service';
 // import { useEffect } from 'react';
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -35,8 +36,8 @@ export const App: React.FC = () => {
       {/* <ParticlesBackground /> */}
       {/* <ScrollToTop /> */}
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/" element={<Layout />}>
+        <Route path='/' element={<Navigate to='/home' />} />
+        <Route path='/' element={<Layout />}>
           <Route
             index
             element={
@@ -46,16 +47,24 @@ export const App: React.FC = () => {
             }
           />
           <Route
-            path="/home"
+            path='/home'
             element={
               <PageWrapper>
                 <Home />
               </PageWrapper>
             }
           />
+          <Route
+            path='/service'
+            element={
+              <PageWrapper>
+                <Service />
+              </PageWrapper>
+            }
+          />
 
           <Route
-            path="/about"
+            path='/about'
             element={
               <PageWrapper>
                 <AboutUs />
@@ -63,7 +72,7 @@ export const App: React.FC = () => {
             }
           />
           <Route
-            path="/pricing"
+            path='/pricing'
             element={
               <PageWrapper>
                 <Info />
@@ -71,7 +80,7 @@ export const App: React.FC = () => {
             }
           />
           <Route
-            path="/contact"
+            path='/contact'
             element={
               <PageWrapper>
                 <Contact />
@@ -80,7 +89,7 @@ export const App: React.FC = () => {
           />
 
           <Route
-            path="*"
+            path='*'
             element={
               <PageWrapper>
                 <Home />

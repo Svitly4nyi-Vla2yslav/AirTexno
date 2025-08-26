@@ -49,63 +49,63 @@ export default function CasesSection() {
   };
 
   const cards = [
-    {
-      image: ReviewImage2,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-    {
-      image: ReviewImage3,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-    {
-      image: ReviewImage4,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-    {
-      image: ReviewImage5,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-    {
-      image: ReviewImage1,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-      {
-      image: ReviewImage4,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-     {
-      image: ReviewImage3,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-       {
-      image: ReviewImage1,
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores magnam labore fuga quos explicabo ipsam ad, natus cumque dignissimos eaque!',
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      type: 'Washing Machine Repair',
-    },
-  ];
+  {
+    image: ReviewImage2,
+    description:
+      'A broken washing machine that stopped mid-cycle was fully restored by our team in just one visit. The family can now enjoy clean laundry again without stress.',
+    title: 'Quick Fix for a Washing Machine Breakdown',
+    type: 'Washing Machine Repair',
+  },
+  {
+    image: ReviewImage3,
+    description:
+      'We installed a brand-new dishwasher for a busy household, ensuring proper water connections and energy efficiency. The client now saves both time and water daily.',
+    title: 'Professional Dishwasher Installation',
+    type: 'Dishwasher Installation',
+  },
+  {
+    image: ReviewImage4,
+    description:
+      'A fridge that was leaking water and not cooling properly was diagnosed and repaired. The customer avoided costly food spoilage and gained reliable performance again.',
+    title: 'Refrigerator Leak and Cooling Repair',
+    type: 'Refrigerator Repair',
+  },
+  {
+    image: ReviewImage5,
+    description:
+      'The dryer was overheating and shutting down after a few minutes. Our experts replaced faulty parts and cleaned the vent system, restoring safe and efficient drying.',
+    title: 'Dryer Overheating Problem Solved',
+    type: 'Dryer Repair',
+  },
+  {
+    image: ReviewImage1,
+    description:
+      'An oven that wouldn’t heat evenly was repaired by recalibrating the thermostat and replacing heating elements. The family can now cook meals perfectly again.',
+    title: 'Oven Heating Restored for Perfect Meals',
+    type: 'Oven Repair',
+  },
+  {
+    image: ReviewImage4,
+    description:
+      'We handled a complete installation of a modern washing machine, ensuring proper setup, water connection, and vibration-free operation.',
+    title: 'Seamless Washing Machine Installation',
+    type: 'Washing Machine Installation',
+  },
+  {
+    image: ReviewImage3,
+    description:
+      'A freezer full of food was saved when we quickly repaired the compressor and restored full cooling capacity within hours.',
+    title: 'Emergency Freezer Repair',
+    type: 'Freezer Repair',
+  },
+  {
+    image: ReviewImage1,
+    description:
+      'A customer’s stove stopped working during family dinner preparation. Our team replaced defective wiring and burners, restoring it the same day.',
+    title: 'Stove Emergency Fixed Same Day',
+    type: 'Stove Repair',
+  },
+];
 
   return (
     <Section>

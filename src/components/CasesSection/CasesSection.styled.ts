@@ -116,7 +116,7 @@ export const Header = styled.div`
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
-
+  max-width: 1440px;
   @media screen and (min-width: 768px) {
   }
 
