@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay,  Mousewheel } from 'swiper/modules';
+import { Autoplay, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/mousewheel';
 import avatarAlex from '../../assets/icons/feedback/Ellipse 4aleksey.png';
@@ -24,6 +24,51 @@ interface Review {
 }
 
 const reviews: Review[] = [
+  {
+    avatar: avatarAlex,
+    name: 'Aleksei Sabitov',
+    time: 'a week ago',
+    text: `My Sub-Zero refrigerator stopped cooling, so the next day I called
+      AirTexno Appliance Repair. Their technician arrived the same day
+      and got straight to work. He diagnosed and repaired the issue
+      within just a few hours, explained everything clearly, and even
+      gave me helpful maintenance tips. The pricing was very reasonable.
+      I’m extremely happy with the service and will definitely be using
+      AirTexno Appliance Repair for all my future appliance needs.
+      Highly recommend them for Sub-Zero refrigerator repair and more!`,
+    image: reviewImageAlex,
+  },
+  {
+    avatar: avatarSanal,
+    name: 'Sanal Kandymov',
+    time: 'a week ago',
+    text: `Great service! AirTexno repaired our Sub-Zero fridge in Thousand
+      Oaks the same day we called. Fast diagnosis, fair price, real OEM
+      parts. Fridge is perfect again. Will use them for any appliance
+      repair.`,
+    image: reviewImageSanal,
+  },
+  {
+    avatar: avatarWendy,
+    name: 'Wendy Bailey',
+    time: 'месяц назад',
+    text: `I've had Sunny from Airtexno come to my house twice over the last
+      year. Each time he has arrived on time, has diagnosed the issues
+      with my cooktop and ovens correctly and has resolved my problems
+      quickly. He is extremely knowledgeable and conscientious. I have
+      been very pleased with his work, and highly recommend him!`,
+    image: reviewImageWendy,
+  },
+  {
+    avatar: avatarElizabeth,
+    name: 'Elizabeth Castorena',
+    time: '2 месяца назад',
+    text: `Replaced a refrigerator door that had been dented. Did an
+      excellent job hooking up the ice maker, water dispenser, etc. from
+      new door into the refrigerator. Sunny is extremely knowledgeable
+      and thorough. Will definitely use Airtexno again.`,
+    image: reviewImageElizabeth,
+  },
   {
     avatar: avatarAlex,
     name: 'Aleksei Sabitov',
@@ -105,7 +150,7 @@ export const TitleFeedback = styled.h2`
   }
 
   @media screen and (min-width: 1440px) {
-  }   
+  }
 `;
 
 export const TextFeedback = styled.p`
@@ -122,7 +167,7 @@ export const TextFeedback = styled.p`
   }
 
   @media screen and (min-width: 1440px) {
-  }  
+  }
 `;
 
 // Новий контейнер для двох свайперів на планшетах
@@ -145,7 +190,7 @@ const SingleSwiperContainer = styled.div<{ $isVisible?: boolean }>`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  display: ${props => props.$isVisible ? 'block' : 'none'};
+  display: ${props => (props.$isVisible ? 'block' : 'none')};
 
   @media screen and (min-width: 768px) {
     width: 50%; /* Два свайпери займають по половині ширини */
@@ -217,11 +262,7 @@ const BackgroundTop = styled.div`
   left: 0;
   width: 100%;
   height: 100px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   z-index: 10;
   pointer-events: none;
 `;
@@ -232,11 +273,7 @@ const BackgroundBottom = styled.div`
   left: 0;
   width: 100%;
   height: 100px;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   z-index: 10;
   pointer-events: none;
 `;
@@ -247,11 +284,11 @@ const ReviewCardContainer: React.FC = () => {
   const swiperRefBottom = React.useRef<any>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
-
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
   // Функція для обробки скролу
   const handleTouchMove = (e: TouchEvent) => {
     if (!swiperRefTop.current || !containerRef.current) return;
-    
+
     const swiper = swiperRefTop.current;
     const container = containerRef.current;
     const touchY = e.touches[0].clientY;
@@ -274,7 +311,7 @@ const ReviewCardContainer: React.FC = () => {
     if (!container) return;
 
     container.addEventListener('touchmove', handleTouchMove, { passive: false });
-    
+
     return () => {
       container.removeEventListener('touchmove', handleTouchMove);
     };
@@ -288,7 +325,7 @@ const ReviewCardContainer: React.FC = () => {
           Discover why clients <span> trust </span> our repairs
         </TitleFeedback>
       </TextContainer>
-      
+
       <SwipersContainer ref={containerRef}>
         {/* Перший свайпер (зверху вниз) - завжди видимий */}
         <SingleSwiperContainer $isVisible={true}>
@@ -296,27 +333,24 @@ const ReviewCardContainer: React.FC = () => {
           <BackgroundBottom />
           <Swiper
             ref={swiperRefTop}
-            direction="vertical"
+            direction='vertical'
             slidesPerView={1}
             spaceBetween={20}
             freeMode={{
               enabled: false, // Вимкнути freeMode для автопрокрутки
             }}
             mousewheel={{
-              enabled: true,
-              forceToAxis: true,
-              sensitivity: 1,
-              releaseOnEdges: true,
+              enabled: false, // повністю вимкнути скрол мишею
             }}
             autoplay={{
-              delay: 3000,
+              delay: 2000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
               waitForTransition: true,
             }}
-            speed={6000}
+            speed={7000}
             loop={true}
-            touchEventsTarget="container"
+            touchEventsTarget='container'
             modules={[Mousewheel, Autoplay]}
             grabCursor={true}
             resistance={true}
@@ -343,10 +377,7 @@ const ReviewCardContainer: React.FC = () => {
                     </UserInfo>
                   </Header>
                   <Text>{review.text}</Text>
-                  <ReviewImage
-                    src={review.image}
-                    alt={`Review by ${review.name}`}
-                  />
+                  <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
                 </Card>
               </SwiperSlide>
             ))}
@@ -359,31 +390,30 @@ const ReviewCardContainer: React.FC = () => {
           <BackgroundBottom />
           <Swiper
             ref={swiperRefBottom}
-            direction="vertical"
+            direction='vertical'
             slidesPerView={1}
             spaceBetween={20}
             freeMode={{
               enabled: false, // Вимкнути freeMode для автопрокрутки
             }}
             mousewheel={{
-              enabled: true,
-              forceToAxis: true,
-              sensitivity: 1,
-              releaseOnEdges: true,
-              invert: true, // Інвертуємо напрямок скролу
+              enabled: false, // повністю вимкнути скрол мишею
             }}
             autoplay={{
-              delay: 3000,
+              delay: 1000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
               waitForTransition: true,
               reverseDirection: true, // Автопрокрутка в зворотньому напрямку
             }}
-            speed={6000}
+            speed={4000}
             loop={true}
-            touchEventsTarget="container"
+            touchEventsTarget='container'
             modules={[Mousewheel, Autoplay]}
-            grabCursor={true}
+            grabCursor={false}
+            noSwiping={true} // Блокує свайпинг
+            allowTouchMove={false} // Вимкнути рух при дотику
+            simulateTouch={false} // Вимкнути імітацію дотику
             resistance={true}
             resistanceRatio={0.85}
             initialSlide={reviews.length - 1}
@@ -409,15 +439,69 @@ const ReviewCardContainer: React.FC = () => {
                     </UserInfo>
                   </Header>
                   <Text>{review.text}</Text>
-                  <ReviewImage
-                    src={review.image}
-                    alt={`Review by ${review.name}`}
-                  />
+                  <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
                 </Card>
               </SwiperSlide>
             ))}
           </Swiper>
         </SingleSwiperContainer>
+        {isDesktop && (
+          <SingleSwiperContainer $isVisible={true}>
+            <BackgroundTop />
+            <BackgroundBottom />
+            <Swiper
+              ref={swiperRefTop}
+              direction='vertical'
+              slidesPerView={1}
+              spaceBetween={20}
+              freeMode={{
+                enabled: false, // Вимкнути freeMode для автопрокрутки
+              }}
+              mousewheel={{
+                enabled: false, // повністю вимкнути скрол мишею
+              }}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+                waitForTransition: true,
+              }}
+              speed={9000}
+              loop={true}
+              touchEventsTarget='container'
+              modules={[Mousewheel, Autoplay]}
+              grabCursor={true}
+              resistance={true}
+              resistanceRatio={0.85}
+              onReachBeginning={() => setIsScrolling(false)}
+              onReachEnd={() => setIsScrolling(false)}
+              onTouchEnd={() => {
+                setTimeout(() => {
+                  if (swiperRefTop.current) {
+                    swiperRefTop.current.allowTouchMove = true;
+                  }
+                }, 100);
+              }}
+              style={{ height: '100%' }}
+            >
+              {reviews.map((review, index) => (
+                <SwiperSlide key={`top-${index}`}>
+                  <Card>
+                    <Header>
+                      <Avatar src={review.avatar} alt={review.name} />
+                      <UserInfo>
+                        <Name>{review.name}</Name>
+                        <Time>{review.time}</Time>
+                      </UserInfo>
+                    </Header>
+                    <Text>{review.text}</Text>
+                    <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
+                  </Card>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </SingleSwiperContainer>
+        )}
       </SwipersContainer>
     </div>
   );

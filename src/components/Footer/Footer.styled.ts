@@ -163,7 +163,7 @@ export const LogoSVG = styled.svg`
 }
 
 @media screen and (min-width: 1440px){
-    
+    height: 222px;
 }  
 `;
 

@@ -35,13 +35,13 @@ const slides = [
 
 const NewsAndTips: React.FC = () => {
   const swiperRef = useRef<any>(null);
-  const isMobile = useMediaQuery({ query: '(max-width: 743px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({
-    query: '(min-width: 744px) and (max-width: 1023px)',
+    query: '(min-width: 768px)',
   });
-  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
 
-  const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 3;
+  const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 2 : 2;
   const shouldLoop = slides.length > slidesPerView;
 
   return (
@@ -77,33 +77,34 @@ const NewsAndTips: React.FC = () => {
           </svg>
         </NavButton>
       </NavigationContainer>
-      <Swiper
-        modules={[Navigation, Autoplay]}
-        onSwiper={swiper => (swiperRef.current = swiper)} // записуємо інстанс у реф
-        spaceBetween={20}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-          waitForTransition: true,
-          pauseOnMouseEnter: true,
-        }}
-        speed={6000}
-        loop={shouldLoop}
-        slidesPerView={slidesPerView}
-        style={{ width: '100%', padding: '20px 0' }}
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <Card>
-              <Image src={slide.img} alt={slide.title} />
-              <CardText>
-                <CardTitle>{slide.title}</CardTitle>
-                <CardDescription>{slide.description}</CardDescription>
-              </CardText>
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <SwiperContainer $isTablet={isTablet}>
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          onSwiper={swiper => (swiperRef.current = swiper)}
+          spaceBetween={isTablet ? 20 : 20}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+            waitForTransition: true,
+            pauseOnMouseEnter: true,
+          }}
+          speed={6000}
+          loop={shouldLoop}
+          slidesPerView={slidesPerView}
+        >
+          {slides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <Card $isTablet={isTablet}>
+                <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
+                <CardText>
+                  <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
+                  <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
+                </CardText>
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </SwiperContainer>
     </Wrapper>
   );
 };
@@ -111,6 +112,15 @@ const NewsAndTips: React.FC = () => {
 export default NewsAndTips;
 
 // ================= styled-components =================
+
+const SwiperContainer = styled.div<{ $isTablet: boolean }>`
+  width: 100%;
+  padding: 20px 0;
+  
+  .swiper-slide {
+    width: ${props => props.$isTablet ? '50%' : 'auto'};
+  }
+`;
 
 const NavigationContainer = styled.div`
   display: flex;
@@ -140,6 +150,17 @@ const Wrapper = styled.div`
   min-height: 100vh;
   overflow: hidden;
   margin: 0 auto;
+  padding: 0 16px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
 `;
 
 const HeaderSection = styled.div`
@@ -156,11 +177,9 @@ const Subtitle = styled.p`
   line-height: 90%;
   text-transform: uppercase;
   color: var(--black-500);
+  
   @media screen and (min-width: 768px) {
     font-size: 17px;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -178,29 +197,43 @@ const Title = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 72px;
     min-width: 750px;
+    
     span {
       font-size: 72px;
     }
   }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
-const Card = styled.div`
+const Card = styled.div<{ $isTablet: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 288px;
+  width: ${props => props.$isTablet ? '100%' : '288px'};
   height: 517px;
   margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    max-width: ${props => props.$isTablet ? '100%' : '288px'};
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 656px;
+  }
 `;
 
-const Image = styled.img`
+const Image = styled.img<{ $isTablet: boolean }>`
   border-radius: 8px;
-  width: 288px;
+  width: ${props => props.$isTablet ? '100%' : '288px'};
   height: 395px;
   object-fit: cover;
+
+  @media screen and (min-width: 768px) {
+    max-width: ${props => props.$isTablet ? '100%' : '288px'};
+  }
+
+  @media screen and (min-width: 1440px) {
+  max-width: ${props => props.$isTablet ? '100%' : '656px'};
+  }
 `;
 
 const CardText = styled.div`
@@ -209,18 +242,26 @@ const CardText = styled.div`
   gap: 8px;
 `;
 
-const CardTitle = styled.p`
+const CardTitle = styled.p<{ $isTablet: boolean }>`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 32px;
+  font-size: ${props => props.$isTablet ? '24px' : '32px'};
   line-height: 90%;
   color: var(--black-500);
+
+  @media screen and (min-width: 1440px) {
+    font-size: 32px;
+  }
 `;
 
-const CardDescription = styled.p`
+const CardDescription = styled.p<{ $isTablet: boolean }>`
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 16px;
+  font-size: ${props => props.$isTablet ? '14px' : '16px'};
   line-height: 125%;
   color: var(--black-500);
+
+  @media screen and (min-width: 1440px) {
+    font-size: 16px;
+  }
 `;

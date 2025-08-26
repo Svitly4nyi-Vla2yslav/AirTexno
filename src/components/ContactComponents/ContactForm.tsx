@@ -23,9 +23,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
   } | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -104,44 +102,42 @@ export const ContactForm: React.FC = (): JSX.Element => {
             {' '}
             <span>Contact</span> our team
           </Title>
-          <Text>
-            We love our customers, so feel free to call during normal business
-            hours
-          </Text>
+          <Text>We love our customers, so feel free to call during normal business hours</Text>
         </SubSection>
         <Button>
           <ButtonText>Call Us for Fast Repair</ButtonText>
         </Button>
+
+        <Section>
+          <Divider />
+          <InfoBlock>
+            <InfoSection width='251px'>
+              <InfoTitle>Service Hours</InfoTitle>
+              <SubSection>
+                <Text>
+                  Mon–Sat: 8AM–6PM <br /> Sun: 9AM–4PM{' '}
+                </Text>
+              </SubSection>
+            </InfoSection>
+            <InfoSection>
+              <InfoTitle>Our Location</InfoTitle>
+              <SubSection>
+                <Text>801 Tioga Pl, Newbury Park, CA 91320</Text>
+                <Text>+1 (805) 500-2705</Text>
+              </SubSection>
+            </InfoSection>
+          </InfoBlock>
+        </Section>
       </Section>
 
-      <Section>
-        <Divider />
-        <InfoBlock>
-          <InfoSection width="251px">
-            <InfoTitle>Service Hours</InfoTitle>
-            <SubSection>
-              <Text>
-                Mon–Sat: 8AM–6PM <br /> Sun: 9AM–4PM{' '}
-              </Text>
-            </SubSection>
-          </InfoSection>
-          <InfoSection>
-            <InfoTitle>Our Location</InfoTitle>
-            <SubSection>
-              <Text>801 Tioga Pl, Newbury Park, CA 91320</Text>
-              <Text>+1 (805) 500-2705</Text>
-            </SubSection>
-          </InfoSection>
-        </InfoBlock>
-        <ImageContact src={Cont} alt="contact image" />
-      </Section>
       <FormContainer onSubmit={handleSubmit}>
+        <ImageContact src={Cont} alt='contact image' />
         <Label>What service do you need for your appliances?</Label>
         <CheckboxGroup>
           <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
             <HiddenRadio
-              name="service"
-              value="Repair"
+              name='service'
+              value='Repair'
               checked={service === 'Repair'}
               onChange={e => setService(e.target.value)}
             />
@@ -151,8 +147,8 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
           <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
             <HiddenRadio
-              name="service"
-              value="Installation"
+              name='service'
+              value='Installation'
               checked={service === 'Installation'}
               onChange={e => setService(e.target.value)}
             />
@@ -165,9 +161,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
           <LeftColumn>
             <Label>Name</Label>
             <Input
-              name="name"
-              type="text"
-              placeholder="Your Name"
+              name='name'
+              type='text'
+              placeholder='Your Name'
               value={formData.name}
               onChange={handleChange}
               style={errors.name ? { borderBottom: '1px solid red' } : {}}
@@ -175,9 +171,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
             <Label>Email</Label>
             <Input
-              name="email"
-              type="email"
-              placeholder="Your Email"
+              name='email'
+              type='email'
+              placeholder='Your Email'
               value={formData.email}
               onChange={handleChange}
               style={errors.email ? { borderBottom: '1px solid red' } : {}}
@@ -185,9 +181,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
             <Label>Phone Number</Label>
             <Input
-              name="phone"
-              type="tel"
-              placeholder="Your Phone Number"
+              name='phone'
+              type='tel'
+              placeholder='Your Phone Number'
               value={formData.phone}
               onChange={handleChange}
               style={errors.phone ? { borderBottom: '1px solid red' } : {}}
@@ -198,12 +194,12 @@ export const ContactForm: React.FC = (): JSX.Element => {
             <Label>In what location do you need the service?</Label>
             <SelectWrapper>
               <Select
-                name="location"
+                name='location'
                 value={formData.location}
                 onChange={handleChange}
                 style={errors.location ? { borderBottom: '1px solid red' } : {}}
               >
-                <option value="">Select location</option>
+                <option value=''>Select location</option>
                 <option>Malibu</option>
                 <option>Los Angeles County</option>
                 <option>Thousand Oaks</option>
@@ -224,14 +220,12 @@ export const ContactForm: React.FC = (): JSX.Element => {
             <Label>What do you need repaired?</Label>
             <SelectWrapper>
               <Select
-                name="appliance"
+                name='appliance'
                 value={formData.appliance}
                 onChange={handleChange}
-                style={
-                  errors.appliance ? { borderBottom: '1px solid red' } : {}
-                }
+                style={errors.appliance ? { borderBottom: '1px solid red' } : {}}
               >
-                <option value="">Select appliance</option>
+                <option value=''>Select appliance</option>
                 <option>Cooktop</option>
                 <option>Oven</option>
                 <option>Range</option>
@@ -251,12 +245,12 @@ export const ContactForm: React.FC = (): JSX.Element => {
             <Label>Brand of appliance</Label>
             <SelectWrapper>
               <Select
-                name="brand"
+                name='brand'
                 value={formData.brand}
                 onChange={handleChange}
                 style={errors.brand ? { borderBottom: '1px solid red' } : {}}
               >
-                <option value="">Select brand</option>
+                <option value=''>Select brand</option>
                 <option>LG</option>
                 <option>Samsung</option>
                 <option>Whirlpool</option>
@@ -284,12 +278,12 @@ export const ContactForm: React.FC = (): JSX.Element => {
         <Label>What type of power does this appliance use?</Label>
         <SelectWrapper>
           <Select
-            name="power"
+            name='power'
             value={formData.power}
             onChange={handleChange}
             style={errors.power ? { borderBottom: '1px solid red' } : {}}
           >
-            <option value="">Select power</option>
+            <option value=''>Select power</option>
             <option>Electric</option>
             <option>Gas</option>
             <option>Dual Fuel</option>
@@ -303,28 +297,23 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
         <Label>Any details you'd like to add?</Label>
         <Textarea
-          name="details"
+          name='details'
           placeholder="Any details you'd like to add?"
           value={formData.details}
           onChange={handleChange}
         />
 
         <Disclaimer>
-          By clicking "Submit" you hereby agree to our{' '}
-          <a href="http://#">Privacy Policy</a> .
+          By clicking "Submit" you hereby agree to our <a href='http://#'>Privacy Policy</a> .
         </Disclaimer>
 
-        <ButtonSubmit type="submit">Submit</ButtonSubmit>
+        <ButtonSubmit type='submit'>Submit</ButtonSubmit>
       </FormContainer>
 
       {/* 🔔 Алерт */}
       <AnimatePresence>
         {alert && (
-          <Alert
-            type={alert.type}
-            message={alert.message}
-            onClose={() => setAlert(null)}
-          />
+          <Alert type={alert.type} message={alert.message} onClose={() => setAlert(null)} />
         )}
       </AnimatePresence>
     </Container>
@@ -342,10 +331,14 @@ const FormContainer = styled.form`
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
+  width: auto;
+  max-width: 696px;
   @media screen and (min-width: 768px) {
+    width: 668px;
   }
 
   @media screen and (min-width: 1440px) {
+    gap: 5px;
   }
 `;
 
@@ -361,6 +354,7 @@ const Label = styled.label`
   }
 
   @media screen and (min-width: 1440px) {
+    margin-top: 10px;
   }
 `;
 
@@ -456,6 +450,7 @@ const Input = styled.input`
   }
 
   @media screen and (min-width: 1440px) {
+    margin-bottom: 10px;
   }
 `;
 
@@ -477,6 +472,7 @@ const SelectWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    margin-bottom: 10px;
   }
 `;
 
@@ -558,6 +554,7 @@ const ButtonSubmit = styled.button`
   }
 
   @media screen and (min-width: 1440px) {
+    margin-top: 20px;
   }
 `;
 
@@ -583,6 +580,12 @@ const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    margin: 0 auto;
+    display: flex;
+    width: 1440px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
   }
 `;
 
@@ -597,6 +600,10 @@ const Section = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    width: 454px;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
   }
 `;
 
@@ -624,7 +631,7 @@ const Title = styled.p`
     color: var(--blue-500);
   }
   @media screen and (min-width: 768px) {
-  font-size: 72px;
+    font-size: 72px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -638,7 +645,7 @@ const Text = styled.p`
   line-height: 125%;
   color: var(--black-500);
   @media screen and (min-width: 768px) {
-  font-size: 17px;
+    font-size: 17px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -728,7 +735,16 @@ const InfoTitle = styled.p`
 `;
 
 export const ImageContact = styled.img`
-  min-width: 343px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 696px;
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    max-width: 668px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 const TabletContainer = styled.div`
