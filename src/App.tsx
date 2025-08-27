@@ -72,7 +72,7 @@ export const App: React.FC = () => {
             }
           />
           <Route
-            path='/pricing'
+            path='/tips'
             element={
               <PageWrapper>
                 <Info />
