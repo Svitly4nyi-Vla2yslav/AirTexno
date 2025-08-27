@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             </a>{' '}
             <br />
             <a href="tel:+18055002705">+1 (805) 500-2705</a>
-            <br /> <a href="mailto:airtexno@gmail.com">airtexno@gmail.com</a>
+            <br /> <a href="mailto:Airtexnola@gmail.com">airtexno@gmail.com</a>
           </FullWidthText>
 
           <LinksWrapper>

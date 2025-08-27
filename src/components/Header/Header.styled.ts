@@ -245,6 +245,10 @@ export const LangButtonContainer = styled.div`
 `;
 
 export const TransparentButton = styled.button<StyledProps>`
+display: none;
+ @media screen and (min-width: 768px) {
+
+
   background: transparent;
   border: 1px solid
     ${({ $overlayOpen, $darkMode }) =>
@@ -290,4 +294,5 @@ export const TransparentButton = styled.button<StyledProps>`
     color: inherit;
     text-decoration: none;
   }
+   }
 `;

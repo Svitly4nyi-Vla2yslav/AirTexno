@@ -11,6 +11,7 @@ import {
 } from './MobileMenu.styled';
 import { useTranslation } from 'react-i18next';
 import { styled } from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -95,6 +96,7 @@ const TextNormal = styled.p`
   line-height: 1.2em;
   width: fit-content;
 `;
+
 const topLineVariants = {
   open: { rotate: 45, y: 8 },
   closed: { rotate: 0, y: 0 },
@@ -129,6 +131,12 @@ type BurgerMenuProps = {
 const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const [, setIsServicesOpen] = useState(false);
   const { t } = useTranslation();
+  const location = useLocation();
+
+  // Визначаємо, чи потрібен темний режим для поточної сторінки
+  const isDarkMode = ['/contact', '/service', '/tips', '/pricing'].some(path => 
+    location.pathname.startsWith(path)
+  );
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
@@ -136,6 +144,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+
   const closeMenu = () => {
     setIsOpen(false);
     setIsServicesOpen(false);
@@ -157,16 +166,19 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       >
         <Line
           $isOpen={isOpen}
+          $darkMode={isDarkMode}
           animate={isOpen ? 'open' : 'closed'}
           variants={topLineVariants}
         />
         <Line
           $isOpen={isOpen}
+          $darkMode={isDarkMode}
           animate={isOpen ? 'open' : 'closed'}
           variants={middleLineVariants}
         />
         <Line
           $isOpen={isOpen}
+          $darkMode={isDarkMode}
           animate={isOpen ? 'open' : 'closed'}
           variants={bottomLineVariants}
         />

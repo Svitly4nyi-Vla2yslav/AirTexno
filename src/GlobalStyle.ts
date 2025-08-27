@@ -47,7 +47,7 @@ export const GlobalStyle = css`
 	--white: #fff;
 	--blue-500: #3098ee;
 	--white-500: rgba(255, 255, 255, 0.5);
-	--white-320: rgba(255, 255, 255, 0.32);
+	--white-320: rgba(173, 171, 171, 1);
 	--blue-form: #d8e6f2ff;
 	--black-500: rgba(14, 13, 13, 1);
 	--black-100: rgba(33, 33, 33, 0.1);

@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
+
+interface StyledProps {
+  $isOpen?: boolean;
+  $darkMode?: boolean;
+}
 
 export const Wrapper = styled.div`
   display: flex;
@@ -29,10 +34,13 @@ export const BurgerButton = styled.button`
   border: none;
 `;
 
-export const Line = styled(motion.div)<{ $isOpen?: boolean }>`
+export const Line = styled(motion.div)<StyledProps>`
   width: 20px;
   height: 2px;
-  background: ${({ $isOpen }) => ($isOpen ? 'black' : 'white')};
+  background: ${({ $isOpen, $darkMode }) => {
+    if ($isOpen) return 'black'; // Чорний колір при відкритому меню
+    return $darkMode ? 'black' : 'white'; // Чорний на темних сторінках, білий на світлих
+  }};
   border-radius: 2px;
   transition: background 0.3s ease;
 `;
@@ -68,11 +76,7 @@ export const MenuOverlay = styled(motion.div)`
       top: 13%;
       left: 0;
       width: 100%;
-      border-top: 1px solid rgba(195, 187, 187, 1);
     }
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -90,6 +94,7 @@ export const MenuLink = styled(NavLink)`
     color: var(--purple-400);
   }
 `;
+
 export const MenuItem = styled.p<{ $active?: boolean }>`
   color: ${({ $active }) => ($active ? '#3098EE' : '#242424')};
   font-family: 'Bebas Neue', sans-serif;

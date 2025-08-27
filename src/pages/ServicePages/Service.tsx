@@ -1,8 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import ServicesSection from '../../components/componentsService/ServicesSection/ServicesSection';
+import OurEquipment from '../../components/componentsService/OurEquipment/OurEquipment';
+import CasesSection from '../../components/CasesSection/CasesSection';
+import OurProcess from '../../components/componentsService/OurProcess/OurProcess';
+import ReviewCardContainer from '../../components/Feedback/Feedback';
+import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
+import { ContactForm } from '../../components/ContactComponents/ContactForm';
 
 const Service: React.FC = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <ServicesSection />
+      <OurEquipment />
+      <CasesSection />
+      <OurProcess />
+      <ReviewCardContainer />
+      <TeamMember />
+      <ContactForm />
+    </Container>
+  );
 };
 
 export default Service;

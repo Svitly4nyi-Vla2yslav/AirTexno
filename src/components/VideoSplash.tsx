@@ -55,13 +55,21 @@ const Video = styled.video<{ $visible: boolean }>`
 const Logo = styled.img<{ $show: boolean }>`
   position: absolute;
   width: min-content;
-  height: 180px;
+  height: 27px;
   opacity: 0;
   ${({ $show }) =>
     $show &&
     css`
       animation: ${scaleLogo} 2s forwards;
     `}
+
+      @media screen and (min-width: 744px) {
+   height: 100px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  height: 240px;
+  }
 `;
 
 type Props = { onComplete: () => void };
