@@ -82,7 +82,7 @@ export const TextBlock = styled.div`
 `;
 
 export const HeroTitle = styled.p`
-  color: #fff;
+  color: #e1e1e1ff;
   font-family: var(--second-family);
   font-size: 56px;
   font-weight: 400;
@@ -96,7 +96,6 @@ export const HeroTitle = styled.p`
     font-weight: 400;
     font-size: 85px;
     line-height: 90%;
-    color: var(--white);
     width: 696px;
 
   }
