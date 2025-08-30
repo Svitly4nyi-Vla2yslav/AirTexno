@@ -41,28 +41,27 @@ export const GlobalStyle = css`
     font-display: swap;
   }
 
-
   :root {
-	--black-500: #242424;
-	--white: #fff;
-	--blue-500: #3098ee;
-	--white-500: rgba(255, 255, 255, 0.5);
-	--white-320: rgba(173, 171, 171, 1);
-	--blue-form: #d8e6f2ff;
-	--black-500: rgba(14, 13, 13, 1);
-	--black-100: rgba(33, 33, 33, 0.1);
-	--gray: #dbdbd8;
-	--black-300: rgba(33, 33, 33, 0.3);
-	--black-800: rgba(0, 0, 0, 0.8);
-	--white-800: rgba(255, 255, 255, 0.8);
-	--blue-350: #c6e6ff;
-	--blue-450: #6abcff;
---purple-400: #a66affff;
-    
+    --black-500: #242424;
+    --white: #fff;
+    --blue-500: #3098ee;
+    --white-500: rgba(255, 255, 255, 0.5);
+    --white-320: rgba(173, 171, 171, 1);
+    --blue-form: #d8e6f2ff;
+    --black-500: rgba(85, 84, 84, 1);
+    --black-100: rgba(33, 33, 33, 0.1);
+    --gray: #dbdbd8;
+    --black-300: rgba(33, 33, 33, 0.3);
+    --black-800: rgba(0, 0, 0, 0.8);
+    --white-800: rgba(255, 255, 255, 0.8);
+    --blue-350: #c6e6ff;
+    --blue-450: #6abcff;
+    --purple-400: #a66affff;
+
     /* Fonts */
-   --font-family: "Geist Regular", sans-serif;
-  --second-family: "Bebas Neue Regular", sans-serif;
-  --third-family: "Inter", sans-serif;
+    --font-family: 'Geist Regular', sans-serif;
+    --second-family: 'Bebas Neue Regular', sans-serif;
+    --third-family: 'Inter', sans-serif;
     /* Додаткові змінні для узгодженості */
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
@@ -70,7 +69,7 @@ export const GlobalStyle = css`
     --safe-area-inset-right: env(safe-area-inset-right, 0px);
   }
 
-    * {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -78,7 +77,7 @@ export const GlobalStyle = css`
     scrollbar-width: none;
     word-wrap: break-word;
     z-index: 1;
-    
+
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -92,13 +91,10 @@ export const GlobalStyle = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    padding: 
-      env(safe-area-inset-top, 0px) 
-      env(safe-area-inset-right, 0px) 
-      env(safe-area-inset-bottom, 0px) 
-      env(safe-area-inset-left, 0px);
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+      env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
   }
-    
+
   body.modal-open {
     overflow: hidden;
     position: fixed;
@@ -106,7 +102,12 @@ export const GlobalStyle = css`
     height: 100%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 600;
     font-family: var(--second-family);
     color: #fff;
@@ -144,14 +145,15 @@ export const GlobalStyle = css`
     border-radius: 0;
     height: auto;
   }
-  
+
   video {
     object-fit: contain;
     overflow-clip-margin: content-box;
     overflow: clip;
   }
 
-  ul, li {
+  ul,
+  li {
     list-style: none;
   }
 
@@ -164,12 +166,13 @@ export const GlobalStyle = css`
     height: -webkit-fill-available;
   }
 
-  html, body {
+  html,
+  body {
     height: 100%;
     font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
     touch-action: manipulation; /* Покращує відгук на тач-події */
-        width: 100%;
+    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
@@ -178,17 +181,21 @@ export const GlobalStyle = css`
     display: none;
   }
 
-    body {
+  body {
     position: relative;
   }
 
-    main, .container, #root {
+  main,
+  .container,
+  #root {
     overflow-x: hidden;
     width: 100%;
   }
 
-  input, textarea, button {
-  height: auto;
+  input,
+  textarea,
+  button {
+    height: auto;
     font-size: 16px;
     font-family: inherit;
     border-radius: 0; /* Фікс для iOS */
@@ -196,19 +203,21 @@ export const GlobalStyle = css`
   }
 
   /* Особливі фікси для iOS */
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="url"],
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='search'],
+  input[type='tel'],
+  input[type='url'],
   textarea {
     -webkit-appearance: none;
   }
 
   /* Фікс для масштабування при фокусі на інпут на iOS */
   @media screen and (max-width: 767px) {
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       font-size: 16px !important;
     }
   }
@@ -221,14 +230,24 @@ export const GlobalStyle = css`
   }
 
   @keyframes buttonAnimationOut {
-    0% { background-position: center bottom; }
-    99.99% { background-position: left bottom; }
-    100% { background-position: right bottom; }
+    0% {
+      background-position: center bottom;
+    }
+    99.99% {
+      background-position: left bottom;
+    }
+    100% {
+      background-position: right bottom;
+    }
   }
 
   @keyframes move {
-    from { transform: translateY(0%); }
-    to { transform: translateY(-100%); }
+    from {
+      transform: translateY(0%);
+    }
+    to {
+      transform: translateY(-100%);
+    }
   }
 
   /* Додаткові фікси для різних платформ */
@@ -240,14 +259,11 @@ export const GlobalStyle = css`
   }
 
   /* Фікс для Safari */
-  _::-webkit-full-page-media, _:future, :root .safari_only {
+  _::-webkit-full-page-media,
+  _:future,
+  :root .safari_only {
     @supports (-webkit-touch-callout: none) {
       /* Специфічні стилі для Safari */
     }
   }
-
-
-
-
-  
 `;

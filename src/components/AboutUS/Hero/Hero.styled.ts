@@ -5,18 +5,18 @@ export const HeroContainer = styled.div`
   position: relative;
   min-width: 100vw;
   min-height: 50vh;
-  overflow: auto;
+  overflow: hidden;
   flex-shrink: 0;
 
   @media screen and (min-width: 768px) {
-     min-height: 62vh; 
+    min-height: 62vh;
   }
 
   @media screen and (min-width: 1440px) {
     display: flex;
-    justify-content: flex-end; /* Вирівнюємо контент справа */
+    justify-content: center;
     align-items: center;
-    padding-right: 120px; /* Відступ від правої сторони */
+    min-height: 70vh;
   }
 `;
 
@@ -28,41 +28,36 @@ export const HeroImage = styled.img`
   height: 365px;
   max-width: none;
   flex-shrink: 0;
+  object-fit: cover;
+  
   @media screen and (min-width: 768px) {
     height: 441px;
   }
 
   @media screen and (min-width: 1440px) {
-        object-fit: cover;
-    object-position: top center;
+    height: 100%;
+    object-position: center;
   }
 `;
 
 export const ContentWrapper = styled.div`
   position: relative;
-  left: 16px;
-  top: 16px;
-  width: 100%;
-  min-width: 343px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 16px;
   margin-top: 150px;
 
   @media screen and (min-width: 768px) {
+    margin-top: 180px;
+    padding: 0 32px;
   }
 
   @media screen and (min-width: 1440px) {
-    position: relative; /* Змінюємо на relative для flex-розташування */
-    left: auto;
-    bottom: auto;
-    width: 45%; /* Ширина контенту */
-    max-width: 600px;
-    margin-left: auto; /* Вирівнюємо справа */
-   margin: 0 auto;
-   top: 0;
+    margin-top: 0;
+    padding: 0;
   }
 `;
 
@@ -70,37 +65,37 @@ export const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
-  position: absolute;
-  top: 0;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
 
   @media screen and (min-width: 768px) {
+    gap: 16px;
   }
 
   @media screen and (min-width: 1440px) {
+    gap: 20px;
   }
 `;
 
 export const HeroTitle = styled.p`
-  color: #e1e1e1ff;
+  color: #e1e1e1;
   font-family: var(--second-family);
   font-size: 56px;
   font-weight: 400;
   line-height: 0.9em;
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  width: 343px;
-  @media screen and (min-width: 768px) {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 85px;
-    line-height: 90%;
-    width: 696px;
+  margin: 0;
+  max-width: 343px;
 
+  @media screen and (min-width: 768px) {
+    font-size: 85px;
+    max-width: 696px;
+    line-height: 90%;
   }
 
   @media screen and (min-width: 1440px) {
+    font-size: 96px;
+    max-width: 800px;
   }
 `;
 
@@ -110,19 +105,18 @@ export const HeroSubtitle = styled.p`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.25em;
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  width: 343px;
+  margin: 0;
+  max-width: 343px;
+
   @media screen and (min-width: 768px) {
-    font-family: var(--font-family);
-    font-weight: 400;
     font-size: 17px;
+    max-width: 500px;
     line-height: 125%;
-    color: var(--white);
   }
 
   @media screen and (min-width: 1440px) {
+    font-size: 18px;
+    max-width: 600px;
   }
 `;
 

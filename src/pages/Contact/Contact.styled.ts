@@ -13,7 +13,8 @@ width: 100%;
   align-items: center;
   justify-content: flex-start;
   gap: 50px; /* Відступи між компонентами */
-
+margin-top: 130px;
+margin-bottom: 100px;
   /* Мобільні пристрої (до 768px) */
   @media (max-width: 767px) {
     gap: 40px;
@@ -23,6 +24,7 @@ width: 100%;
   /* Планшети (768px - 1023px) */
   @media (min-width: 768px) and (max-width: 1023px) {
     max-width: 768px;
+    margin-top: 200px;
     padding: 0 24px;
   }
 
@@ -36,12 +38,15 @@ width: 100%;
   @media (min-width: 1280px) and (max-width: 1439px) {
     max-width: 1280px;
     padding: 0 48px;
+    margin-top: 141px;
   }
 
   /* Великі десктопи (1440px і більше) */
   @media (min-width: 1440px) {
     max-width: 1440px;
     padding: 0 64px;
+    margin-top: 141px;
+
   }
 
   /* Дуже великі екрани (1920px і більше) */

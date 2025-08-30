@@ -16,8 +16,13 @@ export const Container = styled.div`
   }
 
   @media (min-width: 1440px) {
+    display: flex;
     gap: 4rem;
     max-width: 1440px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 `;
 
@@ -68,32 +73,27 @@ export const ImagesContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 1.5rem;
   width: 100%;
 
   @media (min-width: 768px) {
-    gap: 1.5rem;
   }
 
   @media (min-width: 1440px) {
     flex-direction: row;
-    gap: 1.5rem;
   }
 `;
 
 export const ImageRow = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
   width: 100%;
 
   @media (min-width: 768px) {
     flex-direction: row;
-    gap: 1.5rem;
   }
 
   @media (min-width: 1440px) {
-    gap: 1.5rem;
   }
 `;
 
@@ -108,7 +108,7 @@ export const TeamImage = styled.img`
   width: 100%;
   height: 485px;
   max-width: none;
-  object-fit: cover;
+  object-fit: contain;
 
   @media (min-width: 768px) {
     height: 485px;

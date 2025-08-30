@@ -1,5 +1,4 @@
-import React from 'react';
-// import { scroller } from 'react-scroll';
+import React, { useState } from 'react';
 import {
   FooterWrapper,
   FooterContent,
@@ -11,60 +10,55 @@ import {
   Divider,
   Text,
   CopyrightContainer,
+  ModalOverlay,
+  ModalContent,
+  CloseButton
 } from './Footer.styled';
+import ContentContainer from './PoliciesContent';
 
 const Footer: React.FC = () => {
-  // const [showPolicies, setShowPolicies] = useState(false);
-  // const [activePolicy, setActivePolicy] = useState<string | null>(null);
-  // useEffect(() => {
-  //   if (showPolicies && activePolicy) {
-  //     const timer = setTimeout(() => {
-  //       scroller.scrollTo(activePolicy, {
-  //         duration: 800,
-  //         delay: 0,
-  //         smooth: 'easeInOutQuart',
-  //         offset: -100,
-  //       });
-  //     }, 100);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
 
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [showPolicies, activePolicy]);
+  const handlePrivacyClick = () => {
+    setShowPrivacyPolicy(true);
+  };
 
-  // const handlePolicyClick = (policy: string) => {
-  //   setActivePolicy(policy);
-  //   setShowPolicies(true);
-  // };
+  const handleCloseModal = () => {
+    setShowPrivacyPolicy(false);
+  };
 
   return (
-    <FooterWrapper>
-      <FooterContent>
-        <InfoBlock>
-          <FullWidthText>
-            <a
-              href="http://maps.google.com/?q=801+Tioga+pl,+Newbury+Park,+CA+91320"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              801 Tioga pl, Newbury Park, CA 91320
-            </a>{' '}
-            <br />
-            <a href="tel:+18055002705">+1 (805) 500-2705</a>
-            <br /> <a href="mailto:Airtexnola@gmail.com">airtexno@gmail.com</a>
-          </FullWidthText>
+    <>
+      <FooterWrapper>
+        <FooterContent>
+          <InfoBlock>
+            <FullWidthText>
+              <a
+                href="http://maps.google.com/?q=801+Tioga+pl,+Newbury+Park,+CA+91320"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                801 Tioga pl, Newbury Park, CA 91320
+              </a>{' '}
+              <br />
+              <a href="tel:+18055002705">+1 (805) 500-2705</a>
+              <br /> <a href="mailto:Airtexnola@gmail.com">airtexno@gmail.com</a>
+            </FullWidthText>
 
-          <LinksWrapper>
-            <Text>Home</Text>
-            <Text>Services</Text>
-            <Text>About Us</Text>
-            <Text>Tips</Text>
-            <Text>Contacts</Text>
-            <Text>Privacy and Terms</Text>
-          </LinksWrapper>
-        </InfoBlock>
+            <LinksWrapper>
+              <Text>Home</Text>
+              <Text>Services</Text>
+              <Text>About Us</Text>
+              <Text>Tips</Text>
+              <Text>Contacts</Text>
+              <Text onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
+                Privacy and Terms
+              </Text>
+            </LinksWrapper>
+          </InfoBlock>
 
-        <BottomBlock>
-          <LogoSVG
+          <BottomBlock>
+              <LogoSVG
             viewBox="0 0 343 56"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -101,21 +95,34 @@ const Footer: React.FC = () => {
               d="M318.137 56.0009C312.995 56.0009 308.577 54.9042 304.882 52.7107C301.188 50.4674 298.342 47.2768 296.345 43.1391C294.348 39.0014 293.349 34.066 293.349 28.333C293.349 22.6001 294.348 17.6647 296.345 13.527C298.342 9.33943 301.188 6.12397 304.882 3.88063C308.577 1.63729 312.995 0.515625 318.137 0.515625C323.329 0.515625 327.773 1.63729 331.467 3.88063C335.212 6.12397 338.057 9.33943 340.004 13.527C342.001 17.6647 343 22.6001 343 28.333C343 34.066 342.001 39.0014 340.004 43.1391C338.057 47.2768 335.212 50.4674 331.467 52.7107C327.773 54.9042 323.329 56.0009 318.137 56.0009ZM318.137 48.5979C321.582 48.5979 324.528 47.8003 326.974 46.205C329.47 44.6097 331.367 42.3165 332.665 39.3254C333.964 36.2844 334.613 32.6203 334.613 28.333C334.613 24.0458 333.964 20.3817 332.665 17.3407C331.367 14.2997 329.47 11.9816 326.974 10.3863C324.528 8.74121 321.582 7.91865 318.137 7.91865C314.742 7.91865 311.822 8.74121 309.375 10.3863C306.929 11.9816 305.032 14.2997 303.684 17.3407C302.386 20.3817 301.737 24.0458 301.737 28.333C301.737 32.6203 302.386 36.2844 303.684 39.3254C305.032 42.3165 306.929 44.6097 309.375 46.205C311.822 47.8003 314.742 48.5979 318.137 48.5979Z"
               fill="white"
             />
-          </LogoSVG>
+            </LogoSVG>
 
-          <Divider opacity={0.5} />
+            <Divider opacity={0.5} />
 
-          <CopyrightContainer>
-            <Text size="14px" weight="500">
-              Designed by TRBN
-            </Text>
-            <Text size="14px">
-              Copyright © 2025 Airtexno - All Rights Reserved.
-            </Text>
-          </CopyrightContainer>
-        </BottomBlock>
-      </FooterContent>
-    </FooterWrapper>
+            <CopyrightContainer>
+              <Text size="14px" weight="500">
+                Designed by TRBN
+              </Text>
+              <Text onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
+                Privacy and terms
+              </Text>
+              <Text size="14px">
+                Copyright © 2025 Airtexno - All Rights Reserved.
+              </Text>
+            </CopyrightContainer>
+          </BottomBlock>
+        </FooterContent>
+      </FooterWrapper>
+
+      {showPrivacyPolicy && (
+        <ModalOverlay onClick={handleCloseModal}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={handleCloseModal}>×</CloseButton>
+            <ContentContainer />
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </>
   );
 };
 

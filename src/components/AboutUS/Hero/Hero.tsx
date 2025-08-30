@@ -17,7 +17,6 @@ export const Hero: React.FC = () => {
 
       <ContentWrapper>
         <TextBlock>
-          {' '}
           <HeroSubtitle>About Our Company and Team</HeroSubtitle>
           <HeroTitle>Fast, affordable, and trusted service</HeroTitle>
         </TextBlock>
