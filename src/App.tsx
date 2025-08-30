@@ -8,6 +8,7 @@ import { Time } from './components/ScrollToTop';
 import { useEffect } from 'react';
 import Service from './pages/ServicePages/Service';
 import ArticleDetail from './components/NewsTips/NewsSection';
+import Refrigeration from './pages/Refrigeration/Refrigeration';
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   return <div style={{ width: '100%', position: 'relative' }}>{children}</div>;
@@ -128,6 +129,14 @@ export const App: React.FC = () => {
             element={
               <PageWrapper>
                 <Contact />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path='/fridge'
+            element={
+              <PageWrapper>
+                <Refrigeration />
               </PageWrapper>
             }
           />

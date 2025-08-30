@@ -134,7 +134,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const location = useLocation();
 
   // Визначаємо, чи потрібен темний режим для поточної сторінки
-  const isDarkMode = ['/contact', '/service', '/tips', '/pricing'].some(path => 
+  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', "/fridge"].some(path => 
     location.pathname.startsWith(path)
   );
 

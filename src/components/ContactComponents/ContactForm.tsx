@@ -621,6 +621,8 @@ const Container = styled.div`
   padding-top: 100px;
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
+    margin-bottom: 240px;
+
   }
 
   @media screen and (min-width: 1440px) {
@@ -629,7 +631,7 @@ const Container = styled.div`
     width: 1440px;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 40px;
+    margin-bottom: 240px;
   }
 `;
 
