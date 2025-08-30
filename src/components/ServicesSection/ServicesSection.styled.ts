@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router';
 import { styled } from 'styled-components';
 
 export const Section = styled.div`
@@ -214,7 +215,7 @@ export const InfoText = styled.p`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled(NavLink)`
   cursor: pointer;
   white-space: nowrap;
   display: flex;
@@ -350,7 +351,7 @@ export const ButtonRow = styled.div`
   }
 `;
 
-export const PrimaryButton = styled.button`
+export const PrimaryButton = styled(NavLink)`
   cursor: pointer;
   white-space: nowrap;
   display: flex;

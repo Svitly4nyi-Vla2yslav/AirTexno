@@ -1,8 +1,7 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const InfoContainer = styled.div`
- width: 100%;
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 16px;
@@ -12,7 +11,7 @@ export const InfoContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 50px; /* Відступи між компонентами */
-margin-top: 50px;
+  padding-top: 50px;
 
   /* Мобільні пристрої (до 768px) */
   @media (max-width: 767px) {
@@ -42,7 +41,7 @@ margin-top: 50px;
   @media (min-width: 1440px) {
     max-width: 1440px;
     padding: 0 64px;
-    margin-top: 100px;
+    padding-top: 10px;
   }
 
   /* Дуже великі екрани (1920px і більше) */
@@ -51,4 +50,3 @@ margin-top: 50px;
     padding: 0 120px;
   }
 `;
-

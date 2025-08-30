@@ -31,7 +31,7 @@ import { useMediaQuery } from 'react-responsive';
 const ServicesSection: React.FC = () => {
   const isDeckstop = useMediaQuery({ query: '(min-width: 1440px)' });
   return (
-    <Section>
+    <Section id='all'>
       <SmallText>Our Service</SmallText>
       <ContentWrapper>
         <ServiceBlock>

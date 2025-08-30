@@ -44,7 +44,7 @@ const ServicesSection: React.FC = () => {
           {isDeckstop && (
             <InfoBlock>
               <InfoText>Do you want to know more about our service?</InfoText>
-              <Button>
+             <Button to='/about#ap'>
                 <ButtonText>Learn more</ButtonText>
               </Button>
             </InfoBlock>
@@ -67,7 +67,7 @@ const ServicesSection: React.FC = () => {
               </TextBlock>
             </HeaderWrapper>
             <ButtonRow>
-              <PrimaryButton>
+              <PrimaryButton  to='/contact#ap'>
                 <ButtonTextWhite>Contact Us</ButtonTextWhite>
               </PrimaryButton>
               <SecondaryButton>
@@ -81,7 +81,7 @@ const ServicesSection: React.FC = () => {
         {!isDeckstop && (
           <InfoBlock>
             <InfoText>Do you want to know more about our service?</InfoText>
-            <Button>
+            <Button to='/about#ap'>
               <ButtonText>Learn more</ButtonText>
             </Button>
           </InfoBlock>

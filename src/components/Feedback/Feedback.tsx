@@ -345,14 +345,14 @@ const ReviewCardContainer: React.FC = () => {
             autoplay={{
               delay: 2000,
               disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-              waitForTransition: true,
+              pauseOnMouseEnter: false,
+              waitForTransition: false,
             }}
             speed={7000}
             loop={true}
             touchEventsTarget='container'
             modules={[Mousewheel, Autoplay]}
-            grabCursor={true}
+            grabCursor={false}
             resistance={true}
             resistanceRatio={0.85}
             onReachBeginning={() => setIsScrolling(false)}
@@ -402,8 +402,8 @@ const ReviewCardContainer: React.FC = () => {
             autoplay={{
               delay: 1000,
               disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-              waitForTransition: true,
+              pauseOnMouseEnter: false,
+              waitForTransition: false,
               reverseDirection: true, // Автопрокрутка в зворотньому напрямку
             }}
             speed={4000}
@@ -463,14 +463,14 @@ const ReviewCardContainer: React.FC = () => {
               autoplay={{
                 delay: 5000,
                 disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-                waitForTransition: true,
+                pauseOnMouseEnter: false,
+                waitForTransition: false,
               }}
               speed={9000}
               loop={true}
               touchEventsTarget='container'
               modules={[Mousewheel, Autoplay]}
-              grabCursor={true}
+              grabCursor={false}
               resistance={true}
               resistanceRatio={0.85}
               onReachBeginning={() => setIsScrolling(false)}

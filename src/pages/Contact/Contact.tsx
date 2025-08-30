@@ -5,7 +5,7 @@ import ReviewCardContainer from '../../components/Feedback/Feedback';
 
 const Contact: React.FC = () => {
   return (
-    <ContactContainer id='ap'>
+    <ContactContainer  id='ap'>
       <ContactForm />
       <ReviewCardContainer />
     </ContactContainer>

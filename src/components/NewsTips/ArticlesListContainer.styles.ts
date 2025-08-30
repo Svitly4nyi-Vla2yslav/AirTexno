@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom';
 export const TipsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  padding-top: 80px;
   margin-bottom: 100px;
   @media (min-width: 768px) {
-    margin-top: 100px;
+    padding-top: 100px;
   }
 
   @media (min-width: 1440px) {
     display: flex;
-    margin-top: 100px;
+    padding-top: 100px;
     flex-direction: row;
   }
 `;

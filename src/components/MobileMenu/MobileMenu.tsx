@@ -52,14 +52,14 @@ const FooterContainer = styled.div`
   position: absolute;
   bottom: 2%;
 
-    &::before {
-  content: '';
-  position: absolute;
-  top: 8%;
-  left: 0;
-  width: 100%;
-  border-top: 1px solid rgba(195, 187, 187, 1);
-}
+  &::before {
+    content: '';
+    position: absolute;
+    top: 8%;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid rgba(195, 187, 187, 1);
+  }
 `;
 
 // Верхня напівпрозора смужка
@@ -150,9 +150,22 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
     setIsServicesOpen(false);
   };
 
+  // Функція для визначення активної сторінки
+  const isActivePage = (path: string) => {
+    const currentPath = location.pathname;
+    
+    // Спеціальна логіка для головної сторінки
+    if (path === '/home#hero') {
+      return currentPath === '/' || currentPath === '/home';
+    }
+    
+    // Для інших сторінок перевіряємо початок шляху
+    return currentPath.startsWith(path.split('#')[0]);
+  };
+
   const navLinks: NavLink[] = [
-    { to: '/home#hero', label: 'Home', active: true },
-    { to: '/service', label: 'Services' },
+    { to: '/home#hero', label: 'Home' },
+    { to: '/service#all', label: 'Services' },
     { to: '/about#ap', label: 'About Us' },
     { to: '/tips#app', label: 'Tips' },
     { to: '/contact#ap', label: 'Contact' },
@@ -192,14 +205,17 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
             variants={menuVariants}
             transition={{ duration: 0.3 }}
           >
-            {navLinks.map((link, index) => (
-              <div key={index}>
-                <MenuLink to={link.to} onClick={closeMenu}>
-                  <MenuItem $active={link.active}>{t(link.label)}</MenuItem>
-                </MenuLink>
-                <Divider />
-              </div>
-            ))}
+            {navLinks.map((link, index) => {
+              const isActive = isActivePage(link.to);
+              return (
+                <div key={index}>
+                  <MenuLink to={link.to} onClick={closeMenu}>
+                    <MenuItem $active={isActive}>{t(link.label)}</MenuItem>
+                  </MenuLink>
+                  <Divider />
+                </div>
+              );
+            })}
             <Container>
               <Column>
                 <Item>Washing Machine Fix</Item>

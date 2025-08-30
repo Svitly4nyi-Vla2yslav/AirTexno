@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import image1 from '../../../assets/icons/equipment/Image1.png';
@@ -130,15 +130,43 @@ const SwiperContainer = styled.div<{ $isTablet: boolean }>`
   }
 `;
 
-const NavigationContainer = styled.div`
+export const NavigationContainer = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 10px;
   width: 100%;
   justify-content: flex-end;
 `;
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 
-const NavButton = styled.button<{ bg: string }>`
+const slideInLeft = keyframes`
+  from {
+    transform: translateX(-2px);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideInRight = keyframes`
+  from {
+    transform: translateX(2px);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+export const NavButton = styled.button<{ bg: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,6 +176,58 @@ const NavButton = styled.button<{ bg: string }>`
   background-color: ${props => props.bg};
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    animation: ${pulseAnimation} 0.6s ease;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    &::before {
+      opacity: 1;
+    }
+
+    ${props => props.bg === '#DBDBD8' && css`
+      background-color: #c8c8c5;
+      svg {
+        animation: ${slideInLeft} 0.4s ease;
+      }
+    `}
+
+    ${props => props.bg === '#3098EE' && css`
+      background-color: #2580d6;
+      svg {
+        animation: ${slideInRight} 0.4s ease;
+      }
+    `}
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover svg {
+    transform: scale(1.1);
+  }
 `;
 
 const Wrapper = styled.div`

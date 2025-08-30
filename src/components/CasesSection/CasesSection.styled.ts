@@ -1,5 +1,5 @@
 // CasesSection.styled.ts
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { Swiper as SwiperBase, SwiperSlide as SwiperSlideBase } from 'swiper/react';
 
 export const StyledSwiper = styled(SwiperBase)`
@@ -101,6 +101,55 @@ export const Section = styled.section`
   }
 `;
 
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+`;
+
+const slideLeft = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-2px);
+  }
+`;
+
+const slideRight = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(2px);
+  }
+`;
+
+const bounce = keyframes`
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+`;
+
+// Стилізовані компоненти
 export const NavigationWrapper = styled.div`
   display: flex;
   gap: 15px;
@@ -110,6 +159,108 @@ export const NavigationWrapper = styled.div`
   width: 100%;
 `;
 
+export const IconButton = styled.button<{ $bg: string }>`
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: ${({ $bg }) => $bg};
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.6s ease,
+      height 0.6s ease;
+  }
+
+  &:hover {
+    animation:
+      ${pulseAnimation} 0.6s ease,
+      ${bounce} 0.6s ease;
+    transform: translateY(-2px);
+
+    &::before {
+      width: 300%;
+      height: 300%;
+    }
+
+    ${props =>
+      props.$bg === '#DBDBD8' &&
+      css`
+        background-color: #c8c8c5;
+        box-shadow: 0 4px 15px rgba(219, 219, 216, 0.4);
+
+        svg {
+          animation: ${slideLeft} 0.4s ease;
+        }
+      `}
+
+    ${props =>
+      props.$bg === '#3098EE' &&
+      css`
+        background-color: #2580d6;
+        box-shadow: 0 4px 15px rgba(48, 152, 238, 0.4);
+
+        svg {
+          animation: ${slideRight} 0.4s ease;
+        }
+      `}
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  svg {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  &:hover svg {
+    transform: scale(1.15);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+
+  // Медіа-запити
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 48px;
+    height: 48px;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+
+    &:hover svg {
+      transform: scale(1.2);
+    }
+  }
+`;
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
@@ -235,9 +386,9 @@ export const Container = styled.div<{ $isActive: boolean; $index: number }>`
 
   @media screen and (min-width: 1440px) {
     margin: ${props => (props.$isActive ? '20px' : '10px')};
-    margin-bottom: ${props => (props.$isActive ? '40px' : '30px')};
+    margin-bottom: ${props => (props.$isActive ? '20px' : '10px')};
     opacity: ${props => (props.$isActive ? 1 : 0.9)};
-    transform: ${props => (props.$isActive ? 'scale(1.05)' : 'scale(0.95)')};
+    transform: ${props => (props.$isActive ? 'scale(1.03)' : 'scale(0.95)')};
   }
 `;
 
@@ -273,28 +424,6 @@ export const IconRow = styled.div`
   gap: 8px;
   width: fit-content;
   position: relative;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
-`;
-
-export const IconButton = styled.button<{ $bg: string }>`
-  display: flex;
-  padding: 8px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  background-color: ${({ $bg }) => $bg};
-  width: 40px;
-  height: 40px;
-  border: none;
-  cursor: pointer;
-
-  svg {
-    pointer-events: cursor;
-  }
   @media screen and (min-width: 768px) {
   }
 

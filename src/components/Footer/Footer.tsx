@@ -12,7 +12,8 @@ import {
   CopyrightContainer,
   ModalOverlay,
   ModalContent,
-  CloseButton
+  CloseButton,
+  TextO
 } from './Footer.styled';
 import ContentContainer from './PoliciesContent';
 
@@ -46,14 +47,14 @@ const Footer: React.FC = () => {
             </FullWidthText>
 
             <LinksWrapper>
-              <Text>Home</Text>
-              <Text>Services</Text>
-              <Text>About Us</Text>
-              <Text>Tips</Text>
-              <Text>Contacts</Text>
-              <Text onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
+              <Text to="/home#hero">Home</Text>
+              <Text to="/service#all">Services</Text>
+              <Text to="/about#ap">About Us</Text>
+              <Text to="/tips#app">Tips</Text>
+              <Text to="/contact#ap">Contacts</Text>
+              <TextO  onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
                 Privacy and Terms
-              </Text>
+              </TextO>
             </LinksWrapper>
           </InfoBlock>
 
@@ -100,15 +101,13 @@ const Footer: React.FC = () => {
             <Divider opacity={0.5} />
 
             <CopyrightContainer>
-              <Text size="14px" weight="500">
+              <TextO size="14px" weight="500">
                 Designed by TRBN
-              </Text>
-              <Text onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
-                Privacy and terms
-              </Text>
-              <Text size="14px">
+              </TextO>
+              
+              <TextO size="14px">
                 Copyright © 2025 Airtexno - All Rights Reserved.
-              </Text>
+              </TextO>
             </CopyrightContainer>
           </BottomBlock>
         </FooterContent>

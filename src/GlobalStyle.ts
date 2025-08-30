@@ -188,7 +188,7 @@ export const GlobalStyle = css`
   main,
   .container,
   #root {
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
   }
 

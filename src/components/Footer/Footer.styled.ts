@@ -47,7 +47,22 @@ export const InfoBlock = styled.div`
   }
 `;
 
-export const Text = styled.p<{ size?: string; weight?: string }>`
+export const Text = styled(NavLink)<{ size?: string; weight?: string }>`
+  color: #fff;
+  font-family: 'Geist', sans-serif;
+  font-size: ${({ size }) => size || '15px'};
+  font-weight: ${({ weight }) => weight || 'normal'};
+  line-height: 1.2em;
+  width: fit-content;
+  display: flex;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const TextO = styled.p<{ size?: string; weight?: string }>`
   color: #fff;
   font-family: 'Geist', sans-serif;
   font-size: ${({ size }) => size || '15px'};
@@ -600,7 +615,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5000;
+  z-index: 9000;
   padding: 20px;
 `;
 
@@ -612,7 +627,7 @@ export const ModalContent = styled.div`
   max-height: 90%;
   overflow-y: auto;
   position: relative;
-
+ z-index: 9000;
   @media (min-width: 768px) {
     max-width: 80%;
     padding: 40px;
@@ -665,4 +680,5 @@ export const TitelContainer = styled.div`
   height: auto;
   padding: 30px 0;
   background: var(--blue-form);
+   z-index: 9000;
 `;

@@ -5,7 +5,7 @@ export const ArticleContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  margin-top: 100px;
+  padding-top: 100px;
   margin-bottom: 100px;
 `;
 
@@ -17,7 +17,7 @@ export const BackButton = styled(NavLink)`
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
-
+padding-top: 30px;
   &:hover {
     text-decoration: underline;
   }

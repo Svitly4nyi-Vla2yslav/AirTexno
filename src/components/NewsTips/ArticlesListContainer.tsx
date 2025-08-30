@@ -71,7 +71,7 @@ const articles: Article[] = [
 
 const ArticlesListContainer: React.FC = () => {
   return (
-    <TipsContainer>
+    <TipsContainer id='app'>
       <Titel>
         News <span>Tips</span>{' '}
       </Titel>

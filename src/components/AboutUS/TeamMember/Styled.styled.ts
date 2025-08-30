@@ -1,4 +1,170 @@
-import { styled } from 'styled-components';
+import styled, { keyframes} from 'styled-components';
+
+// Анімації
+const ringAnimation = keyframes`
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(15deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+  45% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+`;
+
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(48, 152, 238, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(48, 152, 238, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(48, 152, 238, 0);
+  }
+`;
+
+const bounceAnimation = keyframes`
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-8px);
+  }
+  70% {
+    transform: translateY(-4px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+`;
+
+
+export const CallText = styled.p`
+  color: #fff;
+  font-family: 'Geist', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25em;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.1rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 1.2rem;
+  }
+`;
+// Стилізовані компоненти
+export const CallButton = styled.button`
+  cursor: pointer;
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3098ee, #2580d6, #3098ee);
+  background-size: 200% 200%;
+  width: fit-content;
+  border: none;
+  margin-bottom: 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    animation:
+      ${pulseAnimation} 1s ease,
+      ${bounceAnimation} 0.6s ease;
+    background-position: 100% 50%;
+    transform: translateY(-3px);
+    box-shadow:
+      0 8px 25px rgba(48, 152, 238, 0.4),
+      0 4px 15px rgba(48, 152, 238, 0.3);
+
+    &::before {
+      left: 100%;
+    }
+
+    svg {
+      animation: ${ringAnimation} 1s ease;
+    }
+
+    ${CallText} {
+      transform: translateX(2px);
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow:
+      0 4px 12px rgba(48, 152, 238, 0.3),
+      0 2px 6px rgba(48, 152, 238, 0.2);
+  }
+
+  svg {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  &:hover svg {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  // Медіа-запити
+  @media screen and (min-width: 768px) {
+    padding: 14px 28px;
+    gap: 12px;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 16px 32px;
+    gap: 14px;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    &:hover ${CallText} {
+      transform: translateX(3px);
+    }
+  }
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -83,28 +249,6 @@ export const SubHeading = styled.p`
   font-weight: 400;
   line-height: 1.25em;
   width: 100%;
-`;
-
-export const CallButton = styled.button`
-  cursor: pointer;
-  display: flex;
-  padding: 10px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 8px;
-  background: #3098ee;
-  width: fit-content;
-  border: none;
-  margin-bottom: 24px;
-`;
-
-export const CallText = styled.p`
-  color: #fff;
-  font-family: 'Geist', sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.25em;
 `;
 
 export const BottomSection = styled.div`

@@ -8,13 +8,13 @@ export const Section = styled.div`
   min-width: 100vw;
   overflow: auto;
   padding: 1rem;
-  margin-top: 100px;
+  padding-top: 100px;
   @media screen and (min-width: 768px) {
   }
 
   @media screen and (min-width: 1440px) {
     margin: 0 auto;
-     margin-top: 100px;
+     padding-top: 100px;
     width: 100%;
     max-width: 1440px;
   }

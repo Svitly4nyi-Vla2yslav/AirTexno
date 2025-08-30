@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import { Alert, AlertType } from './Alert';
 import Cont from '../../assets/icons/ContactFormImage.png';
+import { CloseButton, ModalContent, ModalOverlay } from '../Footer/Footer.styled';
+import ContentContainer from '../Footer/PoliciesContent';
 
 export const ContactForm: React.FC = (): JSX.Element => {
   const [service, setService] = useState<string>('');
@@ -21,6 +23,15 @@ export const ContactForm: React.FC = (): JSX.Element => {
     type: AlertType;
     message: string;
   } | null>(null);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+
+  const handlePrivacyClick = () => {
+    setShowPrivacyPolicy(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowPrivacyPolicy(false);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -95,228 +106,252 @@ export const ContactForm: React.FC = (): JSX.Element => {
     }
   };
   return (
-    <Container>
-      <Section>
-        <SubSection>
-          <Title>
-            {' '}
-            <span>Contact</span> our team
-          </Title>
-          <Text>We love our customers, so feel free to call during normal business hours</Text>
-        </SubSection>
-        <Button>
-          <ButtonText>Call Us for Fast Repair</ButtonText>
-        </Button>
-
+    <>
+      <Container>
         <Section>
-          <Divider />
-          <InfoBlock>
-            <InfoSection width='251px'>
-              <InfoTitle>Service Hours</InfoTitle>
-              <SubSection>
-                <Text>
-                  Mon–Sat: 8AM–6PM <br /> Sun: 9AM–4PM{' '}
-                </Text>
-              </SubSection>
-            </InfoSection>
-            <InfoSection>
-              <InfoTitle>Our Location</InfoTitle>
-              <SubSection>
-                <Text>801 Tioga Pl, Newbury Park, CA 91320</Text>
-                <Text>+1 (805) 500-2705</Text>
-              </SubSection>
-            </InfoSection>
-          </InfoBlock>
+          <SubSection>
+            <Title>
+              {' '}
+              <span>Contact</span> our team
+            </Title>
+            <Text>We love our customers, so feel free to call during normal business hours</Text>
+          </SubSection>{' '}
+          <a href='tel:+18055002705'>
+            <Button>
+              <ButtonText>Call Us for Fast Repair</ButtonText>
+            </Button>
+          </a>
+          <Section>
+            <Divider />
+            <InfoBlock>
+              <InfoSection width='251px'>
+                <InfoTitle>Service Hours</InfoTitle>
+                <SubSection>
+                  <Text>
+                    Mon–Sat: 8AM–6PM <br /> Sun: 9AM–4PM{' '}
+                  </Text>
+                </SubSection>
+              </InfoSection>
+              <InfoSection>
+                <InfoTitle>Our Location</InfoTitle>
+                <SubSection>
+                  <a
+                    href='http://maps.google.com/?q=801+Tioga+pl,+Newbury+Park,+CA+91320'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {' '}
+                    <Text> 801 Tioga Pl, Newbury Park, CA 91320</Text>
+                  </a>
+                  <a href='tel:+18055002705'>
+                    <Text>+1 (805) 500-2705</Text>
+                  </a>
+                </SubSection>
+              </InfoSection>
+            </InfoBlock>
+          </Section>
         </Section>
-      </Section>
 
-      <FormContainer onSubmit={handleSubmit}>
-        <ImageContact src={Cont} alt='contact image' />
-        <Label>What service do you need for your appliances?</Label>
-        <CheckboxGroup>
-          <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
-            <HiddenRadio
-              name='service'
-              value='Repair'
-              checked={service === 'Repair'}
-              onChange={e => setService(e.target.value)}
-            />
-            <CustomRadio checked={service === 'Repair'} />
-            Repair
-          </RadioLabel>
+        <FormContainer onSubmit={handleSubmit}>
+          <ImageContact src={Cont} alt='contact image' />
+          <Label>What service do you need for your appliances?</Label>
+          <CheckboxGroup>
+            <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
+              <HiddenRadio
+                name='service'
+                value='Repair'
+                checked={service === 'Repair'}
+                onChange={e => setService(e.target.value)}
+              />
+              <CustomRadio checked={service === 'Repair'} />
+              Repair
+            </RadioLabel>
 
-          <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
-            <HiddenRadio
-              name='service'
-              value='Installation'
-              checked={service === 'Installation'}
-              onChange={e => setService(e.target.value)}
-            />
-            <CustomRadio checked={service === 'Installation'} />
-            Installation
-          </RadioLabel>
-        </CheckboxGroup>
+            <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
+              <HiddenRadio
+                name='service'
+                value='Installation'
+                checked={service === 'Installation'}
+                onChange={e => setService(e.target.value)}
+              />
+              <CustomRadio checked={service === 'Installation'} />
+              Installation
+            </RadioLabel>
+          </CheckboxGroup>
 
-        <TabletContainer>
-          <LeftColumn>
-            <Label>Name</Label>
-            <Input
-              name='name'
-              type='text'
-              placeholder='Your Name'
-              value={formData.name}
-              onChange={handleChange}
-              style={errors.name ? { borderBottom: '1px solid red' } : {}}
-            />
-
-            <Label>Email</Label>
-            <Input
-              name='email'
-              type='email'
-              placeholder='Your Email'
-              value={formData.email}
-              onChange={handleChange}
-              style={errors.email ? { borderBottom: '1px solid red' } : {}}
-            />
-
-            <Label>Phone Number</Label>
-            <Input
-              name='phone'
-              type='tel'
-              placeholder='Your Phone Number'
-              value={formData.phone}
-              onChange={handleChange}
-              style={errors.phone ? { borderBottom: '1px solid red' } : {}}
-            />
-          </LeftColumn>
-
-          <RightColumn>
-            <Label>In what location do you need the service?</Label>
-            <SelectWrapper>
-              <Select
-                name='location'
-                value={formData.location}
+          <TabletContainer>
+            <LeftColumn>
+              <Label>Name</Label>
+              <Input
+                name='name'
+                type='text'
+                placeholder='Your Name'
+                value={formData.name}
                 onChange={handleChange}
-                style={errors.location ? { borderBottom: '1px solid red' } : {}}
-              >
-                <option value=''>Select location</option>
-                <option>Malibu</option>
-                <option>Los Angeles County</option>
-                <option>Thousand Oaks</option>
-                <option>Newbury Park</option>
-                <option>Westlake Village</option>
-                <option>Oak Park</option>
-                <option>Lake Sherwood</option>
-                <option>Hidden Valley</option>
-                <option>Camarillo</option>
-                <option>Agoura Hills</option>
-                <option>Moorpark</option>
-                <option>Calabasas</option>
-                <option>Santa Rosa Valley</option>
-                <option>Other</option>
-              </Select>
-            </SelectWrapper>
+                style={errors.name ? { borderBottom: '1px solid red' } : {}}
+              />
 
-            <Label>What do you need repaired?</Label>
-            <SelectWrapper>
-              <Select
-                name='appliance'
-                value={formData.appliance}
+              <Label>Email</Label>
+              <Input
+                name='email'
+                type='email'
+                placeholder='Your Email'
+                value={formData.email}
                 onChange={handleChange}
-                style={errors.appliance ? { borderBottom: '1px solid red' } : {}}
-              >
-                <option value=''>Select appliance</option>
-                <option>Cooktop</option>
-                <option>Oven</option>
-                <option>Range</option>
-                <option>Washer</option>
-                <option>Refrigerator</option>
-                <option>Microwave</option>
-                <option>Dishwasher</option>
-                <option>Dryer</option>
-                <option>Washing Machine</option>
-                <option>Freezer</option>
-                <option>Stove</option>
-                <option>Wine Cooler</option>
-                <option>Other</option>
-              </Select>
-            </SelectWrapper>
+                style={errors.email ? { borderBottom: '1px solid red' } : {}}
+              />
 
-            <Label>Brand of appliance</Label>
-            <SelectWrapper>
-              <Select
-                name='brand'
-                value={formData.brand}
+              <Label>Phone Number</Label>
+              <Input
+                name='phone'
+                type='tel'
+                placeholder='Your Phone Number'
+                value={formData.phone}
                 onChange={handleChange}
-                style={errors.brand ? { borderBottom: '1px solid red' } : {}}
-              >
-                <option value=''>Select brand</option>
-                <option>LG</option>
-                <option>Samsung</option>
-                <option>Whirlpool</option>
-                <option>Bosch</option>
-                <option>GE</option>
-                <option>Frigidaire</option>
-                <option>Maytag</option>
-                <option>KitchenAid</option>
-                <option>Viking</option>
-                <option>Fisher & Paykel</option>
-                <option>Amana</option>
-                <option>JennAir</option>
-                <option>Haier</option>
-                <option>Sharp</option>
-                <option>Electrolux</option>
-                <option>Sub-Zero</option>
-                <option>Thermador</option>
-                <option>Wolf</option>
-                <option>Other</option>
-              </Select>
-            </SelectWrapper>
-          </RightColumn>
-        </TabletContainer>
+                style={errors.phone ? { borderBottom: '1px solid red' } : {}}
+              />
+            </LeftColumn>
 
-        <Label>What type of power does this appliance use?</Label>
-        <SelectWrapper>
-          <Select
-            name='power'
-            value={formData.power}
+            <RightColumn>
+              <Label>In what location do you need the service?</Label>
+              <SelectWrapper>
+                <Select
+                  name='location'
+                  value={formData.location}
+                  onChange={handleChange}
+                  style={errors.location ? { borderBottom: '1px solid red' } : {}}
+                >
+                  <option value=''>Select location</option>
+                  <option>Malibu</option>
+                  <option>Los Angeles County</option>
+                  <option>Thousand Oaks</option>
+                  <option>Newbury Park</option>
+                  <option>Westlake Village</option>
+                  <option>Oak Park</option>
+                  <option>Lake Sherwood</option>
+                  <option>Hidden Valley</option>
+                  <option>Camarillo</option>
+                  <option>Agoura Hills</option>
+                  <option>Moorpark</option>
+                  <option>Calabasas</option>
+                  <option>Santa Rosa Valley</option>
+                  <option>Other</option>
+                </Select>
+              </SelectWrapper>
+
+              <Label>What do you need repaired?</Label>
+              <SelectWrapper>
+                <Select
+                  name='appliance'
+                  value={formData.appliance}
+                  onChange={handleChange}
+                  style={errors.appliance ? { borderBottom: '1px solid red' } : {}}
+                >
+                  <option value=''>Select appliance</option>
+                  <option>Cooktop</option>
+                  <option>Oven</option>
+                  <option>Range</option>
+                  <option>Washer</option>
+                  <option>Refrigerator</option>
+                  <option>Microwave</option>
+                  <option>Dishwasher</option>
+                  <option>Dryer</option>
+                  <option>Washing Machine</option>
+                  <option>Freezer</option>
+                  <option>Stove</option>
+                  <option>Wine Cooler</option>
+                  <option>Other</option>
+                </Select>
+              </SelectWrapper>
+
+              <Label>Brand of appliance</Label>
+              <SelectWrapper>
+                <Select
+                  name='brand'
+                  value={formData.brand}
+                  onChange={handleChange}
+                  style={errors.brand ? { borderBottom: '1px solid red' } : {}}
+                >
+                  <option value=''>Select brand</option>
+                  <option>LG</option>
+                  <option>Samsung</option>
+                  <option>Whirlpool</option>
+                  <option>Bosch</option>
+                  <option>GE</option>
+                  <option>Frigidaire</option>
+                  <option>Maytag</option>
+                  <option>KitchenAid</option>
+                  <option>Viking</option>
+                  <option>Fisher & Paykel</option>
+                  <option>Amana</option>
+                  <option>JennAir</option>
+                  <option>Haier</option>
+                  <option>Sharp</option>
+                  <option>Electrolux</option>
+                  <option>Sub-Zero</option>
+                  <option>Thermador</option>
+                  <option>Wolf</option>
+                  <option>Other</option>
+                </Select>
+              </SelectWrapper>
+            </RightColumn>
+          </TabletContainer>
+
+          <Label>What type of power does this appliance use?</Label>
+          <SelectWrapper>
+            <Select
+              name='power'
+              value={formData.power}
+              onChange={handleChange}
+              style={errors.power ? { borderBottom: '1px solid red' } : {}}
+            >
+              <option value=''>Select power</option>
+              <option>Electric</option>
+              <option>Gas</option>
+              <option>Dual Fuel</option>
+              <option>Induction</option>
+              <option>Solar</option>
+              <option>Propane</option>
+              <option>Natural Gas</option>
+              <option>Other</option>
+            </Select>
+          </SelectWrapper>
+
+          <Label>Any details you'd like to add?</Label>
+          <Textarea
+            name='details'
+            placeholder="Any details you'd like to add?"
+            value={formData.details}
             onChange={handleChange}
-            style={errors.power ? { borderBottom: '1px solid red' } : {}}
-          >
-            <option value=''>Select power</option>
-            <option>Electric</option>
-            <option>Gas</option>
-            <option>Dual Fuel</option>
-            <option>Induction</option>
-            <option>Solar</option>
-            <option>Propane</option>
-            <option>Natural Gas</option>
-            <option>Other</option>
-          </Select>
-        </SelectWrapper>
+          />
 
-        <Label>Any details you'd like to add?</Label>
-        <Textarea
-          name='details'
-          placeholder="Any details you'd like to add?"
-          value={formData.details}
-          onChange={handleChange}
-        />
+          <Disclaimer>
+            By clicking "Submit" you hereby agree to our{' '}
+            <span onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
+              Privacy Policy
+            </span>{' '}
+            .
+          </Disclaimer>
 
-        <Disclaimer>
-          By clicking "Submit" you hereby agree to our <a href='http://#'>Privacy Policy</a> .
-        </Disclaimer>
+          <ButtonSubmit type='submit'>Submit</ButtonSubmit>
+        </FormContainer>
 
-        <ButtonSubmit type='submit'>Submit</ButtonSubmit>
-      </FormContainer>
-
-      {/* 🔔 Алерт */}
-      <AnimatePresence>
-        {alert && (
-          <Alert type={alert.type} message={alert.message} onClose={() => setAlert(null)} />
-        )}
-      </AnimatePresence>
-    </Container>
+        {/* 🔔 Алерт */}
+        <AnimatePresence>
+          {alert && (
+            <Alert type={alert.type} message={alert.message} onClose={() => setAlert(null)} />
+          )}
+        </AnimatePresence>
+      </Container>{' '}
+      {showPrivacyPolicy && (
+        <ModalOverlay onClick={handleCloseModal}>
+          <ModalContent onClick={e => e.stopPropagation()}>
+            <CloseButton onClick={handleCloseModal}>×</CloseButton>
+            <ContentContainer />
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </>
   );
 };
 
@@ -559,9 +594,17 @@ const ButtonSubmit = styled.button`
 `;
 
 const Disclaimer = styled.p`
-  font-size: 12px;
-  color: #666;
-  text-align: center;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 125%;
+  color: var(--black-500);
+
+  span {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: var(--blue-500);
+  }
   @media screen and (min-width: 768px) {
   }
 
@@ -575,6 +618,7 @@ const Container = styled.div`
   align-items: flex-start;
   gap: 28px;
   overflow: auto;
+  padding-top: 100px;
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
   }
@@ -664,6 +708,24 @@ const Button = styled.button`
   width: fit-content;
   background: transparent;
   margin-left: 20px;
+  &:hover {
+    background-color: #242424;
+    border-color: #242424;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Фокус для доступності */
+  &:focus {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 2px;
+  }
+
+  /* Активний стан */
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
   @media screen and (min-width: 768px) {
   }
 

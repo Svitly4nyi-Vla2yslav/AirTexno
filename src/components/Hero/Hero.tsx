@@ -18,7 +18,7 @@ import { useMediaQuery } from 'react-responsive';
 export const Hero: React.FC = () => {
    const isDeckstop = useMediaQuery({ query: '(min-width: 1440px)' });
   return (
-    <HeroContainer>
+    <HeroContainer id='hero'>
       <HeroImage src={HeroImages} alt='Hero Image' />
     {isDeckstop &&  (<AutoVerticalSwiper />)}
       <ContentWrapper>

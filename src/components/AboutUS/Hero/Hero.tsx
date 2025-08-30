@@ -12,7 +12,7 @@ import HeroImages from '../../../assets/icons/about/HeroImage2About.png';
 
 export const Hero: React.FC = () => {
   return (
-    <HeroContainer>
+    <HeroContainer id='ap'>
       <HeroImage src={HeroImages} alt='Hero Image' />
 
       <ContentWrapper>
