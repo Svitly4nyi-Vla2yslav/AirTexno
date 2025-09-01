@@ -22,6 +22,7 @@ export const SwiperContainer = styled.div`
 
   @media (min-width: 1440px) {
     height: 600px;
+    max-width: 553px;
   }
 `;
 
@@ -47,7 +48,7 @@ export const SwiperTrack = styled.div`
 `;
 
 export const SwiperSlide = styled.div`
-  background: #F5FAFF;
+  background: #f5faff;
   border-radius: 12px;
   padding: 16px;
   min-height: 140px;
@@ -59,7 +60,7 @@ export const SwiperSlide = styled.div`
   }
 
   @media (min-width: 1440px) {
-    min-height: 180px;
+    max-height: 164px;
   }
 `;
 
@@ -70,12 +71,27 @@ export const SlideContent = styled.div`
   height: 100%;
 
   h3 {
-    color: #242424;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
+    font-family: var(--second-family);
     font-weight: 400;
-    line-height: 0.9em;
-    margin: 0;
+    font-size: 32px;
+    line-height: 90%;
+    color: var(--black-500);
+
+    p {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 125%;
+      color: var(--black-500);
+    }
+
+    span {
+      font-family: var(--font-family);
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 120%;
+      color: var(--blue-500);
+    }
 
     @media (min-width: 768px) {
       font-size: 28px;
@@ -100,7 +116,7 @@ export const SlideContent = styled.div`
   }
 
   span {
-    color: #3098EE;
+    color: #3098ee;
     font-family: 'Geist', sans-serif;
     font-size: 18px;
     font-weight: 500;
@@ -111,7 +127,6 @@ export const SlideContent = styled.div`
     }
   }
 `;
-
 
 export const Container = styled.div`
   width: 100%;
@@ -127,6 +142,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 1440px) {
+    display: flex;
     padding: 0;
   }
 `;
@@ -143,10 +159,11 @@ export const ContentWrapper = styled.div`
   }
 
   @media (min-width: 1440px) {
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: flex-start;
     gap: 40px;
+    display: flex;
   }
 `;
 
@@ -160,7 +177,7 @@ export const HeaderWrapper = styled.div`
   }
 
   @media (min-width: 1440px) {
-    max-width: 400px;
+    max-width: 580px;
   }
 `;
 
@@ -175,13 +192,13 @@ export const MainContent = styled.div`
 `;
 
 export const Subtitle = styled.p`
-font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-line-height: 90%;
-text-transform: uppercase;
-color: var(--black-500);
-padding-bottom: 20px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 90%;
+  text-transform: uppercase;
+  color: var(--black-500);
+  padding-bottom: 20px;
   margin: 0;
 
   @media (min-width: 768px) {
@@ -190,19 +207,19 @@ padding-bottom: 20px;
 `;
 
 export const Title = styled.h2`
- font-family: var(--second-family);
-font-weight: 400;
-font-size: 52px;
-line-height: 90%;
-color: var(--blue-500);
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 90%;
+  color: var(--blue-500);
 
-span{
- font-family: inherit;
-font-weight: inherit;
-font-size: inherit;
-line-height: inherit;
-color: var(--black-500);
-}
+  span {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--black-500);
+  }
 
   @media (min-width: 768px) {
     font-size: 52px;
@@ -214,12 +231,12 @@ color: var(--black-500);
 `;
 
 export const Description = styled.p`
-font-family: var(--font-family);
-font-weight: 400;
-font-size: 16px;
-line-height: 125%;
-color: var(--black-500);
-
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--black-500);
+  padding-bottom: 20px;
   @media (min-width: 768px) {
     font-size: 17px;
   }

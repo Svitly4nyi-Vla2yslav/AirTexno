@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Mousewheel } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/mousewheel';
 import avatarAlex from '../../assets/icons/feedback/Ellipse 4aleksey.png';
@@ -285,37 +285,9 @@ const ReviewCardContainer: React.FC = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
-  // Функція для обробки скролу
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!swiperRefTop.current || !containerRef.current) return;
 
-    const swiper = swiperRefTop.current;
-    const container = containerRef.current;
-    const touchY = e.touches[0].clientY;
-    const { top, bottom } = container.getBoundingClientRect();
-    const isAtTop = swiper.isBeginning && touchY > top + 50;
-    const isAtBottom = swiper.isEnd && touchY < bottom - 50;
-
-    // Якщо свайпер в крайньому положенні і користувач хоче скролити сторінку
-    if (isAtTop || isAtBottom) {
-      setIsScrolling(true);
-      swiper.allowTouchMove = false;
-    } else {
-      setIsScrolling(false);
-      swiper.allowTouchMove = true;
-    }
-  };
-
-  React.useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    container.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-    return () => {
-      container.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, []);
+  // Видаляємо обробник touchMove, оскільки вимикаємо взаємодію
+  // const handleTouchMove = (e: TouchEvent) => { ... };
 
   return (
     <div>
@@ -327,7 +299,7 @@ const ReviewCardContainer: React.FC = () => {
       </TextContainer>
 
       <SwipersContainer ref={containerRef}>
-        {/* Перший свайпер (зверху вниз) - завжди видимий */}
+        {/* Перший свайпер (зверху вниз) */}
         <SingleSwiperContainer $isVisible={true}>
           <BackgroundTop />
           <BackgroundBottom />
@@ -336,34 +308,25 @@ const ReviewCardContainer: React.FC = () => {
             direction='vertical'
             slidesPerView={1}
             spaceBetween={20}
-            freeMode={{
-              enabled: false, // Вимкнути freeMode для автопрокрутки
-            }}
-            mousewheel={{
-              enabled: false, // повністю вимкнути скрол мишею
-            }}
             autoplay={{
-              delay: 2000,
+              delay: 1000,
               disableOnInteraction: false,
               pauseOnMouseEnter: false,
-              waitForTransition: false,
             }}
-            speed={7000}
+            speed={4000}
             loop={true}
-            touchEventsTarget='container'
-            modules={[Mousewheel, Autoplay]}
+            modules={[Autoplay]}
+            // ВИМКНЕННЯ ВСІХ ФОРМ ВЗАЄМОДІЇ
+            allowTouchMove={false}
+            simulateTouch={false}
+            touchRatio={0}
             grabCursor={false}
-            resistance={true}
-            resistanceRatio={0.85}
+            mousewheel={{ enabled: false }}
+            noSwiping={true}
+            noSwipingClass='swiper-slide'
+            resistance={false}
             onReachBeginning={() => setIsScrolling(false)}
             onReachEnd={() => setIsScrolling(false)}
-            onTouchEnd={() => {
-              setTimeout(() => {
-                if (swiperRefTop.current) {
-                  swiperRefTop.current.allowTouchMove = true;
-                }
-              }, 100);
-            }}
             style={{ height: '100%' }}
           >
             {reviews.map((review, index) => (
@@ -393,39 +356,27 @@ const ReviewCardContainer: React.FC = () => {
             direction='vertical'
             slidesPerView={1}
             spaceBetween={20}
-            freeMode={{
-              enabled: false, // Вимкнути freeMode для автопрокрутки
-            }}
-            mousewheel={{
-              enabled: false, // повністю вимкнути скрол мишею
-            }}
             autoplay={{
-              delay: 1000,
+              delay: 5000,
               disableOnInteraction: false,
               pauseOnMouseEnter: false,
-              waitForTransition: false,
-              reverseDirection: true, // Автопрокрутка в зворотньому напрямку
+              reverseDirection: true,
             }}
-            speed={4000}
+            speed={2000}
             loop={true}
-            touchEventsTarget='container'
-            modules={[Mousewheel, Autoplay]}
+            modules={[Autoplay]}
+            // ВИМКНЕННЯ ВСІХ ФОРМ ВЗАЄМОДІЇ
+            allowTouchMove={false}
+            simulateTouch={false}
+            touchRatio={0}
             grabCursor={false}
-            noSwiping={true} // Блокує свайпинг
-            allowTouchMove={false} // Вимкнути рух при дотику
-            simulateTouch={false} // Вимкнути імітацію дотику
-            resistance={true}
-            resistanceRatio={0.85}
+            mousewheel={{ enabled: false }}
+            noSwiping={true}
+            noSwipingClass='swiper-slide'
+            resistance={false}
             initialSlide={reviews.length - 1}
             onReachBeginning={() => setIsScrolling(false)}
             onReachEnd={() => setIsScrolling(false)}
-            onTouchEnd={() => {
-              setTimeout(() => {
-                if (swiperRefBottom.current) {
-                  swiperRefBottom.current.allowTouchMove = true;
-                }
-              }, 100);
-            }}
             style={{ height: '100%' }}
           >
             {reviews.map((review, index) => (
@@ -445,47 +396,39 @@ const ReviewCardContainer: React.FC = () => {
             ))}
           </Swiper>
         </SingleSwiperContainer>
+
+        {/* Третій свайпер для десктопу */}
         {isDesktop && (
           <SingleSwiperContainer $isVisible={true}>
             <BackgroundTop />
             <BackgroundBottom />
             <Swiper
-              ref={swiperRefTop}
               direction='vertical'
               slidesPerView={1}
               spaceBetween={20}
-              freeMode={{
-                enabled: false, // Вимкнути freeMode для автопрокрутки
-              }}
-              mousewheel={{
-                enabled: false, // повністю вимкнути скрол мишею
-              }}
               autoplay={{
-                delay: 5000,
+                delay: 2000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: false,
-                waitForTransition: false,
               }}
-              speed={9000}
+              speed={6000}
               loop={true}
-              touchEventsTarget='container'
-              modules={[Mousewheel, Autoplay]}
+              modules={[Autoplay]}
+              // ВИМКНЕННЯ ВСІХ ФОРМ ВЗАЄМОДІЇ
+              allowTouchMove={false}
+              simulateTouch={false}
+              touchRatio={0}
               grabCursor={false}
-              resistance={true}
-              resistanceRatio={0.85}
+              mousewheel={{ enabled: false }}
+              noSwiping={true}
+              noSwipingClass='swiper-slide'
+              resistance={false}
               onReachBeginning={() => setIsScrolling(false)}
               onReachEnd={() => setIsScrolling(false)}
-              onTouchEnd={() => {
-                setTimeout(() => {
-                  if (swiperRefTop.current) {
-                    swiperRefTop.current.allowTouchMove = true;
-                  }
-                }, 100);
-              }}
               style={{ height: '100%' }}
             >
               {reviews.map((review, index) => (
-                <SwiperSlide key={`top-${index}`}>
+                <SwiperSlide key={`desktop-${index}`}>
                   <Card>
                     <Header>
                       <Avatar src={review.avatar} alt={review.name} />

@@ -41,31 +41,31 @@ const Professional: React.FC = () => {
       title: 'Not Freezing / Not Cooling',
       description:
         "If your refrigerator can't keep food cold or frozen, our technicians will diagnose the cooling system and restore proper temperature.",
-      price: 'from $200',
+      price: 'from <span>$200</span>',
     },
     {
       title: 'Leaking Water',
       description:
         "Leaks under or inside your fridge often mean clogged drains or broken valves. We'll quickly locate the problem and repair it with lasting results.",
-      price: 'from $225',
+      price: 'from <span>$225</span>',
     },
     {
       title: 'Loud Noises',
       description:
         'Buzzing, grinding, or knocking sounds usually come from the fan or compressor. Our team will fix the issue and make your fridge run quietly again.',
-      price: 'from $200',
+      price: 'from <span>$200</span>',
     },
     {
       title: "Won't Turn On",
       description:
         "From faulty wiring to failed control boards, we'll troubleshoot and get your refrigerator running again.",
-      price: 'from $250',
+      price: 'from <span> $250 </span>',
     },
     {
       title: 'Not Cooling Properly',
       description:
         'We check thermostats, heating elements, and compressors to restore temperature control.',
-      price: 'from $55',
+      price: 'from <span> $55 </span> ',
     },
   ];
 
@@ -111,7 +111,7 @@ const VerticalSwiper: React.FC<VerticalSwiperProps> = ({ services }) => {
               <SlideContent>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
-                <span>{service.price}</span>
+                <p dangerouslySetInnerHTML={{ __html: service.price }} />
               </SlideContent>
             </SwiperSlide>
           ))}

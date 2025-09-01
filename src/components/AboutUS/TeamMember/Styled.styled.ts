@@ -174,7 +174,7 @@ export const Container = styled.div`
   border-radius: 12px;
   overflow: auto;
   margin: 0 auto;
-  margin-bottom: 44px;
+  /* margin-bottom: 44px; */
   flex-direction: column;
   flex-wrap: wrap;
   @media screen and (min-width: 1440px) {
@@ -300,7 +300,7 @@ export const FrequentlyWrapper = styled.div`
   // margin-top: 100px;
   width: 100%;
   height: 100%;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   position: relative;
   display: flex;
   flex-direction: column;

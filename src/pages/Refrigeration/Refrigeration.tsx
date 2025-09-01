@@ -6,6 +6,7 @@ import Partners from '../../components/PartnersBanner/PartnersBanner';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import Profi from '../../components/Refrigeration/Professional';
+import RefrigeratorRepair from '../../components/Refrigeration/RefrigeratorRepair/RefrigeratorRepair';
 
 const Refrigeration: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const Refrigeration: React.FC = () => {
       <Fridge />
       <Partners />
       <Profi />
+      <RefrigeratorRepair />
       <ReviewCardContainer />
       <TeamMember />
       <ContactForm />

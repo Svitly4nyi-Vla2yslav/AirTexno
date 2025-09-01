@@ -19,6 +19,7 @@ export const Container = styled.div`
   @media (min-width: 1440px) {
     gap: 3rem;
     padding: 2rem;
+    padding-top: 100px;
   }
 `;
 
@@ -38,11 +39,15 @@ export const Title = styled.p`
   }
 
   @media (min-width: 768px) {
-    font-size: 3rem;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 85px;
+    line-height: 90%;
+    color: var(--blue-500);
   }
 
   @media (min-width: 1440px) {
-    font-size: 3.5rem;
+    font-size: 85px;
   }
 `;
 
@@ -238,16 +243,25 @@ export const ButtonTextBlack = styled(ButtonTextWhite)`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: auto;
   height: fit-content;
   margin: 0 auto;
   gap: 10px;
-  position: absolute;
   justify-content: flex-end;
   flex-wrap: wrap;
-  height: 100%;
   align-content: flex-end;
-  padding-bottom: 20px;
+  position: absolute;
+  bottom: 20px;
+
+  @media (min-width: 768px) and (max-width: 1439px) {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
 
 export const TextAndIconWrap = styled.div`
@@ -265,6 +279,220 @@ export const TextAndIconWrap = styled.div`
     font-size: 14px;
     color: var(--black-500);
   }
-  svg {
+
+  @media (min-width: 768px) and (max-width: 1439px) {
+    display: flex;
+
+    width: fit-content;
+    margin: 0;
+    padding: 12px 16px;
+
+    p {
+      font-size: 12px;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
   }
+`;
+export const TabletContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 56px;
+  min-width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  padding: 1rem;
+  padding-top: 150px;
+  @media (min-width: 1440px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1440px;
+  }
+`;
+
+export const RatingIcon = styled.img`
+  display: none;
+  @media (min-width: 1440px) {
+    display: flex;
+    padding-top: 20%;
+  }
+`;
+
+export const TabletTitle = styled.p`
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: 85px;
+  line-height: 0.9em;
+  color: #3098ee;
+  width: 100%;
+  margin: 0;
+`;
+
+export const TabletContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 56px;
+  width: 100%;
+`;
+
+export const TabletImageRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+
+  .main-image {
+    width: 437px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .secondary-image {
+    border-radius: 28px;
+    width: 227px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    padding-top: 112px;
+  }
+`;
+
+export const MainWrapImage = styled.div`
+  position: relative;
+  display: inline-block;
+
+  @media (min-width: 768px) and (max-width: 1439px) {
+    .tablet-text-wrapper {
+      position: absolute;
+      bottom: 20px;
+      right: 52px;
+      padding: 0 20px;
+      z-index: 10;
+    }
+  }
+`;
+
+export const TabletImage = styled.img`
+  padding: 8px;
+  border-radius: 8px;
+  object-fit: cover;
+`;
+
+export const TabletDescription = styled.p`
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.25em;
+  color: #242424;
+  width: 100%;
+  margin: 0;
+`;
+
+export const TabletButtonRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+`;
+
+export const TabletPrimaryButton = styled.button`
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: #3098ee;
+  border: none;
+  width: fit-content;
+  height: 40px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background: #1a7bc9;
+  }
+`;
+
+export const TabletSecondaryButton = styled.button`
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #242424;
+  border-radius: 8px;
+  background: transparent;
+  width: 119px;
+  height: 40px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #242424;
+  }
+`;
+
+export const TabletButtonTextWhite = styled.p`
+  color: #fff;
+  font-family: 'Geist', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25em;
+  width: fit-content;
+  margin: 0;
+`;
+
+export const TabletButtonTextBlack = styled(TabletButtonTextWhite)`
+  color: #242424;
+
+  ${TabletSecondaryButton}:hover & {
+    color: #fff;
+  }
+`;
+
+// Медіа-запит для планшетної версії
+const TabletStyles = styled.div`
+  @media (min-width: 768px) and (max-width: 1439px) {
+    ${Container} {
+      display: none;
+    }
+    ${TabletContainer} {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 767px), (min-width: 1440px) {
+    ${TabletContainer} {
+      display: none;
+    }
+    ${Container} {
+      display: flex;
+    }
+  }
+`;
+
+export default TabletStyles;
+
+// ! -----is Deckstop======
+
+export const DeckstopTitleWrapp = styled.div`
+  width: 553px;
+  height: 396px;
+`;
+
+export const DeckstopImageContainer = styled.div`
+  width: 668px;
+  height: 583px;
 `;
