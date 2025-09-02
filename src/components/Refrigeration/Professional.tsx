@@ -66,62 +66,62 @@ const Professional: React.FC = () => {
 
   // Анімаційні варіанти для заголовків
   const titleVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 50,
       scale: 0.9,
-      rotate: -2
+      rotate: -2,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       rotate: 0,
       transition: {
         duration: 0.8,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   const contentVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
-      x: -30
+      x: -30,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.6,
         ease: easeOut,
-        delay: 0.2
-      }
-    }
+        delay: 0.2,
+      },
+    },
   };
 
   const buttonVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
-      scale: 0.8
+      scale: 0.8,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     hover: {
       scale: 1.05,
       transition: {
-        duration: 0.2
-      }
+        duration: 0.2,
+      },
     },
     tap: {
-      scale: 0.95
-    }
+      scale: 0.95,
+    },
   };
 
   return (
@@ -129,22 +129,24 @@ const Professional: React.FC = () => {
       <ContentWrapper>
         <HeaderWrapper>
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.3 }}
             variants={titleVariants}
           >
             <Subtitle>Typical Refrigerator Issues We Fix</Subtitle>
           </motion.div>
-          
+
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.3 }}
             variants={titleVariants}
             transition={{ delay: 0.1 }}
           >
-            <Title>Professional Refrigerator Repair <span> and Installation Services</span></Title>
+            <Title>
+              Professional Refrigerator Repair <span> and Installation Services</span>
+            </Title>
           </motion.div>
         </HeaderWrapper>
 
@@ -152,29 +154,25 @@ const Professional: React.FC = () => {
           <VerticalSwiper services={services} />
 
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.3 }}
             variants={contentVariants}
           >
             <Description>
               Having issues with your fridge? Call us today — we'll fix it and restore normal
               operation fast.
             </Description>
-            
+
             <ButtonGroup>
-              <motion.div
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
-              >
+              <motion.div variants={buttonVariants} whileHover='hover' whileTap='tap'>
                 <PrimaryButton to='/contact#ap'>Contact Us</PrimaryButton>
               </motion.div>
-              
+
               <motion.div
                 variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
+                whileHover='hover'
+                whileTap='tap'
                 transition={{ delay: 0.1 }}
               >
                 <a href='tel:+18055002705'>
@@ -191,7 +189,7 @@ const Professional: React.FC = () => {
 
 const VerticalSwiper: React.FC<VerticalSwiperProps> = ({ services }) => {
   const { scrollY } = useScroll();
-  
+
   // Паралакс ефект для слайдера
   const y = useTransform(scrollY, [0, 1000], [0, 200]);
   const rotate = useTransform(scrollY, [0, 800], [0, 1]);
@@ -201,57 +199,55 @@ const VerticalSwiper: React.FC<VerticalSwiperProps> = ({ services }) => {
 
   // Анімаційні варіанти для слайдів
   const slideVariants = {
-    hidden: (_index: number) => ({ 
+    hidden: (_index: number) => ({
       opacity: 0,
       y: 100,
       scale: 0.8,
       rotateX: -45,
-      filter: "blur(5px)"
+      filter: 'blur(5px)',
     }),
-    visible: (index: number) => ({ 
+    visible: (index: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,
       rotateX: 0,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: {
         duration: 0.7,
         delay: index * 0.1,
-        ease: backOut
-      }
+        ease: backOut,
+      },
     }),
     hover: {
       scale: 1.02,
       y: -5,
       rotateY: 3,
-      boxShadow: "0 15px 30px rgba(0,0,0,0.15)",
+      boxShadow: '0 15px 30px rgba(0,0,0,0.15)',
       transition: {
         duration: 0.3,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   const contentVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
-      x: -20
+      x: -20,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.5,
         ease: easeOut,
-        delay: 0.2
-      }
-    }
+        delay: 0.2,
+      },
+    },
   };
 
   return (
-    <motion.div
-      style={{ y, rotate }}
-    >
+    <motion.div style={{ y, rotate }}>
       <SwiperContainer>
         <SwiperWrapper>
           <SwiperTrack>
@@ -259,16 +255,14 @@ const VerticalSwiper: React.FC<VerticalSwiperProps> = ({ services }) => {
               <motion.div
                 key={index}
                 custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
                 variants={slideVariants}
-                whileHover="hover"
+                whileHover='hover'
               >
                 <SwiperSlide>
-                  <motion.div
-                    variants={contentVariants}
-                  >
+                  <motion.div variants={contentVariants}>
                     <SlideContent>
                       <h3>{service.title}</h3>
                       <p>{service.description}</p>

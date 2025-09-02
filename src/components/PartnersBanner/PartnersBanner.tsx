@@ -5,13 +5,7 @@ import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css/bundle';
 import { useMediaQuery } from 'react-responsive';
-import {
-  SwiperContainer,
-  Image,
-  ShadowLeft,
-  ShadowRight,
-  TitlePartner,
-} from './Partners.styled';
+import { SwiperContainer, Image, ShadowLeft, ShadowRight, TitlePartner } from './Partners.styled';
 import i1 from '../../assets/icons/partners/1.svg';
 import i2 from '../../assets/icons/partners/2.svg';
 import i3 from '../../assets/icons/partners/3.svg';
@@ -90,57 +84,57 @@ const Partners: React.FC = () => {
 
   // Анімаційні варіанти для заголовка
   const titleVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 30,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   // Анімаційні варіанти для логотипів
   const logoVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.8,
-      y: 20
+      y: 20,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     hover: {
       scale: 1.1,
       y: -5,
       transition: {
         duration: 0.3,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   return (
     <div>
       <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.3 }}
         variants={titleVariants}
       >
         <TitlePartner>Quality Service for Major & Luxury Brands</TitlePartner>
       </motion.div>
-      
+
       <SwiperContainer>
         <ShadowLeft />
         <Swiper
@@ -155,7 +149,7 @@ const Partners: React.FC = () => {
           }}
           speed={4000}
           modules={[Autoplay]}
-          className="mySwiper"
+          className='mySwiper'
           style={{ width: '100%', paddingBottom: '20px' }}
         >
           {partners.map((partner, index) => (
@@ -170,18 +164,14 @@ const Partners: React.FC = () => {
               }}
             >
               <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
                 variants={logoVariants}
                 transition={{ delay: index * 0.05 }}
-                whileHover="hover"
+                whileHover='hover'
               >
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
+                <Image src={partner.imageUrl} alt={`Partner ${partner.id}`} loading='lazy' />
               </motion.div>
             </SwiperSlide>
           ))}
@@ -201,7 +191,7 @@ const Partners: React.FC = () => {
           }}
           speed={4000}
           modules={[Autoplay]}
-          className="mySwiper"
+          className='mySwiper'
           style={{ width: '100%' }}
         >
           {partners.map((partner, index) => (
@@ -216,18 +206,14 @@ const Partners: React.FC = () => {
               }}
             >
               <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
                 variants={logoVariants}
                 transition={{ delay: index * 0.05 + 0.1 }}
-                whileHover="hover"
+                whileHover='hover'
               >
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
+                <Image src={partner.imageUrl} alt={`Partner ${partner.id}`} loading='lazy' />
               </motion.div>
             </SwiperSlide>
           ))}

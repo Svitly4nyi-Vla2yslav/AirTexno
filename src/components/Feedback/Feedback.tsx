@@ -118,94 +118,94 @@ const reviews: Review[] = [
 
 // Анімаційні варіанти для заголовків
 const titleVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 30,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 // Анімаційні варіанти для карток
 const cardVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: 50,
     scale: 0.95,
-    rotateX: -5
+    rotateX: -5,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     rotateX: 0,
     transition: {
       duration: 0.7,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   },
   hover: {
     y: -5,
     scale: 1.02,
-    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+    boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
     transition: {
       duration: 0.3,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 // Анімаційні варіанти для аватарів
 const avatarVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 0.8,
-    rotate: -10
+    rotate: -10,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     rotate: 0,
     transition: {
       duration: 0.5,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   },
   hover: {
     scale: 1.1,
     rotate: 5,
     transition: {
-      duration: 0.2
-    }
-  }
+      duration: 0.2,
+    },
+  },
 };
 
 // Анімаційні варіанти для зображень
 const imageVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 1.1,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   },
   hover: {
     scale: 1.05,
     transition: {
-      duration: 0.4
-    }
-  }
+      duration: 0.4,
+    },
+  },
 };
 
 export const TextContainer = styled.div`
@@ -376,18 +376,18 @@ const ReviewCardContainer: React.FC = () => {
     <div>
       <TextContainer>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
         >
           <TextFeedback>Your Feedback Matters</TextFeedback>
         </motion.div>
-        
+
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
           transition={{ delay: 0.1 }}
         >
@@ -431,17 +431,14 @@ const ReviewCardContainer: React.FC = () => {
               <SwiperSlide key={`top-${index}`}>
                 <motion.div
                   variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.2 }}
-                  whileHover="hover"
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ once: true, amount: 0.2 }}
+                  whileHover='hover'
                 >
                   <Card>
                     <Header>
-                      <motion.div
-                        variants={avatarVariants}
-                        whileHover="hover"
-                      >
+                      <motion.div variants={avatarVariants} whileHover='hover'>
                         <Avatar src={review.avatar} alt={review.name} />
                       </motion.div>
                       <UserInfo>
@@ -468,10 +465,7 @@ const ReviewCardContainer: React.FC = () => {
                     >
                       <Text>{review.text}</Text>
                     </motion.div>
-                    <motion.div
-                      variants={imageVariants}
-                      whileHover="hover"
-                    >
+                    <motion.div variants={imageVariants} whileHover='hover'>
                       <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
                     </motion.div>
                   </Card>
@@ -516,17 +510,14 @@ const ReviewCardContainer: React.FC = () => {
               <SwiperSlide key={`bottom-${index}`}>
                 <motion.div
                   variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.2 }}
-                  whileHover="hover"
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ once: true, amount: 0.2 }}
+                  whileHover='hover'
                 >
                   <Card>
                     <Header>
-                      <motion.div
-                        variants={avatarVariants}
-                        whileHover="hover"
-                      >
+                      <motion.div variants={avatarVariants} whileHover='hover'>
                         <Avatar src={review.avatar} alt={review.name} />
                       </motion.div>
                       <UserInfo>
@@ -553,10 +544,7 @@ const ReviewCardContainer: React.FC = () => {
                     >
                       <Text>{review.text}</Text>
                     </motion.div>
-                    <motion.div
-                      variants={imageVariants}
-                      whileHover="hover"
-                    >
+                    <motion.div variants={imageVariants} whileHover='hover'>
                       <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
                     </motion.div>
                   </Card>
@@ -599,17 +587,14 @@ const ReviewCardContainer: React.FC = () => {
                 <SwiperSlide key={`desktop-${index}`}>
                   <motion.div
                     variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.2 }}
-                    whileHover="hover"
+                    initial='hidden'
+                    whileInView='visible'
+                    viewport={{ once: true, amount: 0.2 }}
+                    whileHover='hover'
                   >
                     <Card>
                       <Header>
-                        <motion.div
-                          variants={avatarVariants}
-                          whileHover="hover"
-                        >
+                        <motion.div variants={avatarVariants} whileHover='hover'>
                           <Avatar src={review.avatar} alt={review.name} />
                         </motion.div>
                         <UserInfo>
@@ -636,10 +621,7 @@ const ReviewCardContainer: React.FC = () => {
                       >
                         <Text>{review.text}</Text>
                       </motion.div>
-                      <motion.div
-                        variants={imageVariants}
-                        whileHover="hover"
-                      >
+                      <motion.div variants={imageVariants} whileHover='hover'>
                         <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
                       </motion.div>
                     </Card>

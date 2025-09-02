@@ -106,175 +106,170 @@ const serviceAreas: ServiceArea[] = [
   },
 ];
 
-
-
 const iconSpinAnimation = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 0,
-    rotate: -180
+    rotate: -180,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     rotate: 0,
     transition: {
       duration: 0.8,
       ease: backOut,
-      delay: 0.3
-    }
+      delay: 0.3,
+    },
   },
   hover: {
     rotate: 360,
     scale: 1.2,
     transition: {
       duration: 0.6,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 const titleWaveAnimation = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: 50,
-    skewY: 5
+    skewY: 5,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     skewY: 0,
     transition: {
       duration: 0.8,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 const cardStaggerAnimation = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     x: -100,
-    scale: 0.9
+    scale: 0.9,
   },
-  visible: (index: number) => ({ 
+  visible: (index: number) => ({
     opacity: 1,
     x: 0,
     scale: 1,
     transition: {
       duration: 0.7,
       delay: index * 0.2,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   }),
   hover: {
     y: -15,
     scale: 1.05,
     rotateY: 10,
-    boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
+    boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
     transition: {
       duration: 0.4,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 const textFlowAnimation = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     x: 50,
-    filter: "blur(10px)"
+    filter: 'blur(10px)',
   },
-  visible: { 
+  visible: {
     opacity: 1,
     x: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: {
       duration: 0.9,
       ease: easeOut,
-      delay: 0.5
-    }
-  }
+      delay: 0.5,
+    },
+  },
 };
 
 const pulseGlowAnimation = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 0.5,
-    textShadow: "0 0 0px rgba(48, 152, 238, 0)"
+    textShadow: '0 0 0px rgba(48, 152, 238, 0)',
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     textShadow: [
-      "0 0 0px rgba(48, 152, 238, 0)",
-      "0 0 20px rgba(48, 152, 238, 0.8)",
-      "0 0 10px rgba(48, 152, 238, 0.4)"
+      '0 0 0px rgba(48, 152, 238, 0)',
+      '0 0 20px rgba(48, 152, 238, 0.8)',
+      '0 0 10px rgba(48, 152, 238, 0.4)',
     ],
     transition: {
       duration: 1.5,
       ease: easeOut,
-      delay: 0.2
-    }
-  }
+      delay: 0.2,
+    },
+  },
 };
 
 const OurProcess: React.FC = () => {
   return (
     <MainContainer $bg={BackgroundImage}>
       <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.3 }}
         variants={titleWaveAnimation}
       >
         <TitleServing>Our Process</TitleServing>
       </motion.div>
-      
+
       <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.3 }}
         variants={textFlowAnimation}
       >
         <SubtitleServing>Quick steps to fix appliances reliably</SubtitleServing>
       </motion.div>
-      
+
       <Wrapper>
         {serviceAreas.map((area, index) => (
           <motion.div
             key={index}
             custom={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.2 }}
             variants={cardStaggerAnimation}
-            whileHover="hover"
+            whileHover='hover'
           >
             <Card>
               <CardHeader>
-                <motion.div
-                  variants={iconSpinAnimation}
-                  whileHover="hover"
-                >
+                <motion.div variants={iconSpinAnimation} whileHover='hover'>
                   <IconWrapper>{area.icon}</IconWrapper>
                 </motion.div>
               </CardHeader>
-              
+
               <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.3 }}
                 variants={pulseGlowAnimation}
                 transition={{ delay: index * 0.2 + 0.3 }}
               >
                 <County>{area.title}</County>
               </motion.div>
-              
+
               <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.3 }}
                 variants={textFlowAnimation}
                 transition={{ delay: index * 0.2 + 0.4 }}
               >

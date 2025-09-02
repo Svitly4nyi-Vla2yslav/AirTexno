@@ -1,5 +1,5 @@
-import React from 'react';
-import { easeOut, motion } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import { easeOut, motion, useInView } from 'framer-motion';
 import {
   Blue,
   Header,
@@ -13,6 +13,7 @@ import {
   BlueCard,
   ImageSection,
   CenteredSlideContainer,
+  GlobalStyles,
 } from './WhyAirtexnoSection.styled';
 import WhyAirtexnoImage1 from '../../assets/icons/WhyAirtexnoImage.png';
 import WhyAirtexnoImage2 from '../../assets/icons/WhyAirtexnoImage2.png';
@@ -34,6 +35,16 @@ const WhyAirtexnoSection: React.FC = () => {
   });
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
   const isLargeDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
+  
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-10%" });
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
 
   const slides = [
     {
@@ -65,17 +76,17 @@ const WhyAirtexnoSection: React.FC = () => {
   const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 3;
   const shouldLoop = slides.length > slidesPerView;
 
-  // Анімаційні варіанти для тексту
+  // Анімаційні варіанти для тексту - оптимізовані
   const textVariants = {
     hidden: { 
       opacity: 0, 
-      y: 30,
+      y: 20,
     },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: easeOut
       }
     }
@@ -91,116 +102,122 @@ const WhyAirtexnoSection: React.FC = () => {
       opacity: 1, 
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.5,
         ease: easeOut
       }
     }
   };
 
   return (
-    <Section>
-      <TextWrapper>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          variants={textVariants}
-        >
-          <SubTitle>why airtexno</SubTitle>
-        </motion.div>
-        
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          variants={textVariants}
-          transition={{ delay: 0.1 }}
-        >
-          <Title>
-            Same-Day Appliance Repair <Blue>You Can Rely On</Blue>{' '}
-          </Title>
-        </motion.div>
-      </TextWrapper>
-      
-      <ImageSection>
-        <SwiperContainer $isLargeDesktop={isLargeDesktop}>
-          <Swiper
-            modules={[Pagination, Autoplay]}
-            pagination={{ clickable: true }}
-            spaceBetween={isLargeDesktop ? 0 : 20}
-            loop={shouldLoop}
-            slidesPerView={slidesPerView}
-            centeredSlides={isLargeDesktop}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-              waitForTransition: true,
-              pauseOnMouseEnter: true,
-            }}
-            speed={6000}
-            className='businessSwiper'
+    <>
+      <GlobalStyles />
+      <Section ref={sectionRef}>
+        <TextWrapper>
+          <motion.div
+            initial="hidden"
+            animate={hasAnimated ? "visible" : "hidden"}
+            variants={textVariants}
           >
-            {slides.map((slide, index) => (
-              <SwiperSlide key={index}>
-                <CenteredSlideContainer
-                  style={{ backgroundImage: `url(${slide.image})` }}
-                  $isLargeDesktop={isLargeDesktop}
-                  className="slide-container"
-                >
-                  {(slide.title || slide.text || slide.icon) && (
-                    <motion.div 
-                      className='overlay'
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: false, amount: 0.3 }}
-                      variants={cardVariants}
-                      whileHover={{
-                        scale: 1.02,
-                        transition: { duration: 0.3 }
-                      }}
-                    >
-                      {(slide.title || slide.icon) && (
-                        <Header>
-                          {slide.title && (
-                            <motion.div
-                              variants={textVariants}
-                            >
-                              <BlueCard>{slide.title}</BlueCard>
-                            </motion.div>
-                          )}
-                          {slide.icon && (
-                            <motion.div
-                              variants={textVariants}
-                              transition={{ delay: 0.2 }}
-                            >
-                              <IconWrapper className="icon-wrapper">
-                                <img 
-                                  src={slide.icon} 
-                                  alt={slide.title || 'icon'} 
-                                  className="icon-image"
-                                />
-                              </IconWrapper>
-                            </motion.div>
-                          )}
-                        </Header>
-                      )}
-                      {slide.text && (
-                        <motion.div
-                          variants={textVariants}
-                          transition={{ delay: 0.3 }}
-                        >
-                          <Text className="slide-text">{slide.text}</Text>
-                        </motion.div>
-                      )}
-                    </motion.div>
-                  )}
-                </CenteredSlideContainer>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </SwiperContainer>
-      </ImageSection>
-    </Section>
+            <SubTitle>why airtexno</SubTitle>
+          </motion.div>
+          
+          <motion.div
+            initial="hidden"
+            animate={hasAnimated ? "visible" : "hidden"}
+            variants={textVariants}
+            transition={{ delay: 0.1 }}
+          >
+            <Title>
+              Same-Day Appliance Repair <Blue>You Can Rely On</Blue>{' '}
+            </Title>
+          </motion.div>
+        </TextWrapper>
+        
+        <ImageSection>
+          <SwiperContainer $isLargeDesktop={isLargeDesktop}>
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              pagination={{ 
+                clickable: true,
+                dynamicBullets: true 
+              }}
+              spaceBetween={isLargeDesktop ? 0 : 16}
+              loop={shouldLoop}
+              slidesPerView={slidesPerView}
+              centeredSlides={isLargeDesktop}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                waitForTransition: true,
+                pauseOnMouseEnter: true,
+              }}
+              speed={600}
+              className='businessSwiper'
+              touchRatio={1.5}
+              resistanceRatio={0.5}
+            >
+              {slides.map((slide, index) => (
+                <SwiperSlide key={index}>
+                  <CenteredSlideContainer
+                    style={{ backgroundImage: `url(${slide.image})` }}
+                    $isLargeDesktop={isLargeDesktop}
+                    className="slide-container"
+                  >
+                    {(slide.title || slide.text || slide.icon) && (
+                      <motion.div 
+                        className='overlay'
+                        initial="hidden"
+                        animate={hasAnimated ? "visible" : "hidden"}
+                        variants={cardVariants}
+                        whileHover={!isMobile ? {
+                          scale: 1.02,
+                          transition: { duration: 0.2 }
+                        } : {}}
+                      >
+                        {(slide.title || slide.icon) && (
+                          <Header>
+                            {slide.title && (
+                              <motion.div
+                                variants={textVariants}
+                              >
+                                <BlueCard>{slide.title}</BlueCard>
+                              </motion.div>
+                            )}
+                            {slide.icon && (
+                              <motion.div
+                                variants={textVariants}
+                                transition={{ delay: 0.1 }}
+                              >
+                                <IconWrapper className="icon-wrapper">
+                                  <img 
+                                    src={slide.icon} 
+                                    alt={slide.title || 'icon'} 
+                                    className="icon-image"
+                                    loading="lazy"
+                                  />
+                                </IconWrapper>
+                              </motion.div>
+                            )}
+                          </Header>
+                        )}
+                        {slide.text && (
+                          <motion.div
+                            variants={textVariants}
+                            transition={{ delay: 0.2 }}
+                          >
+                            <Text className="slide-text">{slide.text}</Text>
+                          </motion.div>
+                        )}
+                      </motion.div>
+                    )}
+                  </CenteredSlideContainer>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </SwiperContainer>
+        </ImageSection>
+      </Section>
+    </>
   );
 };
 

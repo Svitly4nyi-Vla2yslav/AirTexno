@@ -1,60 +1,49 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 export const SwiperContainer = styled.div`
   width: 97vw;
   height: 80%;
   background-color: rgba(0, 0, 0, 0); /* півпрозорий фон */
   backdrop-filter: blur(1px); /* ефект blur */
-    margin: 0px 0;
-    padding: 40px 0px;
+  margin: 0px 0;
+  padding: 40px 0px;
 
   .swiper-wrapper {
     display: flex;
     transition-timing-function: linear !important;
-     padding: 0px 0px;
-     margin: 0 auto;
+    padding: 0px 0px;
+    margin: 0 auto;
   }
 
-      @media screen and (min-width: 744px){
-width: 100vw;
+  @media screen and (min-width: 744px) {
+    width: 100vw;
+  }
 
-}
-
-@media screen and (min-width: 1440px){
-gap: 50px;
-
-}
+  @media screen and (min-width: 1440px) {
+    gap: 50px;
+  }
 `;
-
-
 
 export const Border = styled.p`
   padding: 10px auto 50px auto;
   width: 90%;
   height: 1px; /* Збільшуємо висоту для еліпса */
   margin: 20px auto;
-  background: radial-gradient(
-      ellipse 118.85px 58.06px at 50% 50%,
-      rgb(252, 252, 252) 0%,
-      rgba(58, 55, 55, 0.42) 80%
-    );
+  background: radial-gradient(ellipse 118.85px 58.06px at 50% 50%, rgb(252, 252, 252) 0%, rgba(58, 55, 55, 0.42) 80%);
 `;
 
 export const ImageContainer = styled.div`
-height : auto;
-width: 100%;
-padding: 0 auto;
-margin: 0 auto;
-@media screen and (min-width: 744px){
+  height: auto;
+  width: 100%;
+  padding: 0 auto;
+  margin: 0 auto;
+  @media screen and (min-width: 744px) {
+  }
 
-
-}
-
-@media screen and (min-width: 1440px){
-
-margin-right: 50px;
-}
+  @media screen and (min-width: 1440px) {
+    margin-right: 50px;
+  }
 `;
 
 export const Image = styled.img`
@@ -63,20 +52,21 @@ export const Image = styled.img`
   object-fit: contain;
   padding: 0 auto;
   margin: 0 auto;
-  
+
   /* Додаємо плавний перехід для фільтра */
-  transition: 
+  transition:
     filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.3s ease;
-  
+
   /* Невелике збільшення при ховері для кращої інтерактивності */
   transform: scale(1);
-  
+
   &:hover,
   &:focus {
-    filter: brightness(0) saturate(100%) invert(44%) sepia(98%) saturate(311%) hue-rotate(173deg) brightness(93%) contrast(89%);
+    filter: brightness(0) saturate(100%) invert(44%) sepia(98%) saturate(311%) hue-rotate(173deg) brightness(93%)
+      contrast(89%);
     transform: scale(1.05); /* Легке збільшення */
-    
+
     /* Оптимізація для анімації */
     will-change: filter, transform;
   }
@@ -89,7 +79,7 @@ export const Image = styled.img`
 
   @media screen and (min-width: 1440px) {
     height: 42px;
-    
+
     /* Збільшуємо ефект для десктопів */
     &:hover,
     &:focus {
@@ -121,11 +111,11 @@ export const ShadowRight = styled(motion.div)`
 `;
 
 export const TitlePartner = styled.h3`
-font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-line-height: 90%;
-text-transform: uppercase;
-text-align: center;
-color: var(--black-500);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 90%;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--black-500);
 `;

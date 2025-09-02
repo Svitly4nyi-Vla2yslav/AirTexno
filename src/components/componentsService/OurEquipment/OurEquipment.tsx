@@ -54,153 +54,153 @@ const OurEquipment: React.FC = () => {
 
   // Унікальні анімаційні варіанти
   const titleVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 50,
       rotate: -5,
-      scale: 0.9
+      scale: 0.9,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       rotate: 0,
       scale: 1,
       transition: {
         duration: 1,
         ease: easeOut,
-        delay: 0.2
-      }
-    }
+        delay: 0.2,
+      },
+    },
   };
 
   const cardVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 100,
       rotateX: -45,
       scale: 0.8,
-      filter: "blur(10px)"
+      filter: 'blur(10px)',
     },
-    visible: (index: number) => ({ 
+    visible: (index: number) => ({
       opacity: 1,
       y: 0,
       rotateX: 0,
       scale: 1,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: {
         duration: 1.2,
         ease: easeOut,
-        delay: index * 0.15
-      }
+        delay: index * 0.15,
+      },
     }),
     hover: {
       y: -20,
       rotateY: 10,
       scale: 1.05,
-      boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+      boxShadow: '0 30px 60px rgba(0,0,0,0.25)',
       transition: {
         duration: 0.4,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   const imageVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 1.3,
-      rotate: -5
+      rotate: -5,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       rotate: 0,
       transition: {
         duration: 1.5,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     hover: {
       scale: 1.1,
       rotate: 2,
       transition: {
         duration: 0.6,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   const textSlideVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       x: -50,
-      y: 30
+      y: 30,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       x: 0,
       y: 0,
       transition: {
         duration: 0.8,
         ease: backOut,
-        delay: 0.3
-      }
+        delay: 0.3,
+      },
     },
     hover: {
       x: 10,
       transition: {
-        duration: 0.3
-      }
-    }
+        duration: 0.3,
+      },
+    },
   };
 
   const buttonVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.8,
-      rotate: -10
+      rotate: -10,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       rotate: 0,
       transition: {
         duration: 0.6,
         ease: easeOut,
-        delay: 0.5
-      }
+        delay: 0.5,
+      },
     },
     hover: {
       scale: 1.15,
       rotate: 5,
-      boxShadow: "0 0 25px rgba(48, 152, 238, 0.6)",
+      boxShadow: '0 0 25px rgba(48, 152, 238, 0.6)',
       transition: {
         duration: 0.3,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     tap: {
       scale: 0.95,
-      rotate: -2
-    }
+      rotate: -2,
+    },
   };
 
   return (
     <Wrapper>
       <HeaderSection>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
         >
           <Subtitle>Our Equipment</Subtitle>
         </motion.div>
-        
+
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
           transition={{ delay: 0.1 }}
         >
@@ -209,17 +209,17 @@ const OurEquipment: React.FC = () => {
           </Title>
         </motion.div>
       </HeaderSection>
-      
+
       <Partners />
-      
+
       <NavigationContainer>
         <motion.div
           variants={buttonVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          whileHover="hover"
-          whileTap="tap"
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
+          whileHover='hover'
+          whileTap='tap'
         >
           <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
             <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
@@ -236,12 +236,12 @@ const OurEquipment: React.FC = () => {
 
         <motion.div
           variants={buttonVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 0.1 }}
-          whileHover="hover"
-          whileTap="tap"
+          whileHover='hover'
+          whileTap='tap'
         >
           <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
             <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
@@ -256,7 +256,7 @@ const OurEquipment: React.FC = () => {
           </NavButton>
         </motion.div>
       </NavigationContainer>
-      
+
       <SwiperContainer $isTablet={isTablet}>
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -277,23 +277,17 @@ const OurEquipment: React.FC = () => {
               <motion.div
                 custom={index}
                 variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
-                whileHover="hover"
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
+                whileHover='hover'
               >
                 <Card $isTablet={isTablet}>
-                  <motion.div
-                    variants={imageVariants}
-                    whileHover="hover"
-                  >
+                  <motion.div variants={imageVariants} whileHover='hover'>
                     <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
                   </motion.div>
-                  
-                  <motion.div
-                    variants={textSlideVariants}
-                    whileHover="hover"
-                  >
+
+                  <motion.div variants={textSlideVariants} whileHover='hover'>
                     <CardText>
                       <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
                       <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
@@ -390,24 +384,28 @@ export const NavButton = styled.button<{ bg: string }>`
     animation: ${pulseAnimation} 0.6s ease;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    
+
     &::before {
       opacity: 1;
     }
 
-    ${props => props.bg === '#DBDBD8' && css`
-      background-color: #c8c8c5;
-      svg {
-        animation: ${slideInLeft} 0.4s ease;
-      }
-    `}
+    ${props =>
+      props.bg === '#DBDBD8' &&
+      css`
+        background-color: #c8c8c5;
+        svg {
+          animation: ${slideInLeft} 0.4s ease;
+        }
+      `}
 
-    ${props => props.bg === '#3098EE' && css`
-      background-color: #2580d6;
-      svg {
-        animation: ${slideInRight} 0.4s ease;
-      }
-    `}
+    ${props =>
+      props.bg === '#3098EE' &&
+      css`
+        background-color: #2580d6;
+        svg {
+          animation: ${slideInRight} 0.4s ease;
+        }
+      `}
   }
 
   &:active {
@@ -519,7 +517,7 @@ const CardText = styled.div`
   padding: 16px;
   left: 10px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   transform-style: preserve-3d;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.95);

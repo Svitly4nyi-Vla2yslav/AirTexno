@@ -36,85 +36,85 @@ const slides = [
 
 // Анімаційні варіанти для заголовків
 const titleVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 30,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 // Анімаційні варіанти для карток
 const cardVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: 50,
     scale: 0.95,
-    rotateX: -5
+    rotateX: -5,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     rotateX: 0,
     transition: {
       duration: 0.7,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   },
   hover: {
     y: -10,
     scale: 1.02,
-    boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+    boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
     transition: {
       duration: 0.3,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 // Анімаційні варіанти для зображень
 const imageVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 1.1,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   },
   hover: {
     scale: 1.05,
     transition: {
-      duration: 0.4
-    }
-  }
+      duration: 0.4,
+    },
+  },
 };
 
 // Анімаційні варіанти для тексту
 const textVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: 20,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 const NewsAndTips: React.FC = () => {
@@ -132,18 +132,18 @@ const NewsAndTips: React.FC = () => {
     <Wrapper>
       <HeaderSection>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
         >
           <Subtitle>NEWS &amp; TIPS</Subtitle>
         </motion.div>
-        
+
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
           transition={{ delay: 0.1 }}
         >
@@ -152,7 +152,7 @@ const NewsAndTips: React.FC = () => {
           </Title>
         </motion.div>
       </HeaderSection>
-      
+
       <NavigationContainer>
         <motion.div
           whileHover={{ scale: 1.1 }}
@@ -190,7 +190,7 @@ const NewsAndTips: React.FC = () => {
           </NavButton>
         </motion.div>
       </NavigationContainer>
-      
+
       <SwiperContainer $isTablet={isTablet}>
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -210,30 +210,21 @@ const NewsAndTips: React.FC = () => {
             <SwiperSlide key={index}>
               <motion.div
                 variants={cardVariants}
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: index * 0.1 }}
               >
                 <Card $isTablet={isTablet}>
-                  <motion.div
-                    variants={imageVariants}
-                    whileHover="hover"
-                  >
+                  <motion.div variants={imageVariants} whileHover='hover'>
                     <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
                   </motion.div>
-                  
+
                   <CardText>
-                    <motion.div
-                      variants={textVariants}
-                      transition={{ delay: index * 0.1 + 0.1 }}
-                    >
+                    <motion.div variants={textVariants} transition={{ delay: index * 0.1 + 0.1 }}>
                       <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
                     </motion.div>
-                    
-                    <motion.div
-                      variants={textVariants}
-                      transition={{ delay: index * 0.1 + 0.2 }}
-                    >
+
+                    <motion.div variants={textVariants} transition={{ delay: index * 0.1 + 0.2 }}>
                       <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
                     </motion.div>
                   </CardText>
@@ -254,9 +245,9 @@ export default NewsAndTips;
 const SwiperContainer = styled.div<{ $isTablet: boolean }>`
   width: 100%;
   padding: 20px 0;
-  
+
   .swiper-slide {
-    width: ${props => props.$isTablet ? '50%' : 'auto'};
+    width: ${props => (props.$isTablet ? '50%' : 'auto')};
   }
 `;
 
@@ -328,24 +319,28 @@ export const NavButton = styled.button<{ bg: string }>`
     animation: ${pulseAnimation} 0.6s ease;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    
+
     &::before {
       opacity: 1;
     }
 
-    ${props => props.bg === '#DBDBD8' && css`
-      background-color: #c8c8c5;
-      svg {
-        animation: ${slideInLeft} 0.4s ease;
-      }
-    `}
+    ${props =>
+      props.bg === '#DBDBD8' &&
+      css`
+        background-color: #c8c8c5;
+        svg {
+          animation: ${slideInLeft} 0.4s ease;
+        }
+      `}
 
-    ${props => props.bg === '#3098EE' && css`
-      background-color: #2580d6;
-      svg {
-        animation: ${slideInRight} 0.4s ease;
-      }
-    `}
+    ${props =>
+      props.bg === '#3098EE' &&
+      css`
+        background-color: #2580d6;
+        svg {
+          animation: ${slideInRight} 0.4s ease;
+        }
+      `}
   }
 
   &:active {
@@ -397,7 +392,7 @@ const Subtitle = styled.p`
   line-height: 90%;
   text-transform: uppercase;
   color: var(--black-500);
-  
+
   @media screen and (min-width: 768px) {
     font-size: 17px;
   }
@@ -417,7 +412,7 @@ const Title = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 72px;
     min-width: 750px;
-    
+
     span {
       font-size: 72px;
     }
@@ -428,14 +423,14 @@ const Card = styled.div<{ $isTablet: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: ${props => props.$isTablet ? '100%' : '288px'};
+  width: ${props => (props.$isTablet ? '100%' : '288px')};
   height: 517px;
   margin: 0 auto;
   cursor: pointer;
   border-radius: 10px;
 
   @media screen and (min-width: 768px) {
-    max-width: ${props => props.$isTablet ? '100%' : '288px'};
+    max-width: ${props => (props.$isTablet ? '100%' : '288px')};
   }
 
   @media screen and (min-width: 1440px) {
@@ -445,16 +440,16 @@ const Card = styled.div<{ $isTablet: boolean }>`
 
 const Image = styled.img<{ $isTablet: boolean }>`
   border-radius: 8px;
-  width: ${props => props.$isTablet ? '100%' : '288px'};
+  width: ${props => (props.$isTablet ? '100%' : '288px')};
   height: 395px;
   object-fit: cover;
 
   @media screen and (min-width: 768px) {
-    max-width: ${props => props.$isTablet ? '100%' : '288px'};
+    max-width: ${props => (props.$isTablet ? '100%' : '288px')};
   }
 
   @media screen and (min-width: 1440px) {
-  max-width: ${props => props.$isTablet ? '100%' : '656px'};
+    max-width: ${props => (props.$isTablet ? '100%' : '656px')};
   }
 `;
 
@@ -463,13 +458,13 @@ const CardText = styled.div`
   flex-direction: column;
   gap: 8px;
   padding: 10px;
-   border-radius: 10px;
+  border-radius: 10px;
 `;
 
 const CardTitle = styled.p<{ $isTablet: boolean }>`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: ${props => props.$isTablet ? '24px' : '32px'};
+  font-size: ${props => (props.$isTablet ? '24px' : '32px')};
   line-height: 90%;
   color: var(--black-500);
 
@@ -481,7 +476,7 @@ const CardTitle = styled.p<{ $isTablet: boolean }>`
 const CardDescription = styled.p<{ $isTablet: boolean }>`
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: ${props => props.$isTablet ? '14px' : '16px'};
+  font-size: ${props => (props.$isTablet ? '14px' : '16px')};
   line-height: 125%;
   color: var(--black-500);
 

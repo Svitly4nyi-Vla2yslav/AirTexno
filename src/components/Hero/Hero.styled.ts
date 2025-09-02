@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router';
 import styled, { keyframes } from 'styled-components';
+import {  NavLink } from 'react-router-dom';
 
 export const HeroContainer = styled.div`
  position: relative;
@@ -7,6 +7,11 @@ export const HeroContainer = styled.div`
   min-height: 100vh;
   overflow: auto;
   flex-shrink: 0;
+    /* iOS specific optimizations */
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
   
   @media screen and (min-width: 768px) {
   }
@@ -21,8 +26,8 @@ export const HeroContainer = styled.div`
 
 export const HeroImage = styled.img`
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   max-width: none;
@@ -89,8 +94,9 @@ export const HeroTitle = styled.p`
     color: var(--white);
   }
 
-  @media screen and (min-width: 1440px) {
-  }
+  /* Покращений рендеринг тексту на iOS */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 `;
 
 export const HeroSubtitle = styled.p`

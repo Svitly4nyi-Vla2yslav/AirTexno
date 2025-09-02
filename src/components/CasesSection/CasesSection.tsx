@@ -81,7 +81,7 @@ export default function CasesSection() {
     {
       image: ReviewImage1,
       description:
-        'An oven that wouldn\'t heat evenly was repaired by recalibrating the thermostat and replacing heating elements. The family can now cook meals perfectly again.',
+        "An oven that wouldn't heat evenly was repaired by recalibrating the thermostat and replacing heating elements. The family can now cook meals perfectly again.",
       title: 'Oven Heating Restored for Perfect Meals',
       type: 'Oven Repair',
     },
@@ -102,7 +102,7 @@ export default function CasesSection() {
     {
       image: ReviewImage1,
       description:
-        'A customer\'s stove stopped working during family dinner preparation. Our team replaced defective wiring and burners, restoring it the same day.',
+        "A customer's stove stopped working during family dinner preparation. Our team replaced defective wiring and burners, restoring it the same day.",
       title: 'Stove Emergency Fixed Same Day',
       type: 'Stove Repair',
     },
@@ -110,77 +110,72 @@ export default function CasesSection() {
 
   // Анімаційні варіанти для заголовків
   const titleVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 30,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   // Анімаційні варіанти для карток
   const cardVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.9,
-      y: 20
+      y: 20,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   // Анімаційні варіанти для кнопок навігації
   const buttonVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
-      scale: 0.8
+      scale: 0.8,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     hover: {
       scale: 1.1,
-      transition: { duration: 0.2 }
+      transition: { duration: 0.2 },
     },
     tap: {
-      scale: 0.95
-    }
+      scale: 0.95,
+    },
   };
 
   return (
     <Section>
       <Header>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          variants={titleVariants}
-        >
+        <motion.div initial='hidden' whileInView='visible' variants={titleVariants}>
           <Subtitle>Our Cases</Subtitle>
         </motion.div>
-        
+
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
           transition={{ delay: 0.1 }}
         >
@@ -191,9 +186,9 @@ export default function CasesSection() {
       </Header>
 
       <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.2 }}
         variants={cardVariants}
       >
         <SwiperContainer>
@@ -202,7 +197,7 @@ export default function CasesSection() {
             pagination={{ clickable: true }}
             spaceBetween={20}
             slidesPerView={1}
-            loop={true} 
+            loop={true}
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
@@ -223,17 +218,17 @@ export default function CasesSection() {
             {cards.map(({ image, description, title, type }, index) => (
               <StyledSwiperSlide key={index} $isActive={activeIndex === index} $index={index}>
                 <motion.div
-                  whileHover={{ 
+                  whileHover={{
                     scale: activeIndex === index ? 1.05 : 1.02,
-                    transition: { duration: 0.3 }
+                    transition: { duration: 0.3 },
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <SlideWrapper $isActive={activeIndex === index} $index={index}>
                     <motion.div
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.1,
-                        transition: { duration: 0.4 }
+                        transition: { duration: 0.4 },
                       }}
                     >
                       <SlideImage
@@ -243,39 +238,39 @@ export default function CasesSection() {
                         $index={index}
                       />
                     </motion.div>
-                    
+
                     <Container $isActive={activeIndex === index} $index={index}>
                       <ContentWrapper>
                         <TopSection>
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
-                            animate={{ 
+                            animate={{
                               opacity: activeIndex === index ? 1 : 0.7,
-                              y: activeIndex === index ? 0 : 5
+                              y: activeIndex === index ? 0 : 5,
                             }}
                             transition={{ duration: 0.3 }}
                           >
                             <ReviewText>{description}</ReviewText>
                           </motion.div>
                         </TopSection>
-                        
+
                         <BottomSection>
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
-                            animate={{ 
+                            animate={{
                               opacity: activeIndex === index ? 1 : 0.8,
-                              y: activeIndex === index ? 0 : 5
+                              y: activeIndex === index ? 0 : 5,
                             }}
                             transition={{ duration: 0.3, delay: 0.1 }}
                           >
                             <BlueCard>{title}</BlueCard>
                           </motion.div>
-                          
+
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
-                            animate={{ 
+                            animate={{
                               opacity: activeIndex === index ? 1 : 0.6,
-                              y: activeIndex === index ? 0 : 5
+                              y: activeIndex === index ? 0 : 5,
                             }}
                             transition={{ duration: 0.3, delay: 0.2 }}
                           >
@@ -295,11 +290,11 @@ export default function CasesSection() {
       <NavigationWrapper>
         <motion.div
           variants={buttonVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          whileHover="hover"
-          whileTap="tap"
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
+          whileHover='hover'
+          whileTap='tap'
         >
           <IconButton ref={prevRef} $bg='#DBDBD8' onClick={handlePrev}>
             <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
@@ -313,15 +308,15 @@ export default function CasesSection() {
             </svg>
           </IconButton>
         </motion.div>
-        
+
         <motion.div
           variants={buttonVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 0.1 }}
-          whileHover="hover"
-          whileTap="tap"
+          whileHover='hover'
+          whileTap='tap'
         >
           <IconButton ref={nextRef} $bg='#3098EE' onClick={handleNext}>
             <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>

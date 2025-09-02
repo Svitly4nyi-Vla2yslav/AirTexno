@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useScroll, useTransform, easeOut, easeInOut } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useScroll, useTransform, useInView, easeOut } from 'framer-motion';
 import ServicesImage from '../../assets/icons/ServicesImage.png';
 import {
   Section,
@@ -29,19 +29,17 @@ import {
 } from './ServicesSection.styled';
 import { useMediaQuery } from 'react-responsive';
 
-// Анімаційні варіанти
+// Анімаційні варіанти - оптимізовані для мобільних пристроїв
 const fadeInUp = {
   hidden: { 
     opacity: 0, 
-    y: 60,
-    scale: 0.95 
+    y: 40,
   },
   visible: { 
     opacity: 1, 
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: easeOut
     }
   }
@@ -50,15 +48,13 @@ const fadeInUp = {
 const fadeInLeft = {
   hidden: { 
     opacity: 0, 
-    x: -80,
-    rotate: -2 
+    x: -40,
   },
   visible: { 
     opacity: 1, 
     x: 0,
-    rotate: 0,
     transition: {
-      duration: 0.9,
+      duration: 0.7,
       ease: easeOut
     }
   }
@@ -67,15 +63,13 @@ const fadeInLeft = {
 const fadeInRight = {
   hidden: { 
     opacity: 0, 
-    x: 80,
-    scale: 1.05 
+    x: 40,
   },
   visible: { 
     opacity: 1, 
     x: 0,
-    scale: 1,
     transition: {
-      duration: 0.9,
+      duration: 0.7,
       ease: easeOut
     }
   }
@@ -84,16 +78,14 @@ const fadeInRight = {
 const scaleIn = {
   hidden: { 
     opacity: 0, 
-    scale: 0.9,
-    filter: "blur(10px)"
+    scale: 0.95,
   },
   visible: { 
     opacity: 1, 
     scale: 1,
-    filter: "blur(0px)",
     transition: {
-      duration: 1.1,
-      ease: easeInOut
+      duration: 0.8,
+      ease: easeOut
     }
   }
 };
@@ -101,25 +93,35 @@ const scaleIn = {
 const staggerContainer = {
   visible: {
     transition: {
-      staggerChildren: 0.15
+      staggerChildren: 0.1
     }
   }
 };
 
 const ServicesSection: React.FC = () => {
-  const isDeckstop = useMediaQuery({ query: '(min-width: 1440px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
+  const [hasAnimated, setHasAnimated] = useState(false);
   
-  // Анімації для паралакс ефекту
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
+  
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
+
+  // Анімації для паралакс ефекту - обмежена для мобільних пристроїв
   const { scrollY } = useScroll();
-  const imageY = useTransform(scrollY, [0, 500], [0, -50]);
-  const contentScale = useTransform(scrollY, [0, 400], [1, 1.02]);
+  const imageY = useTransform(scrollY, [0, 300], [0, isDesktop ? -50 : -20], {
+    clamp: false
+  });
 
   return (
-    <Section>
+    <Section ref={sectionRef}>
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
+        animate={hasAnimated ? "visible" : "hidden"}
         variants={fadeInUp}
       >
         <SmallText>Our Service</SmallText>
@@ -129,8 +131,7 @@ const ServicesSection: React.FC = () => {
         <ServiceBlock>
           <motion.div
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            animate={hasAnimated ? "visible" : "hidden"}
             variants={staggerContainer}
           >
             <motion.div variants={fadeInLeft}>
@@ -140,22 +141,20 @@ const ServicesSection: React.FC = () => {
               </TitleRow>
             </motion.div>
             
-            <motion.div variants={fadeInLeft} transition={{ delay: 0.1 }}>
+            <motion.div variants={fadeInLeft}>
               <Title>Professional Installations</Title>
             </motion.div>
             
-            <motion.div variants={fadeInLeft} transition={{ delay: 0.2 }}>
+            <motion.div variants={fadeInLeft}>
               <Title>Fast & Reliable Emergency Repairs</Title>
             </motion.div>
           </motion.div>
 
-          {isDeckstop && (
+          {isDesktop && (
             <motion.div
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+              animate={hasAnimated ? "visible" : "hidden"}
               variants={fadeInUp}
-              transition={{ delay: 0.4 }}
             >
               <InfoBlock>
                 <InfoText>Do you want to know more about our service?</InfoText>
@@ -169,36 +168,32 @@ const ServicesSection: React.FC = () => {
 
         <ImageSection>
           <motion.div
-            style={{ y: imageY, scale: contentScale }}
+            style={{ y: imageY }}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
+            animate={hasAnimated ? "visible" : "hidden"}
             variants={scaleIn}
           >
-            <ServiceImage src={ServicesImage} alt='Services Image' />
+            <ServiceImage 
+              src={ServicesImage} 
+              alt='Services Image'
+              loading="lazy"
+            />
           </motion.div>
           
           <motion.div
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            animate={hasAnimated ? "visible" : "hidden"}
             variants={fadeInRight}
           >
             <Container>
               <HeaderWrapper>
-                <motion.div
-                  variants={fadeInRight}
-                  transition={{ delay: 0.1 }}
-                >
+                <motion.div variants={fadeInRight}>
                   <TitleRow>
                     <TitleCard>Preventive Care</TitleCard>
                   </TitleRow>
                 </motion.div>
                 
-                <motion.div
-                  variants={fadeInRight}
-                  transition={{ delay: 0.2 }}
-                >
+                <motion.div variants={fadeInRight}>
                   <TextBlock>
                     <Description>
                       Preventive Care to Keep Your Appliances Running Longer Regular maintenance keeps
@@ -210,10 +205,7 @@ const ServicesSection: React.FC = () => {
                 </motion.div>
               </HeaderWrapper>
               
-              <motion.div
-                variants={fadeInRight}
-                transition={{ delay: 0.3 }}
-              >
+              <motion.div variants={fadeInRight}>
                 <ButtonRow>
                   <PrimaryButton to='/contact#ap'>
                     <ButtonTextWhite>Contact Us</ButtonTextWhite>
@@ -229,11 +221,10 @@ const ServicesSection: React.FC = () => {
           </motion.div>
         </ImageSection>
 
-        {!isDeckstop && (
+        {!isDesktop && (
           <motion.div
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            animate={hasAnimated ? "visible" : "hidden"}
             variants={fadeInUp}
           >
             <InfoBlock>

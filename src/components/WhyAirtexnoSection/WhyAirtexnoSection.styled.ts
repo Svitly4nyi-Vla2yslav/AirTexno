@@ -1,16 +1,47 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+// Глобальні стилі для усунення горизонтального скролу
+export const GlobalStyles = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Усунення горизонтального скролу на iOS */
+  @supports (-webkit-touch-callout: none) {
+    body {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+  }
+`;
 
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
-  overflow: auto;
+  gap: 2rem;
+  overflow: hidden;
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
 
   @media screen and (min-width: 1440px) {
-    max-width: 1440px;
+    max-width: 90rem;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
   }
 `;
 
@@ -18,97 +49,105 @@ export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   width: 100%;
+  max-width: 100%;
+
+  @media screen and (min-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 export const SubTitle = styled.p`
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 90%;
   text-transform: uppercase;
   text-align: center;
   color: var(--black-500);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  margin: 0;
 
-  &:hover {
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
     color: var(--blue-500);
     transform: translateY(-1px);
   }
 
-  &:focus {
-    outline: 2px solid var(--blue-500);
-    outline-offset: 2px;
-    border-radius: 4px;
+  @media screen and (min-width: 768px) {
+    font-size: 0.875rem;
   }
 `;
 
 export const Title = styled.h3`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 52px;
+  font-size: 2.5rem;
   line-height: 90%;
   text-align: center;
   color: var(--black-500);
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-  }
+  transition: all 0.2s ease;
+  margin: 0;
+  max-width: 100%;
 
   @media screen and (min-width: 768px) {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 
   @media screen and (min-width: 1440px) {
-           max-width: 100vh;
+    max-width: 80rem;
   }
 `;
 
 export const Blue = styled.span`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 52px;
+  font-size: 2.5rem;
   line-height: 90%;
   text-align: center;
   color: var(--blue-500);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
-  &:hover {
+  &:active {
     color: var(--purple-400);
     transform: translateY(-1px);
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 `;
 
 export const BlueCard = styled.div`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 32px;
+  font-size: 1.5rem;
   line-height: 100%;
   color: var(--blue-500);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  margin: 0;
 
-  &:hover {
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
     color: var(--purple-400);
     transform: translateY(-1px);
   }
 
-  &:focus {
-    outline: 2px solid var(--purple-400);
-    outline-offset: 2px;
-    border-radius: 4px;
+  @media screen and (min-width: 768px) {
+    font-size: 2rem;
   }
 `;
 
 export const SwiperContainer = styled.div<{ $isLargeDesktop?: boolean }>`
   position: relative;
-  border-radius: 4px;
-  width: 320px;
+  border-radius: 0.25rem;
+  width: 100%;
+  max-width: 20rem;
   overflow: hidden;
   background: transparent;
   z-index: 1;
@@ -117,13 +156,15 @@ export const SwiperContainer = styled.div<{ $isLargeDesktop?: boolean }>`
   .swiper {
     width: 100%;
     height: 100%;
+    padding: 0.5rem 0;
   }
 
   .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
+    height: auto;
 
     ${props =>
       props.$isLargeDesktop &&
@@ -138,47 +179,46 @@ export const SwiperContainer = styled.div<{ $isLargeDesktop?: boolean }>`
         z-index: 2;
       }
     `}
+  }
 
-    &:hover {
-      .slide-container {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      }
-    }
+  .swiper-pagination {
+    bottom: 0.5rem !important;
   }
 
   .swiper-pagination-bullet {
     background: #3098ee;
     opacity: 1;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0 0.25rem;
 
-    &:hover {
+    /* Покращена доступність для тач-пристроїв */
+    -webkit-tap-highlight-color: transparent;
+    min-width: 0.75rem;
+    min-height: 0.75rem;
+
+    &:active {
       background: var(--purple-400);
       transform: scale(1.2);
-    }
-
-    &:focus {
-      outline: 2px solid var(--purple-400);
-      outline-offset: 2px;
     }
   }
 
   .swiper-pagination-bullet-active {
     background: #005fa3;
+    width: 1rem;
 
-    &:hover {
+    &:active {
       background: var(--purple-500);
     }
   }
 
   @media screen and (min-width: 768px) {
-    width: 760px;
+    max-width: 47.5rem;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 100%;
-    max-width: 1440px;
+    max-width: 90rem;
   }
 `;
 
@@ -186,53 +226,61 @@ export const SlideContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 16px 12px;
-  gap: 12px;
-  border-radius: 4px;
+  padding: 1rem 0.75rem;
+  gap: 0.75rem;
+  border-radius: 0.25rem;
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
-  margin: 0 4px;
+  height: 22rem;
+  margin: 0 0.25rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
-  height: 485px;
   align-items: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: all 0.2s ease;
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-
-    .overlay {
-      background: rgba(255, 255, 255, 0.95);
-      transform: translateY(-2px);
-    }
-
-    .slide-text {
-      color: var(--blue-500);
-    }
-  }
-
-  &:focus {
-    outline: 2px solid var(--blue-500);
-    outline-offset: 4px;
-    border-radius: 8px;
-  }
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
 
   .overlay {
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 4px;
-    margin: 6px;
-    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 0.25rem;
+    margin: 0.375rem;
+    padding: 0.625rem;
     position: absolute;
     bottom: 0;
     box-sizing: border-box;
-    width: calc(100% - 12px);
-    transition: all 0.3s ease;
+    width: calc(100% - 0.75rem);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+  }
+
+  .slide-text {
+    color: #242424;
+    font-family: 'Geist', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25em;
+    padding-bottom: 1.25rem;
+    transition: all 0.2s ease;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 25rem;
+    padding: 1.25rem 1rem;
+    
+    .overlay {
+      margin: 0.5rem;
+      padding: 1rem;
+      width: calc(100% - 1rem);
+    }
+    
+    .slide-text {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -241,14 +289,10 @@ export const CenteredSlideContainer = styled(SlideContainer)<{ $isLargeDesktop?:
     props.$isLargeDesktop &&
     `
     margin: 0;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     
     .overlay {
       margin-bottom: 5%;
-    }
-    
-    &:hover {
-      transform: scale(1.12) translateY(-5px);
     }
   `}
 `;
@@ -258,44 +302,58 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  gap: 0.5rem;
 `;
 
 export const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
-  padding-bottom: 14px;
-  transition: all 0.3s ease;
+  width: 2rem;
+  height: 2rem;
+  padding-bottom: 0.875rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 
-  &:hover {
-    transform: scale(1.2) rotate(5deg);
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
 
-    .icon-image {
-      filter: brightness(1.2);
-    }
+  .icon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
-  &:focus {
-    outline: 2px solid var(--blue-500);
-    outline-offset: 2px;
-    border-radius: 4px;
+  &:active {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 `;
 
 export const Text = styled.p`
   color: #242424;
   font-family: 'Geist', sans-serif;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.25em;
-  padding-bottom: 20px;
-  transition: all 0.3s ease;
+  padding-bottom: 1.25rem;
+  transition: all 0.2s ease;
+  margin: 0;
 
-  &:hover {
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
     color: var(--blue-500);
     transform: translateY(-1px);
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
   }
 `;
 
@@ -305,10 +363,10 @@ export const ImageSection = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: column;
-  flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
 
   @media screen and (min-width: 1440px) {
-    max-width: 1440px;
+    max-width: 90rem;
   }
 `;

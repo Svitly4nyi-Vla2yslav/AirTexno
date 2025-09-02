@@ -6,16 +6,19 @@ export const Section = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  min-width: 100vw;
-  overflow: auto;
+  width: 100%;
   padding: 1rem;
+  overflow: hidden;
+  position: relative;
+  
   @media screen and (min-width: 768px) {
+    padding: 1.5rem;
   }
 
   @media screen and (min-width: 1440px) {
     margin: 0 auto;
-    width: 100%;
     max-width: 1440px;
+    padding: 2rem;
   }
 `;
 
@@ -26,16 +29,10 @@ export const SmallText = styled.p`
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
+  
   @media screen and (min-width: 768px) {
-    font-family: var(--font-family);
-    font-weight: 400;
     font-size: 14px;
-    line-height: 90%;
     text-transform: uppercase;
-    color: var(--black-500);
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -43,15 +40,12 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 3rem;
-  width: auto;
-  @media screen and (min-width: 768px) {
-  }
-
+  gap: 2rem;
+  width: 100%;
+  
   @media screen and (min-width: 1440px) {
-    display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    gap: 3rem;
   }
 `;
 
@@ -59,26 +53,22 @@ export const ServiceBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.25rem;
+  gap: 0.5rem;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
-  }
-
   @media screen and (min-width: 1440px) {
+    gap: 0.25rem;
   }
 `;
 
 export const TitleRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   width: 100%;
 
   @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+    gap: 0.75rem;
   }
 `;
 
@@ -86,104 +76,77 @@ export const Number = styled.p`
   color: #242424;
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 35px;
+  font-size: 28px;
   line-height: 90%;
+  
   @media screen and (min-width: 768px) {
-    font-family: var(--second-family);
-    font-weight: 400;
     font-size: 56px;
-    line-height: 90%;
-    color: var(--black-500);
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
 export const TitleBlue = styled.p`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 35px;
+  font-size: 28px;
   line-height: 90%;
   color: var(--blue-500);
+  
   @media screen and (min-width: 768px) {
     font-size: 56px;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
 export const Title = styled.p`
   color: #242424;
   font-family: var(--second-family);
-  font-size: 35px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
+  
   @media screen and (min-width: 768px) {
     font-size: 56px;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
 export const TitleCard = styled.p`
   color: #242424;
   font-family: var(--second-family);
-  font-size: 35px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
+  
   @media screen and (min-width: 768px) {
-    font-family: var(--second-family);
-    font-weight: 400;
     font-size: 38px;
-    line-height: 90%;
-    color: var(--black-500);
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
 export const ServiceImage = styled.img`
   display: block;
   width: 100%;
-  height: 647px;
+  height: auto;
+  max-height: 400px;
   object-fit: cover;
-  object-position: left center;
-  padding: 0.5rem;
+  object-position: center;
   border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  /* Ховер ефекти для картинки */
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    filter: brightness(1.05);
-  }
-
-  /* Фокус для доступності */
-  &:focus {
-    outline: 2px solid var(--blue-500);
-    outline-offset: 2px;
-  }
-
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  
+  /* Покращена продуктивність для iOS */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
   @media screen and (min-width: 768px) {
-    width: 100%;
-    height: min-content;
-    object-position: center center;
+    max-height: 500px;
   }
 
   @media screen and (min-width: 1440px) {
     max-width: 563px;
-
-    &:hover {
-      transform: scale(1.03);
-    }
+    max-height: 647px;
   }
 `;
 
@@ -193,9 +156,7 @@ export const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
-  @media screen and (min-width: 768px) {
-  }
-
+  
   @media screen and (min-width: 1440px) {
     padding-top: 40%;
   }
@@ -206,20 +167,15 @@ export const InfoText = styled.p`
   font-family: 'Geist', sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.25em;
+  line-height: 1.4em;
   width: 100%;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const Button = styled(NavLink)`
   cursor: pointer;
   white-space: nowrap;
   display: flex;
-  padding: 0.625rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
@@ -227,32 +183,21 @@ export const Button = styled(NavLink)`
   border: 1px solid #242424;
   width: fit-content;
   background: transparent;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+  min-width: 44px;
 
-  /* Ховер ефекти */
-  &:hover {
+  &:hover, &:focus {
     background-color: #242424;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
   }
 
-  /* Фокус для доступності */
-  &:focus {
-    outline: 2px solid var(--blue-500);
-    outline-offset: 2px;
-  }
-
-  /* Активний стан */
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -262,39 +207,36 @@ export const ButtonText = styled.p`
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.25em;
-  width: fit-content;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 
-  ${Button}:hover & {
+  ${Button}:hover &, ${Button}:focus & {
     color: white;
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
 export const Container = styled.div`
-  position: absolute;
   display: flex;
-  padding: 16px;
+  padding: 1rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
-  border-radius: 4px;
+  gap: 1.5rem;
+  border-radius: 0.5rem;
   background: #fff;
-  bottom: 0%;
-  overflow: auto;
-  margin: 0 auto;
-  margin: 16px;
+  margin: 1rem;
+  width: calc(100% - 2rem);
+  box-sizing: border-box;
+  
   @media screen and (min-width: 768px) {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    max-width: 400px;
   }
 
   @media screen and (min-width: 1440px) {
     max-width: 537px;
-    margin: 12px;
+    margin: 0 2.01rem;
+    bottom: 10px;
   }
 `;
 
@@ -302,99 +244,65 @@ export const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0.5rem;
   width: 100%;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0.5rem;
   width: 100%;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const Description = styled.p`
   color: var(--black-500);
   font-family: var(--font-family);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  line-height: 1.25em;
+  line-height: 1.4em;
   width: 100%;
+  
   @media screen and (min-width: 768px) {
-    font-size: 17px;
-  }
-
-  @media screen and (min-width: 1440px) {
+    font-size: 1rem;
   }
 `;
 
 export const ButtonRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   width: 100%;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
+  flex-wrap: wrap;
 `;
 
 export const PrimaryButton = styled(NavLink)`
   cursor: pointer;
   white-space: nowrap;
   display: flex;
-  padding: 10px 0px;
+  padding: 0.75rem 1.5rem;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  border-radius: 8px;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
   background: #3098ee;
-  border-radius: 8px;
-  padding: 10px 20px;
-  width: 124px;
-  height: 40px;
   border: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+  min-width: 44px;
 
-  /* Ховер ефекти */
-  &:hover {
+  &:hover, &:focus {
     background: #1a7bc9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
+    transform: translateY(-1px);
   }
 
-  /* Фокус для доступності */
-  &:focus {
-    outline: 2px solid var(--blue-500);
-    outline-offset: 2px;
-  }
-
-  /* Активний стан */
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(48, 152, 238, 0.2);
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -402,42 +310,28 @@ export const SecondaryButton = styled.button`
   cursor: pointer;
   white-space: nowrap;
   display: flex;
-  padding: 10px 0px;
+  padding: 0.75rem 1.5rem;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   border: 1px solid var(--black-500);
-  border-radius: 8px;
-  padding: 10px 20px;
-  width: 119px;
-  height: 40px;
+  border-radius: 0.5rem;
   background: transparent;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  
+  /* Покращена доступність для тач-пристроїв */
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+  min-width: 44px;
 
-  /* Ховер ефекти */
-  &:hover {
+  &:hover, &:focus {
     background-color: #242424;
     border-color: #242424;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
   }
 
-  /* Фокус для доступності */
-  &:focus {
-    outline: 2px solid var(--blue-500);
-    outline-offset: 2px;
-  }
-
-  /* Активний стан */
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -447,24 +341,13 @@ export const ButtonTextWhite = styled.p`
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.25em;
-  width: fit-content;
-  transition: color 0.3s ease;
-
-  ${SecondaryButton}:hover & {
-    color: white;
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const ButtonTextBlack = styled(ButtonTextWhite)`
   color: #242424;
+  transition: color 0.2s ease;
 
-  ${SecondaryButton}:hover & {
+  ${SecondaryButton}:hover &, ${SecondaryButton}:focus & {
     color: white;
   }
 `;
@@ -472,11 +355,30 @@ export const ButtonTextBlack = styled(ButtonTextWhite)`
 export const ImageSection = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  
   @media screen and (min-width: 768px) {
-    max-width: 768px;
+    max-width: 100%;
   }
+`;
 
-  @media screen and (min-width: 1440px) {
+// Додаємо глобальні стилі для усунення горизонтального скролу
+export const GlobalStyles = styled.div`
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Усунення горизонтального скролу на iOS */
+  @supports (-webkit-touch-callout: none) {
+    body {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
   }
 `;

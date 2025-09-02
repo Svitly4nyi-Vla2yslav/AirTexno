@@ -237,7 +237,7 @@ export const TeamMember: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={avatarAnimation}
             whileHover='hover'
           >
@@ -248,7 +248,7 @@ export const TeamMember: React.FC = () => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               variants={titleGlowAnimation}
             >
               <Heading>Book a Call</Heading>
@@ -257,7 +257,7 @@ export const TeamMember: React.FC = () => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               variants={titleGlowAnimation}
               transition={{ delay: 0.2 }}
             >
@@ -268,7 +268,7 @@ export const TeamMember: React.FC = () => {
               variants={phonePulseAnimation}
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               // whileHover='hover'
               whileTap='tap'
             >
@@ -300,7 +300,7 @@ export const TeamMember: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={emailFloatAnimation}
             whileHover='hover'
           >
@@ -338,7 +338,7 @@ export const TeamMember: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={titleGlowAnimation}
           >
             <FrequentlyTitle>Frequently Asked Questions</FrequentlyTitle>
@@ -351,7 +351,7 @@ export const TeamMember: React.FC = () => {
               key={index}
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               variants={index % 2 === 0 ? questionAnimationEven : questionAnimationOdd}
               transition={{ delay: getDelay(index) }}
             >

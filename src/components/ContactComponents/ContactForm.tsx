@@ -108,81 +108,81 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
   // Анімаційні варіанти для заголовків
   const titleVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 30,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   // Анімаційні варіанти для форми
   const formVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 50,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.7,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   // Анімаційні варіанти для полів вводу
   const inputVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       x: -20,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.5,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     focus: {
       scale: 1.02,
       transition: {
-        duration: 0.2
-      }
-    }
+        duration: 0.2,
+      },
+    },
   };
 
   // Анімаційні варіанти для кнопок
   const buttonVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.9,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     hover: {
       scale: 1.05,
       transition: {
-        duration: 0.2
-      }
+        duration: 0.2,
+      },
     },
     tap: {
-      scale: 0.95
-    }
+      scale: 0.95,
+    },
   };
 
   return (
@@ -191,9 +191,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
         <Section>
           <SubSection>
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.3 }}
               variants={titleVariants}
             >
               <Title>
@@ -201,25 +201,24 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 <span>Contact</span> our team
               </Title>
             </motion.div>
-            
+
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.3 }}
               variants={titleVariants}
               transition={{ delay: 0.1 }}
             >
               <Text>We love our customers, so feel free to call during normal business hours</Text>
             </motion.div>
           </SubSection>{' '}
-          
           <motion.div
             variants={buttonVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            whileHover="hover"
-            whileTap="tap"
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.3 }}
+            whileHover='hover'
+            whileTap='tap'
           >
             <a href='tel:+18055002705'>
               <Button>
@@ -227,24 +226,23 @@ export const ContactForm: React.FC = (): JSX.Element => {
               </Button>
             </a>
           </motion.div>
-          
           <Section>
             <Divider />
             <InfoBlock>
               <InfoSection width='251px'>
                 <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.3 }}
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ once: true, amount: 0.3 }}
                   variants={titleVariants}
                 >
                   <InfoTitle>Service Hours</InfoTitle>
                 </motion.div>
                 <SubSection>
                   <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.3 }}
+                    initial='hidden'
+                    whileInView='visible'
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={titleVariants}
                     transition={{ delay: 0.2 }}
                   >
@@ -254,12 +252,12 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   </motion.div>
                 </SubSection>
               </InfoSection>
-              
+
               <InfoSection>
                 <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.3 }}
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ once: true, amount: 0.3 }}
                   variants={titleVariants}
                   transition={{ delay: 0.3 }}
                 >
@@ -267,9 +265,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 </motion.div>
                 <SubSection>
                   <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.3 }}
+                    initial='hidden'
+                    whileInView='visible'
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={titleVariants}
                     transition={{ delay: 0.4 }}
                   >
@@ -282,11 +280,11 @@ export const ContactForm: React.FC = (): JSX.Element => {
                       <Text> 801 Tioga Pl, Newbury Park, CA 91320</Text>
                     </a>
                   </motion.div>
-                  
+
                   <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.3 }}
+                    initial='hidden'
+                    whileInView='visible'
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={titleVariants}
                     transition={{ delay: 0.5 }}
                   >
@@ -302,9 +300,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
         <motion.div
           variants={formVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.3 }}
         >
           <FormContainer onSubmit={handleSubmit}>
             <motion.div
@@ -314,13 +312,10 @@ export const ContactForm: React.FC = (): JSX.Element => {
             >
               <ImageContact src={Cont} alt='contact image' />
             </motion.div>
-            
+
             <Label>What service do you need for your appliances?</Label>
             <CheckboxGroup>
-              <motion.div
-                variants={inputVariants}
-                whileHover="hover"
-              >
+              <motion.div variants={inputVariants} whileHover='hover'>
                 <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
                   <HiddenRadio
                     name='service'
@@ -333,11 +328,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 </RadioLabel>
               </motion.div>
 
-              <motion.div
-                variants={inputVariants}
-                transition={{ delay: 0.1 }}
-                whileHover="hover"
-              >
+              <motion.div variants={inputVariants} transition={{ delay: 0.1 }} whileHover='hover'>
                 <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
                   <HiddenRadio
                     name='service'
@@ -354,11 +345,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             <TabletContainer>
               <LeftColumn>
                 <Label>Name</Label>
-                <motion.div
-                  variants={inputVariants}
-                  transition={{ delay: 0.2 }}
-                  whileFocus="focus"
-                >
+                <motion.div variants={inputVariants} transition={{ delay: 0.2 }} whileFocus='focus'>
                   <Input
                     name='name'
                     type='text'
@@ -370,11 +357,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 </motion.div>
 
                 <Label>Email</Label>
-                <motion.div
-                  variants={inputVariants}
-                  transition={{ delay: 0.3 }}
-                  whileFocus="focus"
-                >
+                <motion.div variants={inputVariants} transition={{ delay: 0.3 }} whileFocus='focus'>
                   <Input
                     name='email'
                     type='email'
@@ -386,11 +369,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 </motion.div>
 
                 <Label>Phone Number</Label>
-                <motion.div
-                  variants={inputVariants}
-                  transition={{ delay: 0.4 }}
-                  whileFocus="focus"
-                >
+                <motion.div variants={inputVariants} transition={{ delay: 0.4 }} whileFocus='focus'>
                   <Input
                     name='phone'
                     type='tel'
@@ -404,11 +383,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
               <RightColumn>
                 <Label>In what location do you need the service?</Label>
-                <motion.div
-                  variants={inputVariants}
-                  transition={{ delay: 0.5 }}
-                  whileFocus="focus"
-                >
+                <motion.div variants={inputVariants} transition={{ delay: 0.5 }} whileFocus='focus'>
                   <SelectWrapper>
                     <Select
                       name='location'
@@ -436,11 +411,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 </motion.div>
 
                 <Label>What do you need repaired?</Label>
-                <motion.div
-                  variants={inputVariants}
-                  transition={{ delay: 0.6 }}
-                  whileFocus="focus"
-                >
+                <motion.div variants={inputVariants} transition={{ delay: 0.6 }} whileFocus='focus'>
                   <SelectWrapper>
                     <Select
                       name='appliance'
@@ -467,11 +438,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 </motion.div>
 
                 <Label>Brand of appliance</Label>
-                <motion.div
-                  variants={inputVariants}
-                  transition={{ delay: 0.7 }}
-                  whileFocus="focus"
-                >
+                <motion.div variants={inputVariants} transition={{ delay: 0.7 }} whileFocus='focus'>
                   <SelectWrapper>
                     <Select
                       name='brand'
@@ -506,11 +473,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             </TabletContainer>
 
             <Label>What type of power does this appliance use?</Label>
-            <motion.div
-              variants={inputVariants}
-              transition={{ delay: 0.8 }}
-              whileFocus="focus"
-            >
+            <motion.div variants={inputVariants} transition={{ delay: 0.8 }} whileFocus='focus'>
               <SelectWrapper>
                 <Select
                   name='power'
@@ -532,11 +495,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             </motion.div>
 
             <Label>Any details you'd like to add?</Label>
-            <motion.div
-              variants={inputVariants}
-              transition={{ delay: 0.9 }}
-              whileFocus="focus"
-            >
+            <motion.div variants={inputVariants} transition={{ delay: 0.9 }} whileFocus='focus'>
               <Textarea
                 name='details'
                 placeholder="Any details you'd like to add?"
@@ -546,9 +505,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
             </motion.div>
 
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.3 }}
               variants={titleVariants}
               transition={{ delay: 1.0 }}
             >
@@ -563,12 +522,12 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
             <motion.div
               variants={buttonVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: 1.1 }}
-              whileHover="hover"
-              whileTap="tap"
+              whileHover='hover'
+              whileTap='tap'
             >
               <ButtonSubmit type='submit'>Submit</ButtonSubmit>
             </motion.div>
@@ -816,6 +775,7 @@ const ButtonSubmit = styled.button`
   cursor: pointer;
   transition: all 0.4s ease-in-out;
   background: var(--blue-500);
+  width: 207px;
   &:hover {
     transform: scale(1.05);
     background: #79caf5ff;
@@ -861,7 +821,6 @@ const Container = styled.div`
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     margin-bottom: 240px;
-
   }
 
   @media screen and (min-width: 1440px) {

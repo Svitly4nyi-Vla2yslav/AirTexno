@@ -55,38 +55,38 @@ const RefrigeratorRepair: React.FC = () => {
   const shouldLoop = slides.length > slidesPerView;
 
   const { scrollY } = useScroll();
-  
+
   // Паралакс ефекти
   const titleY = useTransform(scrollY, [0, 500], [0, 80]);
   const titleScale = useTransform(scrollY, [0, 300], [1, 1.05]);
 
   // Унікальні анімаційні варіанти
   const frostEffect = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.8,
-      filter: "blur(20px) brightness(0.8)"
+      filter: 'blur(20px) brightness(0.8)',
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
-      filter: "blur(0px) brightness(1)",
+      filter: 'blur(0px) brightness(1)',
       transition: {
         duration: 1.2,
-        ease: backOut
-      }
-    }
+        ease: backOut,
+      },
+    },
   };
 
   const iceSlideAnimation = {
-    hidden: (index: number) => ({ 
+    hidden: (index: number) => ({
       opacity: 0,
       x: index % 2 === 0 ? -100 : 100,
       y: 50,
       rotate: index % 2 === 0 ? -5 : 5,
-      scale: 0.7
+      scale: 0.7,
     }),
-    visible: (index: number) => ({ 
+    visible: (index: number) => ({
       opacity: 1,
       x: 0,
       y: 0,
@@ -95,108 +95,108 @@ const RefrigeratorRepair: React.FC = () => {
       transition: {
         duration: 0.9,
         delay: index * 0.2,
-        ease: backOut
-      }
+        ease: backOut,
+      },
     }),
     hover: {
       y: -20,
       scale: 1.05,
       rotate: 0,
-      boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+      boxShadow: '0 30px 60px rgba(0,0,0,0.25)',
       transition: {
         duration: 0.4,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   const coolContentReveal = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 30,
-      scale: 0.9
+      scale: 0.9,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
         duration: 0.7,
         ease: easeOut,
-        delay: 0.3
-      }
+        delay: 0.3,
+      },
     },
     hover: {
       y: -5,
       transition: {
         duration: 0.2,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   const chillButtonEffect = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.8,
-      y: 20
+      y: 20,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       scale: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     hover: {
       scale: 1.15,
-      backgroundColor: "#2a8ad8",
-      boxShadow: "0 0 40px rgba(48, 152, 238, 0.6)",
+      backgroundColor: '#2a8ad8',
+      boxShadow: '0 0 40px rgba(48, 152, 238, 0.6)',
       transition: {
         duration: 0.3,
-        ease: easeOut
-      }
+        ease: easeOut,
+      },
     },
     tap: {
       scale: 0.95,
       transition: {
-        duration: 0.1
-      }
-    }
+        duration: 0.1,
+      },
+    },
   };
 
   const titleFreezeAnimation = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 50,
       scale: 0.8,
-      textShadow: "0 0 0px rgba(255, 255, 255, 0)"
+      textShadow: '0 0 0px rgba(255, 255, 255, 0)',
     },
-    visible: { 
+    visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       textShadow: [
-        "0 0 0px rgba(255, 255, 255, 0)",
-        "0 0 30px rgba(255, 255, 255, 0.8)",
-        "0 0 15px rgba(255, 255, 255, 0.4)"
+        '0 0 0px rgba(255, 255, 255, 0)',
+        '0 0 30px rgba(255, 255, 255, 0.8)',
+        '0 0 15px rgba(255, 255, 255, 0.4)',
       ],
       transition: {
         duration: 1.5,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   return (
     <Wrapper>
       <motion.div
         style={{ y: titleY, scale: titleScale }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.3 }}
         variants={titleFreezeAnimation}
       >
         <HeaderSection>
@@ -227,11 +227,11 @@ const RefrigeratorRepair: React.FC = () => {
             <SwiperSlide key={index}>
               <motion.div
                 custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
                 variants={iceSlideAnimation}
-                whileHover="hover"
+                whileHover='hover'
               >
                 <Card>
                   <motion.div
@@ -241,11 +241,8 @@ const RefrigeratorRepair: React.FC = () => {
                   >
                     <Image src={slide.img} alt={slide.title} />
                   </motion.div>
-                  
-                  <motion.div
-                    variants={coolContentReveal}
-                    whileHover="hover"
-                  >
+
+                  <motion.div variants={coolContentReveal} whileHover='hover'>
                     <CardText>
                       <CardTitle>{slide.title}</CardTitle>
                       <CardDescription>{slide.description}</CardDescription>
@@ -256,15 +253,15 @@ const RefrigeratorRepair: React.FC = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        
+
         <NavigationContainer>
           <motion.div
             variants={chillButtonEffect}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            whileHover="hover"
-            whileTap="tap"
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.3 }}
+            whileHover='hover'
+            whileTap='tap'
           >
             <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
               <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
@@ -281,12 +278,12 @@ const RefrigeratorRepair: React.FC = () => {
 
           <motion.div
             variants={chillButtonEffect}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.1 }}
-            whileHover="hover"
-            whileTap="tap"
+            whileHover='hover'
+            whileTap='tap'
           >
             <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
               <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>

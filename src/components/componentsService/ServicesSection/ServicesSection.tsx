@@ -191,7 +191,7 @@ const ServicesSection: React.FC = () => {
       <motion.div
         initial='hidden'
         whileInView='visible'
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         variants={textRevealAnimation}
       >
         <SmallText>Our Service</SmallText>
@@ -203,7 +203,7 @@ const ServicesSection: React.FC = () => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               variants={numberGlowAnimation}
             >
               <Number>01.</Number>
@@ -212,7 +212,7 @@ const ServicesSection: React.FC = () => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
               variants={textRevealAnimation}
               transition={{ delay: 0.2 }}
             >
@@ -223,7 +223,7 @@ const ServicesSection: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={textRevealAnimation}
             transition={{ delay: 0.3 }}
           >
@@ -233,7 +233,7 @@ const ServicesSection: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={textRevealAnimation}
             transition={{ delay: 0.4 }}
           >
@@ -245,14 +245,14 @@ const ServicesSection: React.FC = () => {
               <motion.div
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
                 variants={textRevealAnimation}
                 transition={{ delay: 0.5 }}
               >
                 <InfoText>Do you want to know more about our service?</InfoText>
               </motion.div>
 
-              <motion.div variants={buttonPulseAnimation}  whileTap='tap'>
+              <motion.div variants={buttonPulseAnimation} whileTap='tap'>
                 <Button to='/fridge#ap'>
                   <ButtonText>Learn more</ButtonText>
                 </Button>
@@ -266,7 +266,7 @@ const ServicesSection: React.FC = () => {
             style={{ y, rotate, scale }}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={image3DEffect}
             whileHover='hover'
           >
@@ -276,7 +276,7 @@ const ServicesSection: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={cardFlipAnimation}
             whileHover='hover'
           >
@@ -286,7 +286,7 @@ const ServicesSection: React.FC = () => {
                   <motion.div
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={textRevealAnimation}
                   >
                     <TitleCard>Preventive Care</TitleCard>
@@ -297,7 +297,7 @@ const ServicesSection: React.FC = () => {
                   <motion.div
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={textRevealAnimation}
                     transition={{ delay: 0.2 }}
                   >
@@ -339,14 +339,14 @@ const ServicesSection: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={floatingAnimation}
           >
             <InfoBlock>
               <motion.div
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
                 variants={textRevealAnimation}
               >
                 <InfoText>Do you want to know more about our service?</InfoText>
