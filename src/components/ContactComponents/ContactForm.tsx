@@ -310,7 +310,12 @@ export const ContactForm: React.FC = (): JSX.Element => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: easeOut }}
             >
-              <ImageContact src={Cont} alt='contact image' />
+              <ImageContact 
+                src={Cont} 
+                alt='contact image' 
+                loading='lazy'
+                decoding='async'
+              />
             </motion.div>
 
             <Label>What service do you need for your appliances?</Label>
@@ -377,6 +382,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                     value={formData.phone}
                     onChange={handleChange}
                     style={errors.phone ? { borderBottom: '1px solid red' } : {}}
+                    inputMode='tel'
                   />
                 </motion.div>
               </LeftColumn>
@@ -563,6 +569,7 @@ const FormContainer = styled.form`
   background: var(--blue-form);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  -webkit-tap-highlight-color: transparent;
 
   width: auto;
   max-width: 696px;
@@ -594,6 +601,7 @@ const Label = styled.label`
 const CheckboxGroup = styled.div`
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 
   @media screen and (min-width: 768px) {
   }
@@ -612,6 +620,7 @@ const RadioLabel = styled.label`
   border: 1px solid var(--black-500);
   border-radius: 8px;
   padding: 10px 16px;
+  -webkit-tap-highlight-color: transparent;
 
   @media screen and (min-width: 768px) {
   }
@@ -667,18 +676,21 @@ const CustomRadio = styled.span<{ checked: boolean }>`
 const Input = styled.input`
   width: 100%;
   padding: 12px;
-  font-size: 14px;
+  font-size: 16px; /* Збільшено для кращої читабельності на iOS */
   transition: all 0.3s ease;
   border: none;
   border-bottom: 1px solid var(--black-300);
   background: var(--blue-form);
   margin-bottom: 20px;
+  -webkit-appearance: none;
+  border-radius: 0;
 
   &:focus {
     border-color: var(--blue-form);
     outline: none;
     background: #bbe5f6ff;
   }
+
   @media screen and (min-width: 768px) {
   }
 
@@ -691,16 +703,18 @@ const SelectWrapper = styled.div`
   position: relative;
   width: 100%;
   margin-bottom: 20px;
+  
   &::after {
-    content: '🢗';
-    font-size: 24px;
+    content: '▼';
+    font-size: 14px;
     color: #242424;
     position: absolute;
     right: 16px;
-    top: 70%;
+    top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
   }
+
   @media screen and (min-width: 768px) {
   }
 
@@ -712,17 +726,18 @@ const SelectWrapper = styled.div`
 const Select = styled.select`
   width: 100%;
   padding: 12px;
-  padding-right: 40px; /* щоб стрілка не накладалась на текст */
+  padding-right: 40px;
   transition: all 0.3s ease;
   border: none;
   border-bottom: 1px solid var(--black-300);
   background: var(--blue-form);
-  font-size: 14px;
+  font-size: 16px; /* Збільшено для кращої читабельності на iOS */
   background: var(--blue-form);
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  transition: all 0.3s ease;
+  border-radius: 0;
+  cursor: pointer;
 
   &:focus {
     border-color: var(--blue-form);
@@ -745,9 +760,9 @@ const Textarea = styled.textarea`
   border: none;
   border-bottom: 1px solid var(--black-300);
   background: var(--blue-form);
-  font-size: 14px;
+  font-size: 16px; /* Збільшено для кращої читабельності на iOS */
   resize: vertical;
-  transition: all 0.3s ease;
+  border-radius: 0;
 
   &:focus {
     border-color: var(--blue-form);
@@ -764,7 +779,7 @@ const Textarea = styled.textarea`
 
 const ButtonSubmit = styled.button`
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 16px 20px; /* Збільшено для кращої доступності на тачскрінах */
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
@@ -776,6 +791,9 @@ const ButtonSubmit = styled.button`
   transition: all 0.4s ease-in-out;
   background: var(--blue-500);
   width: 207px;
+  min-height: 44px; /* Мінімальна висота для кращого тач-інтерфейсу */
+  -webkit-tap-highlight-color: transparent;
+
   &:hover {
     transform: scale(1.05);
     background: #79caf5ff;
@@ -784,6 +802,7 @@ const ButtonSubmit = styled.button`
   &:active {
     transform: scale(0.95);
   }
+
   @media screen and (min-width: 768px) {
   }
 
@@ -819,6 +838,8 @@ const Container = styled.div`
   overflow: auto;
   padding-top: 100px;
   margin-bottom: 40px;
+  -webkit-overflow-scrolling: touch; /* Плавна прокрутка на iOS */
+
   @media screen and (min-width: 768px) {
     margin-bottom: 240px;
   }
@@ -839,6 +860,7 @@ const Section = styled.div`
   align-items: flex-start;
   gap: 20px;
   width: 100%;
+  
   @media screen and (min-width: 768px) {
     width: 750px;
   }
@@ -857,6 +879,7 @@ const SubSection = styled.div`
   align-items: flex-start;
   gap: 12px;
   width: 100%;
+  
   @media screen and (min-width: 768px) {
   }
 
@@ -874,6 +897,7 @@ const Title = styled.p`
   span {
     color: var(--blue-500);
   }
+  
   @media screen and (min-width: 768px) {
     font-size: 72px;
   }
@@ -888,6 +912,7 @@ const Text = styled.p`
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
+  
   @media screen and (min-width: 768px) {
     font-size: 17px;
   }
@@ -899,7 +924,7 @@ const Text = styled.p`
 const Button = styled.button`
   cursor: pointer;
   display: flex;
-  padding: 10px 20px;
+  padding: 16px 20px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -908,6 +933,9 @@ const Button = styled.button`
   width: fit-content;
   background: transparent;
   margin-left: 20px;
+  min-height: 44px; /* Мінімальна висота для кращого тач-інтерфейсу */
+  -webkit-tap-highlight-color: transparent;
+
   &:hover {
     background-color: #242424;
     border-color: #242424;
@@ -926,6 +954,7 @@ const Button = styled.button`
     transform: translateY(0);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
+  
   @media screen and (min-width: 768px) {
   }
 
@@ -939,6 +968,7 @@ const ButtonText = styled.p`
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
+  
   @media screen and (min-width: 768px) {
   }
 
@@ -950,6 +980,7 @@ const Divider = styled.div`
   background: rgba(33, 33, 33, 0.3);
   width: 100%;
   height: 1px;
+  
   @media screen and (min-width: 768px) {
   }
 
@@ -963,6 +994,7 @@ const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 24px;
   width: 100%;
+  
   @media screen and (min-width: 768px) {
   }
 
@@ -976,6 +1008,7 @@ const InfoSection = styled.div<{ width?: string }>`
   align-items: flex-start;
   gap: 12px;
   width: ${props => props.width || '100%'};
+  
   @media screen and (min-width: 768px) {
   }
 
@@ -989,6 +1022,7 @@ const InfoTitle = styled.p`
   font-size: 24px;
   line-height: 90%;
   color: var(--black-500);
+  
   @media screen and (min-width: 768px) {
   }
 
@@ -1000,6 +1034,8 @@ export const ImageContact = styled.img`
   margin: 0 auto;
   width: 100%;
   max-width: 696px;
+  height: auto;
+  
   @media screen and (min-width: 768px) {
     width: 100%;
     max-width: 668px;

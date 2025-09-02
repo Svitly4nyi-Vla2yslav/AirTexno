@@ -332,8 +332,7 @@ const Avatar = styled.img`
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  loading: lazy;
-  decoding: async;
+  -moz-loading: lazy;
 `;
 
 const UserInfo = styled.div`
@@ -370,8 +369,7 @@ const ReviewImage = styled.img`
   height: 370px;
   border-radius: 4px;
   object-fit: cover;
-  loading: lazy;
-  decoding: async;
+  -moz-loading: lazy;
 `;
 
 const BackgroundTop = styled.div`

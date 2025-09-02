@@ -424,7 +424,7 @@ const Card = styled.div<{ $isTablet: boolean }>`
   flex-direction: column;
   gap: 16px;
   width: ${props => (props.$isTablet ? '100%' : '288px')};
-  height: 517px;
+  height: 557px;
   margin: 0 auto;
   cursor: pointer;
   border-radius: 10px;
