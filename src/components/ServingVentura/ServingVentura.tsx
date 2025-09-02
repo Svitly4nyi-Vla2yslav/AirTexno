@@ -1,4 +1,5 @@
 import React from 'react';
+import { backOut, easeOut, motion } from 'framer-motion';
 import BackgroundImage from '../../assets/icons/Service Area Section.webp';
 import {
   MainContainer,
@@ -200,22 +201,144 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
 ];
+
+// Анімаційні варіанти для заголовків
+const titleVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeOut
+    }
+  }
+};
+
+// Анімаційні варіанти для карток
+const cardVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 50,
+    scale: 0.9,
+    rotateX: -5
+  },
+  visible: (index: number) => ({ 
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.6,
+      delay: index * 0.1,
+      ease: easeOut
+    }
+  }),
+  hover: {
+    y: -10,
+    scale: 1.05,
+    rotateY: 5,
+    boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+    transition: {
+      duration: 0.3,
+      ease: easeOut
+    }
+  },
+  tap: {
+    scale: 0.98
+  }
+};
+
+// Анімаційні варіанти для іконок
+const iconVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.8,
+    rotate: -90
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.5,
+      ease: backOut
+    }
+  },
+  hover: {
+    scale: 1.2,
+    rotate: 5,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
+
 const ServingVentura: React.FC = () => {
   return (
     <MainContainer $bg={BackgroundImage}>
-      <TitleServing>Serving Ventura and Los Angeles Counties</TitleServing>
-      <SubtitleServing>
-        We provide expert service throughout the greater Los Angeles area.
-      </SubtitleServing>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={titleVariants}
+      >
+        <TitleServing>Serving Ventura and Los Angeles Counties</TitleServing>
+      </motion.div>
+      
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={titleVariants}
+        transition={{ delay: 0.1 }}
+      >
+        <SubtitleServing>
+          We provide expert service throughout the greater Los Angeles area.
+        </SubtitleServing>
+      </motion.div>
+      
       <Wrapper>
         {serviceAreas.map((area, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <IconWrapper>{area.icon}</IconWrapper>
-              <County>{area.county}</County>
-            </CardHeader>
-            <City>{area.city}</City>
-          </Card>
+          <motion.div
+            key={index}
+            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={cardVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <Card>
+              <CardHeader>
+                <motion.div
+                  variants={iconVariants}
+                  whileHover="hover"
+                >
+                  <IconWrapper>{area.icon}</IconWrapper>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.2 }}
+                >
+                  <County>{area.county}</County>
+                </motion.div>
+              </CardHeader>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 + 0.3 }}
+              >
+                <City>{area.city}</City>
+              </motion.div>
+            </Card>
+          </motion.div>
         ))}
       </Wrapper>
     </MainContainer>

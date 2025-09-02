@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { motion, easeOut, backOut } from 'framer-motion';
 import styled, { css, keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -51,40 +52,211 @@ const OurEquipment: React.FC = () => {
   const slidesPerView = isMobile ? 1 : isTablet ? 3 : isDesktop ? 4 : 4;
   const shouldLoop = slides.length > slidesPerView;
 
+  // Унікальні анімаційні варіанти
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      rotate: -5,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      rotate: 0,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: easeOut,
+        delay: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 100,
+      rotateX: -45,
+      scale: 0.8,
+      filter: "blur(10px)"
+    },
+    visible: (index: number) => ({ 
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: {
+        duration: 1.2,
+        ease: easeOut,
+        delay: index * 0.15
+      }
+    }),
+    hover: {
+      y: -20,
+      rotateY: 10,
+      scale: 1.05,
+      boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+      transition: {
+        duration: 0.4,
+        ease: easeOut
+      }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { 
+      opacity: 0,
+      scale: 1.3,
+      rotate: -5
+    },
+    visible: { 
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 1.5,
+        ease: easeOut
+      }
+    },
+    hover: {
+      scale: 1.1,
+      rotate: 2,
+      transition: {
+        duration: 0.6,
+        ease: easeOut
+      }
+    }
+  };
+
+  const textSlideVariants = {
+    hidden: { 
+      opacity: 0,
+      x: -50,
+      y: 30
+    },
+    visible: { 
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: backOut,
+        delay: 0.3
+      }
+    },
+    hover: {
+      x: 10,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.8,
+      rotate: -10
+    },
+    visible: { 
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 0.6,
+        ease: easeOut,
+        delay: 0.5
+      }
+    },
+    hover: {
+      scale: 1.15,
+      rotate: 5,
+      boxShadow: "0 0 25px rgba(48, 152, 238, 0.6)",
+      transition: {
+        duration: 0.3,
+        ease: easeOut
+      }
+    },
+    tap: {
+      scale: 0.95,
+      rotate: -2
+    }
+  };
+
   return (
     <Wrapper>
       <HeaderSection>
-        <Subtitle>Our Equipment</Subtitle>
-        <Title>
-          <span>Trusted</span> brands we service
-        </Title>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={titleVariants}
+        >
+          <Subtitle>Our Equipment</Subtitle>
+        </motion.div>
+        
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={titleVariants}
+          transition={{ delay: 0.1 }}
+        >
+          <Title>
+            <span>Trusted</span> brands we service
+          </Title>
+        </motion.div>
       </HeaderSection>
+      
       <Partners />
+      
       <NavigationContainer>
-        <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M15 18L9 12L15 6'
-              stroke='white'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </NavButton>
+        <motion.div
+          variants={buttonVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M15 18L9 12L15 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
+        </motion.div>
 
-        <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M9 18L15 12L9 6'
-              stroke='white'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </NavButton>
+        <motion.div
+          variants={buttonVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ delay: 0.1 }}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M9 18L15 12L9 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
+        </motion.div>
       </NavigationContainer>
+      
       <SwiperContainer $isTablet={isTablet}>
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -102,13 +274,33 @@ const OurEquipment: React.FC = () => {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <Card $isTablet={isTablet}>
-                <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
-                <CardText>
-                  <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
-                  <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
-                </CardText>
-              </Card>
+              <motion.div
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                whileHover="hover"
+              >
+                <Card $isTablet={isTablet}>
+                  <motion.div
+                    variants={imageVariants}
+                    whileHover="hover"
+                  >
+                    <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
+                  </motion.div>
+                  
+                  <motion.div
+                    variants={textSlideVariants}
+                    whileHover="hover"
+                  >
+                    <CardText>
+                      <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
+                      <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
+                    </CardText>
+                  </motion.div>
+                </Card>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -137,6 +329,7 @@ export const NavigationContainer = styled.div`
   width: 100%;
   justify-content: flex-end;
 `;
+
 const pulseAnimation = keyframes`
   0% {
     transform: scale(1);
@@ -166,6 +359,7 @@ const slideInRight = keyframes`
     transform: translateX(0);
   }
 `;
+
 export const NavButton = styled.button<{ bg: string }>`
   display: flex;
   align-items: center;
@@ -300,14 +494,9 @@ const Card = styled.div<{ $isTablet?: boolean }>`
   height: 485px;
   margin: 0 0px;
   position: relative;
-
-  /* @media screen and (min-width: 768px) {
-    max-width: ${props => (props.$isTablet ? '100%' : '288px')};
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 656px;
-  } */
+  cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 `;
 
 const Image = styled.img<{ $isTablet?: boolean }>`
@@ -315,14 +504,8 @@ const Image = styled.img<{ $isTablet?: boolean }>`
   width: 322px;
   height: 485px;
   object-fit: cover;
-
-  /* @media screen and (min-width: 768px) {
-    max-width: ${props => (props.$isTablet ? '100%' : '288px')};
-  }
-
-  @media screen and (min-width: 1440px) {
-  max-width: ${props => (props.$isTablet ? '100%' : '656px')};
-  } */
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
 `;
 
 const CardText = styled.div`
@@ -332,19 +515,23 @@ const CardText = styled.div`
   width: 200px;
   background-color: white;
   position: absolute;
-  display: flex;
   bottom: 10px;
-  padding: 8px;
-  left: 5px;
-  border-radius: 8px;
+  padding: 16px;
+  left: 10px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transform-style: preserve-3d;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
 `;
 
 const CardTitle = styled.p<{ $isTablet: boolean }>`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: ${props => (props.$isTablet ? '24px' : '32px')};
+  font-size: ${props => (props.$isTablet ? '24px' : '28px')};
   line-height: 90%;
   color: var(--black-500);
+  margin: 0;
 
   @media screen and (min-width: 1440px) {
     font-size: 32px;
@@ -357,6 +544,7 @@ const CardDescription = styled.p<{ $isTablet: boolean }>`
   font-size: ${props => (props.$isTablet ? '14px' : '16px')};
   line-height: 125%;
   color: var(--black-500);
+  margin: 0;
 
   @media screen and (min-width: 1440px) {
     font-size: 16px;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   Container,
   SectionTitle,
@@ -29,10 +30,50 @@ interface ValueItem {
 }
 
 const ValuesSection: React.FC = () => {
-
-      const createMarkup = (htmlContent: string) => {
+  const createMarkup = (htmlContent: string) => {
     return { __html: htmlContent };
   };
+
+  // Прості анімаційні варіанти
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (index: number) => ({ 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.7,
+        delay: index * 0.1
+      }
+    })
+  };
+
+  const numberVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.6, delay: 0.2 }
+    }
+  };
+
   const values: ValueItem[] = [
     {
       id: 1,
@@ -75,25 +116,66 @@ const ValuesSection: React.FC = () => {
   return (
     <Container>
       <div>
-        <SectionTitle>Our Values</SectionTitle>
-        <SectionSubtitle>Core <span>Principles</span>  That Drive Us</SectionSubtitle>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={titleVariants}
+        >
+          <SectionTitle>Our Values</SectionTitle>
+        </motion.div>
+        
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={titleVariants}
+          transition={{ delay: 0.1 }}
+        >
+          <SectionSubtitle>Core <span>Principles</span> That Drive Us</SectionSubtitle>
+        </motion.div>
       </div>
 
       <ValuesGrid>
-        {values.map(value => (
-          <ValueCard key={value.id}>
-            <Divider />
-            <CardContent>
-              <NumberContainer>
-                <Number>{value.number}</Number>
-              </NumberContainer>
-              <TextContent>
-                <Title dangerouslySetInnerHTML={createMarkup(value.title)} />
-                <Description>{value.description}</Description>
-              </TextContent>
-              <ValueImage src={value.image} alt={value.alt} loading='lazy' />
-            </CardContent>
-          </ValueCard>
+        {values.map((value, index) => (
+          <motion.div
+            key={value.id}
+            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={cardVariants}
+          >
+            <ValueCard>
+              <Divider />
+              <CardContent>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={numberVariants}
+                >
+                  <NumberContainer>
+                    <Number>{value.number}</Number>
+                  </NumberContainer>
+                </motion.div>
+                
+                <TextContent>
+                  <Title dangerouslySetInnerHTML={createMarkup(value.title)} />
+                  <Description>{value.description}</Description>
+                </TextContent>
+                
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={imageVariants}
+                >
+                  <ValueImage src={value.image} alt={value.alt} loading='lazy' />
+                </motion.div>
+              </CardContent>
+            </ValueCard>
+          </motion.div>
         ))}
       </ValuesGrid>
     </Container>

@@ -62,7 +62,7 @@ export const Title = styled.h3`
   }
 
   @media screen and (min-width: 1440px) {
-    max-width: 50%;
+           max-width: 100vh;
   }
 `;
 

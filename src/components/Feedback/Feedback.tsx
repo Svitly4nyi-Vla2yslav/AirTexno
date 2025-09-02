@@ -1,5 +1,5 @@
-// ReviewCardContainer.tsx
 import React from 'react';
+import { motion, easeOut } from 'framer-motion';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -51,7 +51,7 @@ const reviews: Review[] = [
   {
     avatar: avatarWendy,
     name: 'Wendy Bailey',
-    time: 'месяц назад',
+    time: 'a week ago',
     text: `I've had Sunny from Airtexno come to my house twice over the last
       year. Each time he has arrived on time, has diagnosed the issues
       with my cooktop and ovens correctly and has resolved my problems
@@ -96,7 +96,7 @@ const reviews: Review[] = [
   {
     avatar: avatarWendy,
     name: 'Wendy Bailey',
-    time: 'месяц назад',
+    time: 'a week ago',
     text: `I've had Sunny from Airtexno come to my house twice over the last
       year. Each time he has arrived on time, has diagnosed the issues
       with my cooktop and ovens correctly and has resolved my problems
@@ -107,7 +107,7 @@ const reviews: Review[] = [
   {
     avatar: avatarElizabeth,
     name: 'Elizabeth Castorena',
-    time: '2 месяца назад',
+    time: 'a week ago',
     text: `Replaced a refrigerator door that had been dented. Did an
       excellent job hooking up the ice maker, water dispenser, etc. from
       new door into the refrigerator. Sunny is extremely knowledgeable
@@ -115,6 +115,98 @@ const reviews: Review[] = [
     image: reviewImageElizabeth,
   },
 ];
+
+// Анімаційні варіанти для заголовків
+const titleVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeOut
+    }
+  }
+};
+
+// Анімаційні варіанти для карток
+const cardVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 50,
+    scale: 0.95,
+    rotateX: -5
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.7,
+      ease: easeOut
+    }
+  },
+  hover: {
+    y: -5,
+    scale: 1.02,
+    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+    transition: {
+      duration: 0.3,
+      ease: easeOut
+    }
+  }
+};
+
+// Анімаційні варіанти для аватарів
+const avatarVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.8,
+    rotate: -10
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.5,
+      ease: easeOut
+    }
+  },
+  hover: {
+    scale: 1.1,
+    rotate: 5,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
+
+// Анімаційні варіанти для зображень
+const imageVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 1.1,
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: easeOut
+    }
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.4
+    }
+  }
+};
 
 export const TextContainer = styled.div`
   padding: 0px 16px;
@@ -148,9 +240,6 @@ export const TitleFeedback = styled.h2`
       font-size: 72px;
     }
   }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const TextFeedback = styled.p`
@@ -165,9 +254,6 @@ export const TextFeedback = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 17px;
   }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 // Новий контейнер для двох свайперів на планшетах
@@ -181,7 +267,7 @@ const SwipersContainer = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     gap: 20px;
-    height: 800px; /* Збільшуємо висоту для двох колонок */
+    height: 800px;
   }
 `;
 
@@ -193,7 +279,7 @@ const SingleSwiperContainer = styled.div<{ $isVisible?: boolean }>`
   display: ${props => (props.$isVisible ? 'block' : 'none')};
 
   @media screen and (min-width: 768px) {
-    width: 50%; /* Два свайпери займають по половині ширини */
+    width: 50%;
     display: block;
   }
 `;
@@ -205,7 +291,7 @@ const Card = styled.div`
   padding: 20px;
   background-color: #f5faff;
   border-radius: 8px;
-  height: 600px; /* Фіксована висота картки */
+  height: 600px;
 `;
 
 const Header = styled.div`
@@ -286,16 +372,29 @@ const ReviewCardContainer: React.FC = () => {
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
 
-  // Видаляємо обробник touchMove, оскільки вимикаємо взаємодію
-  // const handleTouchMove = (e: TouchEvent) => { ... };
-
   return (
     <div>
       <TextContainer>
-        <TextFeedback>Your Feedback Matters</TextFeedback>
-        <TitleFeedback>
-          Discover why clients <span> trust </span> our repairs
-        </TitleFeedback>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={titleVariants}
+        >
+          <TextFeedback>Your Feedback Matters</TextFeedback>
+        </motion.div>
+        
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={titleVariants}
+          transition={{ delay: 0.1 }}
+        >
+          <TitleFeedback>
+            Discover why clients <span> trust </span> our repairs
+          </TitleFeedback>
+        </motion.div>
       </TextContainer>
 
       <SwipersContainer ref={containerRef}>
@@ -316,7 +415,6 @@ const ReviewCardContainer: React.FC = () => {
             speed={4000}
             loop={true}
             modules={[Autoplay]}
-            // ВИМКНЕННЯ ВСІХ ФОРМ ВЗАЄМОДІЇ
             allowTouchMove={false}
             simulateTouch={false}
             touchRatio={0}
@@ -331,17 +429,53 @@ const ReviewCardContainer: React.FC = () => {
           >
             {reviews.map((review, index) => (
               <SwiperSlide key={`top-${index}`}>
-                <Card>
-                  <Header>
-                    <Avatar src={review.avatar} alt={review.name} />
-                    <UserInfo>
-                      <Name>{review.name}</Name>
-                      <Time>{review.time}</Time>
-                    </UserInfo>
-                  </Header>
-                  <Text>{review.text}</Text>
-                  <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
-                </Card>
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
+                  whileHover="hover"
+                >
+                  <Card>
+                    <Header>
+                      <motion.div
+                        variants={avatarVariants}
+                        whileHover="hover"
+                      >
+                        <Avatar src={review.avatar} alt={review.name} />
+                      </motion.div>
+                      <UserInfo>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.1 }}
+                        >
+                          <Name>{review.name}</Name>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          <Time>{review.time}</Time>
+                        </motion.div>
+                      </UserInfo>
+                    </Header>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <Text>{review.text}</Text>
+                    </motion.div>
+                    <motion.div
+                      variants={imageVariants}
+                      whileHover="hover"
+                    >
+                      <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
+                    </motion.div>
+                  </Card>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -365,7 +499,6 @@ const ReviewCardContainer: React.FC = () => {
             speed={2000}
             loop={true}
             modules={[Autoplay]}
-            // ВИМКНЕННЯ ВСІХ ФОРМ ВЗАЄМОДІЇ
             allowTouchMove={false}
             simulateTouch={false}
             touchRatio={0}
@@ -381,17 +514,53 @@ const ReviewCardContainer: React.FC = () => {
           >
             {reviews.map((review, index) => (
               <SwiperSlide key={`bottom-${index}`}>
-                <Card>
-                  <Header>
-                    <Avatar src={review.avatar} alt={review.name} />
-                    <UserInfo>
-                      <Name>{review.name}</Name>
-                      <Time>{review.time}</Time>
-                    </UserInfo>
-                  </Header>
-                  <Text>{review.text}</Text>
-                  <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
-                </Card>
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
+                  whileHover="hover"
+                >
+                  <Card>
+                    <Header>
+                      <motion.div
+                        variants={avatarVariants}
+                        whileHover="hover"
+                      >
+                        <Avatar src={review.avatar} alt={review.name} />
+                      </motion.div>
+                      <UserInfo>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.1 }}
+                        >
+                          <Name>{review.name}</Name>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          <Time>{review.time}</Time>
+                        </motion.div>
+                      </UserInfo>
+                    </Header>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <Text>{review.text}</Text>
+                    </motion.div>
+                    <motion.div
+                      variants={imageVariants}
+                      whileHover="hover"
+                    >
+                      <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
+                    </motion.div>
+                  </Card>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -414,7 +583,6 @@ const ReviewCardContainer: React.FC = () => {
               speed={6000}
               loop={true}
               modules={[Autoplay]}
-              // ВИМКНЕННЯ ВСІХ ФОРМ ВЗАЄМОДІЇ
               allowTouchMove={false}
               simulateTouch={false}
               touchRatio={0}
@@ -429,17 +597,53 @@ const ReviewCardContainer: React.FC = () => {
             >
               {reviews.map((review, index) => (
                 <SwiperSlide key={`desktop-${index}`}>
-                  <Card>
-                    <Header>
-                      <Avatar src={review.avatar} alt={review.name} />
-                      <UserInfo>
-                        <Name>{review.name}</Name>
-                        <Time>{review.time}</Time>
-                      </UserInfo>
-                    </Header>
-                    <Text>{review.text}</Text>
-                    <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
-                  </Card>
+                  <motion.div
+                    variants={cardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, amount: 0.2 }}
+                    whileHover="hover"
+                  >
+                    <Card>
+                      <Header>
+                        <motion.div
+                          variants={avatarVariants}
+                          whileHover="hover"
+                        >
+                          <Avatar src={review.avatar} alt={review.name} />
+                        </motion.div>
+                        <UserInfo>
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 }}
+                          >
+                            <Name>{review.name}</Name>
+                          </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                          >
+                            <Time>{review.time}</Time>
+                          </motion.div>
+                        </UserInfo>
+                      </Header>
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        <Text>{review.text}</Text>
+                      </motion.div>
+                      <motion.div
+                        variants={imageVariants}
+                        whileHover="hover"
+                      >
+                        <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
+                      </motion.div>
+                    </Card>
+                  </motion.div>
                 </SwiperSlide>
               ))}
             </Swiper>

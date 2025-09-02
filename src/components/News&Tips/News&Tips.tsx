@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { motion, easeOut } from 'framer-motion';
 import styled, { css, keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -33,6 +34,89 @@ const slides = [
   },
 ];
 
+// Анімаційні варіанти для заголовків
+const titleVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeOut
+    }
+  }
+};
+
+// Анімаційні варіанти для карток
+const cardVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 50,
+    scale: 0.95,
+    rotateX: -5
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.7,
+      ease: easeOut
+    }
+  },
+  hover: {
+    y: -10,
+    scale: 1.02,
+    boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+    transition: {
+      duration: 0.3,
+      ease: easeOut
+    }
+  }
+};
+
+// Анімаційні варіанти для зображень
+const imageVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 1.1,
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: easeOut
+    }
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.4
+    }
+  }
+};
+
+// Анімаційні варіанти для тексту
+const textVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 20,
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: easeOut
+    }
+  }
+};
+
 const NewsAndTips: React.FC = () => {
   const swiperRef = useRef<any>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -47,36 +131,66 @@ const NewsAndTips: React.FC = () => {
   return (
     <Wrapper>
       <HeaderSection>
-        <Subtitle>NEWS &amp; TIPS</Subtitle>
-        <Title>
-          APPLIANCE <span>ADVICE</span> REPAIR <span>TIPS</span> BLOG
-        </Title>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={titleVariants}
+        >
+          <Subtitle>NEWS &amp; TIPS</Subtitle>
+        </motion.div>
+        
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={titleVariants}
+          transition={{ delay: 0.1 }}
+        >
+          <Title>
+            APPLIANCE <span>ADVICE</span> REPAIR <span>TIPS</span> BLOG
+          </Title>
+        </motion.div>
       </HeaderSection>
+      
       <NavigationContainer>
-        <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M15 18L9 12L15 6'
-              stroke='white'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </NavButton>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+        >
+          <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M15 18L9 12L15 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
+        </motion.div>
 
-        <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M9 18L15 12L9 6'
-              stroke='white'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </NavButton>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2, delay: 0.1 }}
+        >
+          <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M9 18L15 12L9 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
+        </motion.div>
       </NavigationContainer>
+      
       <SwiperContainer $isTablet={isTablet}>
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -94,13 +208,37 @@ const NewsAndTips: React.FC = () => {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <Card $isTablet={isTablet}>
-                <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
-                <CardText>
-                  <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
-                  <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
-                </CardText>
-              </Card>
+              <motion.div
+                variants={cardVariants}
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card $isTablet={isTablet}>
+                  <motion.div
+                    variants={imageVariants}
+                    whileHover="hover"
+                  >
+                    <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
+                  </motion.div>
+                  
+                  <CardText>
+                    <motion.div
+                      variants={textVariants}
+                      transition={{ delay: index * 0.1 + 0.1 }}
+                    >
+                      <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
+                    </motion.div>
+                    
+                    <motion.div
+                      variants={textVariants}
+                      transition={{ delay: index * 0.1 + 0.2 }}
+                    >
+                      <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
+                    </motion.div>
+                  </CardText>
+                </Card>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -293,6 +431,8 @@ const Card = styled.div<{ $isTablet: boolean }>`
   width: ${props => props.$isTablet ? '100%' : '288px'};
   height: 517px;
   margin: 0 auto;
+  cursor: pointer;
+  border-radius: 10px;
 
   @media screen and (min-width: 768px) {
     max-width: ${props => props.$isTablet ? '100%' : '288px'};
@@ -322,6 +462,8 @@ const CardText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 10px;
+   border-radius: 10px;
 `;
 
 const CardTitle = styled.p<{ $isTablet: boolean }>`

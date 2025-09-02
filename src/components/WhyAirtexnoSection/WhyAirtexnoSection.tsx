@@ -1,4 +1,5 @@
 import React from 'react';
+import { easeOut, motion } from 'framer-motion';
 import {
   Blue,
   Header,
@@ -64,14 +65,63 @@ const WhyAirtexnoSection: React.FC = () => {
   const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 3;
   const shouldLoop = slides.length > slidesPerView;
 
+  // Анімаційні варіанти для тексту
+  const textVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: easeOut
+      }
+    }
+  };
+
+  // Анімаційні варіанти для карток
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.95,
+    },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: easeOut
+      }
+    }
+  };
+
   return (
     <Section>
       <TextWrapper>
-        <SubTitle>why airtexno</SubTitle>
-        <Title>
-          Same-Day Appliance Repair <Blue>You Can Rely On</Blue>{' '}
-        </Title>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={textVariants}
+        >
+          <SubTitle>why airtexno</SubTitle>
+        </motion.div>
+        
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={textVariants}
+          transition={{ delay: 0.1 }}
+        >
+          <Title>
+            Same-Day Appliance Repair <Blue>You Can Rely On</Blue>{' '}
+          </Title>
+        </motion.div>
       </TextWrapper>
+      
       <ImageSection>
         <SwiperContainer $isLargeDesktop={isLargeDesktop}>
           <Swiper
@@ -95,26 +145,54 @@ const WhyAirtexnoSection: React.FC = () => {
                 <CenteredSlideContainer
                   style={{ backgroundImage: `url(${slide.image})` }}
                   $isLargeDesktop={isLargeDesktop}
-                  className="slide-container" // Додаємо клас для стилізації
+                  className="slide-container"
                 >
                   {(slide.title || slide.text || slide.icon) && (
-                    <div className='overlay'>
+                    <motion.div 
+                      className='overlay'
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, amount: 0.3 }}
+                      variants={cardVariants}
+                      whileHover={{
+                        scale: 1.02,
+                        transition: { duration: 0.3 }
+                      }}
+                    >
                       {(slide.title || slide.icon) && (
                         <Header>
-                          {slide.title && <BlueCard>{slide.title}</BlueCard>}
+                          {slide.title && (
+                            <motion.div
+                              variants={textVariants}
+                            >
+                              <BlueCard>{slide.title}</BlueCard>
+                            </motion.div>
+                          )}
                           {slide.icon && (
-                            <IconWrapper className="icon-wrapper">
-                              <img 
-                                src={slide.icon} 
-                                alt={slide.title || 'icon'} 
-                                className="icon-image"
-                              />
-                            </IconWrapper>
+                            <motion.div
+                              variants={textVariants}
+                              transition={{ delay: 0.2 }}
+                            >
+                              <IconWrapper className="icon-wrapper">
+                                <img 
+                                  src={slide.icon} 
+                                  alt={slide.title || 'icon'} 
+                                  className="icon-image"
+                                />
+                              </IconWrapper>
+                            </motion.div>
                           )}
                         </Header>
                       )}
-                      {slide.text && <Text className="slide-text">{slide.text}</Text>}
-                    </div>
+                      {slide.text && (
+                        <motion.div
+                          variants={textVariants}
+                          transition={{ delay: 0.3 }}
+                        >
+                          <Text className="slide-text">{slide.text}</Text>
+                        </motion.div>
+                      )}
+                    </motion.div>
                   )}
                 </CenteredSlideContainer>
               </SwiperSlide>

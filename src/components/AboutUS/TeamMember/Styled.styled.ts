@@ -172,7 +172,6 @@ export const Container = styled.div`
   align-items: flex-start;
   gap: 8px;
   border-radius: 12px;
-  overflow: auto;
   margin: 0 auto;
   /* margin-bottom: 44px; */
   flex-direction: column;

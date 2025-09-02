@@ -1,4 +1,5 @@
 import React from 'react';
+import { easeOut, motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
@@ -51,138 +52,95 @@ const Partners: React.FC = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
 
   const partners = [
-    {
-      id: 1,
-      imageUrl: i1,
-    },
-    {
-      id: 2,
-      imageUrl: i2,
-    },
-    {
-      id: 3,
-      imageUrl: i3,
-    },
-    {
-      id: 4,
-      imageUrl: i4,
-    },
-    {
-      id: 5,
-      imageUrl: i5,
-    },
-    {
-      id: 6,
-      imageUrl: i6,
-    },
-    {
-      id: 7,
-      imageUrl: i7,
-    },
-    {
-      id: 8,
-      imageUrl: i8,
-    },
-    {
-      id: 9,
-      imageUrl: i9,
-    },
-    {
-      id: 10,
-      imageUrl: i10,
-    },
-    {
-      id: 11,
-      imageUrl: i11,
-    },
-    {
-      id: 12,
-      imageUrl: i12,
-    },
-    {
-      id: 13,
-      imageUrl: i13,
-    },
-    {
-      id: 14,
-      imageUrl: i14,
-    },
-    {
-      id: 15,
-      imageUrl: i15,
-    },
-    {
-      id: 16,
-      imageUrl: i16,
-    },
-    {
-      id: 17,
-      imageUrl: i17,
-    },
-    {
-      id: 18,
-      imageUrl: i18,
-    },
-    {
-      id: 19,
-      imageUrl: i19,
-    },
-    {
-      id: 20,
-      imageUrl: i20,
-    },
-    {
-      id: 21,
-      imageUrl: i21,
-    },
-    {
-      id: 22,
-      imageUrl: i22,
-    },
-    {
-      id: 23,
-      imageUrl: i23,
-    },
-    {
-      id: 24,
-      imageUrl: i24,
-    },
-    {
-      id: 25,
-      imageUrl: i25,
-    },
-    {
-      id: 26,
-      imageUrl: i26,
-    },
-    {
-      id: 27,
-      imageUrl: i27,
-    },
-    {
-      id: 28,
-      imageUrl: i28,
-    },
-    {
-      id: 29,
-      imageUrl: i29,
-    },
-    {
-      id: 30,
-      imageUrl: i30,
-    },
-    {
-      id: 31,
-      imageUrl: i31,
-    },
+    { id: 1, imageUrl: i1 },
+    { id: 2, imageUrl: i2 },
+    { id: 3, imageUrl: i3 },
+    { id: 4, imageUrl: i4 },
+    { id: 5, imageUrl: i5 },
+    { id: 6, imageUrl: i6 },
+    { id: 7, imageUrl: i7 },
+    { id: 8, imageUrl: i8 },
+    { id: 9, imageUrl: i9 },
+    { id: 10, imageUrl: i10 },
+    { id: 11, imageUrl: i11 },
+    { id: 12, imageUrl: i12 },
+    { id: 13, imageUrl: i13 },
+    { id: 14, imageUrl: i14 },
+    { id: 15, imageUrl: i15 },
+    { id: 16, imageUrl: i16 },
+    { id: 17, imageUrl: i17 },
+    { id: 18, imageUrl: i18 },
+    { id: 19, imageUrl: i19 },
+    { id: 20, imageUrl: i20 },
+    { id: 21, imageUrl: i21 },
+    { id: 22, imageUrl: i22 },
+    { id: 23, imageUrl: i23 },
+    { id: 24, imageUrl: i24 },
+    { id: 25, imageUrl: i25 },
+    { id: 26, imageUrl: i26 },
+    { id: 27, imageUrl: i27 },
+    { id: 28, imageUrl: i28 },
+    { id: 29, imageUrl: i29 },
+    { id: 30, imageUrl: i30 },
+    { id: 31, imageUrl: i31 },
   ];
 
   const slidesPerView = isMobile ? 2 : isTablet ? 4 : isDesktop ? 5 : 5;
   const shouldLoop = partners.length > slidesPerView;
 
+  // Анімаційні варіанти для заголовка
+  const titleVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: easeOut
+      }
+    }
+  };
+
+  // Анімаційні варіанти для логотипів
+  const logoVariants = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.8,
+      y: 20
+    },
+    visible: { 
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: easeOut
+      }
+    },
+    hover: {
+      scale: 1.1,
+      y: -5,
+      transition: {
+        duration: 0.3,
+        ease: easeOut
+      }
+    }
+  };
+
   return (
     <div>
-      <TitlePartner>Quality Service for Major & Luxury Brands</TitlePartner>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={titleVariants}
+      >
+        <TitlePartner>Quality Service for Major & Luxury Brands</TitlePartner>
+      </motion.div>
+      
       <SwiperContainer>
         <ShadowLeft />
         <Swiper
@@ -190,17 +148,17 @@ const Partners: React.FC = () => {
           slidesPerView={slidesPerView}
           spaceBetween={20}
           autoplay={{
-            delay: 0, // Збільшено затримку для нормальної прокрутки
+            delay: 0,
             disableOnInteraction: false,
-            waitForTransition: true, // Додано для плавності
-            pauseOnMouseEnter: true, // Додано для зупинки при наведенні
+            waitForTransition: true,
+            pauseOnMouseEnter: true,
           }}
-          speed={4000} // Зменшено швидкість для плавності
+          speed={4000}
           modules={[Autoplay]}
           className="mySwiper"
           style={{ width: '100%', paddingBottom: '20px' }}
         >
-          {partners.map(partner => (
+          {partners.map((partner, index) => (
             <SwiperSlide
               key={partner.id}
               style={{
@@ -211,44 +169,44 @@ const Partners: React.FC = () => {
                 paddingTop: 10,
               }}
             >
-              {partner.imageUrl ? (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={logoVariants}
+                transition={{ delay: index * 0.05 }}
+                whileHover="hover"
+              >
                 <Image
                   src={partner.imageUrl}
                   alt={`Partner ${partner.id}`}
                   loading="lazy"
                 />
-              ) : (
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
-              )}
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
 
         {/* Другий слайдер - відображається тільки на мобільних */}
-
         <Swiper
           loop={shouldLoop}
           slidesPerView={slidesPerView}
           spaceBetween={20}
           autoplay={{
-            delay: 0, // Збільшено затримку для нормальної прокрутки
+            delay: 0,
             disableOnInteraction: false,
-            waitForTransition: true, // Додано для плавності
+            waitForTransition: true,
             pauseOnMouseEnter: true,
-            reverseDirection: true, // Додано для реверсування напрямку
+            reverseDirection: true,
           }}
-          speed={4000} // Зменшено швидкість для плавності
+          speed={4000}
           modules={[Autoplay]}
           className="mySwiper"
           style={{ width: '100%' }}
         >
-          {partners.map(partner => (
+          {partners.map((partner, index) => (
             <SwiperSlide
-              key={partner.id}
+              key={partner.id + 100} // Додаємо унікальний ключ
               style={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -257,24 +215,25 @@ const Partners: React.FC = () => {
                 paddingTop: 10,
               }}
             >
-              {partner.imageUrl ? (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={logoVariants}
+                transition={{ delay: index * 0.05 + 0.1 }}
+                whileHover="hover"
+              >
                 <Image
                   src={partner.imageUrl}
                   alt={`Partner ${partner.id}`}
                   loading="lazy"
                 />
-              ) : (
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
-              )}
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
         <ShadowRight />
-      </SwiperContainer>{' '}
+      </SwiperContainer>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, easeOut, backOut } from 'framer-motion';
 import BackgroundImage from '../../../assets/icons/ProccessSection.png';
 import {
   MainContainer,
@@ -104,20 +105,183 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
 ];
+
+
+
+const iconSpinAnimation = {
+  hidden: { 
+    opacity: 0,
+    scale: 0,
+    rotate: -180
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.8,
+      ease: backOut,
+      delay: 0.3
+    }
+  },
+  hover: {
+    rotate: 360,
+    scale: 1.2,
+    transition: {
+      duration: 0.6,
+      ease: easeOut
+    }
+  }
+};
+
+const titleWaveAnimation = {
+  hidden: { 
+    opacity: 0,
+    y: 50,
+    skewY: 5
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    skewY: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeOut
+    }
+  }
+};
+
+const cardStaggerAnimation = {
+  hidden: { 
+    opacity: 0,
+    x: -100,
+    scale: 0.9
+  },
+  visible: (index: number) => ({ 
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      delay: index * 0.2,
+      ease: easeOut
+    }
+  }),
+  hover: {
+    y: -15,
+    scale: 1.05,
+    rotateY: 10,
+    boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
+    transition: {
+      duration: 0.4,
+      ease: easeOut
+    }
+  }
+};
+
+const textFlowAnimation = {
+  hidden: { 
+    opacity: 0,
+    x: 50,
+    filter: "blur(10px)"
+  },
+  visible: { 
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.9,
+      ease: easeOut,
+      delay: 0.5
+    }
+  }
+};
+
+const pulseGlowAnimation = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.5,
+    textShadow: "0 0 0px rgba(48, 152, 238, 0)"
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    textShadow: [
+      "0 0 0px rgba(48, 152, 238, 0)",
+      "0 0 20px rgba(48, 152, 238, 0.8)",
+      "0 0 10px rgba(48, 152, 238, 0.4)"
+    ],
+    transition: {
+      duration: 1.5,
+      ease: easeOut,
+      delay: 0.2
+    }
+  }
+};
+
 const OurProcess: React.FC = () => {
   return (
     <MainContainer $bg={BackgroundImage}>
-      <TitleServing>Our Process</TitleServing>
-      <SubtitleServing>Quick steps to fix appliances reliably</SubtitleServing>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={titleWaveAnimation}
+      >
+        <TitleServing>Our Process</TitleServing>
+      </motion.div>
+      
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={textFlowAnimation}
+      >
+        <SubtitleServing>Quick steps to fix appliances reliably</SubtitleServing>
+      </motion.div>
+      
       <Wrapper>
         {serviceAreas.map((area, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <IconWrapper>{area.icon}</IconWrapper>
-            </CardHeader>
-            <County>{area.title}</County>
-            <City>{area.text}</City>
-          </Card>
+          <motion.div
+            key={index}
+            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={cardStaggerAnimation}
+            whileHover="hover"
+          >
+            <Card>
+              <CardHeader>
+                <motion.div
+                  variants={iconSpinAnimation}
+                  whileHover="hover"
+                >
+                  <IconWrapper>{area.icon}</IconWrapper>
+                </motion.div>
+              </CardHeader>
+              
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={pulseGlowAnimation}
+                transition={{ delay: index * 0.2 + 0.3 }}
+              >
+                <County>{area.title}</County>
+              </motion.div>
+              
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={textFlowAnimation}
+                transition={{ delay: index * 0.2 + 0.4 }}
+              >
+                <City>{area.text}</City>
+              </motion.div>
+            </Card>
+          </motion.div>
         ))}
       </Wrapper>
     </MainContainer>

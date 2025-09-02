@@ -114,7 +114,7 @@ export const CenteredSlideContainer = styled.div`
   }
   @media screen and (min-width: 1440px) {
     width: 389px;
-    margin-left: 17px;
+    margin-left: -17px;
   }
 `;
 
@@ -229,6 +229,7 @@ export const TeamImage = styled.img`
     bottom: 28%;
     width: 437px;
     height: 678px;
+    margin-top: -49%;
   }
 `;
 

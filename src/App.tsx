@@ -4,12 +4,12 @@ import Home from './pages/HomePage/HomePage';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Contact from './pages/Contact/Contact';
 import Info from './pages/Info/Info';
-import { Time } from './components/ScrollToTop';
+// import { Time } from './components/ScrollToTop';
 import { useEffect } from 'react';
 import Service from './pages/ServicePages/Service';
 import ArticleDetail from './components/NewsTips/NewsSection';
 import Refrigeration from './pages/Refrigeration/Refrigeration';
-
+import { AnimatePresence } from 'framer-motion';
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   return <div style={{ width: '100%', position: 'relative' }}>{children}</div>;
 };
@@ -30,7 +30,7 @@ export const App: React.FC = () => {
   const location = useLocation();
 
   return (
-    <>
+    <> <AnimatePresence mode='wait'>
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<Navigate to='/home' />} />
         <Route path='/' element={<Layout />}>
@@ -150,7 +150,8 @@ export const App: React.FC = () => {
           />
         </Route>
       </Routes>
-      <Time />
+      {/* <Time /> */}
+       </AnimatePresence>
     </>
   );
 };
