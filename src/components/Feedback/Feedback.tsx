@@ -256,13 +256,14 @@ export const TextFeedback = styled.p`
   }
 `;
 
-// Новий контейнер для двох свайперів на планшетах
+// Оновлений контейнер для покращеної мобільної взаємодії
 const SwipersContainer = styled.div`
   position: relative;
   width: 100%;
   height: 684px;
   overflow: hidden;
   margin-bottom: 0px;
+  -webkit-overflow-scrolling: touch; /* Плавна прокрутка для iOS */
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -278,6 +279,18 @@ const SingleSwiperContainer = styled.div<{ $isVisible?: boolean }>`
   overflow: hidden;
   display: ${props => (props.$isVisible ? 'block' : 'none')};
 
+  /* Заборонити виділення тексту на тач-пристроях */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* Заборонити масштабування */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
   @media screen and (min-width: 768px) {
     width: 50%;
     display: block;
@@ -292,6 +305,12 @@ const Card = styled.div`
   background-color: #f5faff;
   border-radius: 8px;
   height: 600px;
+  
+  /* Оптимізація для мобільних пристроїв */
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0); /* Апаратне прискорення */
+  backface-visibility: hidden;
+  perspective: 1000px;
 `;
 
 const Header = styled.div`
@@ -304,6 +323,10 @@ const Avatar = styled.img`
   width: 56px;
   height: 56px;
   border-radius: 50%;
+  
+  /* Оптимізація завантаження зображень */
+  loading: lazy;
+  decoding: async;
 `;
 
 const UserInfo = styled.div`
@@ -340,6 +363,11 @@ const ReviewImage = styled.img`
   height: 370px;
   border-radius: 4px;
   object-fit: cover;
+  
+  /* Оптимізація завантаження зображень */
+  loading: lazy;
+  decoding: async;
+  importance: low;
 `;
 
 const BackgroundTop = styled.div`
@@ -371,6 +399,22 @@ const ReviewCardContainer: React.FC = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
+
+  // Додаємо обробник для запобігання скроллу на мобільних пристроях
+  React.useEffect(() => {
+    const preventScroll = (e: TouchEvent) => {
+      if (containerRef.current?.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    };
+
+    // Додаємо обробник з пасивним режимом для покращення продуктивності
+    document.addEventListener('touchmove', preventScroll, { passive: false });
+    
+    return () => {
+      document.removeEventListener('touchmove', preventScroll);
+    };
+  }, []);
 
   return (
     <div>
@@ -425,7 +469,12 @@ const ReviewCardContainer: React.FC = () => {
             resistance={false}
             onReachBeginning={() => setIsScrolling(false)}
             onReachEnd={() => setIsScrolling(false)}
-            style={{ height: '100%' }}
+            style={{ 
+              height: '100%',
+              // Додаткові стилі для iOS
+              WebkitTransform: 'translate3d(0,0,0)',
+              transform: 'translate3d(0,0,0)'
+            }}
           >
             {reviews.map((review, index) => (
               <SwiperSlide key={`top-${index}`}>
@@ -439,7 +488,12 @@ const ReviewCardContainer: React.FC = () => {
                   <Card>
                     <Header>
                       <motion.div variants={avatarVariants} whileHover='hover'>
-                        <Avatar src={review.avatar} alt={review.name} />
+                        <Avatar 
+                          src={review.avatar} 
+                          alt={review.name}
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </motion.div>
                       <UserInfo>
                         <motion.div
@@ -466,7 +520,12 @@ const ReviewCardContainer: React.FC = () => {
                       <Text>{review.text}</Text>
                     </motion.div>
                     <motion.div variants={imageVariants} whileHover='hover'>
-                      <ReviewImage src={review.image} alt={`Review by ${review.name}`} />
+                      <ReviewImage 
+                        src={review.image} 
+                        alt={`Review by ${review.name}`}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </motion.div>
                   </Card>
                 </motion.div>

@@ -124,7 +124,7 @@ const Partners: React.FC = () => {
     },
   };
 
-  return (
+ return (
     <div>
       <motion.div
         initial='hidden'
@@ -151,6 +151,12 @@ const Partners: React.FC = () => {
           modules={[Autoplay]}
           className='mySwiper'
           style={{ width: '100%', paddingBottom: '20px' }}
+          // Додаємо важливі параметри для тачскріну
+          touchRatio={1}
+          touchAngle={45}
+          shortSwipes={true}
+          resistance={true}
+          resistanceRatio={0.85}
         >
           {partners.map((partner, index) => (
             <SwiperSlide
@@ -161,6 +167,11 @@ const Partners: React.FC = () => {
                 alignItems: 'center',
                 height: 'auto',
                 paddingTop: 10,
+                // Додаємо для кращої реакції на тач
+                touchAction: 'pan-y',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
               }}
             >
               <motion.div
@@ -170,14 +181,27 @@ const Partners: React.FC = () => {
                 variants={logoVariants}
                 transition={{ delay: index * 0.05 }}
                 whileHover='hover'
+                // Оптимізація для iOS
+                style={{ 
+                  WebkitTransform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                <Image src={partner.imageUrl} alt={`Partner ${partner.id}`} loading='lazy' />
+                <Image 
+                  src={partner.imageUrl} 
+                  alt={`Partner ${partner.id}`} 
+                  loading='lazy'
+                  decoding='async'
+                  // Важливі атрибути для iOS
+                  onDragStart={(e) => e.preventDefault()}
+                  draggable="false"
+                />
               </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
 
-        {/* Другий слайдер - відображається тільки на мобільних */}
+        {/* Другий слайдер */}
         <Swiper
           loop={shouldLoop}
           slidesPerView={slidesPerView}
@@ -193,16 +217,27 @@ const Partners: React.FC = () => {
           modules={[Autoplay]}
           className='mySwiper'
           style={{ width: '100%' }}
+          // Такі ж параметри для тачскріну
+          touchRatio={1}
+          touchAngle={45}
+          shortSwipes={true}
+          resistance={true}
+          resistanceRatio={0.85}
         >
           {partners.map((partner, index) => (
             <SwiperSlide
-              key={partner.id + 100} // Додаємо унікальний ключ
+              key={partner.id + 100}
               style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: 'auto',
                 paddingTop: 10,
+                // Додаємо для кращої реакції на тач
+                touchAction: 'pan-y',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
               }}
             >
               <motion.div
@@ -212,8 +247,20 @@ const Partners: React.FC = () => {
                 variants={logoVariants}
                 transition={{ delay: index * 0.05 + 0.1 }}
                 whileHover='hover'
+                // Оптимізація для iOS
+                style={{ 
+                  WebkitTransform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden'
+                }}
               >
-                <Image src={partner.imageUrl} alt={`Partner ${partner.id}`} loading='lazy' />
+                <Image 
+                  src={partner.imageUrl} 
+                  alt={`Partner ${partner.id}`} 
+                  loading='lazy'
+                  decoding='async'
+                  onDragStart={(e) => e.preventDefault()}
+                  draggable="false"
+                />
               </motion.div>
             </SwiperSlide>
           ))}
