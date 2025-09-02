@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { motion, useScroll, useTransform, easeOut, backOut } from 'framer-motion';
 import {
   ArticleContainer,
   BackButton,
@@ -173,39 +174,238 @@ Pro Tip: At AirTexno, we only use genuine OEM or manufacturer-approved parts for
   },
 ];
 
+// Унікальні анімаційні варіанти
+const pageVariants = {
+  hidden: { 
+    opacity: 0,
+    x: -100
+  },
+  visible: { 
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeOut
+    }
+  },
+  exit: {
+    opacity: 0,
+    x: 100,
+    transition: {
+      duration: 0.5,
+      ease: easeOut
+    }
+  }
+};
+
+const backButtonVariants = {
+  hidden: { 
+    opacity: 0,
+    y: -30,
+    rotate: -10
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: {
+      duration: 0.6,
+      ease: backOut,
+      delay: 0.1
+    }
+  },
+  hover: {
+    scale: 1.05,
+    x: -5,
+    transition: {
+      duration: 0.2,
+      ease: easeOut
+    }
+  },
+  tap: {
+    scale: 0.95
+  }
+};
+
+const titleVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 50,
+    scale: 0.9,
+    textShadow: "0 0 0px rgba(0,0,0,0)"
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    textShadow: [
+      "0 0 0px rgba(0,0,0,0)",
+      "0 0 30px rgba(0,0,0,0.3)",
+      "0 0 10px rgba(0,0,0,0.1)"
+    ],
+    transition: {
+      duration: 1,
+      ease: backOut,
+      delay: 0.2
+    }
+  }
+};
+
+const imageVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 1.2,
+    rotate: -5,
+    filter: "blur(10px)"
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 1.2,
+      ease: backOut,
+      delay: 0.3
+    }
+  }
+};
+
+const contentVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 30
+  },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeOut,
+      delay: 0.4
+    }
+  }
+};
+
+const textRevealVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 20,
+    skewY: 2
+  },
+  visible: (i: number) => ({ 
+    opacity: 1,
+    y: 0,
+    skewY: 0,
+    transition: {
+      duration: 0.6,
+      ease: easeOut,
+      delay: 0.5 + (i * 0.05)
+    }
+  })
+};
+
+const dataVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.8,
+    rotateX: -90
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.7,
+      ease: backOut,
+      delay: 0.1
+    }
+  }
+};
+
 const ArticleDetail: React.FC<{ articleId?: number }> = ({ articleId }) => {
   const { id } = useParams<{ id: string }>();
   const currentArticleId = articleId || parseInt(id || '1');
   const article = articles.find(a => a.id === currentArticleId);
+  
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 50]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.9]);
 
   useEffect(() => {
-    // Обробка скролу до елемента з id з хешу
     const hash = window.location.hash;
     if (hash) {
       const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
       }
     }
-  }, [article]); // Залежність від article, щоб спрацювало при зміні статті
+  }, [article]);
 
   if (!article) {
     return <div>Article not found</div>;
   }
 
+  // Розділяємо контент на параграфи для анімації
+  const paragraphs = article.content.split('\n\n');
+
   return (
-    <ArticleContainer id='ap'>
-      <BackButton to='/tips'>← Back to Tips</BackButton>
-      <Data>{article.data}</Data>
-      <ArticleTitle>{article.title}</ArticleTitle>
+    <motion.div
+      variants={pageVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      style={{ y, opacity }}
+    >
+      <ArticleContainer id='ap'>
+        <motion.div
+          variants={backButtonVariants}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          <BackButton to='/tips'>← Back to Tips</BackButton>
+        </motion.div>
+        
+        <motion.div variants={dataVariants}>
+          <Data>{article.data}</Data>
+        </motion.div>
 
-      <ArticleImage src={article.image} alt={article.title} />
+        <motion.div variants={titleVariants}>
+          <ArticleTitle>{article.title}</ArticleTitle>
+        </motion.div>
 
-      <ArticleContent>
-        <ArticleText>{article.content}</ArticleText>
-      </ArticleContent>
-      <ArticlesListContainer/>
-    </ArticleContainer>
+        <motion.div variants={imageVariants}>
+          <ArticleImage src={article.image} alt={article.title} />
+        </motion.div>
+
+        <motion.div variants={contentVariants}>
+          <ArticleContent>
+            {paragraphs.map((paragraph, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={textRevealVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <ArticleText>{paragraph}</ArticleText>
+                {index < paragraphs.length - 1 && <><br /></>}
+              </motion.div>
+            ))}
+          </ArticleContent>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <ArticlesListContainer/>
+        </motion.div>
+      </ArticleContainer>
+    </motion.div>
   );
 };
 

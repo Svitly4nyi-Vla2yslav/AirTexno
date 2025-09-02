@@ -41,7 +41,7 @@ export const InfoContainer = styled.div`
   @media (min-width: 1440px) {
     max-width: 1440px;
     padding: 0 64px;
-    padding-top: 10px;
+    padding-top: 80px;
   }
 
   /* Дуже великі екрани (1920px і більше) */

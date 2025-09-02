@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, easeOut, backOut } from 'framer-motion';
 import styled, { css, keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -53,14 +54,158 @@ const RefrigeratorRepair: React.FC = () => {
   const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 4 : 2;
   const shouldLoop = slides.length > slidesPerView;
 
+  const { scrollY } = useScroll();
+  
+  // Паралакс ефекти
+  const titleY = useTransform(scrollY, [0, 500], [0, 80]);
+  const titleScale = useTransform(scrollY, [0, 300], [1, 1.05]);
+
+  // Унікальні анімаційні варіанти
+  const frostEffect = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.8,
+      filter: "blur(20px) brightness(0.8)"
+    },
+    visible: { 
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px) brightness(1)",
+      transition: {
+        duration: 1.2,
+        ease: backOut
+      }
+    }
+  };
+
+  const iceSlideAnimation = {
+    hidden: (index: number) => ({ 
+      opacity: 0,
+      x: index % 2 === 0 ? -100 : 100,
+      y: 50,
+      rotate: index % 2 === 0 ? -5 : 5,
+      scale: 0.7
+    }),
+    visible: (index: number) => ({ 
+      opacity: 1,
+      x: 0,
+      y: 0,
+      rotate: 0,
+      scale: 1,
+      transition: {
+        duration: 0.9,
+        delay: index * 0.2,
+        ease: backOut
+      }
+    }),
+    hover: {
+      y: -20,
+      scale: 1.05,
+      rotate: 0,
+      boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+      transition: {
+        duration: 0.4,
+        ease: easeOut
+      }
+    }
+  };
+
+  const coolContentReveal = {
+    hidden: { 
+      opacity: 0,
+      y: 30,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: easeOut,
+        delay: 0.3
+      }
+    },
+    hover: {
+      y: -5,
+      transition: {
+        duration: 0.2,
+        ease: easeOut
+      }
+    }
+  };
+
+  const chillButtonEffect = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.8,
+      y: 20
+    },
+    visible: { 
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: easeOut
+      }
+    },
+    hover: {
+      scale: 1.15,
+      backgroundColor: "#2a8ad8",
+      boxShadow: "0 0 40px rgba(48, 152, 238, 0.6)",
+      transition: {
+        duration: 0.3,
+        ease: easeOut
+      }
+    },
+    tap: {
+      scale: 0.95,
+      transition: {
+        duration: 0.1
+      }
+    }
+  };
+
+  const titleFreezeAnimation = {
+    hidden: { 
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      textShadow: "0 0 0px rgba(255, 255, 255, 0)"
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      textShadow: [
+        "0 0 0px rgba(255, 255, 255, 0)",
+        "0 0 30px rgba(255, 255, 255, 0.8)",
+        "0 0 15px rgba(255, 255, 255, 0.4)"
+      ],
+      transition: {
+        duration: 1.5,
+        ease: easeOut
+      }
+    }
+  };
+
   return (
     <Wrapper>
-      <HeaderSection>
-        <Subtitle>Refrigerator Repair</Subtitle>
-        <Title>
-          We repair <span> all types </span> of refrigerators
-        </Title>
-      </HeaderSection>
+      <motion.div
+        style={{ y: titleY, scale: titleScale }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={titleFreezeAnimation}
+      >
+        <HeaderSection>
+          <Subtitle>Refrigerator Repair</Subtitle>
+          <Title>
+            We repair <span> all types </span> of refrigerators
+          </Title>
+        </HeaderSection>
+      </motion.div>
 
       <SwiperContainer>
         <Swiper
@@ -76,44 +221,85 @@ const RefrigeratorRepair: React.FC = () => {
           speed={6000}
           loop={shouldLoop}
           slidesPerView={slidesPerView}
-          centeredSlides={isMobile} // Центрування тільки на мобільних
+          centeredSlides={isMobile}
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <Card>
-                <Image src={slide.img} alt={slide.title} />
-                <CardText>
-                  <CardTitle>{slide.title}</CardTitle>
-                  <CardDescription>{slide.description}</CardDescription>
-                </CardText>
-              </Card>
+              <motion.div
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={iceSlideAnimation}
+                whileHover="hover"
+              >
+                <Card>
+                  <motion.div
+                    variants={frostEffect}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <Image src={slide.img} alt={slide.title} />
+                  </motion.div>
+                  
+                  <motion.div
+                    variants={coolContentReveal}
+                    whileHover="hover"
+                  >
+                    <CardText>
+                      <CardTitle>{slide.title}</CardTitle>
+                      <CardDescription>{slide.description}</CardDescription>
+                    </CardText>
+                  </motion.div>
+                </Card>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
+        
         <NavigationContainer>
-          <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M15 18L9 12L15 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </NavButton>
+          <motion.div
+            variants={chillButtonEffect}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
+              <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+                <path
+                  d='M15 18L9 12L15 6'
+                  stroke='white'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            </NavButton>
+          </motion.div>
 
-          <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M9 18L15 12L9 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </NavButton>
+          <motion.div
+            variants={chillButtonEffect}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ delay: 0.1 }}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
+              <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+                <path
+                  d='M9 18L15 12L9 6'
+                  stroke='white'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            </NavButton>
+          </motion.div>
         </NavigationContainer>
       </SwiperContainer>
     </Wrapper>
@@ -309,6 +495,7 @@ const Card = styled.div`
   height: fit-content;
   margin: 0 auto;
   position: relative;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     max-width: 322px;
@@ -322,8 +509,9 @@ const Card = styled.div`
 const Image = styled.img`
   border-radius: 8px;
   width: 322px;
-height: 485px;
+  height: 485px;
   object-fit: cover;
+  transition: all 0.3s ease;
 
   @media screen and (min-width: 768px) {
   }
@@ -342,6 +530,7 @@ const CardText = styled.div`
   padding: 10px;
   margin: 5px;
   border-radius: 4px;
+  transition: all 0.3s ease;
 `;
 
 const CardTitle = styled.p`

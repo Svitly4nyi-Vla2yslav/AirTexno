@@ -243,15 +243,12 @@ export const ButtonTextBlack = styled(ButtonTextWhite)`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: auto;
   height: fit-content;
   margin: 0 auto;
   gap: 10px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  align-content: flex-end;
   position: absolute;
   bottom: 20px;
+  flex-wrap: wrap;
 
   @media (min-width: 768px) and (max-width: 1439px) {
     position: absolute;

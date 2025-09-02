@@ -17,7 +17,7 @@ export const BackButton = styled(NavLink)`
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
-padding-top: 30px;
+  padding-top: 30px;
   &:hover {
     text-decoration: underline;
   }
@@ -78,6 +78,8 @@ export const ArticleContent = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const ArticleText = styled.p`

@@ -269,7 +269,7 @@ export const TeamMember: React.FC = () => {
               initial='hidden'
               whileInView='visible'
               viewport={{ once: false, amount: 0.3 }}
-              whileHover='hover'
+              // whileHover='hover'
               whileTap='tap'
             >
               <a href='tel:+18055002705'>

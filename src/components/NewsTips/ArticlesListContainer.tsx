@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useScroll, useTransform, easeOut, backOut } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { motion, useScroll, useTransform, easeOut, useAnimation } from 'framer-motion';
 import {
   StyledContainer,
   StyledArticleCard,
@@ -70,81 +70,61 @@ const articles: Article[] = [
   },
 ];
 
-// Унікальні анімаційні варіанти
+// Прості анімаційні варіанти
 const titleVariants = {
   hidden: { 
     opacity: 0,
-    y: 50,
-    scale: 0.8,
-    rotate: -5
+    y: 30,
   },
   visible: { 
     opacity: 1,
     y: 0,
-    scale: 1,
-    rotate: 0,
     transition: {
-      duration: 1,
-      ease: backOut
+      duration: 0.8,
+      ease: easeOut
     }
   }
 };
 
 const cardVariants = {
-  hidden: () => ({ 
+  hidden: { 
     opacity: 0,
-    y: 100,
-    rotateX: -45,
-    scale: 0.7,
-    filter: "blur(10px)"
-  }),
-  visible: (index: number) => ({ 
+    y: 20,
+  },
+  visible: { 
     opacity: 1,
     y: 0,
-    rotateX: 0,
-    scale: 1,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.8,
-      delay: index * 0.15,
-      ease: backOut
+      duration: 0.6,
+      ease: easeOut
     }
-  }),
+  },
   hover: {
-    y: -15,
-    rotateY: 5,
-    scale: 1.03,
-    boxShadow: "0 25px 50px rgba(0,0,0,0.2)",
+    y: -5,
     transition: {
       duration: 0.3,
       ease: easeOut
     }
-  },
-  tap: {
-    scale: 0.98
   }
 };
 
 const imageVariants = {
   hidden: { 
     opacity: 0,
-    scale: 1.3,
-    rotate: -10
+    scale: 1.05,
   },
   visible: { 
     opacity: 1,
     scale: 1,
-    rotate: 0,
     transition: {
-      duration: 1.2,
-      ease: backOut
+      duration: 0.7,
+      ease: easeOut
     }
   },
   hover: {
-    scale: 1.1,
-    rotate: 2,
+    scale: 1.03,
     transition: {
-      duration: 0.4,
+      duration: 0.3,
       ease: easeOut
     }
   }
@@ -153,21 +133,11 @@ const imageVariants = {
 const contentVariants = {
   hidden: { 
     opacity: 0,
-    y: 30
   },
   visible: { 
     opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.6,
-      ease: easeOut,
-      delay: 0.2
-    }
-  },
-  hover: {
-    y: -5,
-    transition: {
-      duration: 0.2,
+      duration: 0.5,
       ease: easeOut
     }
   }
@@ -175,18 +145,22 @@ const contentVariants = {
 
 const ArticlesListContainer: React.FC = () => {
   const { scrollY } = useScroll();
+  const controls = useAnimation();
   
-  // Паралакс ефект для заголовка
-  const titleY = useTransform(scrollY, [0, 500], [0, 50]);
-  const titleScale = useTransform(scrollY, [0, 300], [1, 1.1]);
+  // М'який паралакс ефект для заголовка
+  const titleY = useTransform(scrollY, [0, 300], [0, 30]);
+
+  // Запускаємо анімацію при монтуванні компонента
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
 
   return (
     <TipsContainer id='app'>
       <motion.div
-        style={{ y: titleY, scale: titleScale }}
+        style={{ y: titleY }}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        animate={controls}
         variants={titleVariants}
       >
         <Titel>
@@ -198,17 +172,16 @@ const ArticlesListContainer: React.FC = () => {
         {articles.map((article, index) => (
           <StyledNavLink to={article.path} key={article.id}>
             <motion.div
-              custom={index}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.2 }}
+              animate={controls}
               variants={cardVariants}
+              transition={{ delay: index * 0.1 }}
               whileHover="hover"
-              whileTap="tap"
             >
               <StyledArticleCard>
                 <motion.div
                   variants={imageVariants}
+                  transition={{ delay: index * 0.1 }}
                   whileHover="hover"
                 >
                   <StyledImage src={article.image} alt={article.title} />
@@ -216,7 +189,7 @@ const ArticlesListContainer: React.FC = () => {
                 
                 <motion.div
                   variants={contentVariants}
-                  whileHover="hover"
+                  transition={{ delay: index * 0.1 + 0.2 }}
                 >
                   <div>
                     <StyledTitle>{article.title}</StyledTitle>
