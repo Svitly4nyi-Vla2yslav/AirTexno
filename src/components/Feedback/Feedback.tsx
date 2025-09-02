@@ -263,7 +263,6 @@ const SwipersContainer = styled.div`
   height: 684px;
   overflow: hidden;
   margin-bottom: 0px;
-  -webkit-overflow-scrolling: touch; /* Плавна прокрутка для iOS */
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -279,21 +278,28 @@ const SingleSwiperContainer = styled.div<{ $isVisible?: boolean }>`
   overflow: hidden;
   display: ${props => (props.$isVisible ? 'block' : 'none')};
 
-  /* Заборонити виділення тексту на тач-пристроях */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  
-  /* Заборонити масштабування */
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+  /* Заборонити будь-яку взаємодію з свайпером на мобільних */
+  @media (max-width: 767px) {
+    pointer-events: none;
+    
+    /* Але дозволити скрол сторінки через цю область */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      pointer-events: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 
   @media screen and (min-width: 768px) {
     width: 50%;
     display: block;
+    pointer-events: auto;
   }
 `;
 
@@ -306,11 +312,14 @@ const Card = styled.div`
   border-radius: 8px;
   height: 600px;
   
-  /* Оптимізація для мобільних пристроїв */
-  -webkit-overflow-scrolling: touch;
-  transform: translateZ(0); /* Апаратне прискорення */
-  backface-visibility: hidden;
-  perspective: 1000px;
+  /* На мобільних дозволяємо скрол сторінки через картки */
+  @media (max-width: 767px) {
+    pointer-events: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    pointer-events: auto;
+  }
 `;
 
 const Header = styled.div`
@@ -323,8 +332,6 @@ const Avatar = styled.img`
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  
-  /* Оптимізація завантаження зображень */
   loading: lazy;
   decoding: async;
 `;
@@ -363,11 +370,8 @@ const ReviewImage = styled.img`
   height: 370px;
   border-radius: 4px;
   object-fit: cover;
-  
-  /* Оптимізація завантаження зображень */
   loading: lazy;
   decoding: async;
-  importance: low;
 `;
 
 const BackgroundTop = styled.div`
@@ -392,6 +396,22 @@ const BackgroundBottom = styled.div`
   pointer-events: none;
 `;
 
+const TouchBlockingLayer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  pointer-events: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Тільки для мобільних пристроїв */
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
 const ReviewCardContainer: React.FC = () => {
   const [, setIsScrolling] = React.useState(false);
   const swiperRefTop = React.useRef<any>(null);
@@ -399,22 +419,6 @@ const ReviewCardContainer: React.FC = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
-
-  // Додаємо обробник для запобігання скроллу на мобільних пристроях
-  React.useEffect(() => {
-    const preventScroll = (e: TouchEvent) => {
-      if (containerRef.current?.contains(e.target as Node)) {
-        e.preventDefault();
-      }
-    };
-
-    // Додаємо обробник з пасивним режимом для покращення продуктивності
-    document.addEventListener('touchmove', preventScroll, { passive: false });
-    
-    return () => {
-      document.removeEventListener('touchmove', preventScroll);
-    };
-  }, []);
 
   return (
     <div>
@@ -442,6 +446,9 @@ const ReviewCardContainer: React.FC = () => {
       </TextContainer>
 
       <SwipersContainer ref={containerRef}>
+        {/* Шар для блокування тач-взаємодії з свайпером на мобільних */}
+        <TouchBlockingLayer />
+        
         {/* Перший свайпер (зверху вниз) */}
         <SingleSwiperContainer $isVisible={true}>
           <BackgroundTop />
@@ -471,10 +478,12 @@ const ReviewCardContainer: React.FC = () => {
             onReachEnd={() => setIsScrolling(false)}
             style={{ 
               height: '100%',
-              // Додаткові стилі для iOS
-              WebkitTransform: 'translate3d(0,0,0)',
-              transform: 'translate3d(0,0,0)'
+              // Блокуємо всі події на свайпері
+              pointerEvents: 'none'
             }}
+            // Додаткові параметри для блокування взаємодії
+            preventInteractionOnTransition={true}
+            watchOverflow={true}
           >
             {reviews.map((review, index) => (
               <SwiperSlide key={`top-${index}`}>
@@ -563,7 +572,12 @@ const ReviewCardContainer: React.FC = () => {
             initialSlide={reviews.length - 1}
             onReachBeginning={() => setIsScrolling(false)}
             onReachEnd={() => setIsScrolling(false)}
-            style={{ height: '100%' }}
+            style={{ 
+              height: '100%',
+              pointerEvents: 'none'
+            }}
+            preventInteractionOnTransition={true}
+            watchOverflow={true}
           >
             {reviews.map((review, index) => (
               <SwiperSlide key={`bottom-${index}`}>
@@ -640,7 +654,12 @@ const ReviewCardContainer: React.FC = () => {
               resistance={false}
               onReachBeginning={() => setIsScrolling(false)}
               onReachEnd={() => setIsScrolling(false)}
-              style={{ height: '100%' }}
+              style={{ 
+                height: '100%',
+                pointerEvents: 'none'
+              }}
+              preventInteractionOnTransition={true}
+              watchOverflow={true}
             >
               {reviews.map((review, index) => (
                 <SwiperSlide key={`desktop-${index}`}>
