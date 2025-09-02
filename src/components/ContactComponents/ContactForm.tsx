@@ -24,6 +24,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
     message: string;
   } | null>(null);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handlePrivacyClick = () => {
     setShowPrivacyPolicy(true);
@@ -106,8 +107,23 @@ export const ContactForm: React.FC = (): JSX.Element => {
     }
   };
 
-  // Анімаційні варіанти для заголовків
+  // Спрощені анімаційні варіанти для мобільних пристроїв
   const titleVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: easeOut,
+      },
+    },
+  };
+
+  const formVariants = {
     hidden: {
       opacity: 0,
       y: 30,
@@ -116,72 +132,54 @@ export const ContactForm: React.FC = (): JSX.Element => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.4,
         ease: easeOut,
       },
     },
   };
 
-  // Анімаційні варіанти для форми
-  const formVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: easeOut,
-      },
-    },
-  };
-
-  // Анімаційні варіанти для полів вводу
   const inputVariants = {
     hidden: {
       opacity: 0,
-      x: -20,
+      x: -10,
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: easeOut,
       },
     },
     focus: {
-      scale: 1.02,
+      scale: 1.01,
       transition: {
-        duration: 0.2,
+        duration: 0.1,
       },
     },
   };
 
-  // Анімаційні варіанти для кнопок
   const buttonVariants = {
     hidden: {
       opacity: 0,
-      scale: 0.9,
+      scale: 0.95,
     },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: easeOut,
       },
     },
     hover: {
-      scale: 1.05,
+      scale: 1.02,
       transition: {
-        duration: 0.2,
+        duration: 0.1,
       },
     },
     tap: {
-      scale: 0.95,
+      scale: 0.98,
     },
   };
 
@@ -193,7 +191,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={titleVariants}
             >
               <Title>
@@ -205,7 +203,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={titleVariants}
               transition={{ delay: 0.1 }}
             >
@@ -216,7 +214,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             variants={buttonVariants}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             whileHover='hover'
             whileTap='tap'
           >
@@ -233,7 +231,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 <motion.div
                   initial='hidden'
                   whileInView='visible'
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={titleVariants}
                 >
                   <InfoTitle>Service Hours</InfoTitle>
@@ -242,7 +240,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   <motion.div
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     variants={titleVariants}
                     transition={{ delay: 0.2 }}
                   >
@@ -257,7 +255,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 <motion.div
                   initial='hidden'
                   whileInView='visible'
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={titleVariants}
                   transition={{ delay: 0.3 }}
                 >
@@ -267,7 +265,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   <motion.div
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     variants={titleVariants}
                     transition={{ delay: 0.4 }}
                   >
@@ -284,7 +282,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   <motion.div
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     variants={titleVariants}
                     transition={{ delay: 0.5 }}
                   >
@@ -302,19 +300,19 @@ export const ContactForm: React.FC = (): JSX.Element => {
           variants={formVariants}
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <FormContainer onSubmit={handleSubmit}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: easeOut }}
+              transition={{ duration: 0.4, ease: easeOut }}
             >
               <ImageContact 
                 src={Cont} 
                 alt='contact image' 
-                loading='lazy'
-                decoding='async'
+                onLoad={() => setImageLoaded(true)}
+                style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
               />
             </motion.div>
 
@@ -382,7 +380,6 @@ export const ContactForm: React.FC = (): JSX.Element => {
                     value={formData.phone}
                     onChange={handleChange}
                     style={errors.phone ? { borderBottom: '1px solid red' } : {}}
-                    inputMode='tel'
                   />
                 </motion.div>
               </LeftColumn>
@@ -513,7 +510,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={titleVariants}
               transition={{ delay: 1.0 }}
             >
@@ -530,7 +527,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
               variants={buttonVariants}
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: 1.1 }}
               whileHover='hover'
               whileTap='tap'
@@ -590,7 +587,9 @@ const Label = styled.label`
   color: var(--black-500);
   margin-top: 30px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+    margin-top: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -601,12 +600,10 @@ const Label = styled.label`
 const CheckboxGroup = styled.div`
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
 
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    gap: 12px;
   }
 `;
 
@@ -621,22 +618,16 @@ const RadioLabel = styled.label`
   border-radius: 8px;
   padding: 10px 16px;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
 
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+    padding: 12px 16px;
   }
 `;
 
 const HiddenRadio = styled.input.attrs({ type: 'radio' })`
   display: none;
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 const CustomRadio = styled.span<{ checked: boolean }>`
@@ -666,23 +657,30 @@ const CustomRadio = styled.span<{ checked: boolean }>`
     }
   `}
 
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    width: 16px;
+    height: 16px;
+    
+    ${({ checked }) =>
+    checked &&
+    `
+      &::after {
+        width: 8px;
+        height: 8px;
+      }
+    `}
   }
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 12px;
-  font-size: 16px; /* Збільшено для кращої читабельності на iOS */
+  font-size: 14px;
   transition: all 0.3s ease;
   border: none;
   border-bottom: 1px solid var(--black-300);
   background: var(--blue-form);
   margin-bottom: 20px;
-  -webkit-appearance: none;
   border-radius: 0;
 
   &:focus {
@@ -690,8 +688,11 @@ const Input = styled.input`
     outline: none;
     background: #bbe5f6ff;
   }
-
-  @media screen and (min-width: 768px) {
+  
+  @media screen and (max-width: 767px) {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 14px 12px;
+    margin-bottom: 16px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -706,7 +707,7 @@ const SelectWrapper = styled.div`
   
   &::after {
     content: '▼';
-    font-size: 14px;
+    font-size: 12px;
     color: #242424;
     position: absolute;
     right: 16px;
@@ -714,8 +715,13 @@ const SelectWrapper = styled.div`
     transform: translateY(-50%);
     pointer-events: none;
   }
-
-  @media screen and (min-width: 768px) {
+  
+  @media screen and (max-width: 767px) {
+    margin-bottom: 16px;
+    
+    &::after {
+      right: 12px;
+    }
   }
 
   @media screen and (min-width: 1440px) {
@@ -731,8 +737,7 @@ const Select = styled.select`
   border: none;
   border-bottom: 1px solid var(--black-300);
   background: var(--blue-form);
-  font-size: 16px; /* Збільшено для кращої читабельності на iOS */
-  background: var(--blue-form);
+  font-size: 14px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -745,10 +750,9 @@ const Select = styled.select`
     background: #bbe5f6ff;
   }
 
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 14px 40px 14px 12px;
   }
 `;
 
@@ -760,7 +764,7 @@ const Textarea = styled.textarea`
   border: none;
   border-bottom: 1px solid var(--black-300);
   background: var(--blue-form);
-  font-size: 16px; /* Збільшено для кращої читабельності на iOS */
+  font-size: 14px;
   resize: vertical;
   border-radius: 0;
 
@@ -770,16 +774,15 @@ const Textarea = styled.textarea`
     background: #bbe5f6ff;
   }
 
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 100px;
   }
 `;
 
 const ButtonSubmit = styled.button`
   border-radius: 8px;
-  padding: 16px 20px; /* Збільшено для кращої доступності на тачскрінах */
+  padding: 10px 20px;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
@@ -791,9 +794,8 @@ const ButtonSubmit = styled.button`
   transition: all 0.4s ease-in-out;
   background: var(--blue-500);
   width: 207px;
-  min-height: 44px; /* Мінімальна висота для кращого тач-інтерфейсу */
   -webkit-tap-highlight-color: transparent;
-
+  
   &:hover {
     transform: scale(1.05);
     background: #79caf5ff;
@@ -802,8 +804,11 @@ const ButtonSubmit = styled.button`
   &:active {
     transform: scale(0.95);
   }
-
-  @media screen and (min-width: 768px) {
+  
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 18px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -823,10 +828,9 @@ const Disclaimer = styled.p`
     text-decoration-skip-ink: none;
     color: var(--blue-500);
   }
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
   }
 `;
 
@@ -838,8 +842,12 @@ const Container = styled.div`
   overflow: auto;
   padding-top: 100px;
   margin-bottom: 40px;
-  -webkit-overflow-scrolling: touch; /* Плавна прокрутка на iOS */
-
+  
+  @media screen and (max-width: 767px) {
+    padding-top: 80px;
+    gap: 24px;
+  }
+  
   @media screen and (min-width: 768px) {
     margin-bottom: 240px;
   }
@@ -861,6 +869,10 @@ const Section = styled.div`
   gap: 20px;
   width: 100%;
   
+  @media screen and (max-width: 767px) {
+    gap: 16px;
+  }
+  
   @media screen and (min-width: 768px) {
     width: 750px;
   }
@@ -880,10 +892,8 @@ const SubSection = styled.div`
   gap: 12px;
   width: 100%;
   
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    gap: 10px;
   }
 `;
 
@@ -898,11 +908,12 @@ const Title = styled.p`
     color: var(--blue-500);
   }
   
+  @media screen and (max-width: 767px) {
+    font-size: 42px;
+  }
+  
   @media screen and (min-width: 768px) {
     font-size: 72px;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -913,18 +924,19 @@ const Text = styled.p`
   line-height: 125%;
   color: var(--black-500);
   
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
+  }
+  
   @media screen and (min-width: 768px) {
     font-size: 17px;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
 const Button = styled.button`
   cursor: pointer;
   display: flex;
-  padding: 16px 20px;
+  padding: 10px 20px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -933,9 +945,8 @@ const Button = styled.button`
   width: fit-content;
   background: transparent;
   margin-left: 20px;
-  min-height: 44px; /* Мінімальна висота для кращого тач-інтерфейсу */
   -webkit-tap-highlight-color: transparent;
-
+  
   &:hover {
     background-color: #242424;
     border-color: #242424;
@@ -955,10 +966,10 @@ const Button = styled.button`
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    margin-left: 0;
+    width: 100%;
+    padding: 14px 20px;
   }
 `;
 
@@ -969,10 +980,8 @@ const ButtonText = styled.p`
   line-height: 125%;
   color: var(--black-500);
   
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
   }
 `;
 
@@ -980,12 +989,6 @@ const Divider = styled.div`
   background: rgba(33, 33, 33, 0.3);
   width: 100%;
   height: 1px;
-  
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 const InfoBlock = styled.div`
@@ -995,10 +998,8 @@ const InfoBlock = styled.div`
   gap: 24px;
   width: 100%;
   
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    gap: 20px;
   }
 `;
 
@@ -1009,10 +1010,9 @@ const InfoSection = styled.div<{ width?: string }>`
   gap: 12px;
   width: ${props => props.width || '100%'};
   
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    width: 100% !important;
+    gap: 10px;
   }
 `;
 
@@ -1023,10 +1023,8 @@ const InfoTitle = styled.p`
   line-height: 90%;
   color: var(--black-500);
   
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (max-width: 767px) {
+    font-size: 20px;
   }
 `;
 
@@ -1040,9 +1038,6 @@ export const ImageContact = styled.img`
     width: 100%;
     max-width: 668px;
   }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 const TabletContainer = styled.div`
@@ -1054,8 +1049,9 @@ const TabletContainer = styled.div`
     flex-direction: row;
     gap: 40px;
   }
-
-  @media screen and (min-width: 1440px) {
+  
+  @media screen and (max-width: 767px) {
+    gap: 0;
   }
 `;
 
