@@ -35,7 +35,7 @@ export const Title = styled.h3`
   text-align: center;
   color: var(--black-500);
   transition: all 0.3s ease;
-
+  padding-top: 10px;
   &:hover {
     transform: scale(1.02);
   }

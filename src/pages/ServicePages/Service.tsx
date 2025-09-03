@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ServicesSection from '../../components/componentsService/ServicesSection/ServicesSection';
+import ServicesSection from '../../components/ServicesSection/ServicesSection';
+
 import OurEquipment from '../../components/componentsService/OurEquipment/OurEquipment';
 import CasesSection from '../../components/CasesSection/CasesSection';
 import OurProcess from '../../components/componentsService/OurProcess/OurProcess';
@@ -40,35 +41,47 @@ export const Container = styled.div`
   @media (max-width: 767px) {
     gap: 40px;
     padding: 0 12px;
+    padding-top: 80px;
   }
 
   /* Планшети (768px - 1023px) */
   @media (min-width: 768px) and (max-width: 1023px) {
     max-width: 768px;
+    padding-top: 80px;
     padding: 0 24px;
+    padding-top: 120px;
+
   }
 
   /* Невеликі десктопи (1024px - 1279px) */
   @media (min-width: 1024px) and (max-width: 1279px) {
     max-width: 1024px;
     padding: 0 32px;
+    padding-top: 120px;
+
   }
 
   /* Середні десктопи (1280px - 1439px) */
   @media (min-width: 1280px) and (max-width: 1439px) {
     max-width: 1280px;
     padding: 0 48px;
+    padding-top: 120px;
+
   }
 
   /* Великі десктопи (1440px і більше) */
   @media (min-width: 1440px) {
     max-width: 1440px;
     padding: 0 64px;
+    padding-top: 120px;
+
   }
 
   /* Дуже великі екрани (1920px і більше) */
   @media (min-width: 1920px) {
     max-width: 1920px;
     padding: 0 120px;
+    padding-top: 120px;
+
   }
 `;
