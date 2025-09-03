@@ -431,6 +431,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   margin: 0 auto;
   padding: 0 16px;
+  position: relative;
 
   @media screen and (min-width: 768px) {
     padding: 0 32px;

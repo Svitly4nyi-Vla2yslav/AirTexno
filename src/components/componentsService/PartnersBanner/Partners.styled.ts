@@ -1,22 +1,29 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
+export const PartnersContainer = styled.div`
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+`;
+
 export const SwiperContainer = styled.div`
-  width: 97vw;
+  width: 100%;
   height: 80%;
-  background-color: rgba(0, 0, 0, 0); /* півпрозорий фон */
-  backdrop-filter: blur(1px); /* ефект blur */
-  margin: 0px 0;
-  padding: 40px 0px;
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(1px);
+  margin: 0;
+  padding: 40px 0;
   overflow: visible;
 
   .swiper-wrapper {
     display: flex;
     transition-timing-function: linear !important;
-    padding: 0px 0px;
+    padding: 0;
     margin: 0 auto;
-  overflow: visible;
-
+    overflow: visible;
   }
 
   @media screen and (min-width: 744px) {
@@ -24,13 +31,14 @@ export const SwiperContainer = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    max-width: 1440px;
   }
 `;
 
 export const Border = styled.p`
   padding: 10px auto 50px auto;
   width: 90%;
-  height: 1px; /* Збільшуємо висоту для еліпса */
+  height: 1px;
   margin: 20px auto;
   background: radial-gradient(ellipse 118.85px 58.06px at 50% 50%, rgb(252, 252, 252) 0%, rgba(58, 55, 55, 0.42) 80%);
 `;
@@ -38,13 +46,11 @@ export const Border = styled.p`
 export const ImageContainer = styled.div`
   height: auto;
   width: 100%;
-  padding: 0 auto;
+  padding: 0;
   margin: 0 auto;
-  @media screen and (min-width: 744px) {
-  }
-
+  
   @media screen and (min-width: 1440px) {
-    margin-right: 50px;
+    margin-right: 0;
   }
 `;
 
@@ -52,28 +58,21 @@ export const Image = styled.img`
   height: 29px;
   width: 100%;
   object-fit: contain;
-  padding: 0 auto;
+  padding: 0;
   margin: 0 auto;
-
-  /* Додаємо плавний перехід для фільтра */
   transition:
     filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.3s ease;
-
-  /* Невелике збільшення при ховері для кращої інтерактивності */
   transform: scale(1);
 
   &:hover,
   &:focus {
     filter: brightness(0) saturate(100%) invert(44%) sepia(98%) saturate(311%) hue-rotate(173deg) brightness(93%)
       contrast(89%);
-    transform: scale(1.05); /* Легке збільшення */
-
-    /* Оптимізація для анімації */
+    transform: scale(1.05);
     will-change: filter, transform;
   }
 
-  /* Стилі для активного стану (при натисканні) */
   &:active {
     transform: scale(0.98);
     transition-duration: 0.1s;
@@ -82,7 +81,6 @@ export const Image = styled.img`
   @media screen and (min-width: 1440px) {
     height: 42px;
 
-    /* Збільшуємо ефект для десктопів */
     &:hover,
     &:focus {
       transform: scale(1.08);
@@ -103,7 +101,7 @@ export const ShadowLeft = styled(motion.div)`
 
 export const ShadowRight = styled(motion.div)`
   position: absolute;
-  right: 0%;
+  right: 0;
   top: 0;
   bottom: 0;
   width: 100px;

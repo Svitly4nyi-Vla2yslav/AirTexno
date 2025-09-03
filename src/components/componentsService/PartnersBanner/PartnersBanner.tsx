@@ -5,6 +5,7 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css/bundle';
 import { useMediaQuery } from 'react-responsive';
 import {
+  PartnersContainer,
   SwiperContainer,
   Image,
   ShadowLeft,
@@ -50,137 +51,44 @@ const Partners: React.FC = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
 
   const partners = [
-    {
-      id: 1,
-      imageUrl: i1,
-    },
-    {
-      id: 2,
-      imageUrl: i2,
-    },
-    {
-      id: 3,
-      imageUrl: i3,
-    },
-    {
-      id: 4,
-      imageUrl: i4,
-    },
-    {
-      id: 5,
-      imageUrl: i5,
-    },
-    {
-      id: 6,
-      imageUrl: i6,
-    },
-    {
-      id: 7,
-      imageUrl: i7,
-    },
-    {
-      id: 8,
-      imageUrl: i8,
-    },
-    {
-      id: 9,
-      imageUrl: i9,
-    },
-    {
-      id: 10,
-      imageUrl: i10,
-    },
-    {
-      id: 11,
-      imageUrl: i11,
-    },
-    {
-      id: 12,
-      imageUrl: i12,
-    },
-    {
-      id: 13,
-      imageUrl: i13,
-    },
-    {
-      id: 14,
-      imageUrl: i14,
-    },
-    {
-      id: 15,
-      imageUrl: i15,
-    },
-    {
-      id: 16,
-      imageUrl: i16,
-    },
-    {
-      id: 17,
-      imageUrl: i17,
-    },
-    {
-      id: 18,
-      imageUrl: i18,
-    },
-    {
-      id: 19,
-      imageUrl: i19,
-    },
-    {
-      id: 20,
-      imageUrl: i20,
-    },
-    {
-      id: 21,
-      imageUrl: i21,
-    },
-    {
-      id: 22,
-      imageUrl: i22,
-    },
-    {
-      id: 23,
-      imageUrl: i23,
-    },
-    {
-      id: 24,
-      imageUrl: i24,
-    },
-    {
-      id: 25,
-      imageUrl: i25,
-    },
-    {
-      id: 26,
-      imageUrl: i26,
-    },
-    {
-      id: 27,
-      imageUrl: i27,
-    },
-    {
-      id: 28,
-      imageUrl: i28,
-    },
-    {
-      id: 29,
-      imageUrl: i29,
-    },
-    {
-      id: 30,
-      imageUrl: i30,
-    },
-    {
-      id: 31,
-      imageUrl: i31,
-    },
+    { id: 1, imageUrl: i1 },
+    { id: 2, imageUrl: i2 },
+    { id: 3, imageUrl: i3 },
+    { id: 4, imageUrl: i4 },
+    { id: 5, imageUrl: i5 },
+    { id: 6, imageUrl: i6 },
+    { id: 7, imageUrl: i7 },
+    { id: 8, imageUrl: i8 },
+    { id: 9, imageUrl: i9 },
+    { id: 10, imageUrl: i10 },
+    { id: 11, imageUrl: i11 },
+    { id: 12, imageUrl: i12 },
+    { id: 13, imageUrl: i13 },
+    { id: 14, imageUrl: i14 },
+    { id: 15, imageUrl: i15 },
+    { id: 16, imageUrl: i16 },
+    { id: 17, imageUrl: i17 },
+    { id: 18, imageUrl: i18 },
+    { id: 19, imageUrl: i19 },
+    { id: 20, imageUrl: i20 },
+    { id: 21, imageUrl: i21 },
+    { id: 22, imageUrl: i22 },
+    { id: 23, imageUrl: i23 },
+    { id: 24, imageUrl: i24 },
+    { id: 25, imageUrl: i25 },
+    { id: 26, imageUrl: i26 },
+    { id: 27, imageUrl: i27 },
+    { id: 28, imageUrl: i28 },
+    { id: 29, imageUrl: i29 },
+    { id: 30, imageUrl: i30 },
+    { id: 31, imageUrl: i31 },
   ];
 
   const slidesPerView = isMobile ? 2 : isTablet ? 4 : isDesktop ? 5 : 5;
   const shouldLoop = partners.length > slidesPerView;
 
   return (
-    <div>
+    <PartnersContainer>
       <SwiperContainer>
         <ShadowLeft />
         <Swiper
@@ -188,12 +96,12 @@ const Partners: React.FC = () => {
           slidesPerView={slidesPerView}
           spaceBetween={20}
           autoplay={{
-            delay: 0, // Збільшено затримку для нормальної прокрутки
+            delay: 0,
             disableOnInteraction: false,
-            waitForTransition: true, // Додано для плавності
-            pauseOnMouseEnter: true, // Додано для зупинки при наведенні
+            waitForTransition: true,
+            pauseOnMouseEnter: true,
           }}
-          speed={4000} // Зменшено швидкість для плавності
+          speed={4000}
           modules={[Autoplay]}
           className="mySwiper"
           style={{ width: '100%', paddingBottom: '20px' }}
@@ -209,37 +117,27 @@ const Partners: React.FC = () => {
                 paddingTop: 10,
               }}
             >
-              {partner.imageUrl ? (
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
-              ) : (
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
-              )}
+              <Image
+                src={partner.imageUrl}
+                alt={`Partner ${partner.id}`}
+                loading="lazy"
+              />
             </SwiperSlide>
           ))}
         </Swiper>
-
-        {/* Другий слайдер - відображається тільки на мобільних */}
 
         <Swiper
           loop={shouldLoop}
           slidesPerView={slidesPerView}
           spaceBetween={20}
           autoplay={{
-            delay: 0, // Збільшено затримку для нормальної прокрутки
+            delay: 0,
             disableOnInteraction: false,
-            waitForTransition: true, // Додано для плавності
+            waitForTransition: true,
             pauseOnMouseEnter: true,
-            reverseDirection: true, // Додано для реверсування напрямку
+            reverseDirection: true,
           }}
-          speed={4000} // Зменшено швидкість для плавності
+          speed={4000}
           modules={[Autoplay]}
           className="mySwiper"
           style={{ width: '100%' }}
@@ -255,25 +153,17 @@ const Partners: React.FC = () => {
                 paddingTop: 10,
               }}
             >
-              {partner.imageUrl ? (
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
-              ) : (
-                <Image
-                  src={partner.imageUrl}
-                  alt={`Partner ${partner.id}`}
-                  loading="lazy"
-                />
-              )}
+              <Image
+                src={partner.imageUrl}
+                alt={`Partner ${partner.id}`}
+                loading="lazy"
+              />
             </SwiperSlide>
           ))}
         </Swiper>
         <ShadowRight />
-      </SwiperContainer>{' '}
-    </div>
+      </SwiperContainer>
+    </PartnersContainer>
   );
 };
 
