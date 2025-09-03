@@ -460,6 +460,9 @@ const CardText = styled.div`
     margin: 20px 6px;
     width: calc(100% - 12px);
   }
+    @media screen and (min-width: 1440px) {
+    margin: 20px 6px;
+  }
 `;
 
 const CardTitle = styled.p`
