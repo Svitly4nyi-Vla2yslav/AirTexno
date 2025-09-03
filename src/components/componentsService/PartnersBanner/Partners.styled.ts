@@ -7,6 +7,19 @@ export const PartnersContainer = styled.div`
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
+
+  /* Видаляємо всі бокові відступи на мобільних і планшетах */
+  @media screen and (max-width: 1023px) {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
 `;
 
 export const SwiperContainer = styled.div`
@@ -26,8 +39,11 @@ export const SwiperContainer = styled.div`
     overflow: visible;
   }
 
-  @media screen and (min-width: 744px) {
-    width: 100%;
+  /* Видаляємо відступи на мобільних і планшетах */
+  @media screen and (max-width: 1023px) {
+    width: 100vw;
+    margin: 0;
+    padding: 40px 0;
   }
 
   @media screen and (min-width: 1440px) {
@@ -97,6 +113,10 @@ export const ShadowLeft = styled(motion.div)`
   background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   z-index: 10;
   pointer-events: none;
+
+  @media screen and (max-width: 743px) {
+    width: 50px;
+  }
 `;
 
 export const ShadowRight = styled(motion.div)`
@@ -108,6 +128,10 @@ export const ShadowRight = styled(motion.div)`
   background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   z-index: 10;
   pointer-events: none;
+
+  @media screen and (max-width: 743px) {
+    width: 50px;
+  }
 `;
 
 export const TitlePartner = styled.h3`

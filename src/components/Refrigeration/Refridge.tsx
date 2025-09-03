@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, easeOut, backOut } from 'framer-motion';
+import { motion, easeOut } from 'framer-motion';
 import {
   Container,
   Title,
@@ -14,7 +14,6 @@ import {
   ButtonTextWhite,
   TextWrapper,
   TextAndIconWrap,
-  // Нові стилі для планшетної версії
   TabletContainer,
   TabletContentWrapper,
   TabletImageRow,
@@ -39,59 +38,50 @@ export const Fridge: React.FC = () => {
   const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1439px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
 
-  // Анімаційні варіанти
+  // Спрощені анімаційні варіанти для кращої роботи на тачскрінах
   const titleVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.8, ease: easeOut },
+      transition: { duration: 0.6, ease: easeOut },
     },
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, scale: 1.1, rotate: -2 },
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
       scale: 1,
-      rotate: 0,
-      transition: { duration: 1, ease: easeOut, delay: 0.2 },
+      transition: { duration: 0.7, ease: easeOut, delay: 0.1 },
     },
   };
 
   const textVariants = {
-    hidden: { opacity: 0, x: -30 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: easeOut, delay: 0.4 },
+      transition: { duration: 0.5, ease: easeOut, delay: 0.2 },
     },
   };
 
   const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: easeOut, delay: 0.6 },
+      transition: { duration: 0.4, ease: easeOut, delay: 0.3 },
     },
-    hover: { scale: 1.05, transition: { duration: 0.2 } },
-    tap: { scale: 0.95 },
   };
 
   const iconVariants = {
-    hidden: { opacity: 0, scale: 0, rotate: -180 },
-    visible: (index: number) => ({
+    hidden: { opacity: 0 },
+    visible: {
       opacity: 1,
-      scale: 1,
-      rotate: 0,
       transition: {
-        duration: 0.5,
-        delay: 0.8 + index * 0.1,
-        ease: backOut,
+        duration: 0.4,
+        ease: easeOut,
       },
-    }),
+    },
   };
 
   if (isDesktop) {
@@ -101,7 +91,7 @@ export const Fridge: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={titleVariants}
           >
             <Title>
@@ -112,7 +102,7 @@ export const Fridge: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={textVariants}
           >
             <TabletDescription>
@@ -126,9 +116,7 @@ export const Fridge: React.FC = () => {
               variants={buttonVariants}
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
-              whileHover='hover'
-              whileTap='tap'
+              viewport={{ once: true, amount: 0.2 }}
             >
               <TabletPrimaryButton>
                 <TabletButtonTextWhite>Contact Us</TabletButtonTextWhite>
@@ -139,10 +127,7 @@ export const Fridge: React.FC = () => {
               variants={buttonVariants}
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.1 }}
-              whileHover='hover'
-              whileTap='tap'
+              viewport={{ once: true, amount: 0.2 }}
             >
               <TabletSecondaryButton>
                 <a href='tel:+18055002705'>
@@ -155,11 +140,10 @@ export const Fridge: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={textVariants}
-            transition={{ delay: 0.8 }}
           >
-            <RatingIcon src={rating} alt='⭐⭐⭐⭐⭐' />
+            <RatingIcon src={rating} alt='⭐⭐⭐⭐⭐' loading='lazy' />
           </motion.div>
         </DeckstopTitleWrapp>
 
@@ -170,10 +154,15 @@ export const Fridge: React.FC = () => {
                 <motion.div
                   initial='hidden'
                   whileInView='visible'
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={imageVariants}
                 >
-                  <TabletImage src={fridge} alt='Why Airtexno Image 1' className='main-image' />
+                  <TabletImage 
+                    src={fridge} 
+                    alt='Why Airtexno Image 1' 
+                    className='main-image'
+                    loading='lazy'
+                  />
                 </motion.div>
 
                 <TextWrapper className='tablet-text-wrapper'>
@@ -184,11 +173,11 @@ export const Fridge: React.FC = () => {
                   ].map((item, index) => (
                     <motion.div
                       key={index}
-                      custom={index}
                       initial='hidden'
                       whileInView='visible'
-                      viewport={{ once: true, amount: 0.3 }}
+                      viewport={{ once: true, amount: 0.2 }}
                       variants={iconVariants}
+                      transition={{ delay: index * 0.1 }}
                     >
                       <TextAndIconWrap>
                         <span style={{ fontSize: '20px' }}>{item.icon}</span>
@@ -202,11 +191,15 @@ export const Fridge: React.FC = () => {
               <motion.div
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={imageVariants}
-                transition={{ delay: 0.3 }}
               >
-                <TabletImage src={fridge1} alt='Why Airtexno Image 2' className='secondary-image' />
+                <TabletImage 
+                  src={fridge1} 
+                  alt='Why Airtexno Image 2' 
+                  className='secondary-image'
+                  loading='lazy'
+                />
               </motion.div>
             </TabletImageRow>
           </TabletContentWrapper>
@@ -221,7 +214,7 @@ export const Fridge: React.FC = () => {
         <motion.div
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={titleVariants}
         >
           <Title>
@@ -235,10 +228,15 @@ export const Fridge: React.FC = () => {
               <motion.div
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={imageVariants}
               >
-                <TabletImage src={fridge} alt='Why Airtexno Image 1' className='main-image' />
+                <TabletImage 
+                  src={fridge} 
+                  alt='Why Airtexno Image 1' 
+                  className='main-image'
+                  loading='lazy'
+                />
               </motion.div>
 
               <TextWrapper className='tablet-text-wrapper'>
@@ -249,11 +247,11 @@ export const Fridge: React.FC = () => {
                 ].map((item, index) => (
                   <motion.div
                     key={index}
-                    custom={index}
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     variants={iconVariants}
+                    transition={{ delay: index * 0.1 }}
                   >
                     <TextAndIconWrap>
                       <span style={{ fontSize: '18px' }}>{item.icon}</span>
@@ -267,18 +265,22 @@ export const Fridge: React.FC = () => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={imageVariants}
-              transition={{ delay: 0.3 }}
             >
-              <TabletImage src={fridge1} alt='Why Airtexno Image 2' className='secondary-image' />
+              <TabletImage 
+                src={fridge1} 
+                alt='Why Airtexno Image 2' 
+                className='secondary-image'
+                loading='lazy'
+              />
             </motion.div>
           </TabletImageRow>
 
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={textVariants}
           >
             <TabletDescription>
@@ -292,9 +294,7 @@ export const Fridge: React.FC = () => {
               variants={buttonVariants}
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
-              whileHover='hover'
-              whileTap='tap'
+              viewport={{ once: true, amount: 0.2 }}
             >
               <TabletPrimaryButton>
                 <TabletButtonTextWhite>Contact Us</TabletButtonTextWhite>
@@ -305,10 +305,7 @@ export const Fridge: React.FC = () => {
               variants={buttonVariants}
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.1 }}
-              whileHover='hover'
-              whileTap='tap'
+              viewport={{ once: true, amount: 0.2 }}
             >
               <TabletSecondaryButton>
                 <a href='tel:+18055002705'>
@@ -327,7 +324,7 @@ export const Fridge: React.FC = () => {
       <motion.div
         initial='hidden'
         whileInView='visible'
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={titleVariants}
       >
         <Title>
@@ -340,10 +337,14 @@ export const Fridge: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={imageVariants}
           >
-            <Image src={fridge} alt='Why Airtexno Image 1' />
+            <Image 
+              src={fridge} 
+              alt='Why Airtexno Image 1' 
+              loading='lazy'
+            />
           </motion.div>
 
           <TextWrapper>
@@ -354,11 +355,11 @@ export const Fridge: React.FC = () => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                custom={index}
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={iconVariants}
+                transition={{ delay: index * 0.1 }}
               >
                 <TextAndIconWrap>
                   <span style={{ fontSize: '16px' }}>{item.icon}</span>
@@ -372,7 +373,7 @@ export const Fridge: React.FC = () => {
         <motion.div
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={textVariants}
         >
           <Description>
@@ -386,9 +387,7 @@ export const Fridge: React.FC = () => {
             variants={buttonVariants}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
-            whileHover='hover'
-            whileTap='tap'
+            viewport={{ once: true, amount: 0.2 }}
           >
             <PrimaryButton to='/contact#ap'>
               <ButtonTextWhite>Contact Us</ButtonTextWhite>
@@ -399,10 +398,7 @@ export const Fridge: React.FC = () => {
             variants={buttonVariants}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.1 }}
-            whileHover='hover'
-            whileTap='tap'
+            viewport={{ once: true, amount: 0.2 }}
           >
             <SecondaryButton>
               <a href='tel:+18055002705'>

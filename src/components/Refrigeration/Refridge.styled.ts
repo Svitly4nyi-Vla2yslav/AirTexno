@@ -11,6 +11,11 @@ export const Container = styled.div`
   overflow: auto;
   padding: 1rem;
   padding-top: 100px;
+  
+  /* Оптимізація для iOS */
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  
   @media (min-width: 768px) {
     gap: 2.5rem;
     padding: 1.5rem;
@@ -26,10 +31,11 @@ export const Container = styled.div`
 export const Title = styled.p`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 56px;
+  font-size: 40px;
   line-height: 90%;
   color: var(--blue-500);
   text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  
   span {
     font-family: var(--second-family);
     font-weight: 400;
@@ -39,11 +45,7 @@ export const Title = styled.p`
   }
 
   @media (min-width: 768px) {
-    font-family: var(--second-family);
-    font-weight: 400;
     font-size: 85px;
-    line-height: 90%;
-    color: var(--blue-500);
   }
 
   @media (min-width: 1440px) {
@@ -82,6 +84,11 @@ export const Image = styled.img`
   height: auto;
   max-height: 583px;
   object-fit: cover;
+  
+  /* Оптимізація для мобільних пристроїв */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 
   @media (min-width: 768px) {
     padding: 0.75rem;
@@ -115,11 +122,9 @@ export const ButtonRow = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
+  
+  /* Запобігання випадковим клікам на мобільних */
+  touch-action: manipulation;
 `;
 
 export const PrimaryButton = styled(NavLink)`
@@ -138,34 +143,22 @@ export const PrimaryButton = styled(NavLink)`
   height: 40px;
   border: none;
   transition: all 0.3s ease;
+  
+  /* Покращення для тачскрінів */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
-  /* Ховер ефекти */
   &:hover {
     background: #1a7bc9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
   }
 
-  /* Фокус для доступності */
   &:focus {
     outline: 2px solid var(--blue-500);
     outline-offset: 2px;
   }
 
-  /* Активний стан */
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(48, 152, 238, 0.2);
-  }
-
   a {
     text-decoration: none;
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -184,31 +177,19 @@ export const SecondaryButton = styled.button`
   height: 40px;
   background: transparent;
   transition: all 0.3s ease;
+  
+  /* Покращення для тачскрінів */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
-  /* Ховер ефекти */
   &:hover {
     background-color: #242424;
     border-color: #242424;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
-  /* Фокус для доступності */
   &:focus {
     outline: 2px solid var(--blue-500);
     outline-offset: 2px;
-  }
-
-  /* Активний стан */
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -223,12 +204,6 @@ export const ButtonTextWhite = styled.p`
 
   ${SecondaryButton}:hover & {
     color: white;
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -249,6 +224,13 @@ export const TextWrapper = styled.div`
   position: absolute;
   bottom: 20px;
   flex-wrap: wrap;
+  
+  /* Запобігання перешкоджанню свайпам */
+  pointer-events: none;
+
+  & > * {
+    pointer-events: auto;
+  }
 
   @media (min-width: 768px) and (max-width: 1439px) {
     position: absolute;
@@ -269,6 +251,11 @@ export const TextAndIconWrap = styled.div`
   display: flex;
   width: 90%;
   margin: 0 auto;
+  
+  /* Покращення для мобільних */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 
   p {
     font-family: var(--font-family);
@@ -279,7 +266,6 @@ export const TextAndIconWrap = styled.div`
 
   @media (min-width: 768px) and (max-width: 1439px) {
     display: flex;
-
     width: fit-content;
     margin: 0;
     padding: 12px 16px;
@@ -287,13 +273,9 @@ export const TextAndIconWrap = styled.div`
     p {
       font-size: 12px;
     }
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
   }
 `;
+
 export const TabletContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -304,6 +286,11 @@ export const TabletContainer = styled.div`
   overflow: auto;
   padding: 1rem;
   padding-top: 150px;
+  
+  /* Оптимізація для iOS */
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  
   @media (min-width: 1440px) {
     display: flex;
     flex-direction: row;
@@ -322,16 +309,6 @@ export const RatingIcon = styled.img`
   }
 `;
 
-export const TabletTitle = styled.p`
-  font-family: 'Bebas Neue', sans-serif;
-  font-weight: 400;
-  font-size: 85px;
-  line-height: 0.9em;
-  color: #3098ee;
-  width: 100%;
-  margin: 0;
-`;
-
 export const TabletContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -345,6 +322,9 @@ export const TabletImageRow = styled.div`
   align-items: center;
   gap: 32px;
   width: 100%;
+  
+  /* Запобігання випадковим клікам на мобільних */
+  touch-action: manipulation;
 
   .main-image {
     width: 437px;
@@ -382,6 +362,11 @@ export const TabletImage = styled.img`
   padding: 8px;
   border-radius: 8px;
   object-fit: cover;
+  
+  /* Оптимізація для мобільних пристроїв */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 `;
 
 export const TabletDescription = styled.p`
@@ -399,6 +384,9 @@ export const TabletButtonRow = styled.div`
   align-items: center;
   gap: 8px;
   width: fit-content;
+  
+  /* Запобігання випадковим клікам на мобільних */
+  touch-action: manipulation;
 `;
 
 export const TabletPrimaryButton = styled.button`
@@ -415,6 +403,10 @@ export const TabletPrimaryButton = styled.button`
   width: fit-content;
   height: 40px;
   transition: background-color 0.3s ease;
+  
+  /* Покращення для тачскрінів */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
   &:hover {
     background: #1a7bc9;
@@ -435,6 +427,10 @@ export const TabletSecondaryButton = styled.button`
   width: 119px;
   height: 40px;
   transition: all 0.3s ease;
+  
+  /* Покращення для тачскрінів */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
   &:hover {
     background: #242424;
@@ -459,31 +455,6 @@ export const TabletButtonTextBlack = styled(TabletButtonTextWhite)`
   }
 `;
 
-// Медіа-запит для планшетної версії
-const TabletStyles = styled.div`
-  @media (min-width: 768px) and (max-width: 1439px) {
-    ${Container} {
-      display: none;
-    }
-    ${TabletContainer} {
-      display: flex;
-    }
-  }
-
-  @media (max-width: 767px), (min-width: 1440px) {
-    ${TabletContainer} {
-      display: none;
-    }
-    ${Container} {
-      display: flex;
-    }
-  }
-`;
-
-export default TabletStyles;
-
-// ! -----is Deckstop======
-
 export const DeckstopTitleWrapp = styled.div`
   width: 553px;
   height: 396px;
@@ -493,3 +464,25 @@ export const DeckstopImageContainer = styled.div`
   width: 668px;
   height: 583px;
 `;
+
+// Додаткові стилі для покращення роботи на мобільних
+export const MobileOptimizedStyles = styled.div`
+  /* Запобігання випадковим масштабуванням на iOS */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Покращення рендерингу на мобільних */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Запобігання виділенню тексту при тапі */
+  *:not(input):not(textarea) {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+`;
+
+export default MobileOptimizedStyles;
