@@ -1,36 +1,75 @@
 import React, { useRef } from 'react';
 import { motion, easeOut } from 'framer-motion';
 import styled, { css, keyframes } from 'styled-components';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react'; // Додано SwiperSlide
 import 'swiper/css';
-import image1 from '../../assets/icons/news&tips/News Article 2 Image Container.png';
-import image2 from '../../assets/icons/news&tips/Review Image-Elizabeth Castorena.png';
-import image3 from '../../assets/icons/news&tips/Review Image-Wendy Bailey.png';
-import image4 from '../../assets/icons/news&tips/Review Image-sanal-avatar.png';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
+import { NavLink } from 'react-router-dom';
 
-// Дані для слайдів
-const slides = [
+import image from '../../assets/icons/news&tips/News Article 2 Image Container (3).png';
+import image1 from '../../assets/icons/equipment/Image3.png';
+import image2 from '../../assets/icons/news&tips/News Article 2 Image Container (4).png';
+import image3 from '../../assets/icons/news&tips/bosch-dishwasher-door-open.jpg';
+import image4 from '../../assets/icons/news&tips/News Article 2 Image Container (6).png';
+import image5 from '../../assets/icons/news&tips/News Article 2 Image Container (7).png';
+
+interface Article {
+  id: number;
+  image: string;
+  title: string;
+  description: string;
+  path: string;
+}
+
+const articles: Article[] = [
   {
-    img: image1,
-    title: 'APPLIANCE INSTALLATION SERVICES',
-    description: 'Professional installation for appliances, ensuring safety.',
+    id: 1,
+    image: image5,
+    title: 'HOW TO MAINTAIN YOUR REFRIGERATOR AND AVOID COSTLY REPAIRS',
+    description:
+      'Keep your fridge running smoothly with easy maintenance tips to prevent expensive breakdowns.',
+    path: '/tips/refrigerator-maintenance#ap',
   },
   {
-    img: image2,
-    title: 'WHEN YOUR REFRIGERATOR STOPS COOLING: URGENT REPAIR SIGNS',
-    description: "Don't wait for food to spoil. Know the signs needing urgent help.",
+    id: 2,
+    image: image1,
+    title: 'TOP 5 SIGNS YOUR OVEN OR RANGE NEEDS REPAIR',
+    description:
+      'Gas range clicking? Oven not heating evenly? Discover common signs your oven needs professional attention.',
+    path: '/tips/oven-repair-signs#ap',
   },
   {
-    img: image3,
-    title: 'WASHING MACHINE TROUBLESHOOTING',
-    description: 'Quick solutions for common washing machine issues.',
+    id: 3,
+    image: image2,
+    title: 'WASHER & DRYER MAINTENANCE TIPS EVERY HOMEOWNER SHOULD KNOW',
+    description:
+      'Extend the life of your laundry appliances with simple maintenance practices to avoid breakdowns.',
+    path: '/tips/laundry-appliance-maintenance#ap',
   },
   {
-    img: image4,
-    title: 'DISHWASHER MAINTENANCE TIPS',
-    description: 'Keep your dishwasher running smoothly with these tips.',
+    id: 4,
+    image: image3,
+    title: 'DISHWASHER NOT DRAINING? COMMON CAUSES AND EASY FIXES',
+    description:
+      'Learn how to troubleshoot and fix common dishwasher drainage problems quickly and effectively.',
+    path: '/tips/dishwasher-drainage#ap',
+  },
+  {
+    id: 5,
+    image: image4,
+    title: 'WHEN TO REPLACE VS. REPAIR YOUR APPLIANCE: EXPERT ADVICE',
+    description:
+      'Make smart decisions about whether to repair or replace your appliances based on cost, age, and efficiency.',
+    path: '/tips/repair-vs-replace#ap',
+  },
+  {
+    id: 6,
+    image: image,
+    title: 'WHY OEM PARTS MATTER IN APPLIANCE REPAIR',
+    description:
+      'Discover the importance of using genuine manufacturer parts for reliable and long-lasting appliance repairs.',
+    path: '/tips/oem-parts#ap',
   },
 ];
 
@@ -56,13 +95,11 @@ const cardVariants = {
     opacity: 0,
     y: 50,
     scale: 0.95,
-    rotateX: -5,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    rotateX: 0,
     transition: {
       duration: 0.7,
       ease: easeOut,
@@ -120,13 +157,10 @@ const textVariants = {
 const NewsAndTips: React.FC = () => {
   const swiperRef = useRef<any>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  const isTablet = useMediaQuery({
-    query: '(min-width: 768px)',
-  });
-  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
+  const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
 
-  const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 2 : 2;
-  const shouldLoop = slides.length > slidesPerView;
+  const slidesPerView = isMobile ? 1 : isTablet ? 2 : 3;
+  const shouldLoop = articles.length > slidesPerView;
 
   return (
     <Wrapper>
@@ -153,86 +187,101 @@ const NewsAndTips: React.FC = () => {
         </motion.div>
       </HeaderSection>
 
-      <NavigationContainer>
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-        >
-          <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M15 18L9 12L15 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </NavButton>
-        </motion.div>
-
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2, delay: 0.1 }}
-        >
-          <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M9 18L15 12L9 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </NavButton>
-        </motion.div>
-      </NavigationContainer>
-
-      <SwiperContainer $isTablet={isTablet}>
+      <SwiperContainer>
         <Swiper
           modules={[Navigation, Autoplay]}
           onSwiper={swiper => (swiperRef.current = swiper)}
-          spaceBetween={isTablet ? 20 : 20}
+          spaceBetween={20}
           autoplay={{
             delay: 4000,
             disableOnInteraction: false,
             waitForTransition: true,
             pauseOnMouseEnter: true,
           }}
-          speed={6000}
+          speed={600}
           loop={shouldLoop}
           slidesPerView={slidesPerView}
+          centeredSlides={isMobile}
+          touchRatio={1.5}
+          touchAngle={45}
+          simulateTouch={true}
+          allowTouchMove={true}
         >
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <motion.div
-                variants={cardVariants}
-                whileInView='visible'
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card $isTablet={isTablet}>
-                  <motion.div variants={imageVariants} whileHover='hover'>
-                    <Image src={slide.img} alt={slide.title} $isTablet={isTablet} />
-                  </motion.div>
-
-                  <CardText>
-                    <motion.div variants={textVariants} transition={{ delay: index * 0.1 + 0.1 }}>
-                      <CardTitle $isTablet={isTablet}>{slide.title}</CardTitle>
+          {articles.map((article, _index) => (
+            <SwiperSlide key={article.id}>
+              {' '}
+              {/* Використовуємо SwiperSlide */}
+              <StyledNavLink to={article.path}>
+                <motion.div
+                  variants={cardVariants}
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ once: true, amount: 0.2 }}
+                  // whileHover='hover'
+                >
+                  <Card>
+                    <motion.div variants={imageVariants} whileHover='hover'>
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        loading='lazy'
+                        decoding='async'
+                      />
                     </motion.div>
 
-                    <motion.div variants={textVariants} transition={{ delay: index * 0.1 + 0.2 }}>
-                      <CardDescription $isTablet={isTablet}>{slide.description}</CardDescription>
-                    </motion.div>
-                  </CardText>
-                </Card>
-              </motion.div>
+                    <CardText>
+                      <motion.div variants={textVariants}>
+                        <CardTitle>{article.title}</CardTitle>
+                      </motion.div>
+
+                      <motion.div variants={textVariants}>
+                        <CardDescription>{article.description}</CardDescription>
+                      </motion.div>
+                    </CardText>
+                  </Card>
+                </motion.div>
+              </StyledNavLink>
             </SwiperSlide>
           ))}
         </Swiper>
+
+        <NavigationContainer>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
+              <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+                <path
+                  d='M15 18L9 12L15 6'
+                  stroke='white'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            </NavButton>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
+          >
+            <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
+              <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+                <path
+                  d='M9 18L15 12L9 6'
+                  stroke='white'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            </NavButton>
+          </motion.div>
+        </NavigationContainer>
       </SwiperContainer>
     </Wrapper>
   );
@@ -242,12 +291,20 @@ export default NewsAndTips;
 
 // ================= styled-components =================
 
-const SwiperContainer = styled.div<{ $isTablet: boolean }>`
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+`;
+
+const SwiperContainer = styled.div`
   width: 100%;
   padding: 20px 0;
 
   .swiper-slide {
-    width: ${props => (props.$isTablet ? '50%' : 'auto')};
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 `;
 
@@ -263,28 +320,10 @@ const pulseAnimation = keyframes`
   }
 `;
 
-const slideInLeft = keyframes`
-  from {
-    transform: translateX(-2px);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-const slideInRight = keyframes`
-  from {
-    transform: translateX(2px);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
 export const NavigationContainer = styled.div`
   display: flex;
   gap: 12px;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100%;
   justify-content: flex-end;
 `;
@@ -293,53 +332,30 @@ export const NavButton = styled.button<{ bg: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   background-color: ${props => props.bg};
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+  touch-action: manipulation;
 
   &:hover {
     animation: ${pulseAnimation} 0.6s ease;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-    &::before {
-      opacity: 1;
-    }
-
     ${props =>
       props.bg === '#DBDBD8' &&
       css`
         background-color: #c8c8c5;
-        svg {
-          animation: ${slideInLeft} 0.4s ease;
-        }
       `}
 
     ${props =>
       props.bg === '#3098EE' &&
       css`
         background-color: #2580d6;
-        svg {
-          animation: ${slideInRight} 0.4s ease;
-        }
       `}
   }
 
@@ -348,12 +364,9 @@ export const NavButton = styled.button<{ bg: string }>`
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
-  svg {
-    transition: transform 0.2s ease;
-  }
-
-  &:hover svg {
-    transform: scale(1.1);
+  @media (max-width: 767px) {
+    width: 44px;
+    height: 44px;
   }
 `;
 
@@ -401,84 +414,91 @@ const Subtitle = styled.p`
 const Title = styled.p`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 52px;
+  font-size: 32px;
   line-height: 90%;
   color: var(--black-500);
-
+  width: 40%;
   span {
     color: var(--blue-500);
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 72px;
-    min-width: 750px;
+    font-size: 52px;
+  }
 
-    span {
-      font-size: 72px;
-    }
+  @media screen and (min-width: 1440px) {
+    font-size: 72px;
   }
 `;
 
-const Card = styled.div<{ $isTablet: boolean }>`
+const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: ${props => (props.$isTablet ? '100%' : '288px')};
-  height: 557px;
+  width: 100%;
+  height: fit-content;
   margin: 0 auto;
   cursor: pointer;
   border-radius: 10px;
+  padding: 10px;
 
   @media screen and (min-width: 768px) {
-    max-width: ${props => (props.$isTablet ? '100%' : '288px')};
+    /* max-width: 322px; */
   }
 
   @media screen and (min-width: 1440px) {
-    width: 656px;
+    /* max-width: 380px; */
   }
 `;
 
-const Image = styled.img<{ $isTablet: boolean }>`
+const Image = styled.img`
   border-radius: 8px;
-  width: ${props => (props.$isTablet ? '100%' : '288px')};
-  height: 395px;
+  width: 100%;
+  height: 250px;
   object-fit: cover;
 
   @media screen and (min-width: 768px) {
-    max-width: ${props => (props.$isTablet ? '100%' : '288px')};
+    height: 300px;
   }
 
   @media screen and (min-width: 1440px) {
-    max-width: ${props => (props.$isTablet ? '100%' : '656px')};
+    height: 350px;
   }
 `;
 
 const CardText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 10px;
-  border-radius: 10px;
+  gap: 12px;
+  padding: 10px 0;
 `;
 
-const CardTitle = styled.p<{ $isTablet: boolean }>`
+const CardTitle = styled.p`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: ${props => (props.$isTablet ? '24px' : '32px')};
-  line-height: 90%;
+  font-size: 18px;
+  line-height: 110%;
   color: var(--black-500);
 
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+
   @media screen and (min-width: 1440px) {
-    font-size: 32px;
+    font-size: 24px;
   }
 `;
 
-const CardDescription = styled.p<{ $isTablet: boolean }>`
+const CardDescription = styled.p`
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: ${props => (props.$isTablet ? '14px' : '16px')};
-  line-height: 125%;
+  font-size: 14px;
+  line-height: 130%;
   color: var(--black-500);
+
+  @media screen and (min-width: 768px) {
+    font-size: 15px;
+  }
 
   @media screen and (min-width: 1440px) {
     font-size: 16px;
