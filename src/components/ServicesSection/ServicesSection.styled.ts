@@ -10,7 +10,7 @@ export const Section = styled.div`
   padding: 1rem;
   overflow: hidden;
   position: relative;
-  
+
   @media screen and (min-width: 768px) {
     padding: 1.5rem;
   }
@@ -29,7 +29,7 @@ export const SmallText = styled.p`
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
-  
+
   @media screen and (min-width: 768px) {
     font-size: 14px;
     text-transform: uppercase;
@@ -42,7 +42,7 @@ export const ContentWrapper = styled.div`
   align-items: flex-start;
   gap: 2rem;
   width: 100%;
-  
+
   @media screen and (min-width: 1440px) {
     flex-direction: row;
     gap: 3rem;
@@ -78,7 +78,7 @@ export const Number = styled.p`
   font-weight: 400;
   font-size: 28px;
   line-height: 90%;
-  
+
   @media screen and (min-width: 768px) {
     font-size: 56px;
   }
@@ -90,7 +90,7 @@ export const TitleBlue = styled.p`
   font-size: 28px;
   line-height: 90%;
   color: var(--blue-500);
-  
+
   @media screen and (min-width: 768px) {
     font-size: 56px;
   }
@@ -103,7 +103,7 @@ export const Title = styled.p`
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
-  
+
   @media screen and (min-width: 768px) {
     font-size: 56px;
   }
@@ -116,7 +116,7 @@ export const TitleCard = styled.p`
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
-  
+
   @media screen and (min-width: 768px) {
     font-size: 38px;
   }
@@ -133,13 +133,13 @@ export const ServiceImage = styled.img`
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  
+
   /* Покращена продуктивність для iOS */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
-  
+
   @media screen and (min-width: 768px) {
     max-height: 500px;
   }
@@ -156,7 +156,7 @@ export const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
-  
+
   @media screen and (min-width: 1440px) {
     padding-top: 40%;
   }
@@ -185,13 +185,14 @@ export const Button = styled(NavLink)`
   background: transparent;
   transition: all 0.2s ease;
   text-decoration: none;
-  
+
   /* Покращена доступність для тач-пристроїв */
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
   min-width: 44px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: #242424;
     transform: translateY(-1px);
   }
@@ -225,7 +226,7 @@ export const Container = styled.div`
   margin: 1rem;
   width: calc(100% - 2rem);
   box-sizing: border-box;
-  
+
   @media screen and (min-width: 768px) {
     position: absolute;
     bottom: 1rem;
@@ -263,7 +264,7 @@ export const Description = styled.p`
   font-weight: 400;
   line-height: 1.4em;
   width: 100%;
-  
+
   @media screen and (min-width: 768px) {
     font-size: 1rem;
   }
@@ -290,13 +291,14 @@ export const PrimaryButton = styled(NavLink)`
   border: none;
   transition: all 0.2s ease;
   text-decoration: none;
-  
+
   /* Покращена доступність для тач-пристроїв */
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
   min-width: 44px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background: #1a7bc9;
     transform: translateY(-1px);
   }
@@ -318,13 +320,14 @@ export const SecondaryButton = styled.button`
   border-radius: 0.5rem;
   background: transparent;
   transition: all 0.2s ease;
-  
+
   /* Покращена доступність для тач-пристроїв */
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
   min-width: 44px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: #242424;
     border-color: #242424;
     transform: translateY(-1px);
@@ -355,7 +358,7 @@ export const ButtonTextBlack = styled(ButtonTextWhite)`
 export const ImageSection = styled.div`
   position: relative;
   width: 100%;
-  
+
   @media screen and (min-width: 768px) {
     max-width: 100%;
   }
@@ -366,13 +369,14 @@ export const GlobalStyles = styled.div`
   * {
     box-sizing: border-box;
   }
-  
-  html, body {
+
+  html,
+  body {
     overflow-x: hidden;
     width: 100%;
     position: relative;
   }
-  
+
   /* Усунення горизонтального скролу на iOS */
   @supports (-webkit-touch-callout: none) {
     body {

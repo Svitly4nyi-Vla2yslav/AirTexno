@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useTransform, easeOut, backOut } from 'framer-motion';
+import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
 import ServicesImage from '../../../assets/icons/ServicesImage.png';
 import {
   Section,
@@ -30,111 +30,33 @@ import {
 import { useMediaQuery } from 'react-responsive';
 
 const ServicesSection: React.FC = () => {
-  const isDeckstop = useMediaQuery({ query: '(min-width: 1440px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { scrollY } = useScroll();
 
-  // Паралакс ефекти для зображення
-  const y = useTransform(scrollY, [0, 500], [0, 100]);
-  const rotate = useTransform(scrollY, [0, 800], [0, -2]);
-  const scale = useTransform(scrollY, [0, 400], [1, 1.05]);
+  // Спрощені паралакс ефекти для мобільних пристроїв
+  const y = useTransform(scrollY, [0, 500], [0, isMobile ? 50 : 100]);
+  const rotate = useTransform(scrollY, [0, 800], [0, isMobile ? -1 : -2]);
+  const scale = useTransform(scrollY, [0, 400], [1, isMobile ? 1.02 : 1.05]);
 
-  // Унікальні анімаційні варіанти
+  // Спрощені анімаційні варіанти для кращої продуктивності на мобільних
   const floatingAnimation = {
     hidden: {
       opacity: 0,
-      y: 100,
-      rotate: -10,
-      scale: 0.8,
+      y: 50,
     },
     visible: {
       opacity: 1,
       y: 0,
-      rotate: 0,
-      scale: 1,
       transition: {
-        duration: 1.2,
-        ease: easeOut,
-        delay: 0.2,
-      },
-    },
-    hover: {
-      y: -15,
-      rotate: 2,
-      scale: 1.05,
-      transition: {
-        duration: 0.4,
-        ease: easeOut,
-      },
-    },
-  };
-
-  const numberGlowAnimation = {
-    hidden: {
-      opacity: 0,
-      scale: 0.5,
-      textShadow: '0 0 0px rgba(48, 152, 238, 0)',
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      textShadow: [
-        '0 0 0px rgba(48, 152, 238, 0)',
-        '0 0 20px rgba(48, 152, 238, 0.8)',
-        '0 0 10px rgba(48, 152, 238, 0.4)',
-      ],
-      transition: {
-        duration: 1.5,
+        duration: 0.8,
         ease: easeOut,
         delay: 0.1,
       },
     },
   };
 
-  const textRevealAnimation = {
-    hidden: {
-      opacity: 0,
-      x: -50,
-      skewX: -10,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      skewX: 0,
-      transition: {
-        duration: 0.8,
-        ease: backOut,
-      },
-    },
-  };
-
-  const cardFlipAnimation = {
-    hidden: {
-      opacity: 0,
-      rotateY: 90,
-      scale: 0.8,
-    },
-    visible: {
-      opacity: 1,
-      rotateY: 0,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: easeOut,
-        delay: 0.3,
-      },
-    },
-    hover: {
-      rotateY: 5,
-      scale: 1.02,
-      boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
-      transition: {
-        duration: 0.3,
-        ease: easeOut,
-      },
-    },
-  };
-
-  const buttonPulseAnimation = {
+  const numberGlowAnimation = {
     hidden: {
       opacity: 0,
       scale: 0.8,
@@ -147,40 +69,72 @@ const ServicesSection: React.FC = () => {
         ease: easeOut,
       },
     },
-    hover: {
-      scale: 1.1,
-      boxShadow: '0 0 30px rgba(48, 152, 238, 0.4)',
+  };
+
+  const textRevealAnimation = {
+    hidden: {
+      opacity: 0,
+      x: -30,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
       transition: {
-        duration: 0.3,
+        duration: 0.5,
         ease: easeOut,
       },
     },
+  };
+
+  const cardFlipAnimation = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: easeOut,
+      },
+    },
+  };
+
+  const buttonPulseAnimation = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: easeOut,
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2,
+      },
+    },
     tap: {
-      scale: 0.95,
+      scale: 0.97,
     },
   };
 
   const image3DEffect = {
     hidden: {
       opacity: 0,
-      rotateX: 45,
-      scale: 1.2,
+      scale: 1.1,
     },
     visible: {
       opacity: 1,
-      rotateX: 0,
       scale: 1,
       transition: {
-        duration: 1.4,
-        ease: easeOut,
-      },
-    },
-    hover: {
-      rotateX: 5,
-      rotateY: 5,
-      scale: 1.05,
-      transition: {
-        duration: 0.5,
+        duration: 0.9,
         ease: easeOut,
       },
     },
@@ -191,7 +145,7 @@ const ServicesSection: React.FC = () => {
       <motion.div
         initial='hidden'
         whileInView='visible'
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={textRevealAnimation}
       >
         <SmallText>Our Service</SmallText>
@@ -203,7 +157,7 @@ const ServicesSection: React.FC = () => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={numberGlowAnimation}
             >
               <Number>01.</Number>
@@ -212,9 +166,9 @@ const ServicesSection: React.FC = () => {
             <motion.div
               initial='hidden'
               whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={textRevealAnimation}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.1 }}
             >
               <TitleBlue>Appliance Care & Tune-Ups</TitleBlue>
             </motion.div>
@@ -223,9 +177,9 @@ const ServicesSection: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={textRevealAnimation}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2 }}
           >
             <Title>Professional Installations</Title>
           </motion.div>
@@ -233,21 +187,21 @@ const ServicesSection: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={textRevealAnimation}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.3 }}
           >
             <Title>Fast & Reliable Emergency Repairs</Title>
           </motion.div>
 
-          {isDeckstop && (
+          {isDesktop && (
             <InfoBlock>
               <motion.div
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={textRevealAnimation}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: 0.4 }}
               >
                 <InfoText>Do you want to know more about our service?</InfoText>
               </motion.div>
@@ -266,9 +220,8 @@ const ServicesSection: React.FC = () => {
             style={{ y, rotate, scale }}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={image3DEffect}
-            whileHover='hover'
           >
             <ServiceImage src={ServicesImage} alt='Services Image' />
           </motion.div>
@@ -276,9 +229,8 @@ const ServicesSection: React.FC = () => {
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={cardFlipAnimation}
-            whileHover='hover'
           >
             <Container>
               <HeaderWrapper>
@@ -286,7 +238,7 @@ const ServicesSection: React.FC = () => {
                   <motion.div
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     variants={textRevealAnimation}
                   >
                     <TitleCard>Preventive Care</TitleCard>
@@ -297,9 +249,9 @@ const ServicesSection: React.FC = () => {
                   <motion.div
                     initial='hidden'
                     whileInView='visible'
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     variants={textRevealAnimation}
-                    transition={{ delay: 0.2 }}
+                    transition={{ delay: 0.1 }}
                   >
                     <Description>
                       Preventive Care to Keep Your Appliances Running Longer Regular maintenance
@@ -312,17 +264,16 @@ const ServicesSection: React.FC = () => {
               </HeaderWrapper>
 
               <ButtonRow>
-                <motion.div variants={buttonPulseAnimation} whileHover='hover' whileTap='tap'>
-                  <PrimaryButton>
+                <motion.div variants={buttonPulseAnimation} whileTap='tap'>
+                  <PrimaryButton to='/contact#ap'>
                     <ButtonTextWhite>Contact Us</ButtonTextWhite>
                   </PrimaryButton>
                 </motion.div>
 
                 <motion.div
                   variants={buttonPulseAnimation}
-                  whileHover='hover'
                   whileTap='tap'
-                  transition={{ delay: 0.1 }}
+                  transition={{ delay: 0.05 }}
                 >
                   <SecondaryButton>
                     <a href='tel:+18055002705'>
@@ -335,24 +286,24 @@ const ServicesSection: React.FC = () => {
           </motion.div>
         </ImageSection>
 
-        {!isDeckstop && (
+        {!isDesktop && (
           <motion.div
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={floatingAnimation}
           >
             <InfoBlock>
               <motion.div
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={textRevealAnimation}
               >
                 <InfoText>Do you want to know more about our service?</InfoText>
               </motion.div>
 
-              <motion.div variants={buttonPulseAnimation} whileHover='hover' whileTap='tap'>
+              <motion.div variants={buttonPulseAnimation} whileTap='tap'>
                 <Button to='/fridge#ap'>
                   <ButtonText>Learn more</ButtonText>
                 </Button>
