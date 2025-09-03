@@ -122,7 +122,7 @@ export const StyledTitle = styled.h3`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   padding: 10px;
-  height: 80px;
+     height: 66px;
 
   @media (min-width: 768px) {
     font-size: 32px;
@@ -130,6 +130,7 @@ export const StyledTitle = styled.h3`
 
   @media (min-width: 1440px) {
     font-size: 40px;
+        height: 80px;
   }
 `;
 

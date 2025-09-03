@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import {
   Container,
   SectionTitle,
@@ -30,6 +30,9 @@ interface ValueItem {
 }
 
 const ValuesSection: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: '-20%' });
+
   const createMarkup = (htmlContent: string) => {
     return { __html: htmlContent };
   };
@@ -114,12 +117,11 @@ const ValuesSection: React.FC = () => {
   ];
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <div>
         <motion.div
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate={isInView ? "visible" : "hidden"}
           variants={titleVariants}
         >
           <SectionTitle>Our Values</SectionTitle>
@@ -127,8 +129,7 @@ const ValuesSection: React.FC = () => {
         
         <motion.div
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate={isInView ? "visible" : "hidden"}
           variants={titleVariants}
           transition={{ delay: 0.1 }}
         >
@@ -142,8 +143,7 @@ const ValuesSection: React.FC = () => {
             key={value.id}
             custom={index}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            animate={isInView ? "visible" : "hidden"}
             variants={cardVariants}
           >
             <ValueCard>
@@ -151,8 +151,7 @@ const ValuesSection: React.FC = () => {
               <CardContent>
                 <motion.div
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
+                  animate={isInView ? "visible" : "hidden"}
                   variants={numberVariants}
                 >
                   <NumberContainer>
@@ -167,9 +166,9 @@ const ValuesSection: React.FC = () => {
                 
                 <motion.div
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
+                  animate={isInView ? "visible" : "hidden"}
                   variants={imageVariants}
+                  transition={{ delay: index * 0.1 + 0.1 }}
                 >
                   <ValueImage src={value.image} alt={value.alt} />
                 </motion.div>

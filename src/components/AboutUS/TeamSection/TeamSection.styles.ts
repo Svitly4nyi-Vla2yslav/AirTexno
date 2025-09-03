@@ -5,11 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 3rem;
-  max-width: 100vw;
+  width: 100%;
   min-height: 100vh;
-  overflow: auto;
   padding: 1rem;
   margin: 0 auto;
+  overflow: visible; // Змінено з auto на visible
 
   @media (min-width: 768px) {
     gap: 3.5rem;
