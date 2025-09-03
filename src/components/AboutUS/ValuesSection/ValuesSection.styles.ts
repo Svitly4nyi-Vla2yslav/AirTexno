@@ -9,23 +9,25 @@ export const Container = styled.section`
   max-width: 100vw;
   min-height: 100vh;
   overflow: auto;
-  /* margin: 0 auto; */
+  margin: 0 auto;
 
   /* Mobile First (375px) */
   @media (max-width: 375px) {
-    padding: 0 2.5rem;
+    padding: 0 1rem;
   }
 
   /* Tablet (768px) */
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     gap: 3.5rem;
+    padding: 0 2rem;
   }
 
   /* Desktop (1440px) */
-  @media (max-width: 1440px) {
+  @media (min-width: 1440px) {
     gap: 4rem;
     width: 100%;
     max-width: 1440px;
+    padding: 0 2.5rem;
   }
 `;
 
@@ -37,10 +39,16 @@ export const SectionTitle = styled.p`
   text-transform: uppercase;
   color: var(--black-500);
   width: 100%;
-margin-bottom: 16px;
+  margin-bottom: 16px;
+  
+  @media (max-width: 767px) {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
   @media (min-width: 768px) {
     font-size: 0.875rem;
-  margin-bottom: 20px;  
+    margin-bottom: 20px;  
   }
 
   @media (min-width: 1440px) {
@@ -56,7 +64,6 @@ export const SectionSubtitle = styled.p`
   line-height: 90%;
   color: var(--black-500);
   width: 100%;
-  white-space: pre-line;
 
   span {
     font-family: var(--second-family);
@@ -66,16 +73,26 @@ export const SectionSubtitle = styled.p`
     color: var(--blue-500);
   }
 
+  @media (max-width: 767px) {
+    font-size: 32px;
+    
+    span {
+      font-size: 32px;
+    }
+  }
+
   @media (min-width: 768px) {
     font-size: 4.5rem;
-    span{
-    font-size: 4.5rem;
+    
+    span {
+      font-size: 4.5rem;
     }
   }
 
   @media (min-width: 1440px) {
     font-size: 4.5rem;
-      span{
+    
+    span {
       font-size: 4.5rem;   
     }
   }
@@ -87,6 +104,10 @@ export const ValuesGrid = styled.div`
   align-items: flex-start;
   gap: 2rem;
   width: 100%;
+
+  @media (max-width: 767px) {
+    gap: 1.5rem;
+  }
 
   @media (min-width: 768px) {
     gap: 2.5rem;
@@ -103,6 +124,10 @@ export const ValueCard = styled.div`
   align-items: flex-start;
   gap: 1.25rem;
   width: 100%;
+
+  @media (max-width: 767px) {
+    gap: 1rem;
+  }
 
   @media (min-width: 768px) {
     gap: 1.25rem;
@@ -126,11 +151,15 @@ export const CardContent = styled.div`
   gap: 1.25rem;
   width: 100%;
 
+  @media (max-width: 767px) {
+    gap: 1rem;
+  }
+
   /* Tablet layout */
   @media (min-width: 768px) {
     flex-direction: row;
     align-items: flex-start;
-    gap: 8.6875rem; /* 139px */
+    gap: 2rem;
   }
 
   /* Desktop layout */
@@ -148,17 +177,21 @@ export const NumberContainer = styled.div`
   }
 
   @media (min-width: 1440px) {
-    margin-right: 5.25rem; /* 84px - approximate gap-21 */
+    margin-right: 5.25rem;
   }
 `;
 
 export const Number = styled.p`
-font-family: var(--second-family);
-font-weight: 400;
-font-size: 32px;
-line-height: 90%;
-color: var(--black-500);
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 90%;
+  color: var(--black-500);
   width: fit-content;
+
+  @media (max-width: 767px) {
+    font-size: 28px;
+  }
 
   @media (min-width: 768px) {
     font-size: 2.375rem;
@@ -175,30 +208,39 @@ export const TextContent = styled.div`
   gap: 1rem;
   width: 100%;
 
+  @media (max-width: 767px) {
+    gap: 0.8rem;
+  }
+
   @media (min-width: 768px) {
-    width: 505px;
+    width: 45%;
     gap: 1rem;
   }
 
   @media (min-width: 1440px) {
-    width: 505px;
+    width: 45%;
     flex-shrink: 0;
     gap: 1rem;
   }
 `;
 
 export const Title = styled.p`
-font-family: var(--second-family);
-font-weight: 400;
-font-size: 38px;
-line-height: 90%;
-color: var(--blue-500);
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 90%;
+  color: var(--blue-500);
   width: 100%;
 
-span{
+  span {
     font-size: inherit;
-color: var(--black-500);
-}
+    color: var(--black-500);
+  }
+
+  @media (max-width: 767px) {
+    font-size: 28px;
+    line-height: 1.1;
+  }
 
   @media (min-width: 768px) {
     font-size: 2.375rem;
@@ -217,6 +259,11 @@ export const Description = styled.p`
   line-height: 1.2em;
   width: 100%;
 
+  @media (max-width: 767px) {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
   @media (min-width: 768px) {
     font-size: 1.0625rem;
     line-height: 1.25em;
@@ -231,17 +278,21 @@ export const Description = styled.p`
 export const ValueImage = styled.img`
   border-radius: 0.5rem;
   width: 100%;
-  height: 21.5rem;
+  height: auto;
   object-fit: cover;
+  display: block;
+
+  @media (max-width: 767px) {
+    height: 250px;
+  }
 
   @media (min-width: 768px) {
-    width: 100%;
-    height: 25rem;
+    width: 75%;
+    height: 250px;
   }
 
   @media (min-width: 1440px) {
-    width: 553px;
-    height: 25rem;
-    flex-shrink: 0;
+    width: 100%;
+    height: 300px;
   }
 `;

@@ -34,43 +34,43 @@ const ValuesSection: React.FC = () => {
     return { __html: htmlContent };
   };
 
-  // Прості анімаційні варіанти
+  // Спрощені анімаційні варіанти
   const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.5 }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: (index: number) => ({ 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.7,
+        duration: 0.6,
         delay: index * 0.1
       }
     })
   };
 
   const numberVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: { 
       opacity: 1, 
       scale: 1,
-      transition: { duration: 0.5 }
+      transition: { duration: 0.4 }
     }
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: -10 },
     visible: { 
       opacity: 1, 
       x: 0,
-      transition: { duration: 0.6, delay: 0.2 }
+      transition: { duration: 0.5, delay: 0.1 }
     }
   };
 
@@ -119,7 +119,7 @@ const ValuesSection: React.FC = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={titleVariants}
         >
           <SectionTitle>Our Values</SectionTitle>
@@ -128,7 +128,7 @@ const ValuesSection: React.FC = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={titleVariants}
           transition={{ delay: 0.1 }}
         >
@@ -152,7 +152,7 @@ const ValuesSection: React.FC = () => {
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={numberVariants}
                 >
                   <NumberContainer>
@@ -168,10 +168,10 @@ const ValuesSection: React.FC = () => {
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={imageVariants}
                 >
-                  <ValueImage src={value.image} alt={value.alt} loading='lazy' />
+                  <ValueImage src={value.image} alt={value.alt} />
                 </motion.div>
               </CardContent>
             </ValueCard>
