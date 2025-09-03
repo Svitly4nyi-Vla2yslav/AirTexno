@@ -11,12 +11,14 @@ export const ContactContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 50px; /* Відступи між компонентами */
-  padding-top: 130px;
+  padding-top: 80px;
   margin-bottom: 100px;
   /* Мобільні пристрої (до 768px) */
   @media (max-width: 767px) {
     gap: 40px;
     padding: 0 12px;
+  padding-top: 80px;
+
   }
 
   /* Планшети (768px - 1023px) */
@@ -24,12 +26,16 @@ export const ContactContainer = styled.div`
     max-width: 768px;
     padding-top: 200px;
     padding: 0 24px;
+  padding-top: 130px;
+
   }
 
   /* Невеликі десктопи (1024px - 1279px) */
   @media (min-width: 1024px) and (max-width: 1279px) {
     max-width: 1024px;
     padding: 0 32px;
+  padding-top: 120px;
+
   }
 
   /* Середні десктопи (1280px - 1439px) */
@@ -50,6 +56,8 @@ export const ContactContainer = styled.div`
   @media (min-width: 1920px) {
     max-width: 1920px;
     padding: 0 120px;
+  padding-top: 120px;
+
   }
 `;
 

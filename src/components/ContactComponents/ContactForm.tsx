@@ -840,11 +840,11 @@ const Container = styled.div`
   align-items: flex-start;
   gap: 28px;
   overflow: auto;
-  padding-top: 100px;
+  /* padding-top: 100px; */
   margin-bottom: 40px;
   
   @media screen and (max-width: 767px) {
-    padding-top: 80px;
+    /* padding-top: 80px; */
     gap: 24px;
   }
   
