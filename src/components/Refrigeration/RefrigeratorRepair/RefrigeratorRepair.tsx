@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, easeOut, backOut } from 'framer-motion';
+import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
 import styled, { css, keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -56,55 +56,36 @@ const RefrigeratorRepair: React.FC = () => {
 
   const { scrollY } = useScroll();
 
-  // Паралакс ефекти
+  // Спрощені паралакс ефекти
   const titleY = useTransform(scrollY, [0, 500], [0, 80]);
   const titleScale = useTransform(scrollY, [0, 300], [1, 1.05]);
 
-  // Унікальні анімаційні варіанти
+  // Спрощені анімаційні варіанти
   const frostEffect = {
     hidden: {
       opacity: 0,
-      scale: 0.8,
-      filter: 'blur(20px) brightness(0.8)',
+      scale: 0.9,
     },
     visible: {
       opacity: 1,
       scale: 1,
-      filter: 'blur(0px) brightness(1)',
       transition: {
-        duration: 1.2,
-        ease: backOut,
+        duration: 0.8,
+        ease: easeOut,
       },
     },
   };
 
   const iceSlideAnimation = {
-    hidden: (index: number) => ({
+    hidden: {
       opacity: 0,
-      x: index % 2 === 0 ? -100 : 100,
-      y: 50,
-      rotate: index % 2 === 0 ? -5 : 5,
-      scale: 0.7,
-    }),
-    visible: (index: number) => ({
+      y: 30,
+    },
+    visible: {
       opacity: 1,
-      x: 0,
       y: 0,
-      rotate: 0,
-      scale: 1,
       transition: {
-        duration: 0.9,
-        delay: index * 0.2,
-        ease: backOut,
-      },
-    }),
-    hover: {
-      y: -20,
-      scale: 1.05,
-      rotate: 0,
-      boxShadow: '0 30px 60px rgba(0,0,0,0.25)',
-      transition: {
-        duration: 0.4,
+        duration: 0.6,
         ease: easeOut,
       },
     },
@@ -113,23 +94,13 @@ const RefrigeratorRepair: React.FC = () => {
   const coolContentReveal = {
     hidden: {
       opacity: 0,
-      y: 30,
-      scale: 0.9,
+      y: 20,
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.7,
-        ease: easeOut,
-        delay: 0.3,
-      },
-    },
-    hover: {
-      y: -5,
-      transition: {
-        duration: 0.2,
+        duration: 0.5,
         ease: easeOut,
       },
     },
@@ -138,31 +109,14 @@ const RefrigeratorRepair: React.FC = () => {
   const chillButtonEffect = {
     hidden: {
       opacity: 0,
-      scale: 0.8,
-      y: 20,
+      scale: 0.9,
     },
     visible: {
       opacity: 1,
       scale: 1,
-      y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: easeOut,
-      },
-    },
-    hover: {
-      scale: 1.15,
-      backgroundColor: '#2a8ad8',
-      boxShadow: '0 0 40px rgba(48, 152, 238, 0.6)',
-      transition: {
-        duration: 0.3,
-        ease: easeOut,
-      },
-    },
-    tap: {
-      scale: 0.95,
-      transition: {
-        duration: 0.1,
       },
     },
   };
@@ -170,21 +124,13 @@ const RefrigeratorRepair: React.FC = () => {
   const titleFreezeAnimation = {
     hidden: {
       opacity: 0,
-      y: 50,
-      scale: 0.8,
-      textShadow: '0 0 0px rgba(255, 255, 255, 0)',
+      y: 30,
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      textShadow: [
-        '0 0 0px rgba(255, 255, 255, 0)',
-        '0 0 30px rgba(255, 255, 255, 0.8)',
-        '0 0 15px rgba(255, 255, 255, 0.4)',
-      ],
       transition: {
-        duration: 1.5,
+        duration: 0.7,
         ease: easeOut,
       },
     },
@@ -218,31 +164,36 @@ const RefrigeratorRepair: React.FC = () => {
             waitForTransition: true,
             pauseOnMouseEnter: true,
           }}
-          speed={6000}
+          speed={600}
           loop={shouldLoop}
           slidesPerView={slidesPerView}
           centeredSlides={isMobile}
+          touchRatio={1.5}
+          touchAngle={45}
+          simulateTouch={true}
+          allowTouchMove={true}
+          resistance={true}
+          resistanceRatio={0.85}
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
               <motion.div
-                custom={index}
                 initial='hidden'
                 whileInView='visible'
                 viewport={{ once: true, amount: 0.2 }}
                 variants={iceSlideAnimation}
-                whileHover='hover'
               >
                 <Card>
-                  <motion.div
-                    variants={frostEffect}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <Image src={slide.img} alt={slide.title} />
+                  <motion.div variants={frostEffect}>
+                    <Image 
+                      src={slide.img} 
+                      alt={slide.title}
+                      loading='lazy'
+                      decoding='async'
+                    />
                   </motion.div>
 
-                  <motion.div variants={coolContentReveal} whileHover='hover'>
+                  <motion.div variants={coolContentReveal}>
                     <CardText>
                       <CardTitle>{slide.title}</CardTitle>
                       <CardDescription>{slide.description}</CardDescription>
@@ -260,8 +211,6 @@ const RefrigeratorRepair: React.FC = () => {
             initial='hidden'
             whileInView='visible'
             viewport={{ once: true, amount: 0.3 }}
-            whileHover='hover'
-            whileTap='tap'
           >
             <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
               <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
@@ -282,8 +231,6 @@ const RefrigeratorRepair: React.FC = () => {
             whileInView='visible'
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.1 }}
-            whileHover='hover'
-            whileTap='tap'
           >
             <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
               <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
@@ -313,6 +260,17 @@ const SwiperContainer = styled.div`
 
   .swiper-slide {
     width: 100%;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .swiper-slide:active {
+    cursor: grabbing;
   }
 `;
 
@@ -328,24 +286,6 @@ const pulseAnimation = keyframes`
   }
 `;
 
-const slideInLeft = keyframes`
-  from {
-    transform: translateX(-2px);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-const slideInRight = keyframes`
-  from {
-    transform: translateX(2px);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
 export const NavigationContainer = styled.div`
   display: flex;
   gap: 12px;
@@ -358,53 +298,31 @@ export const NavButton = styled.button<{ bg: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   background-color: ${props => props.bg};
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+  touch-action: manipulation;
 
   &:hover {
     animation: ${pulseAnimation} 0.6s ease;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-    &::before {
-      opacity: 1;
-    }
-
     ${props =>
       props.bg === '#DBDBD8' &&
       css`
         background-color: #c8c8c5;
-        svg {
-          animation: ${slideInLeft} 0.4s ease;
-        }
       `}
 
     ${props =>
       props.bg === '#3098EE' &&
       css`
         background-color: #2580d6;
-        svg {
-          animation: ${slideInRight} 0.4s ease;
-        }
       `}
   }
 
@@ -413,12 +331,9 @@ export const NavButton = styled.button<{ bg: string }>`
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
-  svg {
-    transition: transform 0.2s ease;
-  }
-
-  &:hover svg {
-    transform: scale(1.1);
+  @media (max-width: 767px) {
+    width: 44px;
+    height: 44px;
   }
 `;
 
@@ -482,6 +397,14 @@ const Title = styled.p`
       font-size: 72px;
     }
   }
+
+  @media (max-width: 767px) {
+    font-size: 32px;
+    
+    span {
+      font-size: 32px;
+    }
+  }
 `;
 
 const Card = styled.div`
@@ -493,6 +416,7 @@ const Card = styled.div`
   margin: 0 auto;
   position: relative;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   @media screen and (min-width: 768px) {
     max-width: 322px;
@@ -505,15 +429,15 @@ const Card = styled.div`
 
 const Image = styled.img`
   border-radius: 8px;
-  width: 322px;
-  height: 485px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
   object-fit: cover;
   transition: all 0.3s ease;
 
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
+  @media (max-width: 767px) {
+    max-width: 100%;
+    height: auto;
   }
 `;
 
@@ -524,10 +448,18 @@ const CardText = styled.div`
   position: absolute;
   bottom: 1px;
   background: var(--white);
-  padding: 10px;
-  margin: 5px;
-  border-radius: 4px;
+  padding: 12px;
+  margin: 8px;
+  border-radius: 6px;
   transition: all 0.3s ease;
+  width: calc(100% - 16px);
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    padding: 10px;
+    margin: 20px 6px;
+    width: calc(100% - 12px);
+  }
 `;
 
 const CardTitle = styled.p`
@@ -540,6 +472,10 @@ const CardTitle = styled.p`
   @media screen and (min-width: 1440px) {
     font-size: 32px;
   }
+
+  @media (max-width: 767px) {
+    font-size: 20px;
+  }
 `;
 
 const CardDescription = styled.p`
@@ -551,5 +487,10 @@ const CardDescription = styled.p`
 
   @media screen and (min-width: 1440px) {
     font-size: 16px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 12px;
+    line-height: 120%;
   }
 `;
