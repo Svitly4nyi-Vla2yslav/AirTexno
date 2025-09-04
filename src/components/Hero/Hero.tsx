@@ -120,7 +120,7 @@ export const Hero: React.FC = () => {
               animate={hasAnimated ? 'visible' : 'hidden'}
               variants={textVariants}
             >
-              <HeroTitle>Your Local Appliance Repair &amp; Maintenance Specialists</HeroTitle>
+              <HeroTitle>THOUSAND OAKS APPLIANCE REPAIR</HeroTitle>
             </motion.div>
 
             <motion.div

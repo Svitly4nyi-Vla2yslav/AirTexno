@@ -14,7 +14,7 @@ import image from '../../assets/icons/news&tips/News Article 2 Image Container (
 import image1 from '../../assets/icons/equipment/Image3.png';
 import image2 from '../../assets/icons/news&tips/News Article 2 Image Container (4).png';
 import image3 from '../../assets/icons/news&tips/bosch-dishwasher-door-open.jpg';
-import image4 from '../../assets/icons/news&tips/News Article 2 Image Container (6).png';
+import image4 from '../../assets/icons/news&tips/tips.png';
 import image5 from '../../assets/icons/news&tips/News Article 2 Image Container (7).png';
 import ArticlesListContainer from './Details';
 
@@ -49,7 +49,7 @@ If your refrigerator has a water dispenser or ice maker, replace the filter ever
 Keep Temperatures Set Correctly
 The ideal setting is 37°F for the fridge and 0°F for the freezer. Incorrect settings can cause food spoilage or frost buildup.
 
-Pro Tip: If your fridge still isn't cooling properly, it may need professional service. In Thousand Oaks and Ventura County, AirTexno specializes in Sub-Zero, Thermador, Viking, and GE Monogram refrigerators.`,
+Pro Tip: If your fridge still isn't cooling properly, it may need professional service. In Thousand Oaks and Ventura County, Airtexno specializes in Sub-Zero, Thermador, Viking, and GE Monogram refrigerators.`,
   },
   {
     id: 2,
@@ -75,7 +75,7 @@ If your oven doesn't heat up, it could be a bad igniter, control board, or therm
 5. Knobs or Controls Don't Respond
 When buttons or knobs stop working, the electronic control board might need replacement.
 
-Pro Tip: AirTexno repairs premium brands like Thermador, Wolf, Viking, and GE Monogram in Thousand Oaks and surrounding areas.`,
+Pro Tip: Airtexno repairs premium brands like Thermador, Wolf, Viking, and GE Monogram in Thousand Oaks and surrounding areas.`,
   },
   {
     id: 3,
@@ -98,7 +98,7 @@ Always remove lint after each load. A clogged lint trap reduces efficiency and c
 Check the Dryer Vent
 At least once a year, clean the vent hose and outside exhaust. Poor airflow causes overheating and long drying times.
 
-Pro Tip: If your washer isn't spinning or your dryer isn't heating, call AirTexno. We service Whirlpool, LG, Samsung, Maytag, and more in Ventura County.`,
+Pro Tip: If your washer isn't spinning or your dryer isn't heating, call Airtexno. We service Whirlpool, LG, Samsung, Maytag, and more in Ventura County.`,
   },
   {
     id: 4,
@@ -121,7 +121,7 @@ California plumbing code requires a dishwasher air gap or high loop. If it's clo
 4. Broken Drain Pump
 If you hear the motor but no water drains, the pump may have failed.
 
-Pro Tip: AirTexno installs and repairs dishwashers in Thousand Oaks, Westlake Village, and Camarillo. We specialize in KitchenAid, Bosch, and GE models.`,
+Pro Tip: Airtexno installs and repairs dishwashers in Thousand Oaks, Westlake Village, and Camarillo. We specialize in KitchenAid, Bosch, and GE models.`,
   },
   {
     id: 5,
@@ -147,7 +147,7 @@ New appliances are often more energy-efficient, which saves money in the long ru
 Brand & Build Quality
 High-end brands like Sub-Zero, Thermador, and Viking are worth repairing because parts are available and the units are built to last.
 
-Pro Tip: Not sure what to do? AirTexno provides honest advice and upfront estimates, so you don't waste money on unnecessary repairs.`,
+Pro Tip: Not sure what to do? Airtexno provides honest advice and upfront estimates, so you don't waste money on unnecessary repairs.`,
   },
   {
     id: 6,
@@ -156,178 +156,173 @@ Pro Tip: Not sure what to do? AirTexno provides honest advice and upfront estima
     description:
       'Discover the importance of using genuine manufacturer parts for reliable and long-lasting appliance repairs.',
     data: '11.08.25',
-    content: `When repairing appliances, you'll hear the term OEM parts. Here's why they matter.
+    content: `When repairing appliances, you’ll often hear the term OEM parts. Here’s why they matter.
 
 What Are OEM Parts?
-OEM stands for Original Equipment Manufacturer. These are the same parts your appliance was built with.
+OEM stands for Original Equipment Manufacturer. These are the exact parts your appliance was originally built with.
 
-Why Choose OEM Over Generic?
-Reliability: Fits perfectly, works as designed.
-Warranty: Protects your manufacturer's warranty.
-Longevity: Generic parts often fail sooner.
+Why Choose OEM Over Aftermarket? <br/>
+ • Reliability: Designed to fit perfectly and work as intended.
+ <br/> • Warranty Protection: Helps maintain your manufacturer’s warranty.
+ <br/> • Longevity: Aftermarket parts may fail sooner or perform inconsistently.
 
-Examples
-Using a genuine Sub-Zero compressor instead of a generic one ensures proper cooling performance.
-An OEM KitchenAid dishwasher pump will last longer and run quieter.
+Examples:
+Using a genuine Sub-Zero compressor instead of an aftermarket one ensures proper cooling performance. An OEM KitchenAid dishwasher pump will last longer and run quieter.
 
-Pro Tip: At AirTexno, we only use genuine OEM or manufacturer-approved parts for repairs in Thousand Oaks and Ventura County.`,
+Pro Tip: At Airtexno, we only use genuine OEM or manufacturer-approved parts for all appliance repairs in Thousand Oaks and Ventura County.`,
   },
 ];
 
 // Унікальні анімаційні варіанти
 const pageVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
-    x: -100
+    x: -100,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     x: 0,
     transition: {
       duration: 0.8,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   },
   exit: {
     opacity: 0,
     x: 100,
     transition: {
       duration: 0.5,
-      ease: easeOut
-    }
-  }
+      ease: easeOut,
+    },
+  },
 };
 
 const backButtonVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: -30,
-    rotate: -10
+    rotate: -10,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     rotate: 0,
     transition: {
       duration: 0.6,
       ease: backOut,
-      delay: 0.1
-    }
+      delay: 0.1,
+    },
   },
   hover: {
     scale: 1.05,
     x: -5,
     transition: {
       duration: 0.2,
-      ease: easeOut
-    }
+      ease: easeOut,
+    },
   },
   tap: {
-    scale: 0.95
-  }
+    scale: 0.95,
+  },
 };
 
 const titleVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: 50,
     scale: 0.9,
-    textShadow: "0 0 0px rgba(0,0,0,0)"
+    textShadow: '0 0 0px rgba(0,0,0,0)',
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    textShadow: [
-      "0 0 0px rgba(0,0,0,0)",
-      "0 0 30px rgba(0,0,0,0.3)",
-      "0 0 10px rgba(0,0,0,0.1)"
-    ],
+    textShadow: ['0 0 0px rgba(0,0,0,0)', '0 0 30px rgba(0,0,0,0.3)', '0 0 10px rgba(0,0,0,0.1)'],
     transition: {
       duration: 1,
       ease: backOut,
-      delay: 0.2
-    }
-  }
+      delay: 0.2,
+    },
+  },
 };
 
 const imageVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 1.2,
     rotate: -5,
-    filter: "blur(10px)"
+    filter: 'blur(10px)',
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     rotate: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: {
       duration: 1.2,
       ease: backOut,
-      delay: 0.3
-    }
-  }
+      delay: 0.3,
+    },
+  },
 };
 
 const contentVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
-    y: 30
+    y: 30,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
       ease: easeOut,
-      delay: 0.4
-    }
-  }
+      delay: 0.4,
+    },
+  },
 };
 
 const textRevealVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     y: 20,
-    skewY: 2
+    skewY: 2,
   },
-  visible: (i: number) => ({ 
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
     skewY: 0,
     transition: {
       duration: 0.6,
       ease: easeOut,
-      delay: 0.5 + (i * 0.05)
-    }
-  })
+      delay: 0.5 + i * 0.05,
+    },
+  }),
 };
 
 const dataVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 0.8,
-    rotateX: -90
+    rotateX: -90,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     rotateX: 0,
     transition: {
       duration: 0.7,
       ease: backOut,
-      delay: 0.1
-    }
-  }
+      delay: 0.1,
+    },
+  },
 };
 
 const ArticleDetail: React.FC<{ articleId?: number }> = ({ articleId }) => {
   const { id } = useParams<{ id: string }>();
   const currentArticleId = articleId || parseInt(id || '1');
   const article = articles.find(a => a.id === currentArticleId);
-  
+
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 50]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0.9]);
@@ -354,20 +349,16 @@ const ArticleDetail: React.FC<{ articleId?: number }> = ({ articleId }) => {
   return (
     <motion.div
       variants={pageVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
+      initial='hidden'
+      animate='visible'
+      exit='exit'
       style={{ y, opacity }}
     >
       <ArticleContainer id='ap'>
-        <motion.div
-          variants={backButtonVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
+        <motion.div variants={backButtonVariants} whileHover='hover' whileTap='tap'>
           <BackButton to='/tips'>← Back to Tips</BackButton>
         </motion.div>
-        
+
         <motion.div variants={dataVariants}>
           <Data>{article.data}</Data>
         </motion.div>
@@ -387,22 +378,26 @@ const ArticleDetail: React.FC<{ articleId?: number }> = ({ articleId }) => {
                 key={index}
                 custom={index}
                 variants={textRevealVariants}
-                initial="hidden"
-                animate="visible"
+                initial='hidden'
+                animate='visible'
               >
-                <ArticleText>{paragraph}</ArticleText>
-                {index < paragraphs.length - 1 && <><br /></>}
+                <ArticleText dangerouslySetInnerHTML={{ __html: paragraph }} />
+                {index < paragraphs.length - 1 && (
+                  <>
+                    <br />
+                  </>
+                )}
               </motion.div>
             ))}
           </ArticleContent>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <ArticlesListContainer/>
+          <ArticlesListContainer />
         </motion.div>
       </ArticleContainer>
     </motion.div>

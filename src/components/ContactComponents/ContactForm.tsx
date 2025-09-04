@@ -49,9 +49,8 @@ export const ContactForm: React.FC = (): JSX.Element => {
     if (!formData.email) newErrors.email = true;
     if (!formData.phone) newErrors.phone = true;
     if (!formData.location) newErrors.location = true;
-    if (!formData.appliance) newErrors.appliance = true;
-    if (!formData.brand) newErrors.brand = true;
-    if (!formData.power) newErrors.power = true;
+    // if (!formData.appliance) newErrors.appliance = true;
+    // Убрана проверка на обязательность полей brand и power
     return newErrors;
   };
 
@@ -270,7 +269,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                     transition={{ delay: 0.4 }}
                   >
                     <a
-                      href='http://maps.google.com/?q=801+Tioga+pl,+Newbury+Park,+CA+91320'
+                      href='https://maps.app.goo.gl/cJF4BwHPJFbYsQAMA'
                       target='_blank'
                       rel='noopener noreferrer'
                     >
@@ -308,9 +307,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, ease: easeOut }}
             >
-              <ImageContact 
-                src={Cont} 
-                alt='contact image' 
+              <ImageContact
+                src={Cont}
+                alt='contact image'
                 onLoad={() => setImageLoaded(true)}
                 style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
               />
@@ -395,19 +394,19 @@ export const ContactForm: React.FC = (): JSX.Element => {
                       style={errors.location ? { borderBottom: '1px solid red' } : {}}
                     >
                       <option value=''>Select location</option>
-                      <option>Malibu</option>
-                      <option>Los Angeles County</option>
-                      <option>Thousand Oaks</option>
-                      <option>Newbury Park</option>
-                      <option>Westlake Village</option>
-                      <option>Oak Park</option>
-                      <option>Lake Sherwood</option>
-                      <option>Hidden Valley</option>
-                      <option>Camarillo</option>
                       <option>Agoura Hills</option>
-                      <option>Moorpark</option>
                       <option>Calabasas</option>
+                      <option>Camarillo</option>
+                      <option>Hidden Valley</option>
+                      <option>Lake Sherwood</option>
+                      <option>Los Angeles County</option>
+                      <option>Malibu</option>
+                      <option>Moorpark</option>
+                      <option>Newbury Park</option>
+                      <option>Oak Park</option>
                       <option>Santa Rosa Valley</option>
+                      <option>Thousand Oaks</option>
+                      <option>Westlake Village</option>
                       <option>Other</option>
                     </Select>
                   </SelectWrapper>
@@ -423,18 +422,16 @@ export const ContactForm: React.FC = (): JSX.Element => {
                       style={errors.appliance ? { borderBottom: '1px solid red' } : {}}
                     >
                       <option value=''>Select appliance</option>
-                      <option>Cooktop</option>
-                      <option>Oven</option>
-                      <option>Range</option>
-                      <option>Washer</option>
                       <option>Refrigerator</option>
-                      <option>Microwave</option>
-                      <option>Dishwasher</option>
                       <option>Dryer</option>
-                      <option>Washing Machine</option>
-                      <option>Freezer</option>
-                      <option>Stove</option>
+                      <option>Oven</option>
+                      <option>Ice Maker</option>
+                      <option>Washer</option>
+                      <option>Range</option>
                       <option>Wine Cooler</option>
+                      <option>Freezer</option>
+                      <option>Air Conditioner</option>
+                      <option>Furnace</option>
                       <option>Other</option>
                     </Select>
                   </SelectWrapper>
@@ -450,23 +447,23 @@ export const ContactForm: React.FC = (): JSX.Element => {
                       style={errors.brand ? { borderBottom: '1px solid red' } : {}}
                     >
                       <option value=''>Select brand</option>
-                      <option>LG</option>
-                      <option>Samsung</option>
-                      <option>Whirlpool</option>
-                      <option>Bosch</option>
-                      <option>GE</option>
-                      <option>Frigidaire</option>
-                      <option>Maytag</option>
-                      <option>KitchenAid</option>
-                      <option>Viking</option>
-                      <option>Fisher & Paykel</option>
                       <option>Amana</option>
-                      <option>JennAir</option>
-                      <option>Haier</option>
-                      <option>Sharp</option>
+                      <option>Bosch</option>
                       <option>Electrolux</option>
+                      <option>Fisher & Paykel</option>
+                      <option>Frigidaire</option>
+                      <option>GE</option>
+                      <option>Haier</option>
+                      <option>JennAir</option>
+                      <option>KitchenAid</option>
+                      <option>LG</option>
+                      <option>Maytag</option>
+                      <option>Samsung</option>
+                      <option>Sharp</option>
                       <option>Sub-Zero</option>
                       <option>Thermador</option>
+                      <option>Viking</option>
+                      <option>Whirlpool</option>
                       <option>Wolf</option>
                       <option>Other</option>
                     </Select>
@@ -486,13 +483,8 @@ export const ContactForm: React.FC = (): JSX.Element => {
                 >
                   <option value=''>Select power</option>
                   <option>Electric</option>
-                  <option>Gas</option>
-                  <option>Dual Fuel</option>
-                  <option>Induction</option>
-                  <option>Solar</option>
-                  <option>Propane</option>
                   <option>Natural Gas</option>
-                  <option>Other</option>
+                  <option>Propane</option>
                 </Select>
               </SelectWrapper>
             </motion.div>
@@ -660,10 +652,10 @@ const CustomRadio = styled.span<{ checked: boolean }>`
   @media screen and (max-width: 767px) {
     width: 16px;
     height: 16px;
-    
+
     ${({ checked }) =>
-    checked &&
-    `
+      checked &&
+      `
       &::after {
         width: 8px;
         height: 8px;
@@ -688,7 +680,7 @@ const Input = styled.input`
     outline: none;
     background: #bbe5f6ff;
   }
-  
+
   @media screen and (max-width: 767px) {
     font-size: 16px; /* Prevents zoom on iOS */
     padding: 14px 12px;
@@ -704,7 +696,7 @@ const SelectWrapper = styled.div`
   position: relative;
   width: 100%;
   margin-bottom: 20px;
-  
+
   &::after {
     content: '▼';
     font-size: 12px;
@@ -715,10 +707,10 @@ const SelectWrapper = styled.div`
     transform: translateY(-50%);
     pointer-events: none;
   }
-  
+
   @media screen and (max-width: 767px) {
     margin-bottom: 16px;
-    
+
     &::after {
       right: 12px;
     }
@@ -795,7 +787,7 @@ const ButtonSubmit = styled.button`
   background: var(--blue-500);
   width: 207px;
   -webkit-tap-highlight-color: transparent;
-  
+
   &:hover {
     transform: scale(1.05);
     background: #79caf5ff;
@@ -804,7 +796,7 @@ const ButtonSubmit = styled.button`
   &:active {
     transform: scale(0.95);
   }
-  
+
   @media screen and (max-width: 767px) {
     width: 100%;
     padding: 14px 20px;
@@ -828,7 +820,7 @@ const Disclaimer = styled.p`
     text-decoration-skip-ink: none;
     color: var(--blue-500);
   }
-  
+
   @media screen and (max-width: 767px) {
     font-size: 15px;
   }
@@ -842,12 +834,12 @@ const Container = styled.div`
   overflow: auto;
   /* padding-top: 100px; */
   margin-bottom: 40px;
-  
+
   @media screen and (max-width: 767px) {
     /* padding-top: 80px; */
     gap: 24px;
   }
-  
+
   @media screen and (min-width: 768px) {
     margin-bottom: 240px;
   }
@@ -868,11 +860,11 @@ const Section = styled.div`
   align-items: flex-start;
   gap: 20px;
   width: 100%;
-  
+
   @media screen and (max-width: 767px) {
     gap: 16px;
   }
-  
+
   @media screen and (min-width: 768px) {
     width: 750px;
   }
@@ -891,7 +883,7 @@ const SubSection = styled.div`
   align-items: flex-start;
   gap: 12px;
   width: 100%;
-  
+
   @media screen and (max-width: 767px) {
     gap: 10px;
   }
@@ -907,11 +899,11 @@ const Title = styled.p`
   span {
     color: var(--blue-500);
   }
-  
+
   @media screen and (max-width: 767px) {
     font-size: 42px;
   }
-  
+
   @media screen and (min-width: 768px) {
     font-size: 72px;
   }
@@ -923,11 +915,11 @@ const Text = styled.p`
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
-  
+
   @media screen and (max-width: 767px) {
     font-size: 15px;
   }
-  
+
   @media screen and (min-width: 768px) {
     font-size: 17px;
   }
@@ -946,7 +938,7 @@ const Button = styled.button`
   background: transparent;
   margin-left: 20px;
   -webkit-tap-highlight-color: transparent;
-  
+
   &:hover {
     background-color: #242424;
     border-color: #242424;
@@ -965,7 +957,7 @@ const Button = styled.button`
     transform: translateY(0);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   @media screen and (max-width: 767px) {
     margin-left: 0;
     width: 100%;
@@ -979,7 +971,7 @@ const ButtonText = styled.p`
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
-  
+
   @media screen and (max-width: 767px) {
     font-size: 18px;
   }
@@ -997,7 +989,7 @@ const InfoBlock = styled.div`
   align-items: flex-start;
   gap: 24px;
   width: 100%;
-  
+
   @media screen and (max-width: 767px) {
     gap: 20px;
   }
@@ -1009,7 +1001,7 @@ const InfoSection = styled.div<{ width?: string }>`
   align-items: flex-start;
   gap: 12px;
   width: ${props => props.width || '100%'};
-  
+
   @media screen and (max-width: 767px) {
     width: 100% !important;
     gap: 10px;
@@ -1022,7 +1014,7 @@ const InfoTitle = styled.p`
   font-size: 24px;
   line-height: 90%;
   color: var(--black-500);
-  
+
   @media screen and (max-width: 767px) {
     font-size: 20px;
   }
@@ -1033,7 +1025,7 @@ export const ImageContact = styled.img`
   width: 100%;
   max-width: 696px;
   height: auto;
-  
+
   @media screen and (min-width: 768px) {
     width: 100%;
     max-width: 668px;
@@ -1049,7 +1041,7 @@ const TabletContainer = styled.div`
     flex-direction: row;
     gap: 40px;
   }
-  
+
   @media screen and (max-width: 767px) {
     gap: 0;
   }

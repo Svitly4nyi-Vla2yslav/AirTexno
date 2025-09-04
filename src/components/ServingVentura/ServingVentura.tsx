@@ -286,7 +286,7 @@ const ServingVentura: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={titleVariants}
       >
-        <TitleServing>Serving Ventura and Los Angeles Counties</TitleServing>
+        <TitleServing>We provide expert service throughout the greater Los Angeles area</TitleServing>
       </motion.div>
 
       <motion.div

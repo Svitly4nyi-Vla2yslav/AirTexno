@@ -137,7 +137,7 @@ const Header: React.FC = () => {
               <LinkInfo $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
                 <img src={loc} alt='🗺️' />
                 <a
-                  href='https://www.google.com/maps/place/Thousand+Oaks'
+                  href='https://maps.app.goo.gl/cJF4BwHPJFbYsQAMA'
                   target='_blank'
                   rel='noopener noreferrer'
                 >

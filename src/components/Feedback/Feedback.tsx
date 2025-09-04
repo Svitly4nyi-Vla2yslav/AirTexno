@@ -29,12 +29,12 @@ const reviews: Review[] = [
     name: 'Aleksei Sabitov',
     time: 'a week ago',
     text: `My Sub-Zero refrigerator stopped cooling, so the next day I called
-      AirTexno Appliance Repair. Their technician arrived the same day
+      Airtexno Appliance Repair. Their technician arrived the same day
       and got straight to work. He diagnosed and repaired the issue
       within just a few hours, explained everything clearly, and even
       gave me helpful maintenance tips. The pricing was very reasonable.
       I’m extremely happy with the service and will definitely be using
-      AirTexno Appliance Repair for all my future appliance needs.
+      Airtexno Appliance Repair for all my future appliance needs.
       Highly recommend them for Sub-Zero refrigerator repair and more!`,
     image: reviewImageAlex,
   },
@@ -42,7 +42,7 @@ const reviews: Review[] = [
     avatar: avatarSanal,
     name: 'Sanal Kandymov',
     time: 'a week ago',
-    text: `Great service! AirTexno repaired our Sub-Zero fridge in Thousand
+    text: `Great service! Airtexno repaired our Sub-Zero fridge in Thousand
       Oaks the same day we called. Fast diagnosis, fair price, real OEM
       parts. Fridge is perfect again. Will use them for any appliance
       repair.`,
@@ -74,12 +74,12 @@ const reviews: Review[] = [
     name: 'Aleksei Sabitov',
     time: 'a week ago',
     text: `My Sub-Zero refrigerator stopped cooling, so the next day I called
-      AirTexno Appliance Repair. Their technician arrived the same day
+      Airtexno Appliance Repair. Their technician arrived the same day
       and got straight to work. He diagnosed and repaired the issue
       within just a few hours, explained everything clearly, and even
       gave me helpful maintenance tips. The pricing was very reasonable.
       I’m extremely happy with the service and will definitely be using
-      AirTexno Appliance Repair for all my future appliance needs.
+      Airtexno Appliance Repair for all my future appliance needs.
       Highly recommend them for Sub-Zero refrigerator repair and more!`,
     image: reviewImageAlex,
   },
@@ -87,7 +87,7 @@ const reviews: Review[] = [
     avatar: avatarSanal,
     name: 'Sanal Kandymov',
     time: 'a week ago',
-    text: `Great service! AirTexno repaired our Sub-Zero fridge in Thousand
+    text: `Great service! Airtexno repaired our Sub-Zero fridge in Thousand
       Oaks the same day we called. Fast diagnosis, fair price, real OEM
       parts. Fridge is perfect again. Will use them for any appliance
       repair.`,
@@ -281,7 +281,7 @@ const SingleSwiperContainer = styled.div<{ $isVisible?: boolean }>`
   /* Заборонити будь-яку взаємодію з свайпером на мобільних */
   @media (max-width: 767px) {
     pointer-events: none;
-    
+
     /* Але дозволити скрол сторінки через цю область */
     &::before {
       content: '';
@@ -311,7 +311,7 @@ const Card = styled.div`
   background-color: #f5faff;
   border-radius: 8px;
   height: 600px;
-  
+
   /* На мобільних дозволяємо скрол сторінки через картки */
   @media (max-width: 767px) {
     pointer-events: none;
@@ -403,7 +403,7 @@ const TouchBlockingLayer = styled.div`
   z-index: 30;
   pointer-events: auto;
   -webkit-overflow-scrolling: touch;
-  
+
   /* Тільки для мобільних пристроїв */
   @media (min-width: 768px) {
     display: none;
@@ -446,7 +446,7 @@ const ReviewCardContainer: React.FC = () => {
       <SwipersContainer ref={containerRef}>
         {/* Шар для блокування тач-взаємодії з свайпером на мобільних */}
         <TouchBlockingLayer />
-        
+
         {/* Перший свайпер (зверху вниз) */}
         <SingleSwiperContainer $isVisible={true}>
           <BackgroundTop />
@@ -474,10 +474,10 @@ const ReviewCardContainer: React.FC = () => {
             resistance={false}
             onReachBeginning={() => setIsScrolling(false)}
             onReachEnd={() => setIsScrolling(false)}
-            style={{ 
+            style={{
               height: '100%',
               // Блокуємо всі події на свайпері
-              pointerEvents: 'none'
+              pointerEvents: 'none',
             }}
             // Додаткові параметри для блокування взаємодії
             preventInteractionOnTransition={true}
@@ -495,11 +495,11 @@ const ReviewCardContainer: React.FC = () => {
                   <Card>
                     <Header>
                       <motion.div variants={avatarVariants} whileHover='hover'>
-                        <Avatar 
-                          src={review.avatar} 
+                        <Avatar
+                          src={review.avatar}
                           alt={review.name}
-                          loading="lazy"
-                          decoding="async"
+                          loading='lazy'
+                          decoding='async'
                         />
                       </motion.div>
                       <UserInfo>
@@ -527,11 +527,11 @@ const ReviewCardContainer: React.FC = () => {
                       <Text>{review.text}</Text>
                     </motion.div>
                     <motion.div variants={imageVariants} whileHover='hover'>
-                      <ReviewImage 
-                        src={review.image} 
+                      <ReviewImage
+                        src={review.image}
                         alt={`Review by ${review.name}`}
-                        loading="lazy"
-                        decoding="async"
+                        loading='lazy'
+                        decoding='async'
                       />
                     </motion.div>
                   </Card>
@@ -570,9 +570,9 @@ const ReviewCardContainer: React.FC = () => {
             initialSlide={reviews.length - 1}
             onReachBeginning={() => setIsScrolling(false)}
             onReachEnd={() => setIsScrolling(false)}
-            style={{ 
+            style={{
               height: '100%',
-              pointerEvents: 'none'
+              pointerEvents: 'none',
             }}
             preventInteractionOnTransition={true}
             watchOverflow={true}
@@ -652,9 +652,9 @@ const ReviewCardContainer: React.FC = () => {
               resistance={false}
               onReachBeginning={() => setIsScrolling(false)}
               onReachEnd={() => setIsScrolling(false)}
-              style={{ 
+              style={{
                 height: '100%',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
               }}
               preventInteractionOnTransition={true}
               watchOverflow={true}
