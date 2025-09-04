@@ -11,7 +11,7 @@ import { ContactForm } from '../../components/ContactComponents/ContactForm';
 
 const Service: React.FC = () => {
   return (
-    <Container>
+    <Container id='all'>
       <ServicesSection />
       <OurEquipment />
       <CasesSection />
