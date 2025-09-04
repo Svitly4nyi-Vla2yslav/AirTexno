@@ -7,9 +7,10 @@ export const Layout: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // очищаємо sessionStorage при кожному перезавантаженні
+    // Очищаем sessionStorage при каждом перезагрузке, но оставляем localStorage для кэша видео
     const clearOnReload = () => {
       sessionStorage.clear();
+      // Не очищаем localStorage чтобы сохранить кэшированное видео
     };
 
     window.addEventListener("beforeunload", clearOnReload);
@@ -19,18 +20,19 @@ export const Layout: React.FC = () => {
     };
   }, []);
 
-  // useEffect(() => {
-    // const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
+  // Очистка устаревшего кэша (например, при обновлении видео)
+  useEffect(() => {
+    const clearOldCache = () => {
+      const cacheKeys = Object.keys(localStorage);
+      const oldVideoCache = cacheKeys.find(key => key.startsWith('cached_video_'));
+      
+      if (oldVideoCache) {
+        localStorage.removeItem(oldVideoCache);
+      }
+    };
 
-    // if (!hasSeenPreloader) {
-    //   setLoading(true);
-    // }
-  // }, []);
-
-  // const handlePreloaderComplete = () => {
-  //   sessionStorage.setItem('hasSeenPreloader', 'true');
-  //   setLoading(false);
-  // };
+    clearOldCache();
+  }, []);
 
   useEffect(() => {
     if (location.hash) {
@@ -39,7 +41,6 @@ export const Layout: React.FC = () => {
 
       if (element) {
         setTimeout(() => {
-          // Прокручує плавно до елемента
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 400);
       }
@@ -50,10 +51,6 @@ export const Layout: React.FC = () => {
       });
     }
   }, [location.pathname]);
-
-  // if (loading) {
-  //   return <VideoPreloader onComplete={handlePreloaderComplete} />;
-  // }
 
   return (
     <>

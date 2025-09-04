@@ -11,7 +11,6 @@ import {
   PrimaryButton,
   VideoOverlay,
   VideoPlaceholder,
-  LoadingSpinner
 } from './Hero.styled';
 import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.mov';
 import { TransparentButton } from '../Header/Header.styled';
@@ -50,13 +49,49 @@ const buttonVariants = {
   },
 };
 
+// Функция для кэширования видео в localStorage
+const cacheVideoInLocalStorage = async (videoUrl: string, cacheKey: string): Promise<string> => {
+  // Проверяем, есть ли уже кэшированное видео
+  const cachedVideo = localStorage.getItem(cacheKey);
+  
+  if (cachedVideo) {
+    return cachedVideo; // Возвращаем data URL из кэша
+  }
+
+  try {
+    // Загружаем видео и кэшируем его
+    const response = await fetch(videoUrl);
+    const blob = await response.blob();
+    
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const dataUrl = reader.result as string;
+        // Сохраняем в localStorage с ограничением по размеру
+        try {
+          localStorage.setItem(cacheKey, dataUrl);
+          resolve(dataUrl);
+        } catch (error) {
+          console.warn('LocalStorage quota exceeded, using original URL');
+          resolve(videoUrl); // Возвращаем оригинальный URL если localStorage переполнен
+        }
+      };
+      reader.readAsDataURL(blob);
+    });
+  } catch (error) {
+    console.error('Failed to cache video:', error);
+    return videoUrl; // Возвращаем оригинальный URL в случае ошибки
+  }
+};
+
 export const Hero: React.FC = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [isVideoLoading, setIsVideoLoading] = useState(false);
+  const [, setIsVideoLoading] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
+  const [cachedVideoUrl, setCachedVideoUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const heroRef = useRef(null);
@@ -68,6 +103,22 @@ export const Hero: React.FC = () => {
     }
   }, [isInView, hasAnimated]);
 
+  // Кэшируем видео при монтировании компонента
+  useEffect(() => {
+    const cacheVideo = async () => {
+      try {
+        const videoCacheKey = 'cached_hero_video';
+        const cachedUrl = await cacheVideoInLocalStorage(HeroVideo, videoCacheKey);
+        setCachedVideoUrl(cachedUrl);
+      } catch (error) {
+        console.error('Video caching failed:', error);
+        setCachedVideoUrl(HeroVideo); // Используем оригинальный URL в случае ошибки
+      }
+    };
+
+    cacheVideo();
+  }, []);
+
   // Оптимізований паралакс для мобільних пристроїв
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 400], [0, isDesktop ? 80 : isTablet ? 20 : 40]);
@@ -75,7 +126,7 @@ export const Hero: React.FC = () => {
 
   // Ленивая загрузка видео при появлении в viewport
   useEffect(() => {
-    if (isInView && videoRef.current) {
+    if (isInView && videoRef.current && cachedVideoUrl) {
       setIsVideoLoading(true);
       
       // Таймаут для отображения загрузки
@@ -87,7 +138,7 @@ export const Hero: React.FC = () => {
 
       return () => clearTimeout(loadingTimer);
     }
-  }, [isInView, isVideoLoaded]);
+  }, [isInView, isVideoLoaded, cachedVideoUrl]);
 
   // Функція для обробки завантаження відео
   const handleVideoLoaded = () => {
@@ -107,6 +158,11 @@ export const Hero: React.FC = () => {
     setIsVideoLoading(false);
     setShowFallback(true);
     console.error('Video loading failed');
+    
+    // Если кэшированное видео не работает, пробуем загрузить оригинальное
+    if (cachedVideoUrl && cachedVideoUrl !== HeroVideo) {
+      setCachedVideoUrl(HeroVideo);
+    }
   };
 
   // Ручной запуск видео
@@ -132,25 +188,26 @@ export const Hero: React.FC = () => {
           {/* Плейсхолдер во время загрузки */}
           {!isVideoLoaded && (
             <VideoPlaceholder>
-              {isVideoLoading && <LoadingSpinner />}
             </VideoPlaceholder>
           )}
 
-          <VideoBackground
-            ref={videoRef}
-            muted
-            loop
-            playsInline
-            preload="none" // Ленивая загрузка
-            onLoadedData={handleVideoLoaded}
-            onError={handleVideoError}
-            style={{ opacity: isVideoLoaded ? 1 : 0 }}
-          >
-            <source src={HeroVideo} type="video/mp4" />
-            {/* Додайте альтернативні формати для кращої сумісності */}
-            <source src={HeroVideo.replace('.mov', '.webm')} type="video/webm" />
-            Ваш браузер не підтримує відео тег.
-          </VideoBackground>
+          {cachedVideoUrl && (
+            <VideoBackground
+              ref={videoRef}
+              muted
+              loop
+              playsInline
+              preload="none" // Ленивая загрузка
+              onLoadedData={handleVideoLoaded}
+              onError={handleVideoError}
+              style={{ opacity: isVideoLoaded ? 1 : 0 }}
+            >
+              <source src={cachedVideoUrl} type="video/mp4" />
+              {/* Додайте альтернативні формати для кращої сумісності */}
+              <source src={cachedVideoUrl.replace('.mov', '.webm')} type="video/webm" />
+              Video loading failed.
+            </VideoBackground>
+          )}
 
           {/* Fallback кнопка если автовоспроизведение заблокировано */}
           {showFallback && (
