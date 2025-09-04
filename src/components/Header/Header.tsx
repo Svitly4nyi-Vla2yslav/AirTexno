@@ -36,17 +36,23 @@ const Header: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleLogoClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+const handleLogoClick = (e: React.MouseEvent) => {
+  e.preventDefault();
 
-    if (window.location.pathname !== '/home') {
-      navigate('/home');
-    }
-  };
+  if (window.location.pathname !== '/home') {
+    navigate('/home#header');
+  } else {
+    // Чекаємо поки DOM оновиться
+    setTimeout(() => {
+      const element = document.getElementById('header');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 100);
+  }
+};
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,9 +88,9 @@ const Header: React.FC = () => {
 
   return (
     <NavbarContainer $isScrolled={isScrolled} $darkMode={isDarkMode}>
-      <HeaderWrapper id='header'>
+      <HeaderWrapper>
         <Logo
-          to='/home#hero'
+          to='/home#header'
           onClick={handleLogoClick}
           $overlayOpen={isOverlayOpen}
           $darkMode={isDarkMode}

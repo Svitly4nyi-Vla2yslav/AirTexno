@@ -53,7 +53,7 @@ const buttonVariants = {
 const cacheVideoInLocalStorage = async (videoUrl: string, cacheKey: string): Promise<string> => {
   // Проверяем, есть ли уже кэшированное видео
   const cachedVideo = localStorage.getItem(cacheKey);
-  
+
   if (cachedVideo) {
     return cachedVideo; // Возвращаем data URL из кэша
   }
@@ -62,8 +62,8 @@ const cacheVideoInLocalStorage = async (videoUrl: string, cacheKey: string): Pro
     // Загружаем видео и кэшируем его
     const response = await fetch(videoUrl);
     const blob = await response.blob();
-    
-    return new Promise((resolve) => {
+
+    return new Promise(resolve => {
       const reader = new FileReader();
       reader.onloadend = () => {
         const dataUrl = reader.result as string;
@@ -93,9 +93,9 @@ export const Hero: React.FC = () => {
   const [showFallback, setShowFallback] = useState(false);
   const [cachedVideoUrl, setCachedVideoUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  
+
   const heroRef = useRef(null);
-  const isInView = useInView(heroRef, { once: true, margin: "-10%" });
+  const isInView = useInView(heroRef, { once: true, margin: '-10%' });
 
   useEffect(() => {
     if (isInView && !hasAnimated) {
@@ -128,7 +128,7 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     if (isInView && videoRef.current && cachedVideoUrl) {
       setIsVideoLoading(true);
-      
+
       // Таймаут для отображения загрузки
       const loadingTimer = setTimeout(() => {
         if (!isVideoLoaded) {
@@ -158,7 +158,7 @@ export const Hero: React.FC = () => {
     setIsVideoLoading(false);
     setShowFallback(true);
     console.error('Video loading failed');
-    
+
     // Если кэшированное видео не работает, пробуем загрузить оригинальное
     if (cachedVideoUrl && cachedVideoUrl !== HeroVideo) {
       setCachedVideoUrl(HeroVideo);
@@ -168,17 +168,20 @@ export const Hero: React.FC = () => {
   // Ручной запуск видео
   const handlePlayVideo = () => {
     if (videoRef.current) {
-      videoRef.current.play().then(() => {
-        setShowFallback(false);
-      }).catch(error => {
-        console.log('Manual play failed:', error);
-      });
+      videoRef.current
+        .play()
+        .then(() => {
+          setShowFallback(false);
+        })
+        .catch(error => {
+          console.log('Manual play failed:', error);
+        });
     }
   };
 
   return (
     <>
-      <HeroContainer id='hero' ref={heroRef}>
+      <HeroContainer id='header' ref={heroRef}>
         <motion.div
           style={{
             y: y,
@@ -186,10 +189,7 @@ export const Hero: React.FC = () => {
           }}
         >
           {/* Плейсхолдер во время загрузки */}
-          {!isVideoLoaded && (
-            <VideoPlaceholder>
-            </VideoPlaceholder>
-          )}
+          {!isVideoLoaded && <VideoPlaceholder></VideoPlaceholder>}
 
           {cachedVideoUrl && (
             <VideoBackground
@@ -197,28 +197,30 @@ export const Hero: React.FC = () => {
               muted
               loop
               playsInline
-              preload="none" // Ленивая загрузка
+              preload='none' // Ленивая загрузка
               onLoadedData={handleVideoLoaded}
               onError={handleVideoError}
               style={{ opacity: isVideoLoaded ? 1 : 0 }}
             >
-              <source src={cachedVideoUrl} type="video/mp4" />
+              <source src={cachedVideoUrl} type='video/mp4' />
               {/* Додайте альтернативні формати для кращої сумісності */}
-              <source src={cachedVideoUrl.replace('.mov', '.webm')} type="video/webm" />
+              <source src={cachedVideoUrl.replace('.mov', '.webm')} type='video/webm' />
               Video loading failed.
             </VideoBackground>
           )}
 
           {/* Fallback кнопка если автовоспроизведение заблокировано */}
           {showFallback && (
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 3
-            }}>
-              <button 
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 3,
+              }}
+            >
+              <button
                 onClick={handlePlayVideo}
                 style={{
                   padding: '12px 24px',
@@ -227,7 +229,7 @@ export const Hero: React.FC = () => {
                   border: 'none',
                   borderRadius: '8px',
                   cursor: 'pointer',
-                  fontSize: '16px'
+                  fontSize: '16px',
                 }}
               >
                 Play Video
@@ -242,7 +244,7 @@ export const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={hasAnimated ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <AutoVerticalSwiper />
           </motion.div>
