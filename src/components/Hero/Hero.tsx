@@ -9,9 +9,11 @@ import {
   HeroSubtitle,
   ButtonGroup,
   PrimaryButton,
-  VideoOverlay
+  VideoOverlay,
+  VideoPlaceholder,
+  LoadingSpinner
 } from './Hero.styled';
-import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.mov'; // Імпортуйте ваше відео
+import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.mov';
 import { TransparentButton } from '../Header/Header.styled';
 import AutoVerticalSwiper from './Swipper';
 import { useMediaQuery } from 'react-responsive';
@@ -52,6 +54,9 @@ export const Hero: React.FC = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const heroRef = useRef(null);
@@ -68,11 +73,49 @@ export const Hero: React.FC = () => {
   const y = useTransform(scrollY, [0, 400], [0, isDesktop ? 80 : isTablet ? 20 : 40]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0.95]);
 
-  // Функція для запуску відео
-  const handleVideoLoad = () => {
+  // Ленивая загрузка видео при появлении в viewport
+  useEffect(() => {
+    if (isInView && videoRef.current) {
+      setIsVideoLoading(true);
+      
+      // Таймаут для отображения загрузки
+      const loadingTimer = setTimeout(() => {
+        if (!isVideoLoaded) {
+          videoRef.current?.load();
+        }
+      }, 100);
+
+      return () => clearTimeout(loadingTimer);
+    }
+  }, [isInView, isVideoLoaded]);
+
+  // Функція для обробки завантаження відео
+  const handleVideoLoaded = () => {
+    setIsVideoLoaded(true);
+    setIsVideoLoading(false);
     if (videoRef.current) {
       videoRef.current.play().catch(error => {
         console.log('Auto-play was prevented:', error);
+        // В случае ошибки автовоспроизведения, показываем кнопку play
+        setShowFallback(true);
+      });
+    }
+  };
+
+  // Функція для обробки помилок відео
+  const handleVideoError = () => {
+    setIsVideoLoading(false);
+    setShowFallback(true);
+    console.error('Video loading failed');
+  };
+
+  // Ручной запуск видео
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.play().then(() => {
+        setShowFallback(false);
+      }).catch(error => {
+        console.log('Manual play failed:', error);
       });
     }
   };
@@ -86,20 +129,55 @@ export const Hero: React.FC = () => {
             opacity: opacity,
           }}
         >
+          {/* Плейсхолдер во время загрузки */}
+          {!isVideoLoaded && (
+            <VideoPlaceholder>
+              {isVideoLoading && <LoadingSpinner />}
+            </VideoPlaceholder>
+          )}
+
           <VideoBackground
             ref={videoRef}
-            autoPlay
             muted
             loop
             playsInline
-            onLoadedData={handleVideoLoad}
-            preload="auto"
+            preload="none" // Ленивая загрузка
+            onLoadedData={handleVideoLoaded}
+            onError={handleVideoError}
+            style={{ opacity: isVideoLoaded ? 1 : 0 }}
           >
             <source src={HeroVideo} type="video/mp4" />
             {/* Додайте альтернативні формати для кращої сумісності */}
-            <source src={HeroVideo.replace('.mp4', '.webm')} type="video/webm" />
+            <source src={HeroVideo.replace('.mov', '.webm')} type="video/webm" />
             Ваш браузер не підтримує відео тег.
           </VideoBackground>
+
+          {/* Fallback кнопка если автовоспроизведение заблокировано */}
+          {showFallback && (
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 3
+            }}>
+              <button 
+                onClick={handlePlayVideo}
+                style={{
+                  padding: '12px 24px',
+                  backgroundColor: 'rgba(0,0,0,0.7)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '16px'
+                }}
+              >
+                Play Video
+              </button>
+            </div>
+          )}
+
           <VideoOverlay />
         </motion.div>
 
