@@ -66,7 +66,7 @@ export const StyledContainer = styled.div`
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: inherit;
-  width: 46%;
+  width: 100%;
   @media (min-width: 1440px) {
     width: 425px;
   }

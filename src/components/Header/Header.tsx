@@ -151,7 +151,7 @@ const Header: React.FC = () => {
           </TabletContainer>
         )}
         <LangButtonContainer>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', gap: 16 }}>
             <PrimaryButton to='/contact#ap'>Contact Us</PrimaryButton>
             <TransparentButton $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
               <a href='tel:+18055002705'>Call Us</a>

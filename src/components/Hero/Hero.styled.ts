@@ -1,13 +1,13 @@
 import styled, { keyframes } from 'styled-components';
-import {  NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const HeroContainer = styled.div`
- position: relative;
+  position: relative;
   min-width: 100vw;
   min-height: 100vh;
   overflow: auto;
   flex-shrink: 0;
-    /* iOS specific optimizations */
+  /* iOS specific optimizations */
   -webkit-overflow-scrolling: touch;
   transform: translateZ(0);
   backface-visibility: hidden;
@@ -18,11 +18,27 @@ export const HeroContainer = styled.div`
 
   @media screen and (min-width: 1440px) {
     display: flex;
-    justify-content: flex-end; /* Вирівнюємо контент справа */
+    justify-content: flex-end;
     align-items: center;
-    padding-right: 120px; /* Відступ від правої сторони */
+    padding-right: 120px;
   }
 `;
+
+export const VideoBackground = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+
+  /* Оптимізація для мобільних пристроїв */
+  @media (max-width: 768px) {
+    object-position: center center;
+  }
+`;
+
 
 export const HeroImage = styled.img`
   position: absolute;
@@ -39,6 +55,16 @@ export const HeroImage = styled.img`
   }
 `;
 
+export const VideoOverlay = styled.div`
+     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgb(0 0 0 / 87%) 0%, rgb(0 0 0 / 48%) 50%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 0;
+`;
+
 export const ContentWrapper = styled.div`
   position: absolute;
   left: 16px;
@@ -50,17 +76,18 @@ export const ContentWrapper = styled.div`
   justify-content: flex-end;
   align-items: flex-start;
   gap: 24px;
+  z-index: 2; /* Вище затемнення */
 
   @media screen and (min-width: 768px) {
   }
 
-   @media screen and (min-width: 1440px) {
-    position: relative; /* Змінюємо на relative для flex-розташування */
+  @media screen and (min-width: 1440px) {
+    position: relative;
     left: auto;
     bottom: auto;
-    width: 45%; /* Ширина контенту */
+    width: 45%;
     max-width: 600px;
-    margin-left: auto; /* Вирівнюємо справа */
+    margin-left: auto;
     margin-right: 0;
     margin-top: 20%;
   }
@@ -71,12 +98,6 @@ export const TextBlock = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 100%;
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const HeroTitle = styled.p`
@@ -86,15 +107,12 @@ export const HeroTitle = styled.p`
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  
   @media screen and (min-width: 768px) {
-    font-family: var(--second-family);
-    font-weight: 400;
     font-size: 85px;
-    line-height: 90%;
-    color: var(--white);
   }
 
-  /* Покращений рендеринг тексту на iOS */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 `;
@@ -106,16 +124,10 @@ export const HeroSubtitle = styled.p`
   font-weight: 400;
   line-height: 1.25em;
   width: 100%;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
   @media screen and (min-width: 768px) {
-    font-family: var(--font-family);
-    font-weight: 400;
     font-size: 17px;
-    line-height: 125%;
-    color: var(--white);
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -123,11 +135,7 @@ export const ButtonGroup = styled.div`
   display: flex;
   gap: 8px;
   width: fit-content;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
+  z-index: 3; /* Вище затемнення */
 `;
 
 export const PrimaryButton = styled(NavLink)`
@@ -146,46 +154,34 @@ export const PrimaryButton = styled(NavLink)`
   font-weight: 500;
   font-size: 15px;
   color: var(--white);
- &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: var(--purple-400);
-      color: var(--purple-400);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(109, 135, 239, 0.2);
-    }
-    
-    &:focus {
-      outline: 2px solid var(--purple-400);
-      outline-offset: 2px;
-      background-color: rgba(255, 255, 255, 0.15);
-    }
-    
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(109, 135, 239, 0.1);
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+  text-decoration: none;
+  transition: all 0.3s ease;
 
-    a {
-      color: var(--white);
-      transition: color 0.3s ease;
-      
-      &:hover {
-        color: var(--purple-400);
-      }
-    }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--purple-400);
+    color: var(--purple-400);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(109, 135, 239, 0.2);
+  }
   
-  @media screen and (min-width: 768px) {
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 125%;
-    color: var(--white);
+  &:focus {
+    outline: 2px solid var(--purple-400);
+    outline-offset: 2px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(109, 135, 239, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
   }
 `;
+
 
 export const SecondaryButton = styled.button`
   display: flex;

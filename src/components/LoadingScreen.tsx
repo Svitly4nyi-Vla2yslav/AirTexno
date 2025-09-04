@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { backOut, motion } from 'framer-motion';
 import styled from 'styled-components';
-import logoImage from '../assets/icons/Logo Image.svg'; // Import your logo image
+import logoImage from '../assets/icons/Logo.png';
 
 const LoaderContainer = styled.div`
   display: flex;
@@ -15,19 +15,10 @@ const LoaderContainer = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 9999;
 `;
 
-const LogoImage = styled(motion.img).attrs({
-  initial: { rotate: 0 },
-  animate: {
-    rotate: 360,
-    transition: {
-      repeat: Infinity,
-      ease: "linear",
-      duration: 2
-    }
-  }
-})`
+const LogoImage = styled(motion.img)`
   width: 120px;
   height: 120px;
   margin-bottom: 24px;
@@ -40,27 +31,17 @@ const LogoImage = styled(motion.img).attrs({
   }
 `;
 
-const LoadingText = styled(motion.div)`
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-align: center;
-  opacity: 0.7;
-
-  @media (max-width: 480px) {
-    font-size: 1rem;
-  }
-`;
-
-const textAnimation = {
-  animate: {
-    opacity: [0.3, 1, 0.3],
+// Визначаємо анімаційні варіанти
+const rotateVariants = {
+  initial: { rotate: 0 },
+  animate: { 
+    rotate: 360,
     transition: {
-      duration: 1.5,
       repeat: Infinity,
-    },
-  },
+      ease: backOut, // cubic-bezier for linear
+      duration: 2
+    }
+  }
 };
 
 const LoadingScreen = () => {
@@ -69,10 +50,10 @@ const LoadingScreen = () => {
       <LogoImage
         src={logoImage}
         alt="Loading"
+        variants={rotateVariants}
+        initial="initial"
+        animate="animate"
       />
-      <LoadingText {...textAnimation}>
-      
-      </LoadingText>
     </LoaderContainer>
   );
 };

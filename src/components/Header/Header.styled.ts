@@ -263,7 +263,7 @@ display: none;
       : $darkMode
       ? '#000000'
       : '#FFFFFF'}; // Білий колір на світлому фоні
-  padding: 12px 24px;
+  padding: 10px 24px;
   border-radius: 8px;
   font-weight: 500;
   font-size: 16px;

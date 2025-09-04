@@ -2,15 +2,16 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useInView, easeOut } from 'framer-motion';
 import {
   HeroContainer,
-  HeroImage,
+  VideoBackground,
   ContentWrapper,
   TextBlock,
   HeroTitle,
   HeroSubtitle,
   ButtonGroup,
   PrimaryButton,
+  VideoOverlay
 } from './Hero.styled';
-import HeroImages from '../../assets/icons/Hero Image.png';
+import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.mov'; // Імпортуйте ваше відео
 import { TransparentButton } from '../Header/Header.styled';
 import AutoVerticalSwiper from './Swipper';
 import { useMediaQuery } from 'react-responsive';
@@ -51,6 +52,7 @@ export const Hero: React.FC = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
   const [hasAnimated, setHasAnimated] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   const heroRef = useRef(null);
   const isInView = useInView(heroRef, { once: true, margin: "-10%" });
@@ -66,6 +68,15 @@ export const Hero: React.FC = () => {
   const y = useTransform(scrollY, [0, 400], [0, isDesktop ? 80 : isTablet ? 20 : 40]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0.95]);
 
+  // Функція для запуску відео
+  const handleVideoLoad = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log('Auto-play was prevented:', error);
+      });
+    }
+  };
+
   return (
     <>
       <HeroContainer id='hero' ref={heroRef}>
@@ -75,16 +86,21 @@ export const Hero: React.FC = () => {
             opacity: opacity,
           }}
         >
-          <HeroImage
-            src={HeroImages}
-            alt='Hero Image'
-            loading="eager"
-            decoding="async"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-            }}
-          />
+          <VideoBackground
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            onLoadedData={handleVideoLoad}
+            preload="auto"
+          >
+            <source src={HeroVideo} type="video/mp4" />
+            {/* Додайте альтернативні формати для кращої сумісності */}
+            <source src={HeroVideo.replace('.mp4', '.webm')} type="video/webm" />
+            Ваш браузер не підтримує відео тег.
+          </VideoBackground>
+          <VideoOverlay />
         </motion.div>
 
         {isDesktop && (

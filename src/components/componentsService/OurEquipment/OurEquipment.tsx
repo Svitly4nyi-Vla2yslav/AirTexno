@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, easeOut, backOut } from 'framer-motion';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import image1 from '../../../assets/icons/equipment/Image1.png';
@@ -51,6 +51,19 @@ const OurEquipment: React.FC = () => {
 
   const slidesPerView = isMobile ? 1 : isTablet ? 3 : isDesktop ? 4 : 4;
   const shouldLoop = slides.length > slidesPerView;
+
+  // Обробники кліків для кнопок
+  const handlePrevClick = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
 
   // Унікальні анімаційні варіанти
   const titleVariants = {
@@ -154,37 +167,6 @@ const OurEquipment: React.FC = () => {
     },
   };
 
-  const buttonVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      rotate: -10,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        duration: 0.6,
-        ease: easeOut,
-        delay: 0.5,
-      },
-    },
-    hover: {
-      scale: 1.15,
-      rotate: 5,
-      boxShadow: '0 0 25px rgba(48, 152, 238, 0.6)',
-      transition: {
-        duration: 0.3,
-        ease: easeOut,
-      },
-    },
-    tap: {
-      scale: 0.95,
-      rotate: -2,
-    },
-  };
-
   return (
     <Wrapper>
       <HeaderSection>
@@ -212,51 +194,6 @@ const OurEquipment: React.FC = () => {
 
       <Partners />
 
-      <NavigationContainer>
-        <motion.div
-          variants={buttonVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
-          whileHover='hover'
-          whileTap='tap'
-        >
-          <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M15 18L9 12L15 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </NavButton>
-        </motion.div>
-
-        <motion.div
-          variants={buttonVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.1 }}
-          whileHover='hover'
-          whileTap='tap'
-        >
-          <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M9 18L15 12L9 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </NavButton>
-        </motion.div>
-      </NavigationContainer>
-
       <SwiperContainer $isTablet={isTablet}>
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -268,9 +205,13 @@ const OurEquipment: React.FC = () => {
             waitForTransition: true,
             pauseOnMouseEnter: true,
           }}
-          speed={6000}
+          speed={600}
           loop={shouldLoop}
           slidesPerView={slidesPerView}
+          touchRatio={1.5}
+          touchAngle={45}
+          simulateTouch={true}
+          allowTouchMove={true}
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
@@ -298,6 +239,37 @@ const OurEquipment: React.FC = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <NavigationContainer>
+          <NavButton 
+            onClick={handlePrevClick} 
+            onMouseDown={(e) => e.preventDefault()} // Запобігає затримці
+          >
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M15 18L9 12L15 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
+
+          <NavButton 
+            onClick={handleNextClick}
+            onMouseDown={(e) => e.preventDefault()} // Запобігає затримці
+          >
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M9 18L15 12L9 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
+        </NavigationContainer>
       </SwiperContainer>
     </Wrapper>
   );
@@ -319,7 +291,7 @@ const SwiperContainer = styled.div<{ $isTablet: boolean }>`
 export const NavigationContainer = styled.div`
   display: flex;
   gap: 12px;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100%;
   justify-content: flex-end;
 `;
@@ -336,89 +308,47 @@ const pulseAnimation = keyframes`
   }
 `;
 
-const slideInLeft = keyframes`
-  from {
-    transform: translateX(-2px);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-const slideInRight = keyframes`
-  from {
-    transform: translateX(2px);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-export const NavButton = styled.button<{ bg: string }>`
+export const NavButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
-  background-color: ${props => props.bg};
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: #DBDBD8;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  touch-action: manipulation;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  &:hover {
-    animation: ${pulseAnimation} 0.6s ease;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #3098EE;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-    &::before {
-      opacity: 1;
-    }
-
-    ${props =>
-      props.bg === '#DBDBD8' &&
-      css`
-        background-color: #c8c8c5;
-        svg {
-          animation: ${slideInLeft} 0.4s ease;
-        }
-      `}
-
-    ${props =>
-      props.bg === '#3098EE' &&
-      css`
-        background-color: #2580d6;
-        svg {
-          animation: ${slideInRight} 0.4s ease;
-        }
-      `}
+    box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
+    animation: ${pulseAnimation} 0.3s ease;
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(48, 152, 238, 0.2);
   }
 
   svg {
     transition: transform 0.2s ease;
   }
 
-  &:hover svg {
+  &:hover svg,
+  &:focus svg {
     transform: scale(1.1);
+  }
+
+  @media (max-width: 767px) {
+    width: 44px;
+    height: 44px;
   }
 `;
 
@@ -467,7 +397,7 @@ const Subtitle = styled.p`
 const Title = styled.p`
   font-family: var(--second-family);
   font-weight: 400;
-  font-size: 52px;
+  font-size: 32px;
   line-height: 90%;
   color: var(--black-500);
 
@@ -476,12 +406,11 @@ const Title = styled.p`
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 72px;
-    min-width: 750px;
+    font-size: 52px;
+  }
 
-    span {
-      font-size: 72px;
-    }
+  @media screen and (min-width: 1440px) {
+    font-size: 72px;
   }
 `;
 

@@ -98,7 +98,7 @@ export const MenuLink = styled(NavLink)`
 export const MenuItem = styled.p<{ $active?: boolean }>`
   color: ${({ $active }) => ($active ? '#3098EE' : '#242424')};
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 56px;
+  font-size: 46px;
   font-weight: 400;
   line-height: 0.9em;
   width: 100%;

@@ -1,5 +1,4 @@
-// CasesSection.styled.ts
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Swiper as SwiperBase, SwiperSlide as SwiperSlideBase } from 'swiper/react';
 
 export const StyledSwiper = styled(SwiperBase)`
@@ -14,6 +13,7 @@ export const StyledSwiper = styled(SwiperBase)`
 
   .swiper-wrapper {
     align-items: center;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1); // Плавна анімація
   }
 
   .swiper-slide {
@@ -21,16 +21,7 @@ export const StyledSwiper = styled(SwiperBase)`
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    transition: all 0.5s ease;
-  }
-
-  .swiper-pagination-bullet {
-    background: #3098ee;
-    opacity: 1;
-  }
-
-  .swiper-pagination-bullet-active {
-    background: #005fa3;
+    transition: all 0.3s ease; // Зменшено час анімації
   }
 
   @media screen and (min-width: 768px) {
@@ -54,7 +45,7 @@ export const StyledSwiperSlide = styled(SwiperSlideBase)<{ $isActive: boolean; $
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease; // Зменшено час анімації
 
   @media screen and (min-width: 1440px) {
     width: ${props => (props.$isActive ? '898px' : '437px')} !important;
@@ -67,13 +58,12 @@ export const StyledSwiperSlide = styled(SwiperSlideBase)<{ $isActive: boolean; $
     transform: ${props => {
       if (props.$isActive) return 'scale(1)';
 
-      // Визначаємо відстань від активного слайда
       const distanceFromCenter = Math.abs(props.$index - 2);
 
       switch (distanceFromCenter) {
-        case 1: // Сусідні слайди (2 і 4)
+        case 1:
           return props.$index < 2 ? 'translateX(-100px) scale(0.9)' : 'translateX(100px) scale(0.9)';
-        case 2: // Крайні слайди (1 і 5)
+        case 2:
           return props.$index < 2 ? 'translateX(-200px) scale(0.8)' : 'translateX(200px) scale(0.8)';
         default:
           return 'scale(0.9)';
@@ -101,166 +91,59 @@ export const Section = styled.section`
   }
 `;
 
-const pulseAnimation = keyframes`
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
-  }
-  70% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-`;
-
-const slideLeft = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-2px);
-  }
-`;
-
-const slideRight = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(2px);
-  }
-`;
-
-const bounce = keyframes`
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  40%, 43% {
-    transform: translate3d(0, -8px, 0);
-  }
-  70% {
-    transform: translate3d(0, -4px, 0);
-  }
-  90% {
-    transform: translate3d(0, -2px, 0);
-  }
-`;
-
 // Стилізовані компоненти
 export const NavigationWrapper = styled.div`
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
 `;
 
-export const IconButton = styled.button<{ $bg: string }>`
+export const IconButton = styled.button`
   display: flex;
   padding: 8px;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  background-color: ${({ $bg }) => $bg};
+  background-color: #dbdbd8;
   width: 40px;
   height: 40px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition:
-      width 0.6s ease,
-      height 0.6s ease;
-  }
 
   &:hover {
-    animation:
-      ${pulseAnimation} 0.6s ease,
-      ${bounce} 0.6s ease;
+    background-color: #3098ee;
     transform: translateY(-2px);
-
-    &::before {
-      width: 300%;
-      height: 300%;
-    }
-
-    ${props =>
-      props.$bg === '#DBDBD8' &&
-      css`
-        background-color: #c8c8c5;
-        box-shadow: 0 4px 15px rgba(219, 219, 216, 0.4);
-
-        svg {
-          animation: ${slideLeft} 0.4s ease;
-        }
-      `}
-
-    ${props =>
-      props.$bg === '#3098EE' &&
-      css`
-        background-color: #2580d6;
-        box-shadow: 0 4px 15px rgba(48, 152, 238, 0.4);
-
-        svg {
-          animation: ${slideRight} 0.4s ease;
-        }
-      `}
+    box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
-  svg {
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  }
-
-  &:hover svg {
-    transform: scale(1.15);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  &:focus {
+    outline: 2px solid #3098ee;
+    outline-offset: 2px;
+    background-color: #3098ee;
   }
 
   // Медіа-запити
   @media screen and (min-width: 768px) {
     width: 44px;
     height: 44px;
-
-    &:hover {
-      transform: translateY(-3px);
-    }
   }
 
   @media screen and (min-width: 1440px) {
     width: 48px;
     height: 48px;
-
-    &:hover {
-      transform: translateY(-4px);
-    }
-
-    &:hover svg {
-      transform: scale(1.2);
-    }
   }
 `;
+
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
@@ -431,18 +314,15 @@ export const IconRow = styled.div`
   }
 `;
 
-export const ReviewText = styled.p`
+export const ReviewText = styled.p<{ $isActive?: boolean }>`
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
   color: var(--black-500);
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
+  opacity: ${props => (props.$isActive ? 1 : 0.7)};
+  transform: ${props => (props.$isActive ? 'translateY(0)' : 'translateY(5px)')};
+  transition: all 0.2s ease; // CSS transition замість Framer Motion
 `;
 
 export const BottomSection = styled.div`
@@ -458,17 +338,15 @@ export const BottomSection = styled.div`
   @media screen and (min-width: 1440px) {
   }
 `;
-export const BlueCard = styled.div`
+export const BlueCard = styled.div<{ $isActive?: boolean }>`
   font-family: var(--second-family);
   font-weight: 400;
   font-size: 28px;
   line-height: 90%;
   color: var(--blue-500);
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
+  opacity: ${props => (props.$isActive ? 1 : 0.8)};
+  transform: ${props => (props.$isActive ? 'translateY(0)' : 'translateY(5px)')};
+  transition: all 0.2s ease; // CSS transition замість Framer Motion
 `;
 
 export const SwiperContainer = styled.div`

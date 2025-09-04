@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, easeOut } from 'framer-motion';
-import styled, { css, keyframes } from 'styled-components';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Додано SwiperSlide
+import styled from 'styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
@@ -162,6 +162,19 @@ const NewsAndTips: React.FC = () => {
   const slidesPerView = isMobile ? 1 : isTablet ? 2 : 3;
   const shouldLoop = articles.length > slidesPerView;
 
+  // Функції для миттєвого спрацьовування кнопок
+  const handlePrevClick = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
+
   return (
     <Wrapper>
       <HeaderSection>
@@ -209,15 +222,12 @@ const NewsAndTips: React.FC = () => {
         >
           {articles.map((article, _index) => (
             <SwiperSlide key={article.id}>
-              {' '}
-              {/* Використовуємо SwiperSlide */}
               <StyledNavLink to={article.path}>
                 <motion.div
                   variants={cardVariants}
                   initial='hidden'
                   whileInView='visible'
                   viewport={{ once: true, amount: 0.2 }}
-                  // whileHover='hover'
                 >
                   <Card>
                     <motion.div variants={imageVariants} whileHover='hover'>
@@ -246,41 +256,37 @@ const NewsAndTips: React.FC = () => {
         </Swiper>
 
         <NavigationContainer>
-          <motion.div
+          <NavButton 
+            onClick={handlePrevClick}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
           >
-            <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
-              <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-                <path
-                  d='M15 18L9 12L15 6'
-                  stroke='white'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-            </NavButton>
-          </motion.div>
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M15 18L9 12L15 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
 
-          <motion.div
+          <NavButton 
+            onClick={handleNextClick}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2, delay: 0.1 }}
           >
-            <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
-              <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-                <path
-                  d='M9 18L15 12L9 6'
-                  stroke='white'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-            </NavButton>
-          </motion.div>
+            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M9 18L15 12L9 6'
+                stroke='white'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </NavButton>
         </NavigationContainer>
       </SwiperContainer>
     </Wrapper>
@@ -308,18 +314,6 @@ const SwiperContainer = styled.div`
   }
 `;
 
-const pulseAnimation = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
 export const NavigationContainer = styled.div`
   display: flex;
   gap: 12px;
@@ -328,40 +322,30 @@ export const NavigationContainer = styled.div`
   justify-content: flex-end;
 `;
 
-export const NavButton = styled.button<{ bg: string }>`
+const NavButton = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50px;
   height: 50px;
   border-radius: 8px;
-  background-color: ${props => props.bg};
+  background-color: #DBDBD8;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   touch-action: manipulation;
 
-  &:hover {
-    animation: ${pulseAnimation} 0.6s ease;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #3098EE;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-    ${props =>
-      props.bg === '#DBDBD8' &&
-      css`
-        background-color: #c8c8c5;
-      `}
-
-    ${props =>
-      props.bg === '#3098EE' &&
-      css`
-        background-color: #2580d6;
-      `}
+    box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(48, 152, 238, 0.2);
   }
 
   @media (max-width: 767px) {

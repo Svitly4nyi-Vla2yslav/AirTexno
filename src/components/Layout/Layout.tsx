@@ -1,12 +1,10 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import VideoPreloader from '../VideoSplash';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // очищаємо sessionStorage при кожному перезавантаженні
@@ -21,18 +19,18 @@ export const Layout: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
+  // useEffect(() => {
+    // const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
 
-    if (!hasSeenPreloader) {
-      setLoading(true);
-    }
-  }, []);
+    // if (!hasSeenPreloader) {
+    //   setLoading(true);
+    // }
+  // }, []);
 
-  const handlePreloaderComplete = () => {
-    sessionStorage.setItem('hasSeenPreloader', 'true');
-    setLoading(false);
-  };
+  // const handlePreloaderComplete = () => {
+  //   sessionStorage.setItem('hasSeenPreloader', 'true');
+  //   setLoading(false);
+  // };
 
   useEffect(() => {
     if (location.hash) {
@@ -53,9 +51,9 @@ export const Layout: React.FC = () => {
     }
   }, [location.pathname]);
 
-  if (loading) {
-    return <VideoPreloader onComplete={handlePreloaderComplete} />;
-  }
+  // if (loading) {
+  //   return <VideoPreloader onComplete={handlePreloaderComplete} />;
+  // }
 
   return (
     <>

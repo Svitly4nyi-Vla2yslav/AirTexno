@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { easeOut, motion } from 'framer-motion';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -108,228 +107,92 @@ export default function CasesSection() {
     },
   ];
 
-  // Анімаційні варіанти для заголовків
-  const titleVariants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: easeOut,
-      },
-    },
-  };
-
-  // Анімаційні варіанти для карток
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.9,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: easeOut,
-      },
-    },
-  };
-
-  // Анімаційні варіанти для кнопок навігації
-  const buttonVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: easeOut,
-      },
-    },
-    hover: {
-      scale: 1.1,
-      transition: { duration: 0.2 },
-    },
-    tap: {
-      scale: 0.95,
-    },
-  };
-
   return (
     <Section>
       <Header>
-        <motion.div initial='hidden' whileInView='visible' variants={titleVariants}>
-          <Subtitle>Our Cases</Subtitle>
-        </motion.div>
-
-        <motion.div
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
-          variants={titleVariants}
-          transition={{ delay: 0.1 }}
-        >
-          <Title>
-            <Blue>Success Stories </Blue> That Bring Your Appliances Back to Life
-          </Title>
-        </motion.div>
+        <Subtitle>Our Cases</Subtitle>
+        <Title>
+          <Blue>Success Stories </Blue> That Bring Your Appliances Back to Life
+        </Title>
       </Header>
 
-      <motion.div
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true, amount: 0.2 }}
-        variants={cardVariants}
-      >
-        <SwiperContainer>
-          <StyledSwiper
-            modules={[Autoplay]}
-            pagination={{ clickable: true }}
-            spaceBetween={20}
-            slidesPerView={1}
-            loop={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-              waitForTransition: true,
-              pauseOnMouseEnter: true,
-            }}
-            speed={4000}
-            onSwiper={setSwiper}
-            onSlideChange={swiper => setActiveIndex(swiper.realIndex)}
-            breakpoints={{
-              1440: {
-                slidesPerView: 6,
-                spaceBetween: 30,
-                centeredSlides: true,
-              },
-            }}
-          >
-            {cards.map(({ image, description, title, type }, index) => (
-              <StyledSwiperSlide key={index} $isActive={activeIndex === index} $index={index}>
-                <motion.div
-                  whileHover={{
-                    scale: activeIndex === index ? 1.05 : 1.02,
-                    transition: { duration: 0.3 },
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <SlideWrapper $isActive={activeIndex === index} $index={index}>
-                    <motion.div
-                      whileHover={{
-                        scale: 1.1,
-                        transition: { duration: 0.4 },
-                      }}
-                    >
-                      <SlideImage
-                        src={image}
-                        alt={type}
-                        $isActive={activeIndex === index}
-                        $index={index}
-                      />
-                    </motion.div>
+      <SwiperContainer>
+        <StyledSwiper
+          modules={[Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          speed={800} // Зменшено швидкість для більш відчутної реакції
+          onSwiper={setSwiper}
+          onSlideChange={swiper => setActiveIndex(swiper.realIndex)}
+          breakpoints={{
+            1440: {
+              slidesPerView: 6,
+              spaceBetween: 30,
+              centeredSlides: true,
+            },
+          }}
+          touchStartPreventDefault={false}
+          allowTouchMove={true}
+          resistance={true}
+          resistanceRatio={0.85}
+        >
+          {cards.map(({ image, description, title, type }, index) => (
+            <StyledSwiperSlide key={index} $isActive={activeIndex === index} $index={index}>
+              <SlideWrapper $isActive={activeIndex === index} $index={index}>
+                <SlideImage
+                  src={image}
+                  alt={type}
+                  $isActive={activeIndex === index}
+                  $index={index}
+                />
 
-                    <Container $isActive={activeIndex === index} $index={index}>
-                      <ContentWrapper>
-                        <TopSection>
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{
-                              opacity: activeIndex === index ? 1 : 0.7,
-                              y: activeIndex === index ? 0 : 5,
-                            }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <ReviewText>{description}</ReviewText>
-                          </motion.div>
-                        </TopSection>
+                <Container $isActive={activeIndex === index} $index={index}>
+                  <ContentWrapper>
+                    <TopSection>
+                      <ReviewText $isActive={activeIndex === index}>{description}</ReviewText>
+                    </TopSection>
 
-                        <BottomSection>
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{
-                              opacity: activeIndex === index ? 1 : 0.8,
-                              y: activeIndex === index ? 0 : 5,
-                            }}
-                            transition={{ duration: 0.3, delay: 0.1 }}
-                          >
-                            <BlueCard>{title}</BlueCard>
-                          </motion.div>
-
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{
-                              opacity: activeIndex === index ? 1 : 0.6,
-                              y: activeIndex === index ? 0 : 5,
-                            }}
-                            transition={{ duration: 0.3, delay: 0.2 }}
-                          >
-                            <ReviewText>{type}</ReviewText>
-                          </motion.div>
-                        </BottomSection>
-                      </ContentWrapper>
-                    </Container>
-                  </SlideWrapper>
-                </motion.div>
-              </StyledSwiperSlide>
-            ))}
-          </StyledSwiper>
-        </SwiperContainer>
-      </motion.div>
+                    <BottomSection>
+                      <BlueCard $isActive={activeIndex === index}>{title}</BlueCard>
+                      <ReviewText $isActive={activeIndex === index}>{type}</ReviewText>
+                    </BottomSection>
+                  </ContentWrapper>
+                </Container>
+              </SlideWrapper>
+            </StyledSwiperSlide>
+          ))}
+        </StyledSwiper>
+      </SwiperContainer>
 
       <NavigationWrapper>
-        <motion.div
-          variants={buttonVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
-          whileHover='hover'
-          whileTap='tap'
-        >
-          <IconButton ref={prevRef} $bg='#DBDBD8' onClick={handlePrev}>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M15 18L9 12L15 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </IconButton>
-        </motion.div>
+        <IconButton ref={prevRef} onClick={handlePrev} aria-label="Previous slide">
+          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+            <path
+              d='M15 18L9 12L15 6'
+              stroke='white'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </IconButton>
 
-        <motion.div
-          variants={buttonVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.1 }}
-          whileHover='hover'
-          whileTap='tap'
-        >
-          <IconButton ref={nextRef} $bg='#3098EE' onClick={handleNext}>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-              <path
-                d='M9 18L15 12L9 6'
-                stroke='white'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </IconButton>
-        </motion.div>
+        <IconButton ref={nextRef} onClick={handleNext} aria-label="Next slide">
+          <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+            <path
+              d='M9 18L15 12L9 6'
+              stroke='white'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </IconButton>
       </NavigationWrapper>
     </Section>
   );
