@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import image1 from '../../../assets/icons/frigde/1.png';
@@ -212,7 +212,7 @@ const RefrigeratorRepair: React.FC = () => {
             whileInView='visible'
             viewport={{ once: true, amount: 0.3 }}
           >
-            <NavButton onClick={() => swiperRef.current?.slidePrev()} bg='#DBDBD8'>
+            <NavButton onClick={() => swiperRef.current?.slidePrev()}>
               <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
                 <path
                   d='M15 18L9 12L15 6'
@@ -232,7 +232,7 @@ const RefrigeratorRepair: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.1 }}
           >
-            <NavButton onClick={() => swiperRef.current?.slideNext()} bg='#3098EE'>
+            <NavButton onClick={() => swiperRef.current?.slideNext()}>
               <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
                 <path
                   d='M9 18L15 12L9 6'
@@ -294,36 +294,27 @@ export const NavigationContainer = styled.div`
   justify-content: flex-end;
 `;
 
-export const NavButton = styled.button<{ bg: string }>`
+export const NavButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50px;
   height: 50px;
   border-radius: 8px;
-  background-color: ${props => props.bg};
+  background-color: #DBDBD8; /* Сірий колір за замовчуванням */
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   touch-action: manipulation;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #3098EE; /* Синій колір при ховері/фокусі/активному стані */
     animation: ${pulseAnimation} 0.6s ease;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-    ${props =>
-      props.bg === '#DBDBD8' &&
-      css`
-        background-color: #c8c8c5;
-      `}
-
-    ${props =>
-      props.bg === '#3098EE' &&
-      css`
-        background-color: #2580d6;
-      `}
   }
 
   &:active {

@@ -317,6 +317,7 @@ export const SecondaryButton = styled.button`
     border-color: #242424;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
   }
 
   /* Фокус для доступності */
