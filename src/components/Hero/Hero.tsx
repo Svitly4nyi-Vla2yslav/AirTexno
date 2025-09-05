@@ -12,7 +12,7 @@ import {
   VideoOverlay,
   VideoPlaceholder,
 } from './Hero.styled';
-import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.mov';
+import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.webm';
 import { TransparentButton } from '../Header/Header.styled';
 import AutoVerticalSwiper from './Swipper';
 import { useMediaQuery } from 'react-responsive';
