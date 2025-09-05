@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import logo from '../assets/icons/logo-big.svg';
-import introVideo from '../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.mov';
+import introVideo from '../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.webm';
 import LoadingScreen from './LoadingScreen';
 
 // Анімація появи з темряви
