@@ -4,7 +4,6 @@ import BackgroundImage from '../../assets/icons/Service Area Section.webp';
 import {
   MainContainer,
   TitleServing,
-  SubtitleServing,
   Wrapper,
   Card,
   CardHeader,
@@ -286,20 +285,9 @@ const ServingVentura: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={titleVariants}
       >
-        <TitleServing>We provide expert service throughout the greater Los Angeles area</TitleServing>
+        <TitleServing>Serving Ventura and Los Angeles Counties</TitleServing>
       </motion.div>
 
-      <motion.div
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true, amount: 0.3 }}
-        variants={titleVariants}
-        transition={{ delay: 0.1 }}
-      >
-        <SubtitleServing>
-          We provide expert service throughout the greater Los Angeles area.
-        </SubtitleServing>
-      </motion.div>
 
       <Wrapper>
         {serviceAreas.map((area, index) => (

@@ -8,7 +8,6 @@ import {
   ArticleImage,
   ArticleContent,
   ArticleText,
-  Data,
 } from './NewsSection.styles';
 import image from '../../assets/icons/news&tips/News Article 2 Image Container (3).png';
 import image1 from '../../assets/icons/equipment/Image3.png';
@@ -24,7 +23,6 @@ interface Article {
   title: string;
   description: string;
   content: string;
-  data: string;
 }
 
 const articles: Article[] = [
@@ -34,7 +32,6 @@ const articles: Article[] = [
     title: 'HOW TO MAINTAIN YOUR REFRIGERATOR AND AVOID COSTLY REPAIRS',
     description:
       'Keep your fridge running smoothly with easy maintenance tips to prevent expensive breakdowns.',
-    data: '22.07.25',
     content: `A refrigerator is one of the hardest-working appliances in your home. A little regular maintenance can help you avoid expensive breakdowns.
 
 Clean the Condenser Coils
@@ -57,7 +54,6 @@ Pro Tip: If your fridge still isn't cooling properly, it may need professional s
     title: 'TOP 5 SIGNS YOUR OVEN OR RANGE NEEDS REPAIR',
     description:
       'Gas range clicking? Oven not heating evenly? Discover common signs your oven needs professional attention.',
-    data: '27.07.25',
     content: `Your oven and range are the heart of your kitchen. Here are five signs that it's time to call a technician.
 
 1. Burners Keep Clicking
@@ -83,7 +79,6 @@ Pro Tip: Airtexno repairs premium brands like Thermador, Wolf, Viking, and GE Mo
     title: 'WASHER & DRYER MAINTENANCE TIPS EVERY HOMEOWNER SHOULD KNOW',
     description:
       'Extend the life of your laundry appliances with simple maintenance practices to avoid breakdowns.',
-    data: '30.07.25',
     content: `Your washer and dryer handle heavy loads every week. With proper care, they'll last for years.
 
 Clean the Washer Filter
@@ -106,7 +101,6 @@ Pro Tip: If your washer isn't spinning or your dryer isn't heating, call Airtexn
     title: 'DISHWASHER NOT DRAINING? COMMON CAUSES AND EASY FIXES',
     description:
       'Learn how to troubleshoot and fix common dishwasher drainage problems quickly and effectively.',
-    data: '02.08.25',
     content: `A dishwasher that won't drain is a common household problem. Here's what to check:
 
 1. Clogged Filter
@@ -129,7 +123,6 @@ Pro Tip: Airtexno installs and repairs dishwashers in Thousand Oaks, Westlake Vi
     title: 'WHEN TO REPLACE VS. REPAIR YOUR APPLIANCE: EXPERT ADVICE',
     description:
       'Make smart decisions about whether to repair or replace your appliances based on cost, age, and efficiency.',
-    data: '08.08.25',
     content: `Every homeowner faces the repair-or-replace question. Here's how to decide.
 
 Consider the Age
@@ -155,7 +148,6 @@ Pro Tip: Not sure what to do? Airtexno provides honest advice and upfront estima
     title: 'WHY OEM PARTS MATTER IN APPLIANCE REPAIR',
     description:
       'Discover the importance of using genuine manufacturer parts for reliable and long-lasting appliance repairs.',
-    data: '11.08.25',
     content: `When repairing appliances, you’ll often hear the term OEM parts. Here’s why they matter.
 
 What Are OEM Parts?
@@ -300,23 +292,7 @@ const textRevealVariants = {
   }),
 };
 
-const dataVariants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-    rotateX: -90,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    rotateX: 0,
-    transition: {
-      duration: 0.7,
-      ease: backOut,
-      delay: 0.1,
-    },
-  },
-};
+
 
 const ArticleDetail: React.FC<{ articleId?: number }> = ({ articleId }) => {
   const { id } = useParams<{ id: string }>();
@@ -357,10 +333,6 @@ const ArticleDetail: React.FC<{ articleId?: number }> = ({ articleId }) => {
       <ArticleContainer id='ap'>
         <motion.div variants={backButtonVariants} whileHover='hover' whileTap='tap'>
           <BackButton to='/tips'>← Back to Tips</BackButton>
-        </motion.div>
-
-        <motion.div variants={dataVariants}>
-          <Data>{article.data}</Data>
         </motion.div>
 
         <motion.div variants={titleVariants}>
