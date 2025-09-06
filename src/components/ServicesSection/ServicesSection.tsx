@@ -14,7 +14,6 @@ import {
   InfoText,
   ButtonText,
   Button,
-  Number,
   ButtonRow,
   ButtonTextBlack,
   ButtonTextWhite,
@@ -136,7 +135,6 @@ const ServicesSection: React.FC = () => {
           >
             <motion.div variants={fadeInLeft}>
               <TitleRow>
-                <Number>01.</Number>
                 <TitleBlue>Appliance Care & Tune-Ups</TitleBlue>
               </TitleRow>
             </motion.div>
