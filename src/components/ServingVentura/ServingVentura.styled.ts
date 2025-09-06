@@ -69,7 +69,7 @@ export const Wrapper = styled.div`
   gap: 12px;
   max-width: 100vw;
   padding: 0 5px;
-  margin-top: 40px;
+  padding-top: 40px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -81,6 +81,7 @@ export const Wrapper = styled.div`
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
+     padding-top: 40px;
   }
 `;
 
