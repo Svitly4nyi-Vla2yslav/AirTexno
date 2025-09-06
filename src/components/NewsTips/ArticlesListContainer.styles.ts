@@ -14,6 +14,9 @@ export const TipsContainer = styled.div`
     display: flex;
     padding-top: 100px;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
   }
 `;
 
@@ -58,7 +61,7 @@ export const StyledContainer = styled.div`
   }
 
   @media (min-width: 1440px) {
-    width: 80%;
+    width: 55%;
   }
 `;
 
@@ -122,7 +125,7 @@ export const StyledTitle = styled.h3`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   padding: 10px;
-     height: 66px;
+  height: 66px;
 
   @media (min-width: 768px) {
     font-size: 32px;
@@ -130,7 +133,7 @@ export const StyledTitle = styled.h3`
 
   @media (min-width: 1440px) {
     font-size: 40px;
-        height: 80px;
+    height: 80px;
   }
 `;
 
@@ -146,10 +149,10 @@ export const StyledDescription = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
- padding: 10px;
- height: 50px;
+  padding: 10px;
+  height: 50px;
   @media (min-width: 768px) {
     font-size: 16px;
-    height: 50px; 
+    height: 50px;
   }
 `;
