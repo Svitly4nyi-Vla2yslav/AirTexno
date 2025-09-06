@@ -235,9 +235,13 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    max-width: 537px;
-    margin: 0 2.01rem;
-    bottom: 10px;
+          position: absolute;
+        /* left: 50%;
+        transform: translateX(-50%); */
+        bottom: 1px;
+        right: auto;
+        max-width: 500px;
+        /* width: 88%; */
   }
 `;
 

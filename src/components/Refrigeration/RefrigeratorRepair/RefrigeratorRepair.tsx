@@ -333,7 +333,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 40px;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   overflow: hidden;
   margin: 0 auto;
   padding: 0 16px;

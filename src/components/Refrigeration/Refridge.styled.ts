@@ -11,11 +11,11 @@ export const Container = styled.div`
   overflow: auto;
   padding: 1rem;
   padding-top: 100px;
-  
+
   /* Оптимізація для iOS */
   -webkit-overflow-scrolling: touch;
   transform: translateZ(0);
-  
+
   @media (min-width: 768px) {
     gap: 2.5rem;
     padding: 1.5rem;
@@ -35,7 +35,7 @@ export const Title = styled.p`
   line-height: 90%;
   color: var(--blue-500);
   text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  
+
   span {
     font-family: var(--second-family);
     font-weight: 400;
@@ -84,7 +84,7 @@ export const Image = styled.img`
   height: auto;
   max-height: 583px;
   object-fit: cover;
-  
+
   /* Оптимізація для мобільних пристроїв */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -122,7 +122,7 @@ export const ButtonRow = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
-  
+
   /* Запобігання випадковим клікам на мобільних */
   touch-action: manipulation;
 `;
@@ -143,7 +143,7 @@ export const PrimaryButton = styled(NavLink)`
   height: 40px;
   border: none;
   transition: all 0.3s ease;
-  
+
   /* Покращення для тачскрінів */
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -177,7 +177,7 @@ export const SecondaryButton = styled.button`
   height: 40px;
   background: transparent;
   transition: all 0.3s ease;
-  
+
   /* Покращення для тачскрінів */
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -224,7 +224,7 @@ export const TextWrapper = styled.div`
   position: absolute;
   bottom: 20px;
   flex-wrap: wrap;
-  
+
   /* Запобігання перешкоджанню свайпам */
   pointer-events: none;
 
@@ -251,7 +251,7 @@ export const TextAndIconWrap = styled.div`
   display: flex;
   width: 90%;
   margin: 0 auto;
-  
+
   /* Покращення для мобільних */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -282,20 +282,21 @@ export const TabletContainer = styled.div`
   align-items: flex-start;
   gap: 56px;
   min-width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   overflow: auto;
   padding: 1rem;
   padding-top: 150px;
-  
+
   /* Оптимізація для iOS */
   -webkit-overflow-scrolling: touch;
   transform: translateZ(0);
-  
+
   @media (min-width: 1440px) {
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     max-width: 1440px;
   }
@@ -322,7 +323,7 @@ export const TabletImageRow = styled.div`
   align-items: center;
   gap: 32px;
   width: 100%;
-  
+
   /* Запобігання випадковим клікам на мобільних */
   touch-action: manipulation;
 
@@ -362,7 +363,7 @@ export const TabletImage = styled.img`
   padding: 8px;
   border-radius: 8px;
   object-fit: cover;
-  
+
   /* Оптимізація для мобільних пристроїв */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -384,7 +385,7 @@ export const TabletButtonRow = styled.div`
   align-items: center;
   gap: 8px;
   width: fit-content;
-  
+
   /* Запобігання випадковим клікам на мобільних */
   touch-action: manipulation;
 `;
@@ -403,7 +404,7 @@ export const TabletPrimaryButton = styled.button`
   width: fit-content;
   height: 40px;
   transition: background-color 0.3s ease;
-  
+
   /* Покращення для тачскрінів */
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -427,7 +428,7 @@ export const TabletSecondaryButton = styled.button`
   width: 119px;
   height: 40px;
   transition: all 0.3s ease;
-  
+
   /* Покращення для тачскрінів */
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -468,16 +469,18 @@ export const DeckstopImageContainer = styled.div`
 // Додаткові стилі для покращення роботи на мобільних
 export const MobileOptimizedStyles = styled.div`
   /* Запобігання випадковим масштабуванням на iOS */
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     font-size: 16px !important;
   }
-  
+
   /* Покращення рендерингу на мобільних */
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   /* Запобігання виділенню тексту при тапі */
   *:not(input):not(textarea) {
     -webkit-user-select: none;
