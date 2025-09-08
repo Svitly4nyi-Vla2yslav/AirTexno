@@ -385,6 +385,7 @@ export const TabletButtonRow = styled.div`
   align-items: center;
   gap: 8px;
   width: fit-content;
+  padding-top: 10px;
 
   /* Запобігання випадковим клікам на мобільних */
   touch-action: manipulation;

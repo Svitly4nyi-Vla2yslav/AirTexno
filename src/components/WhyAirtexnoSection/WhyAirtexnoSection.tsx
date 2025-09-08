@@ -27,6 +27,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css/bundle';
 import { useMediaQuery } from 'react-responsive';
+import { debounce } from 'lodash';
+import type SwiperCore from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-coverflow';
 
 const WhyAirtexnoSection: React.FC = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 743px)' });
@@ -35,16 +41,47 @@ const WhyAirtexnoSection: React.FC = () => {
   });
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
   const isLargeDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
-  
+
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
+  const [, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
+
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-10%" });
+  const isInView = useInView(sectionRef, { once: true, margin: '-10%' });
 
   useEffect(() => {
     if (isInView && !hasAnimated) {
       setHasAnimated(true);
     }
   }, [isInView, hasAnimated]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    const debouncedResize = debounce(handleResize, 250);
+    window.addEventListener('resize', debouncedResize);
+
+    return () => window.removeEventListener('resize', debouncedResize);
+  }, []);
+
+  useEffect(() => {
+    // Примусова ініціалізація після завантаження компонента
+    const timer = setTimeout(() => {
+      if (swiperInstance) {
+        swiperInstance.update();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [swiperInstance]);
 
   const slides = [
     {
@@ -71,41 +108,59 @@ const WhyAirtexnoSection: React.FC = () => {
       image: WhyAirtexnoImage2,
       icon: buildung,
     },
+    {
+      title: 'Genuine Parts in Stock',
+      text: 'We use only original manufacturer parts. With our fully stocked local warehouse, most repairs are done without waiting for delivery.',
+      image: WhyAirtexnoImage2,
+      icon: clock,
+    },
+    {
+      title: 'Fast, Hassle-Free Service',
+      text: 'One quick call and our Thousand Oaks team is on the way — no long waits, no hassle.',
+      image: WhyAirtexnoImage3,
+      icon: buildung,
+    },
   ];
 
-  const slidesPerView = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 3;
+  const getSlidesPerView = () => {
+    if (isMobile) return 1;
+    if (isTablet) return 2;
+    if (isDesktop) return 3;
+    if (isLargeDesktop) return 3;
+    return 3;
+  };
+
+  const slidesPerView = getSlidesPerView();
   const shouldLoop = slides.length > slidesPerView;
 
-  // Анімаційні варіанти для тексту - оптимізовані
   const textVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 20,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
-  // Анімаційні варіанти для карток
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       scale: 0.95,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: easeOut
-      }
-    }
+        ease: easeOut,
+      },
+    },
   };
 
   return (
@@ -114,16 +169,16 @@ const WhyAirtexnoSection: React.FC = () => {
       <Section ref={sectionRef}>
         <TextWrapper>
           <motion.div
-            initial="hidden"
-            animate={hasAnimated ? "visible" : "hidden"}
+            initial='hidden'
+            animate={hasAnimated ? 'visible' : 'hidden'}
             variants={textVariants}
           >
             <SubTitle>why airtexno</SubTitle>
           </motion.div>
-          
+
           <motion.div
-            initial="hidden"
-            animate={hasAnimated ? "visible" : "hidden"}
+            initial='hidden'
+            animate={hasAnimated ? 'visible' : 'hidden'}
             variants={textVariants}
             transition={{ delay: 0.1 }}
           >
@@ -132,14 +187,16 @@ const WhyAirtexnoSection: React.FC = () => {
             </Title>
           </motion.div>
         </TextWrapper>
-        
+
         <ImageSection>
           <SwiperContainer $isLargeDesktop={isLargeDesktop}>
             <Swiper
+              onSwiper={setSwiperInstance}
               modules={[Pagination, Autoplay]}
-              pagination={{ 
+              pagination={{
                 clickable: true,
-                dynamicBullets: true 
+                dynamicBullets: true,
+                dynamicMainBullets: 3,
               }}
               spaceBetween={isLargeDesktop ? 0 : 16}
               loop={shouldLoop}
@@ -155,45 +212,53 @@ const WhyAirtexnoSection: React.FC = () => {
               className='businessSwiper'
               touchRatio={1.5}
               resistanceRatio={0.5}
+              watchSlidesProgress={true}
+              updateOnWindowResize={true}
+              observer={true}
+              observeParents={true}
+              preventInteractionOnTransition={true}
+              // Додайте ці налаштування:
+              initialSlide={0}
+              watchOverflow={true}
+              normalizeSlideIndex={true}
             >
               {slides.map((slide, index) => (
                 <SwiperSlide key={index}>
                   <CenteredSlideContainer
                     style={{ backgroundImage: `url(${slide.image})` }}
                     $isLargeDesktop={isLargeDesktop}
-                    className="slide-container"
+                    className='slide-container'
                   >
                     {(slide.title || slide.text || slide.icon) && (
-                      <motion.div 
+                      <motion.div
                         className='overlay'
-                        initial="hidden"
-                        animate={hasAnimated ? "visible" : "hidden"}
+                        initial='hidden'
+                        animate={hasAnimated ? 'visible' : 'hidden'}
                         variants={cardVariants}
-                        whileHover={!isMobile ? {
-                          scale: 1.02,
-                          transition: { duration: 0.2 }
-                        } : {}}
+                        whileHover={
+                          !isMobile
+                            ? {
+                                scale: 1.02,
+                                transition: { duration: 0.2 },
+                              }
+                            : {}
+                        }
                       >
                         {(slide.title || slide.icon) && (
                           <Header>
                             {slide.title && (
-                              <motion.div
-                                variants={textVariants}
-                              >
+                              <motion.div variants={textVariants}>
                                 <BlueCard>{slide.title}</BlueCard>
                               </motion.div>
                             )}
                             {slide.icon && (
-                              <motion.div
-                                variants={textVariants}
-                                transition={{ delay: 0.1 }}
-                              >
-                                <IconWrapper className="icon-wrapper">
-                                  <img 
-                                    src={slide.icon} 
-                                    alt={slide.title || 'icon'} 
-                                    className="icon-image"
-                                    loading="lazy"
+                              <motion.div variants={textVariants} transition={{ delay: 0.1 }}>
+                                <IconWrapper className='icon-wrapper'>
+                                  <img
+                                    src={slide.icon}
+                                    alt={slide.title || 'icon'}
+                                    className='icon-image'
+                                    loading='lazy'
                                   />
                                 </IconWrapper>
                               </motion.div>
@@ -201,11 +266,8 @@ const WhyAirtexnoSection: React.FC = () => {
                           </Header>
                         )}
                         {slide.text && (
-                          <motion.div
-                            variants={textVariants}
-                            transition={{ delay: 0.2 }}
-                          >
-                            <Text className="slide-text">{slide.text}</Text>
+                          <motion.div variants={textVariants} transition={{ delay: 0.2 }}>
+                            <Text className='slide-text'>{slide.text}</Text>
                           </motion.div>
                         )}
                       </motion.div>

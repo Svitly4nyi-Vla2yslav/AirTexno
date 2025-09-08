@@ -148,7 +148,7 @@ export const SwiperContainer = styled.div<{ $isLargeDesktop?: boolean }>`
   border-radius: 0.25rem;
   width: 100%;
   max-width: 20rem;
-  overflow: hidden;
+  overflow: visible;
   background: transparent;
   z-index: 1;
   margin: 0;
@@ -157,6 +157,7 @@ export const SwiperContainer = styled.div<{ $isLargeDesktop?: boolean }>`
     width: 100%;
     height: 100%;
     padding: 0.5rem 0;
+    overflow: visible;
   }
 
   .swiper-slide {
@@ -271,13 +272,13 @@ export const SlideContainer = styled.div`
   @media screen and (min-width: 768px) {
     height: 25rem;
     padding: 1.25rem 1rem;
-    
+
     .overlay {
       margin: 0.5rem;
       padding: 1rem;
       width: calc(100% - 1rem);
     }
-    
+
     .slide-text {
       font-size: 1rem;
     }

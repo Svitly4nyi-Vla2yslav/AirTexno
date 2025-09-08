@@ -20,9 +20,7 @@ import {
   TabletImage,
   TabletDescription,
   TabletButtonRow,
-  TabletPrimaryButton,
   TabletSecondaryButton,
-  TabletButtonTextWhite,
   TabletButtonTextBlack,
   MainWrapImage,
   DeckstopTitleWrapp,
@@ -118,9 +116,9 @@ export const Fridge: React.FC = () => {
               whileInView='visible'
               viewport={{ once: true, amount: 0.2 }}
             >
-              <TabletPrimaryButton>
-                <TabletButtonTextWhite>Contact Us</TabletButtonTextWhite>
-              </TabletPrimaryButton>
+              <PrimaryButton to='/contact#ap'>
+                <ButtonTextWhite>Contact Us</ButtonTextWhite>
+              </PrimaryButton>
             </motion.div>
 
             <motion.div
@@ -157,9 +155,9 @@ export const Fridge: React.FC = () => {
                   viewport={{ once: true, amount: 0.2 }}
                   variants={imageVariants}
                 >
-                  <TabletImage 
-                    src={fridge} 
-                    alt='Why Airtexno Image 1' 
+                  <TabletImage
+                    src={fridge}
+                    alt='Why Airtexno Image 1'
                     className='main-image'
                     loading='lazy'
                   />
@@ -194,9 +192,9 @@ export const Fridge: React.FC = () => {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={imageVariants}
               >
-                <TabletImage 
-                  src={fridge1} 
-                  alt='Why Airtexno Image 2' 
+                <TabletImage
+                  src={fridge1}
+                  alt='Why Airtexno Image 2'
                   className='secondary-image'
                   loading='lazy'
                 />
@@ -231,9 +229,9 @@ export const Fridge: React.FC = () => {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={imageVariants}
               >
-                <TabletImage 
-                  src={fridge} 
-                  alt='Why Airtexno Image 1' 
+                <TabletImage
+                  src={fridge}
+                  alt='Why Airtexno Image 1'
                   className='main-image'
                   loading='lazy'
                 />
@@ -268,9 +266,9 @@ export const Fridge: React.FC = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={imageVariants}
             >
-              <TabletImage 
-                src={fridge1} 
-                alt='Why Airtexno Image 2' 
+              <TabletImage
+                src={fridge1}
+                alt='Why Airtexno Image 2'
                 className='secondary-image'
                 loading='lazy'
               />
@@ -296,9 +294,9 @@ export const Fridge: React.FC = () => {
               whileInView='visible'
               viewport={{ once: true, amount: 0.2 }}
             >
-              <TabletPrimaryButton>
-                <TabletButtonTextWhite>Contact Us</TabletButtonTextWhite>
-              </TabletPrimaryButton>
+              <PrimaryButton to='/contact#ap'>
+                <ButtonTextWhite>Contact Us</ButtonTextWhite>
+              </PrimaryButton>
             </motion.div>
 
             <motion.div
@@ -340,11 +338,7 @@ export const Fridge: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
             variants={imageVariants}
           >
-            <Image 
-              src={fridge} 
-              alt='Why Airtexno Image 1' 
-              loading='lazy'
-            />
+            <Image src={fridge} alt='Why Airtexno Image 1' loading='lazy' />
           </motion.div>
 
           <TextWrapper>
