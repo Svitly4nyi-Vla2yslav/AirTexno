@@ -1,4 +1,6 @@
+// ArticlesListContainer.tsx
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   StyledContainer,
   StyledArticleCard,
@@ -73,13 +75,35 @@ const articles: Article[] = [
 ];
 
 const ArticlesListContainer: React.FC = () => {
+  const location = useLocation();
+  
+  // Отримуємо ID поточного артиклю з URL
+  const getCurrentArticleId = (): number | null => {
+    const pathParts = location.pathname.split('/');
+    const articlePath = pathParts[pathParts.length - 1];
+    
+    const currentArticle = articles.find(article => 
+      article.path === `/tips/${articlePath}#ap` || 
+      article.path === `/tips/${articlePath}`
+    );
+    
+    return currentArticle ? currentArticle.id : null;
+  };
+  
+  const currentArticleId = getCurrentArticleId();
+  
+  // Фільтруємо артиклі, виключаючи поточний
+  const filteredArticles = articles.filter(article => 
+    article.id !== currentArticleId
+  );
+
   return (
     <TipsContainer>
       <Titel>
         <span> Other news and tips</span>
       </Titel>
       <StyledContainer>
-        {articles.map(article => (
+        {filteredArticles.map(article => (
           <StyledNavLink to={article.path} key={article.id}>
             <StyledArticleCard>
               <StyledImage src={article.image} alt={article.title} />
