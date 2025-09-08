@@ -327,7 +327,7 @@ export const TeamMember: React.FC = () => {
             <EmailText>
               Prefer email communication?
               <br />
-              <a href='mailto:Airtexnola@gmail.com'>airtexno@gmail.com</a>
+              <a href='mailto:Airtexnola@gmail.com'>Airtexnola@gmail.com</a>
             </EmailText>
           </motion.div>
         </BottomSection>
