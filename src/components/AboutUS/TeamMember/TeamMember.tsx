@@ -251,7 +251,7 @@ export const TeamMember: React.FC = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={titleGlowAnimation}
             >
-              <Heading>Book a Call</Heading>
+              <Heading>Book a Service Call</Heading>
             </motion.div>
 
             <motion.div

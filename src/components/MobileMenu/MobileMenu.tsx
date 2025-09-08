@@ -134,7 +134,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const location = useLocation();
 
   // Визначаємо, чи потрібен темний режим для поточної сторінки
-  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', "/fridge"].some(path => 
+  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge'].some(path =>
     location.pathname.startsWith(path)
   );
 
@@ -153,12 +153,12 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   // Функція для визначення активної сторінки
   const isActivePage = (path: string) => {
     const currentPath = location.pathname;
-    
+
     // Спеціальна логіка для головної сторінки
     if (path === '/home#hero') {
       return currentPath === '/' || currentPath === '/home';
     }
-    
+
     // Для інших сторінок перевіряємо початок шляху
     return currentPath.startsWith(path.split('#')[0]);
   };
@@ -199,9 +199,9 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       <AnimatePresence>
         {isOpen && (
           <MenuOverlay
-            initial="closed"
-            animate="open"
-            exit="closed"
+            initial='closed'
+            animate='open'
+            exit='closed'
             variants={menuVariants}
             transition={{ duration: 0.3 }}
           >
@@ -218,25 +218,23 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
             })}
             <Container>
               <Column>
-                <Item>Washing Machine Fix</Item>
-                <Item>Dishwasher Repair</Item>
-                <Item>Oven Maintenance</Item>
-                <Item>Dryer Troubleshooting</Item>
+                <Item>Refrigerator Repair</Item>
+                <Item>Dryer Repair</Item>
+                <Item>Oven Repair</Item>
+                <Item>Range & Stove Repair</Item>
               </Column>
               <Column>
-                <Item>Microwave Service</Item>
-                <Item>Air Conditioner Repair</Item>
-                <Item>Coffee Maker Repair</Item>
-                <Item>Blender Maintenance</Item>
+                <Item>Washer Repair</Item>
+                <Item>Dishwasher Repair</Item>
+                <Item>Cooktop Repair</Item>
+                <Item>Built-in and High-End Brands Repair</Item>
               </Column>
             </Container>
             <FooterContainer>
               <OverlayBar />
               <TextContainer>
                 <TextBold>Designed by TRBN</TextBold>
-                <TextNormal>
-                  Copyright © 2025 Airtexno - All Rights Reserved.
-                </TextNormal>
+                <TextNormal>Copyright © 2025 Airtexno - All Rights Reserved.</TextNormal>
               </TextContainer>
             </FooterContainer>
           </MenuOverlay>

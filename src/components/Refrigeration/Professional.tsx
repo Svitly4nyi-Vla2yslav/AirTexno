@@ -54,13 +54,13 @@ const Professional: React.FC = () => {
       title: "Won't Turn On",
       description:
         "From faulty wiring to failed control boards, we'll troubleshoot and get your refrigerator running again.",
-      price: 'from <span> $250 </span>',
+      price: 'from <span>$250</span>',
     },
     {
       title: 'Not Cooling Properly',
       description:
-        'We check thermostats, heating elements, and compressors to restore temperature control.',
-      price: 'from <span> $55 </span> ',
+        'Uneven temperatures, warm spots, or weak cooling often signal problems with sensors or compressors. We\'ll get your fridge back to optimal performance.',
+      price: 'from <span>$250</span>',
     },
   ];
 
@@ -117,6 +117,7 @@ const Professional: React.FC = () => {
       scale: 1.05,
       transition: {
         duration: 0.2,
+      ease: easeOut,
       },
     },
     tap: {
@@ -134,7 +135,7 @@ const Professional: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={titleVariants}
           >
-            <Subtitle>Typical Refrigerator Issues We Fix</Subtitle>
+            <Subtitle>Common Refrigerator Problems We Repair</Subtitle>
           </motion.div>
 
           <motion.div
@@ -145,7 +146,7 @@ const Professional: React.FC = () => {
             transition={{ delay: 0.1 }}
           >
             <Title>
-              Professional Refrigerator Repair <span> and Installation Services</span>
+              Professional Refrigerator Repair <span>& Installation Services</span>
             </Title>
           </motion.div>
         </HeaderWrapper>
