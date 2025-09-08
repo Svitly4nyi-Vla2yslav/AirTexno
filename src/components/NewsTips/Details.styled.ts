@@ -58,17 +58,17 @@ export const StyledContainer = styled.div`
     gap: 40px;
     padding: 0px;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
   }
 `;
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: inherit;
-  width: 100%;
+  width: fit-content;
   @media (min-width: 1440px) {
-    width: 425px;
   }
 `;
 
