@@ -21,18 +21,18 @@ const slides = [
   },
   {
     img: image2,
-    title: 'Washing Machine',
-    description: 'Restoring heating and control functions.',
+    title: 'Washer',
+    description: 'Repairing drain system, spin problems, and control malfunctions.',
   },
   {
     img: image3,
-    title: 'Oven',
-    description: 'Fixing magnetron and door issues.',
+    title: 'Oven / Range',
+    description: 'Igniter replacement, heating element repair, and temperature issues.',
   },
   {
     img: image4,
-    title: 'Microwave',
-    description: 'Fixing cooling issues and leaks.',
+    title: 'Dryer',
+    description: 'Fixing no-heat issues, noisy operation, and drum problems.',
   },
   {
     img: image5,
@@ -176,7 +176,7 @@ const OurEquipment: React.FC = () => {
           viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
         >
-          <Subtitle>Our Equipment</Subtitle>
+          <Subtitle>Appliances We Service</Subtitle>
         </motion.div>
 
         <motion.div
@@ -240,9 +240,9 @@ const OurEquipment: React.FC = () => {
           ))}
         </Swiper>
         <NavigationContainer>
-          <NavButton 
-            onClick={handlePrevClick} 
-            onMouseDown={(e) => e.preventDefault()} // Запобігає затримці
+          <NavButton
+            onClick={handlePrevClick}
+            onMouseDown={e => e.preventDefault()} // Запобігає затримці
           >
             <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
               <path
@@ -255,9 +255,9 @@ const OurEquipment: React.FC = () => {
             </svg>
           </NavButton>
 
-          <NavButton 
+          <NavButton
             onClick={handleNextClick}
-            onMouseDown={(e) => e.preventDefault()} // Запобігає затримці
+            onMouseDown={e => e.preventDefault()} // Запобігає затримці
           >
             <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
               <path
@@ -315,7 +315,7 @@ export const NavButton = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 8px;
-  background-color: #DBDBD8;
+  background-color: #dbdbd8;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -326,7 +326,7 @@ export const NavButton = styled.button`
   &:hover,
   &:focus,
   &:active {
-    background-color: #3098EE;
+    background-color: #3098ee;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
     animation: ${pulseAnimation} 0.3s ease;

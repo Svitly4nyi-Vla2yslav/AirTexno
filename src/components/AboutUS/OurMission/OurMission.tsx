@@ -15,7 +15,7 @@ import {
   Description,
   ImageContainer,
 } from './OurMission.styled';
-import Person from '../../../assets/icons/about/Services Image.png';
+import Person from '../../../assets/icons/about/a1.webp';
 import Team from '../../../assets/icons/about/Team Image.png';
 import { useMediaQuery } from 'react-responsive';
 

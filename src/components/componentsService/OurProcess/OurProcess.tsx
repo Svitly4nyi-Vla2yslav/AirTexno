@@ -21,8 +21,8 @@ interface ServiceArea {
 
 const serviceAreas: ServiceArea[] = [
   {
-    title: 'Call Us',
-    text: 'Call us to schedule your repair. We`ll gather details and find a convenient time.',
+    title: 'CALL US',
+    text: "Call us to schedule your repair. We'll ask a few details and find the best time for you.",
     icon: (
       <svg
         width='20'
@@ -42,8 +42,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    title: 'We Respond',
-    text: 'Our team answers your questions and arranges a convenient visit.',
+    title: 'WE RESPOND',
+    text: 'Our team answers all your questions and confirms a convenient appointment.',
     icon: (
       <svg
         width='20'
@@ -63,8 +63,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    title: 'On-Site Visit',
-    text: 'Technician arrives, assesses the issue, and provides an estimate.',
+    title: 'ON-SITE VISIT',
+    text: 'Our technician arrives, inspects the issue, and provides a clear estimate.',
     icon: (
       <svg
         width='20'
@@ -84,8 +84,8 @@ const serviceAreas: ServiceArea[] = [
     ),
   },
   {
-    title: 'Repair & Finish',
-    text: 'We fix your appliance on the spot and ensure everything works perfectly.',
+    title: 'REPAIR & FINISH',
+    text: 'We repair your appliance on the spot whenever possible and make sure everything works perfectly before we leave.',
     icon: (
       <svg
         width='20'
@@ -235,7 +235,7 @@ const OurProcess: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={textFlowAnimation}
       >
-        <SubtitleServing>Quick steps to fix appliances reliably</SubtitleServing>
+        <SubtitleServing>4 Simple Steps to Reliable Appliance Repair</SubtitleServing>
       </motion.div>
 
       <Wrapper>

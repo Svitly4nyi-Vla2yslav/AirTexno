@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { backOut, easeOut, motion } from 'framer-motion';
-import avatar from '../../../assets/icons/Team Member Image.png';
+import avatar from '../../../assets/icons/about/logo.jpeg';
 import X from '../../../assets/icons/X.svg';
 import {
   Container,
@@ -34,36 +34,82 @@ export const TeamMember: React.FC = () => {
   // const y = useTransform(scrollY, [0, 500], [0, 50]);
   // const rotate = useTransform(scrollY, [0, 800], [0, -3]);
 
-  const frequentlyQuestions = [
+   const frequentlyQuestions = [
     {
       question: 'How quickly can you repair my appliance?',
-      answer:
-        'Most repairs are completed within 2-4 hours. We offer same-day service for urgent cases and typically schedule appointments within 24-48 hours of your call.',
+      answer: 'Most repairs take 1–2 hours on average. The exact time depends on the complexity of the issue, appliance type, and accessibility.',
     },
     {
       question: 'Do you offer emergency repair services?',
-      answer:
-        'Yes, we provide urgent repairs for urgent situations to minimize your inconvenience. Our emergency service is available 7 days a week with response times as quick as 2 hours.',
+      answer: 'Yes, we provide same-day and emergency services whenever possible. Availability may vary based on location and technician schedule.',
     },
     {
       question: 'What brands and appliances do you service?',
-      answer:
-        'We service all major brands including Samsung, LG, Whirlpool, GE, KitchenAid, Maytag, and more. We repair refrigerators, ovens, dishwashers, washing machines, dryers, microwaves, and other household appliances.',
+      answer: 'We repair all major household appliances, including refrigerators, ovens, stoves, dishwashers, washers, and dryers. We also specialize in built-in and high-end brands.',
     },
     {
       question: 'How do I schedule a repair?',
-      answer:
-        "You can schedule a repair by calling our hotline, filling out the online form on our website, or texting us. We'll arrange a convenient time slot and provide a technician with the necessary parts.",
+      answer: 'You can call us directly or book a service through our website. A technician will confirm the appointment and arrival window.',
     },
     {
-      question: "What if I'm not satisfied with the repair?",
-      answer:
-        "We offer a 90-day warranty on all repairs and parts. If you're not satisfied, we'll re-repair your appliance at no additional cost or provide a full refund for the service.",
+      question: 'How much does a service call cost?',
+      answer: 'Our service call fee is $75. This amount is applied toward the total repair cost if you approve the repair.',
     },
     {
-      question: 'How much will the repair cost?',
-      answer:
-        'Repair costs vary based on the appliance type and issue complexity. We provide free diagnostics and transparent upfront pricing before any work begins. Typical repairs range from $150-$400 including parts and labor.',
+      question: 'Why is my LG washer not draining?',
+      answer: 'This usually happens when the drain pump or filter is clogged. Sometimes the pump motor itself may need replacement.',
+    },
+    {
+      question: 'Why is my LG dryer not heating?',
+      answer: 'A faulty heating element, thermostat, or blocked vent can prevent the dryer from producing heat. We can diagnose and repair this quickly.',
+    },
+    {
+      question: 'Why won\'t my Whirlpool dryer start?',
+      answer: 'A broken start switch, faulty door switch, or blown fuse is often the cause. Most issues can be fixed during the first visit.',
+    },
+    {
+      question: 'Why is ice building up on the bottom of my freezer?',
+      answer: 'This is usually due to a clogged defrost drain. Cleaning or replacing the drain system solves the problem.',
+    },
+    {
+      question: 'Why is my refrigerator leaking water?',
+      answer: 'A blocked defrost drain or broken water valve is often the reason. Timely repair prevents further damage to the appliance and flooring.',
+    },
+    {
+      question: 'Why is my Sub-Zero refrigerator not cooling?',
+      answer: 'This may be caused by compressor failure, condenser fan issues, or sealed system problems. Sub-Zero units require professional service.',
+    },
+    {
+      question: 'How often should I schedule appliance maintenance?',
+      answer: 'We recommend annual maintenance. Regular check-ups extend appliance life and prevent costly breakdowns.',
+    },
+    {
+      question: 'Why doesn\'t my oven maintain a steady temperature?',
+      answer: 'A faulty thermostat or control board may cause temperature swings. We replace defective parts to restore even cooking.',
+    },
+    {
+      question: 'Why is my Viking oven not getting hot enough?',
+      answer: 'The issue is often related to a weak igniter or gas valve failure. Both can be replaced to restore proper heating.',
+    },
+    {
+      question: 'Why does my Frigidaire oven smell like gas?',
+      answer: 'This could indicate a weak igniter or a gas leak. Safety is the priority—turn off the oven and call us immediately.',
+    },
+    {
+      question: 'Why is food cooking unevenly in my Wolf oven?',
+      answer: 'Uneven cooking usually points to a faulty convection fan or heating element. Repair ensures consistent cooking results.',
+    },
+    {
+      question: 'Why won\'t my oven door close properly?',
+      answer: 'Door hinges, springs, or seals may be worn out. Replacing them restores proper closure and energy efficiency.',
+    },
+    {
+      question: 'Why is my refrigerator warm but the freezer is still cold?',
+      answer: 'This is typically due to a failed evaporator fan or damper control. Quick repair will prevent food spoilage.',
+    },
+    {
+      question: 'Why is my dryer making loud noises?',
+      answer: 'Worn rollers, belts, or bearings can cause squeaking or banging. Replacing these parts eliminates the noise.',
     },
   ];
 

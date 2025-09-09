@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ImageWrapp = styled.div`
   position: relative;
+  border-radius: 8px;
 `;
 
 export const TextInfo = styled.div`
@@ -142,10 +143,10 @@ export const TeamImage = styled.img`
   align-items: center;
   gap: 0.5rem;
   border-radius: 0.5rem;
-  width: 100%;
-  height: 485px;
-  max-width: none;
-  object-fit: contain;
+ width: 322px;
+height: 485px;
+  /* max-width: none; */
+  object-fit: cover;
 
   @media (min-width: 768px) {
     height: 485px;

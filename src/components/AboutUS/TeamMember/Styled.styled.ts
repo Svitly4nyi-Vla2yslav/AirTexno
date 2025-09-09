@@ -217,9 +217,9 @@ export const TopSection = styled.div`
 `;
 
 export const Avatar = styled.img`
-  border-radius: 74px;
-  width: 119px;
-  height: 119px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   margin-bottom: 36px;
 `;
