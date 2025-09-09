@@ -10,7 +10,7 @@ import image4 from '../../../assets/icons/frigde/4.png';
 import image5 from '../../../assets/icons/frigde/5.png';
 // Додайте імпорт зображень для нових типів холодильників
 import image6 from '../../../assets/icons/frigde/IceMakers.avif'; // Приклад
-import image7 from '../../../assets/icons/frigde/Bar&BeverageRefrigerators.jpg'; // Приклад
+import image7 from '../../../assets/icons/frigde/Bar&BeverageRefrigerators.webp'; // Приклад
 import image8 from '../../../assets/icons/frigde/MiniFridges.webp'; // Приклад
 import { Autoplay, Navigation } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
