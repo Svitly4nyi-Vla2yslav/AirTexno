@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 import image from '../../assets/icons/news&tips/News Article 2 Image Container (3).png';
 import image1 from '../../assets/icons/equipment/Image3.png';
-import image2 from '../../assets/icons/news&tips/News Article 2 Image Container (4).png';
+import image2 from '../../assets/icons/news&tips/t1.webp';
 import image3 from '../../assets/icons/news&tips/bosch-dishwasher-door-open.jpg';
 import image4 from '../../assets/icons/news&tips/tips.png';
 import image5 from '../../assets/icons/news&tips/News Article 2 Image Container (7).png';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, easeOut } from 'framer-motion';
 import styled from 'styled-components';
 import { Alert, AlertType } from './Alert';
-import Cont from '../../assets/icons/ContactFormImage.png';
+import Cont from '../../assets/icons/contact.webp';
 import { CloseButton, ModalContent, ModalOverlay } from '../Footer/Footer.styled';
 import ContentContainer from '../Footer/PoliciesContent';
 
@@ -1024,11 +1024,12 @@ export const ImageContact = styled.img`
   margin: 0 auto;
   width: 100%;
   max-width: 696px;
-  height: auto;
+  height: 208px;
 
   @media screen and (min-width: 768px) {
     width: 100%;
     max-width: 668px;
+    height: 270px;
   }
 `;
 

@@ -23,11 +23,13 @@ import {
   SwiperContainer,
 } from './CasesSection.styled';
 
-import ReviewImage2 from '../../assets/icons/cases/Review Image 3.png';
+import ReviewImage2 from '../../assets/icons/7 (2).webp';
 import ReviewImage1 from '../../assets/icons/cases/Review Image 1.png';
-import ReviewImage3 from '../../assets/icons/cases/Review Image 2.png';
-import ReviewImage4 from '../../assets/icons/cases/Review Image 5.png';
-import ReviewImage5 from '../../assets/icons/cases/Review Image 4.png';
+import ReviewImage3 from '../../assets/icons/8 (2).webp';
+import ReviewImage6 from '../../assets/icons/9 (2).webp';
+import ReviewImage4 from '../../assets/icons/5.webp';
+import ReviewImage7 from '../../assets/icons/10 (2).webp';
+import ReviewImage5 from '../../assets/icons/6 (2).webp';
 import { Blue } from '../WhyAirtexnoSection/WhyAirtexnoSection.styled';
 
 export default function CasesSection() {
@@ -85,14 +87,14 @@ export default function CasesSection() {
       type: 'Oven Repair',
     },
     {
-      image: ReviewImage4,
+      image: ReviewImage7,
       description:
         'We handled a complete installation of a modern washing machine, ensuring proper setup, water connection, and vibration-free operation.',
       title: 'Seamless Washing Machine Installation',
       type: 'Washing Machine Installation',
     },
     {
-      image: ReviewImage3,
+      image: ReviewImage6,
       description:
         'A freezer full of food was saved when we quickly repaired the compressor and restored full cooling capacity within hours.',
       title: 'Emergency Freezer Repair',

@@ -119,6 +119,7 @@ export const TitlePartner = styled.h3`
   line-height: 90%;
   text-transform: uppercase;
   text-align: center;
+  padding-bottom: 16px;
   color: var(--black-500);
   /* Запобігаємо виділенню тексту на тач-пристроях */
   -webkit-user-select: none;

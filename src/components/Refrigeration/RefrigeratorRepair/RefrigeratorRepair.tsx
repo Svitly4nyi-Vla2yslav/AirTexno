@@ -8,6 +8,10 @@ import image2 from '../../../assets/icons/frigde/2.png';
 import image3 from '../../../assets/icons/frigde/3.png';
 import image4 from '../../../assets/icons/frigde/4.png';
 import image5 from '../../../assets/icons/frigde/5.png';
+// Додайте імпорт зображень для нових типів холодильників
+import image6 from '../../../assets/icons/frigde/IceMakers.avif'; // Приклад
+import image7 from '../../../assets/icons/frigde/Bar&BeverageRefrigerators.jpg'; // Приклад
+import image8 from '../../../assets/icons/frigde/MiniFridges.webp'; // Приклад
 import { Autoplay, Navigation } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
 
@@ -42,6 +46,25 @@ const slides = [
     title: 'Two-compressor refrigerators',
     description:
       'Advanced appliances with independent systems for cooling and freezing, ensuring flexibility and reliability.',
+  },
+  // Додаємо нові типи холодильників
+  {
+    img: image6,
+    title: 'Ice Makers',
+    description:
+      'Standalone ice machines and built-in refrigerator ice makers — we fix leaks, clogs, and ice production problems.',
+  },
+  {
+    img: image7,
+    title: 'Bar & Beverage Refrigerators',
+    description:
+      'Compact drink fridges for home bars, offices, or entertainment spaces. We repair cooling, fan, and control board issues.',
+  },
+  {
+    img: image8,
+    title: 'Mini Fridges',
+    description:
+      'Small refrigerators for dorms, offices, and apartments. Quick repair solutions for cooling loss, leaks, and electrical faults.',
   },
 ];
 
@@ -301,7 +324,7 @@ export const NavButton = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 8px;
-  background-color: #DBDBD8; /* Сірий колір за замовчуванням */
+  background-color: #DBDBD8;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -311,7 +334,7 @@ export const NavButton = styled.button`
   &:hover,
   &:focus,
   &:active {
-    background-color: #3098EE; /* Синій колір при ховері/фокусі/активному стані */
+    background-color: #3098EE;
     animation: ${pulseAnimation} 0.6s ease;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -333,7 +356,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 40px;
   width: 100%;
-  /* min-height: 100vh; */
   overflow: hidden;
   margin: 0 auto;
   padding: 0 16px;

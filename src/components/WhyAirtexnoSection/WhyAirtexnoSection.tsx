@@ -16,8 +16,9 @@ import {
   GlobalStyles,
 } from './WhyAirtexnoSection.styled';
 import WhyAirtexnoImage1 from '../../assets/icons/WhyAirtexnoImage.png';
-import WhyAirtexnoImage2 from '../../assets/icons/WhyAirtexnoImage2.png';
-import WhyAirtexnoImage3 from '../../assets/icons/WhyAirtexnoImage3.png';
+import WhyAirtexnoImage2 from '../../assets/icons/2.webp';
+import WhyAirtexnoImage4 from '../../assets/icons/4.webp';
+import WhyAirtexnoImage3 from '../../assets/icons/3.webp';
 import buildung from '../../assets/icons/building-07.svg';
 import clock from '../../assets/icons/clock.svg';
 import { Pagination } from 'swiper/modules';
@@ -85,6 +86,12 @@ const WhyAirtexnoSection: React.FC = () => {
 
   const slides = [
     {
+      title: 'Genuine Parts in Stock',
+      text: 'We use only original manufacturer parts. With our fully stocked local warehouse, most repairs are done without waiting for delivery.',
+      image: WhyAirtexnoImage2,
+      icon: clock,
+    },
+    {
       title: 'Manufacturer-Trained Technicians',
       text: 'Our team is trained to service leading brands like Sub-Zero, Viking, GE Monogram, and more — ensuring expert repairs done right the first time.',
       image: WhyAirtexnoImage1,
@@ -105,15 +112,10 @@ const WhyAirtexnoSection: React.FC = () => {
     {
       title: 'Local & Fair Pricing',
       text: 'As a local Thousand Oaks company, we treat our community like neighbors. With direct access to parts and highly trained techs, we keep our prices fair — without steep markups. While costs keep rising everywhere, we work hard to keep appliance repair affordable.',
-      image: WhyAirtexnoImage2,
+      image: WhyAirtexnoImage4,
       icon: buildung,
     },
-    {
-      title: 'Genuine Parts in Stock',
-      text: 'We use only original manufacturer parts. With our fully stocked local warehouse, most repairs are done without waiting for delivery.',
-      image: WhyAirtexnoImage2,
-      icon: clock,
-    },
+
     {
       title: 'Fast, Hassle-Free Service',
       text: 'One quick call and our Thousand Oaks team is on the way — no long waits, no hassle.',

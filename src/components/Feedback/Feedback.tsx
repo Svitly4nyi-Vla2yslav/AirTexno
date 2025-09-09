@@ -5,14 +5,27 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/mousewheel';
+import Joshua from '../../assets/icons/feedback/unnamed.png';
 import avatarAlex from '../../assets/icons/feedback/Ellipse 4aleksey.png';
-import avatarSanal from '../../assets/icons/feedback/Ellipse 4-sanal-avatar.png';
+import avatarJill from '../../assets/icons/feedback/JillSteiner.png';
+
 import avatarWendy from '../../assets/icons/feedback/Ellipse 4-Wendy Bailey.png';
+import Jake from '../../assets/icons/feedback/JakeAvatar.png';
+import Lucas from '../../assets/icons/feedback/WillLucas.png';
+import Zaid from '../../assets/icons/feedback/ZaidBakoo.png';
+import Claudia from '../../assets/icons/feedback/ClaudiaGilbert.png';
 import avatarElizabeth from '../../assets/icons/feedback/Ellipse 4-Elizabeth Castorena.png';
-import reviewImageAlex from '../../assets/icons/feedback/Review Image-alexey.png';
-import reviewImageSanal from '../../assets/icons/feedback/Review Image-sanal-avatar.png';
+
+import reviewImageAlex from '../../assets/icons/feedback/f5.webp';
+import reviewImageJill from '../../assets/icons/feedback/f4.webp';
+import reviewImageJoshua from '../../assets/icons/feedback/f2.webp';
 import reviewImageWendy from '../../assets/icons/feedback/Review Image-Wendy Bailey.png';
-import reviewImageElizabeth from '../../assets/icons/feedback/Review Image-Elizabeth Castorena.png';
+import reviewImageJake from '../../assets/icons/feedback/f3.webp';
+import reviewImageClaudia from '../../assets/icons/feedback/f6.webp';
+import reviewImageLucas from '../../assets/icons/feedback/f7.webp';
+import reviewImageZaid from '../../assets/icons/feedback/f8.webp';
+
+import reviewImageElizabeth from '../../assets/icons/feedback/f1.webp';
 import { useMediaQuery } from 'react-responsive';
 
 interface Review {
@@ -39,15 +52,13 @@ const reviews: Review[] = [
     image: reviewImageAlex,
   },
   {
-    avatar: avatarSanal,
-    name: 'Sanal Kandymov',
-    time: 'a week ago',
-    text: `Great service! Airtexno repaired our Sub-Zero fridge in Thousand
-      Oaks the same day we called. Fast diagnosis, fair price, real OEM
-      parts. Fridge is perfect again. Will use them for any appliance
-      repair.`,
-    image: reviewImageSanal,
+    avatar: Joshua,
+    name: 'Joshua Hopstone',
+    time: '2 weeks ago',
+    text: `I have hired Sunny of Airtexno several times for needed repairs to my high end Viking appliances. He is responsive, reliable, honest, fast, and reasonably priced. I would recommend him to anyone.`,
+    image: reviewImageJoshua,
   },
+
   {
     avatar: avatarWendy,
     name: 'Wendy Bailey',
@@ -60,49 +71,32 @@ const reviews: Review[] = [
     image: reviewImageWendy,
   },
   {
-    avatar: avatarElizabeth,
-    name: 'Elizabeth Castorena',
-    time: '2 месяца назад',
-    text: `Replaced a refrigerator door that had been dented. Did an
-      excellent job hooking up the ice maker, water dispenser, etc. from
-      new door into the refrigerator. Sunny is extremely knowledgeable
-      and thorough. Will definitely use Airtexno again.`,
-    image: reviewImageElizabeth,
+    avatar: Claudia,
+    name: 'Claudia Gilbert',
+    time: 'a month ago',
+    text: `Excellent service!  Sunny responds quickly and has always been able to repair my appliances.  This time my freezer drawer was leaking (grandchildren had not closed it tightly and was slightly open overnight), I was unable to change the water filter and the light stopped working.  He cleaned the drain system & condenser coil, was able to pull the filter out & replace it  - and the light came back on. All is now working properly.  YAY! Efficient, knowledgeable and a nice person to have in your home.`,
+    image: reviewImageClaudia,
   },
   {
-    avatar: avatarAlex,
-    name: 'Aleksei Sabitov',
+    avatar: avatarJill,
+    name: 'Jill Steiner',
     time: 'a week ago',
-    text: `My Sub-Zero refrigerator stopped cooling, so the next day I called
-      Airtexno Appliance Repair. Their technician arrived the same day
-      and got straight to work. He diagnosed and repaired the issue
-      within just a few hours, explained everything clearly, and even
-      gave me helpful maintenance tips. The pricing was very reasonable.
-      I’m extremely happy with the service and will definitely be using
-      Airtexno Appliance Repair for all my future appliance needs.
-      Highly recommend them for Sub-Zero refrigerator repair and more!`,
-    image: reviewImageAlex,
+    text: `Sunny is amazing.  Always available to help even if it’s after hours.  Has solved problems for us with our GE washer and Thermador fridge/freezer.  Above all he’s very fair and honest with the situation. 100% would recommend.`,
+    image: reviewImageJill,
   },
   {
-    avatar: avatarSanal,
-    name: 'Sanal Kandymov',
-    time: 'a week ago',
-    text: `Great service! Airtexno repaired our Sub-Zero fridge in Thousand
-      Oaks the same day we called. Fast diagnosis, fair price, real OEM
-      parts. Fridge is perfect again. Will use them for any appliance
-      repair.`,
-    image: reviewImageSanal,
+    avatar: Lucas,
+    name: 'Will Lucas',
+    time: ' 6 months ago',
+    text: `Sunny was referred by someone I trust and I was pleased to have been able to obtain his services for my microwave and oven combo.  Sunny is great to work with setting up schedule and task over phone and reassuring in person as he has a professional demeanor and sincerely takes pride in quality craftsmanship.  Gets the job done and does it right.  Meticulously wired with care he took time to ensure best connection with best materials.  Reasonable pricing and someone I would gladly have back to help appliance installation in my home.`,
+    image: reviewImageLucas,
   },
   {
-    avatar: avatarWendy,
-    name: 'Wendy Bailey',
-    time: 'a week ago',
-    text: `I've had Sunny from Airtexno come to my house twice over the last
-      year. Each time he has arrived on time, has diagnosed the issues
-      with my cooktop and ovens correctly and has resolved my problems
-      quickly. He is extremely knowledgeable and conscientious. I have
-      been very pleased with his work, and highly recommend him!`,
-    image: reviewImageWendy,
+    avatar: Jake,
+    name: 'Jake',
+    time: '4 days ago',
+    text: `Sunny was great, he has done 1 repair on my washer and an estimate on my fridge. He was very accommodating and had great communication. Very honest and respectful. I will use him for feature repairs. Thank you Sunny.`,
+    image: reviewImageJake,
   },
   {
     avatar: avatarElizabeth,
@@ -113,6 +107,15 @@ const reviews: Review[] = [
       new door into the refrigerator. Sunny is extremely knowledgeable
       and thorough. Will definitely use Airtexno again.`,
     image: reviewImageElizabeth,
+  },
+  {
+    avatar: Zaid,
+    name: 'Zaid Bakoo',
+    time: 'a week ago',
+    text: `Airtexno was simply amazing. Great customer service and support. Technician was very knowledgeable and responsive. He fixed two fan motors on my True cooler.
+
+Highly recommend this company for all your needs.`,
+    image: reviewImageZaid,
   },
 ];
 
