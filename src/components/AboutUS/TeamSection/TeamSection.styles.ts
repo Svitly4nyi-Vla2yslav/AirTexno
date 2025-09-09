@@ -1,5 +1,42 @@
 import styled from 'styled-components';
 
+export const ImageWrapp = styled.div`
+  position: relative;
+`;
+
+export const TextInfo = styled.div`
+  position: absolute;
+  border-radius: 8px;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 1);
+  h2 {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 90%;
+    color: var(--blue-500);
+  }
+  p {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125%;
+    color: var(--black-500);
+  }
+
+  span {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 125%;
+    color: #000;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;

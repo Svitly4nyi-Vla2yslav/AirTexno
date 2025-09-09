@@ -7,6 +7,8 @@ import {
   ImagesContainer,
   ImageRow,
   TeamImage,
+  TextInfo,
+  ImageWrapp,
 } from './TeamSection.styles';
 import image from '../../../assets/icons/about/Why Airtexno Image 1.png';
 import image1 from '../../../assets/icons/about/Why Airtexno Image 2.png';
@@ -169,11 +171,30 @@ const TeamSection: React.FC = () => {
         >
           <ImageRow>
             <motion.div custom={0} variants={imageMorphAnimation} whileHover='hover'>
-              <TeamImage src={image} alt='Team Member 1' />
+              <ImageWrapp>
+                <TeamImage src={image} alt='Team Member 3' />
+                <TextInfo>
+                  <h2>Sunny</h2>
+                  <p>Lead Technician</p>
+                  <span>
+                    – Our most experienced specialist, training new technicians and handling the
+                    toughest repairs.
+                  </span>
+                </TextInfo>
+              </ImageWrapp>
             </motion.div>
 
             <motion.div custom={1} variants={imageMorphAnimation} whileHover='hover'>
-              <TeamImage src={image1} alt='Team Member 2' />
+              <ImageWrapp>
+                <TeamImage src={image1} alt='Team Member 3' />
+                <TextInfo>
+                  <h2>Stanley</h2>
+                  <p>Technician</p>
+                  <span>
+                    – Skilled in diagnosing and repairing washers, dryers, and refrigerators.
+                  </span>
+                </TextInfo>
+              </ImageWrapp>
             </motion.div>
           </ImageRow>
         </motion.div>
@@ -188,11 +209,27 @@ const TeamSection: React.FC = () => {
         >
           <ImageRow>
             <motion.div custom={2} variants={imageMorphAnimation} whileHover='hover'>
-              <TeamImage src={image2} alt='Team Member 3' />
+              <ImageWrapp>
+                <TeamImage src={image2} alt='Team Member 3' />
+                <TextInfo>
+                  <h2>Mark</h2>
+                  <p>Technician</p>
+                  <span>– Expert in ovens, stoves, and advanced appliance troubleshooting.</span>
+                </TextInfo>
+              </ImageWrapp>
             </motion.div>
 
             <motion.div custom={3} variants={imageMorphAnimation} whileHover='hover'>
-              <TeamImage src={image3} alt='Team Member 4' />
+              <ImageWrapp>
+                <TeamImage src={image3} alt='Team Member 3' />
+                <TextInfo>
+                  <h2>Li</h2>
+                  <p>Technician</p>
+                  <span>
+                    – Focused on precision work and reliable solutions for all household appliances.
+                  </span>
+                </TextInfo>
+              </ImageWrapp>
             </motion.div>
           </ImageRow>
         </motion.div>
