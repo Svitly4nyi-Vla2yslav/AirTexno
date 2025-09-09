@@ -93,7 +93,7 @@ export const Fridge: React.FC = () => {
             variants={titleVariants}
           >
             <Title>
-              <span>Refrigeration</span> maintenance <span>and </span> setup services
+              <span>Refrigerator</span> Repair <span> in </span> Thousand Oaks and Nearby Cities
             </Title>
           </motion.div>
 
@@ -104,8 +104,9 @@ export const Fridge: React.FC = () => {
             variants={textVariants}
           >
             <TabletDescription>
-              We specialize in expert appliance repairs, bringing your home essentials back to life
-              with care and precision — so your family can get back to what matters.
+              Expert refrigerator repair in Thousand Oaks & nearby areas. We service Sub-Zero,
+              Viking, Thermador, KitchenAid, LG, Whirlpool and more — with same-day service
+              available.
             </TabletDescription>
           </motion.div>
 

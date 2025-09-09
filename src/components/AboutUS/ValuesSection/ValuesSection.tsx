@@ -77,44 +77,45 @@ const ValuesSection: React.FC = () => {
     }
   };
 
-  const values: ValueItem[] = [
+   const values: ValueItem[] = [
     {
       id: 1,
       number: '01',
-      title: '<span>Reliable</span> Service',
+      title: 'Reliable Service',
       description:
-        'We are committed to providing trustworthy repairs that you can count on. Our technicians arrive on time and deliver lasting solutions to keep your appliances running smoothly.',
+        'We provide trustworthy repairs you can rely on. Our technicians arrive on time and deliver lasting solutions to keep your appliances running smoothly.',
       image: value,
       alt: 'Reliable Service',
     },
     {
       id: 2,
       number: '02',
-      title: '<span>Fast</span> Response',
+      title: 'Customer-Centric Approach',
       description:
-        'We understand the importance of a quick fix. Our team works efficiently to diagnose and repair your appliances as soon as possible, minimizing downtime and inconvenience.',
+        'Your satisfaction is our priority. We listen carefully to your needs and tailor every repair to your situation, ensuring a positive experience every time.',
       image: value1,
-      alt: 'Fast Response',
+      alt: 'Customer-Centric Approach',
     },
     {
       id: 3,
       number: '03',
-      title: '<span>Customer-Centric</span> Approach',
+      title: 'Fast Response',
       description:
-        'Your satisfaction is our priority. We listen carefully to your needs and tailor our services to meet your specific requirements, ensuring a positive experience every time.',
+        'We know the importance of a quick fix. Our team works efficiently to diagnose and repair appliances as soon as possible, minimizing downtime and stress.',
       image: value2,
-      alt: 'Quality Work',
+      alt: 'Fast Response',
     },
     {
       id: 4,
       number: '04',
-      title: 'Quality <span>and</span> Trust',
+      title: 'Quality and Trust',
       description:
-        'We use only high-quality parts and follow industry best practices to ensure durable repairs. Our goal is to build long-term relationships based on trust and excellent service.',
+        'We use only high-quality parts and proven repair methods. Our goal is to build long-term relationships based on reliability, trust, and excellent service.',
       image: value3,
-      alt: 'Durable Repairs',
+      alt: 'Quality and Trust',
     },
   ];
+
 
   return (
     <Container ref={containerRef}>

@@ -13,6 +13,7 @@ import {
   TeamImage,
   Content,
   Description,
+  ImageContainer,
 } from './OurMission.styled';
 import Person from '../../../assets/icons/about/Services Image.png';
 import Team from '../../../assets/icons/about/Team Image.png';
@@ -85,50 +86,52 @@ const OurMission: React.FC = () => {
 
       <Content>
         <ImageSection>
-          <motion.div
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeInLeft}
-          >
-            <img src={Person} alt='image' />
-          </motion.div>
-
-          <CenteredSlideContainer>
+          <ImageContainer>
             <motion.div
               initial='hidden'
               whileInView='visible'
               viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              transition={{ delay: 0.2 }}
+              variants={fadeInLeft}
             >
-              <Text>
-                “Our goal is to bring comfort and convenience back to your home with every repair.
-                We believe in honest service, quality workmanship, and building lasting
-                relationships with our customers,”
-              </Text>
+              <img src={Person} alt='image' />
             </motion.div>
 
-            <motion.div
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              transition={{ delay: 0.3 }}
-            >
-              <BlueCard>Sanal Gariaev</BlueCard>
-            </motion.div>
+            <CenteredSlideContainer>
+              <motion.div
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeInUp}
+                transition={{ delay: 0.2 }}
+              >
+                <Text>
+                  “Our focus is to fix every appliance properly and reliably. We take on the hardest
+                  jobs, train new technicians, and make sure every client feels confident in our
+                  work.”
+                </Text>
+              </motion.div>
 
-            <motion.div
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              transition={{ delay: 0.4 }}
-            >
-              <Text>Chief Executive Officer</Text>
-            </motion.div>
-          </CenteredSlideContainer>
+              <motion.div
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeInUp}
+                transition={{ delay: 0.3 }}
+              >
+                <BlueCard>Sunny</BlueCard>
+              </motion.div>
+
+              <motion.div
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeInUp}
+                transition={{ delay: 0.4 }}
+              >
+                <Text>Lead Technician</Text>
+              </motion.div>
+            </CenteredSlideContainer>
+          </ImageContainer>
 
           <motion.div
             initial='hidden'
@@ -138,24 +141,24 @@ const OurMission: React.FC = () => {
             transition={{ delay: 0.5 }}
           >
             <Description>
-              As a highly regarded and trusted appliance repair company, we take immense pride in
-              having served our community with exceptional repair services since [год основания].
-              Our extensive experience and commitment to excellence have allowed us to build strong
-              relationships with our customers. We fully recognize how vital it is for your
-              household to have functioning appliances, as they play a crucial role in your daily
-              routine. Whether it's your refrigerator keeping your food fresh, your washing machine
-              ensuring your clothes are clean, or your oven preparing meals for your family, any
-              malfunction can disrupt your life. That's why our primary goal is to restore the
-              performance of your appliances swiftly and affordably, ensuring that you can return to
-              your normal routine with minimal interruption. <br />
+              As a local and trusted appliance repair team, our mission is to keep your home running
+              smoothly with fast, reliable, and affordable service. We know how important it is when
+              your refrigerator, washer, dryer, or oven stops working — it can interrupt your whole
+              day. That's why our focus is on quick, professional repairs that last.
+              <br />
+              <br />
+              Our technicians bring years of hands-on experience, training, and the right tools to
+              handle even the toughest jobs. Whether it's fixing a cooling issue in a Sub-Zero
+              refrigerator, replacing a drain pump in an LG washer, or repairing an igniter in a
+              Viking oven — we've seen it all and we know how to get it done.
               {isLargeDesktop && (
                 <>
+                  {/* <br />
                   <br />
-                  Through years of experience and a commitment to excellence, we offer trusted,
-                  fast, and sustainable solutions tailored to each client's needs. Whether it's a
-                  refrigerator, washing machine, or oven, our expert technicians are equipped to
-                  handle a wide range of appliances, ensuring your home stays comfortable and
-                  functional.
+                    Our technicians bring years of hands-on experience, training, and the right tools to
+              handle even the toughest jobs. Whether it's fixing a cooling issue in a Sub-Zero
+              refrigerator, replacing a drain pump in an LG washer, or repairing an igniter in a
+              Viking oven — we've seen it all and we know how to get it done. */}
                 </>
               )}
             </Description>
@@ -163,7 +166,7 @@ const OurMission: React.FC = () => {
         </ImageSection>
 
         <TeamContainer>
-          {!isLargeDesktop && (
+          {/* {!isLargeDesktop && (
             <motion.div
               initial='hidden'
               whileInView='visible'
@@ -173,14 +176,13 @@ const OurMission: React.FC = () => {
             >
               <Description>
                 <br />
-                Through years of experience and a commitment to excellence, we offer trusted, fast,
-                and sustainable solutions tailored to each client's needs. Whether it's a
-                refrigerator, washing machine, or oven, our expert technicians are equipped to
-                handle a wide range of appliances, ensuring your home stays comfortable and
-                functional.
+                  Our technicians bring years of hands-on experience, training, and the right tools to
+              handle even the toughest jobs. Whether it's fixing a cooling issue in a Sub-Zero
+              refrigerator, replacing a drain pump in an LG washer, or repairing an igniter in a
+              Viking oven — we've seen it all and we know how to get it done.
               </Description>
             </motion.div>
-          )}
+          )} */}
 
           <motion.div
             initial='hidden'

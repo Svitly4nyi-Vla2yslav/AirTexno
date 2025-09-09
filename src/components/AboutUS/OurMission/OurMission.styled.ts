@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const ImageContainer = styled.div`
+  @media screen and (min-width: 768px) {
+    position: relative;
+    width: 417px;
+    margin-top: 208px;
+  }
+`;
+
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -108,13 +116,14 @@ export const CenteredSlideContainer = styled.div`
   margin-bottom: 1%;
   margin-left: 7px;
   margin-bottom: 7px;
+  position: relative;
   @media screen and (min-width: 768px) {
     margin-left: 7px;
     margin-bottom: 7px;
   }
   @media screen and (min-width: 1440px) {
     width: 389px;
-    margin-left: -17px;
+    margin-left: 12px;
   }
 `;
 
