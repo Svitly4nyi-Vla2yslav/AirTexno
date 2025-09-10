@@ -10,7 +10,7 @@ import {
   TextInfo,
   ImageWrapp,
 } from './TeamSection.styles';
-import image from '../../../assets/icons/about/a1.webp';
+import image from '../../../assets/icons/equipment/aNew1.jpg';
 import image1 from '../../../assets/icons/about/Why Airtexno Image 2.png';
 import image2 from '../../../assets/icons/about/Why Airtexno Image 3.png';
 import image3 from '../../../assets/icons/about/Why Airtexno Image 4.png';
