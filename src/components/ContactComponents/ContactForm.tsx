@@ -828,8 +828,8 @@ const Disclaimer = styled.p`
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+      flex-direction: column-reverse;
+  align-items: center;
   gap: 28px;
   overflow: auto;
   /* padding-top: 100px; */
