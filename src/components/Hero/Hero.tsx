@@ -12,7 +12,7 @@ import {
   VideoOverlay,
   VideoPlaceholder,
 } from './Hero.styled';
-import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.webm';
+import HeroVideo from '../../assets/Sub_Zero_Refrigerator_Cinematic_Reveal.mov';
 import { TransparentButton } from '../Header/Header.styled';
 import AutoVerticalSwiper from './Swipper';
 import { useMediaQuery } from 'react-responsive';
@@ -165,19 +165,7 @@ export const Hero: React.FC = () => {
     }
   };
 
-  // Ручной запуск видео
-  // const handlePlayVideo = () => {
-  //   if (videoRef.current) {
-  //     videoRef.current
-  //       .play()
-  //       .then(() => {
-  //         setShowFallback(false);
-  //       })
-  //       .catch(error => {
-  //         console.log('Manual play failed:', error);
-  //       });
-  //   }
-  // };
+
 
   return (
     <>
@@ -209,7 +197,6 @@ export const Hero: React.FC = () => {
             </VideoBackground>
           )}
 
-          {/* Fallback кнопка если автовоспроизведение заблокировано */}
   
           <VideoOverlay />
         </motion.div>
