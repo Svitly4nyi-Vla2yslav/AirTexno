@@ -90,7 +90,7 @@ export const Hero: React.FC = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [, setIsVideoLoading] = useState(false);
-  const [showFallback, setShowFallback] = useState(false);
+  const [, setShowFallback] = useState(false);
   const [cachedVideoUrl, setCachedVideoUrl] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -166,18 +166,18 @@ export const Hero: React.FC = () => {
   };
 
   // Ручной запуск видео
-  const handlePlayVideo = () => {
-    if (videoRef.current) {
-      videoRef.current
-        .play()
-        .then(() => {
-          setShowFallback(false);
-        })
-        .catch(error => {
-          console.log('Manual play failed:', error);
-        });
-    }
-  };
+  // const handlePlayVideo = () => {
+  //   if (videoRef.current) {
+  //     videoRef.current
+  //       .play()
+  //       .then(() => {
+  //         setShowFallback(false);
+  //       })
+  //       .catch(error => {
+  //         console.log('Manual play failed:', error);
+  //       });
+  //   }
+  // };
 
   return (
     <>
@@ -210,33 +210,7 @@ export const Hero: React.FC = () => {
           )}
 
           {/* Fallback кнопка если автовоспроизведение заблокировано */}
-          {showFallback && (
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                zIndex: 3,
-              }}
-            >
-              <button
-                onClick={handlePlayVideo}
-                style={{
-                  padding: '12px 24px',
-                  backgroundColor: 'rgba(0,0,0,0.7)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '16px',
-                }}
-              >
-                Play Video
-              </button>
-            </div>
-          )}
-
+  
           <VideoOverlay />
         </motion.div>
 
