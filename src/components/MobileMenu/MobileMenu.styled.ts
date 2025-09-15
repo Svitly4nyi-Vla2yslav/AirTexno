@@ -2,11 +2,134 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 
-interface StyledProps {
+export interface StyledProps {
   $isOpen?: boolean;
   $darkMode?: boolean;
+  $isScrolled?: boolean;
+  $overlayOpen?: boolean;
 }
 
+// Додати ці стилі до існуючого файлу
+export const ServiceLinkMobile = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
+
+export const ServiceTitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+`;
+export const ArrowDownMobile = styled.img<{ $isOpen: boolean; $overlayOpen?: boolean; $darkMode?: boolean }>`
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  // Додайте ці стилі для кращої видимості
+  display: block;
+  min-width: 16px;
+  margin-left: 8px;
+   width: auto;
+    filter: ${({ $overlayOpen, $darkMode }) =>
+      $overlayOpen
+        ? 'brightness(0)'
+        : $darkMode
+        ? 'brightness(0)'
+        : 'brightness(0) invert(1)'};
+    transition: filter 0.3s ease-in-out;
+`;
+
+export const DropdownMenuMobile = styled(motion.div)`
+  padding-left: 20px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  margin: 8px 0;
+`;
+
+export const DropdownItemMobile = styled.div`
+  padding: 12px 0;
+`;
+
+export const StyledNavLinkDrop = styled(NavLink)`
+  color: #666;
+  text-decoration: none;
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--purple-400);
+  }
+
+  &.active {
+    color: var(--purple-400);
+    font-weight: 500;
+  }
+`;
+
+// Додати ці стилі до існуючого файлу
+export const ServiceMenuItem = styled.div`
+  position: relative;
+`;
+
+export const ServiceMenuLink = styled(NavLink)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  color: #242424;
+  text-decoration: none;
+  font-family: 'Geist', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+export const DropdownArrow = styled.img<{ $isOpen: boolean }>`
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+`;
+
+export const ServiceDropdownMenu = styled.div`
+  padding-left: 20px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+
+  &.open {
+    max-height: 200px;
+  }
+`;
+
+export const ServiceDropdownItem = styled.div`
+  padding: 12px 0;
+`;
+
+export const ServiceSubLink = styled(NavLink)`
+  color: #666;
+  text-decoration: none;
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+
+  &:hover {
+    color: var(--purple-400);
+  }
+
+  &.active {
+    color: var(--purple-400);
+    font-weight: 500;
+  }
+`;
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -101,7 +224,13 @@ export const MenuItem = styled.p<{ $active?: boolean }>`
   font-size: 46px;
   font-weight: 400;
   line-height: 0.9em;
+  display: flex;
   width: 100%;
+  transition: color 0.3s ease;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
   transition: color 0.3s ease;
 
   &:hover,
@@ -110,53 +239,53 @@ export const MenuItem = styled.p<{ $active?: boolean }>`
   }
 `;
 
-export const ServiceLinkMobile = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
+// export const ServiceLinkMobile = styled.div`
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+// `;
 
-export const DropdownMenuMobile = styled(motion.div)`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding-left: 20px;
-  margin-top: 8px;
-  overflow: hidden;
-`;
+// export const DropdownMenuMobile = styled(motion.div)`
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   padding-left: 20px;
+//   margin-top: 8px;
+//   overflow: hidden;
+// `;
 
-export const DropdownItemMobile = styled.div`
-  padding: 10px 0;
-`;
+// export const DropdownItemMobile = styled.div`
+//   padding: 10px 0;
+// `;
 
-export const ArrowDownMobile = styled.img<{ $isOpen: boolean }>`
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
-`;
+// export const ArrowDownMobile = styled.img<{ $isOpen: boolean }>`
+//   margin-left: 8px;
+//   transition: transform 0.3s ease;
+//   transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+// `;
 
-export const ServiceTitleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  cursor: pointer;
+// export const ServiceTitleWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   width: 100%;
+//   cursor: pointer;
 
-  span {
-    flex-grow: 1;
-  }
+//   span {
+//     flex-grow: 1;
+//   }
 
-  ${ArrowDownMobile} {
-    padding: 8px;
-    margin-right: -8px;
-  }
-`;
+//   ${ArrowDownMobile} {
+//     padding: 8px;
+//     margin-right: -8px;
+//   }
+// `;
 
 export const Divider = styled.div<{ $active?: boolean }>`
   background-color: ${({ $active }) => ($active ? '#3098EE' : '#c3c2c2ff')};
   position: absolute;
-  width: 90%;
+  width: 90vh;
   height: 1px;
   transition: background-color 0.3s ease;
 

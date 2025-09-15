@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, easeInOut } from 'framer-motion';
 import {
   Wrapper,
   BurgerButton,
@@ -8,10 +8,16 @@ import {
   MenuLink,
   MenuItem,
   Divider,
+  ServiceLinkMobile,
+  ServiceTitleWrapper,
+  ArrowDownMobile,
+  DropdownMenuMobile,
+  DropdownItemMobile,
+  StyledNavLinkDrop,
 } from './MobileMenu.styled';
-import { useTranslation } from 'react-i18next';
 import { styled } from 'styled-components';
 import { useLocation } from 'react-router-dom';
+import Down from '../../assets/icons/chevron-down.svg';
 
 const Container = styled.div`
   display: flex;
@@ -46,7 +52,7 @@ const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.875rem; /* 3.5 * 0.25rem */
+  gap: 0.875rem;
   width: 92%;
   overflow: auto;
   position: absolute;
@@ -73,7 +79,7 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5rem; /* 2 * 0.25rem */
+  gap: 0.5rem;
   width: 100%;
 `;
 
@@ -81,7 +87,7 @@ const TextContainer = styled.div`
 const TextBold = styled.p`
   color: #242424;
   font-family: 'Geist', sans-serif;
-  font-size: 0.875rem; /* text-sm */
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.2em;
   width: fit-content;
@@ -91,7 +97,7 @@ const TextBold = styled.p`
 const TextNormal = styled.p`
   color: #242424;
   font-family: 'Geist', sans-serif;
-  font-size: 0.875rem; /* text-sm */
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.2em;
   width: fit-content;
@@ -117,10 +123,34 @@ const menuVariants = {
   closed: { opacity: 0, x: '-100%' },
 };
 
+const dropdownVariants = {
+  open: {
+    opacity: 1,
+    height: 'auto',
+    transition: {
+      duration: 0.3,
+      ease: easeInOut,
+    },
+  },
+  closed: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.3,
+      ease: easeInOut,
+    },
+  },
+};
+
 type NavLink = {
   to: string;
   label: string;
   active?: boolean;
+  isService?: boolean;
+  subItems?: Array<{
+    to: string;
+    label: string;
+  }>;
 };
 
 type BurgerMenuProps = {
@@ -129,10 +159,9 @@ type BurgerMenuProps = {
 };
 
 const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
-  const [, setIsServicesOpen] = useState(false);
-  const { t } = useTranslation();
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
-
+  const [isBurgerOpen] = useState(false);
   // Визначаємо, чи потрібен темний режим для поточної сторінки
   const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge'].some(path =>
     location.pathname.startsWith(path)
@@ -162,10 +191,20 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
     // Для інших сторінок перевіряємо початок шляху
     return currentPath.startsWith(path.split('#')[0]);
   };
-
+const isOverlayOpen = isServicesOpen || isBurgerOpen;
   const navLinks: NavLink[] = [
     { to: '/home#hero', label: 'Home' },
-    { to: '/service#all', label: 'Services' },
+    {
+      to: '/service#all',
+      label: 'Services',
+      isService: true,
+      subItems: [
+        { to: '/fridge#ap', label: 'Repair Refrigerator' },
+        // Додайте інші сервіси тут
+        // { to: '/washer#ap', label: 'Washer Repair' },
+        // { to: '/oven#ap', label: 'Oven Repair' },
+      ],
+    },
     { to: '/about#ap', label: 'About Us' },
     { to: '/tips#app', label: 'Tips' },
     { to: '/contact#ap', label: 'Contact' },
@@ -207,15 +246,67 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
           >
             {navLinks.map((link, index) => {
               const isActive = isActivePage(link.to);
+
+              if (link.isService && link.subItems) {
+                return (
+                  <ServiceLinkMobile
+                    key={index}
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    <MenuLink to={link.to} onClick={closeMenu}>
+                      <ServiceTitleWrapper>
+                        <MenuItem $active={isActive}>
+                          {' '}
+                          <ArrowDownMobile
+                            src={Down}
+                            alt='▼'
+                            $overlayOpen={isOverlayOpen}
+                            $darkMode={isDarkMode}
+                            $isOpen={isServicesOpen}
+                          />
+                          {link.label}
+                        </MenuItem>
+                      </ServiceTitleWrapper>
+                    </MenuLink>
+
+                    <AnimatePresence>
+                      {isServicesOpen && (
+                        <DropdownMenuMobile
+                          initial='closed'
+                          animate='open'
+                          exit='closed'
+                          variants={dropdownVariants}
+                        >
+                          {link.subItems.map((subItem, subIndex) => (
+                            <DropdownItemMobile key={subIndex}>
+                              <StyledNavLinkDrop
+                                to={subItem.to}
+                                onClick={closeMenu}
+                                className={isActivePage(subItem.to) ? 'active' : ''}
+                              >
+                                {subItem.label}
+                              </StyledNavLinkDrop>
+                            </DropdownItemMobile>
+                          ))}
+                        </DropdownMenuMobile>
+                      )}
+                    </AnimatePresence>
+                    <Divider />
+                  </ServiceLinkMobile>
+                );
+              }
+
               return (
                 <div key={index}>
                   <MenuLink to={link.to} onClick={closeMenu}>
-                    <MenuItem $active={isActive}>{t(link.label)}</MenuItem>
+                    <MenuItem $active={isActive}>{link.label}</MenuItem>
                   </MenuLink>
                   <Divider />
                 </div>
               );
             })}
+
             <Container>
               <Column>
                 <Item>Refrigerator Repair</Item>
@@ -230,6 +321,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                 <Item>Built-in and High-End Brands Repair</Item>
               </Column>
             </Container>
+
             <FooterContainer>
               <OverlayBar />
               <TextContainer>

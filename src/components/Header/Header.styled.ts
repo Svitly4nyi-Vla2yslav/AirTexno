@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-interface StyledProps {
+export interface StyledProps {
   $isScrolled?: boolean;
   $overlayOpen?: boolean;
   $darkMode?: boolean;
