@@ -11,6 +11,10 @@ import {
   LinkInfo,
   TransparentButton,
   LangButtonContainer,
+  ArrowDown,
+  DropdownItem,
+  DropdownMenu,
+  ServiceLink,
 } from './Header.styled';
 import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
@@ -19,40 +23,47 @@ import BurgerMenu from '../MobileMenu/MobileMenu';
 import logo from '../../assets/icons/LogoandTextContainer.svg';
 import { PrimaryButton } from '../Hero/Hero.styled';
 import loc from '../../assets/icons/location.png';
+import Down from '../../assets/icons/chevron-down.svg';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isServicesOpen] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const location = useLocation();
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Визначаємо, чи потрібен темний режим для поточної сторінки
-  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', "/fridge"].some(path =>
-    location.pathname.startsWith(path)
-  );
+  useEffect(() => {
+    const darkPaths = ['/contact', '/service', '/tips', '/pricing', '/fridge'];
+    setIsDarkMode(darkPaths.some(path => location.pathname.startsWith(path)));
+  }, [location.pathname]);
 
   // об'єднаний тригер оверлею
   const isOverlayOpen = isServicesOpen || isBurgerOpen;
 
   const navigate = useNavigate();
 
-const handleLogoClick = (e: React.MouseEvent) => {
-  e.preventDefault();
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
 
-  if (window.location.pathname !== '/home') {
-    navigate('/home#header');
-  } else {
-    // Чекаємо поки DOM оновиться
-    setTimeout(() => {
-      const element = document.getElementById('header');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }, 100);
-  }
-};
+    if (window.location.pathname !== '/home') {
+      navigate('/home#header');
+    } else {
+      // Чекаємо поки DOM оновиться
+      setTimeout(() => {
+        const element = document.getElementById('header');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  const toggleServicesMenu = () => {
+    setIsServicesOpen(!isServicesOpen);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -106,10 +117,41 @@ const handleLogoClick = (e: React.MouseEvent) => {
               </StyledNavLink>
             </NavItem>
 
-            <NavItem>
-              <StyledNavLink to='/service#all' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
-                Services
-              </StyledNavLink>
+            <NavItem
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+              onClick={toggleServicesMenu}
+            >
+              <ServiceLink>
+                <StyledNavLink
+                  to='/service#all'
+                  $overlayOpen={isOverlayOpen}
+                  $darkMode={isDarkMode}
+                  style={{ padding: '10px 0px' }}
+                >
+                  Service
+                  <ArrowDown
+                    src={Down}
+                    alt='⬇️'
+                    $overlayOpen={isOverlayOpen}
+                    $darkMode={isDarkMode}
+                  />
+                </StyledNavLink>
+                {isServicesOpen && (
+                  <DropdownMenu>
+                    <DropdownItem>
+                      <StyledNavLink
+                        to='/fridge#ap'
+                        $overlayOpen={isOverlayOpen}
+                        $darkMode={isDarkMode}
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                        Repair Refrigerator
+                      </StyledNavLink>
+                    </DropdownItem>
+                  </DropdownMenu>
+                )}
+              </ServiceLink>
             </NavItem>
 
             <NavItem>
