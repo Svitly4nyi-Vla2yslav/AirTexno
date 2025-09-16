@@ -31,38 +31,55 @@ export const ServiceTitleWrapper = styled.div`
   width: 100%;
 `;
 
-export const ArrowDownMobile = styled.img<{ 
-  $isOpen: boolean; 
+export const ArrowDownMobile = styled.img<{
   $overlayOpen?: boolean;
   $darkMode?: boolean;
+  $isOpen: boolean;
 }>`
-  width: 24px;
-  height: 24px;
-  transition: all 0.3s ease;
+  width: 44px;
+  height: 44px;
+  transition: transform 0.3s ease;
   transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   cursor: pointer;
   flex-shrink: 0;
-  
-  /* Стилі для різних режимів */
-  filter: ${({ $overlayOpen, $darkMode }) => {
-    if ($overlayOpen) return 'brightness(0) saturate(100%)';
-    if ($darkMode) return 'brightness(0) saturate(100%)';
-    return 'brightness(0) invert(1)';
-  }};
+  object-fit: contain;
+  background-color: #d079508e;
+  border-radius: 50%;
 
-  &:hover {
-    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg) scale(1.1)' : 'rotate(0deg) scale(1.1)')};
+  /* Збільшуємо область кліку для тачскрінів */
+  padding: 12px;
+  margin: -12px;
+
+  /* Стилі для темного/світлого режиму */
+  filter: ${({ $overlayOpen, $darkMode }) =>
+    $overlayOpen
+      ? 'brightness(1) saturate(100%)'
+      : $darkMode
+      ? 'brightness(1) saturate(100%)'
+      : 'brightness(1) invert(1)'};
+
+  /* Покращення для тачскрінів */
+  @media (max-width: 768px) {
+    width: 44px;
+  height: 44px;
+    padding: 16px;
+    margin: -16px;
+
+    /* Забезпечуємо достатній розмір для торкання */
+    min-width: 44px;
+    min-height: 44px;
   }
 
-  /* Додаткові стилі для кнопки */
-  padding: 8px;
-  margin: -8px;
-  border-radius: 4px;
-  
+  /* Для iOS та Android оптимізація */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
   &:active {
     transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg) scale(0.95)' : 'rotate(0deg) scale(0.95)')};
   }
 `;
+
+
 export const DropdownMenuMobile = styled(motion.div)`
   padding-left: 20px;
   overflow: hidden;
