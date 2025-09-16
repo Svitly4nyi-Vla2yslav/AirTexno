@@ -158,7 +158,6 @@ const NewsAndTips: React.FC = () => {
   const swiperRef = useRef<any>(null);
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
-
   const slidesPerView = isMobile ? 1 : isTablet ? 2 : 3;
   const shouldLoop = articles.length > slidesPerView;
 
@@ -206,12 +205,12 @@ const NewsAndTips: React.FC = () => {
           onSwiper={swiper => (swiperRef.current = swiper)}
           spaceBetween={20}
           autoplay={{
-            delay: 4000,
+            delay: 1,
             disableOnInteraction: false,
             waitForTransition: true,
             pauseOnMouseEnter: true,
           }}
-          speed={600}
+          speed={8600}
           loop={shouldLoop}
           slidesPerView={slidesPerView}
           centeredSlides={isMobile}

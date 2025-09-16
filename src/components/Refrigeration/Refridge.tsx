@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, easeOut } from 'framer-motion';
 import {
   Container,
   Title,
@@ -29,177 +28,72 @@ import {
 } from './Refridge.styled';
 import fridge from '../../assets/icons/frigde/fridge.png';
 import fridge1 from '../../assets/icons/frigde/fridge1.png';
-import rating from '../../assets/icons/frigde/rating.svg';
+import rating from '../../assets/icons/frigde/star-red.svg';
 import { useMediaQuery } from 'react-responsive';
 
 export const Fridge: React.FC = () => {
   const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1439px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
 
-  // Спрощені анімаційні варіанти для кращої роботи на тачскрінах
-  const titleVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: easeOut },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.7, ease: easeOut, delay: 0.1 },
-    },
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.5, ease: easeOut, delay: 0.2 },
-    },
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.4, ease: easeOut, delay: 0.3 },
-    },
-  };
-
-  const iconVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: easeOut,
-      },
-    },
-  };
-
   if (isDesktop) {
     return (
       <TabletContainer>
         <DeckstopTitleWrapp>
-          <motion.div
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
-            variants={titleVariants}
-          >
-            <Title>
-              <span>Refrigerator</span> Repair <span> in </span> Thousand Oaks and Nearby Cities
-            </Title>
-          </motion.div>
+          <Title>
+            <span>Refrigerator</span> Repair <span> in </span> Thousand Oaks and Nearby Cities
+          </Title>
 
-          <motion.div
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
-            variants={textVariants}
-          >
-            <TabletDescription>
-              Expert refrigerator repair in Thousand Oaks & nearby areas. We service Sub-Zero,
-              Viking, Thermador, KitchenAid, LG, Whirlpool and more — with same-day service
-              available.
-            </TabletDescription>
-          </motion.div>
+          <TabletDescription>
+            Expert refrigerator repair in Thousand Oaks & nearby areas. We service Sub-Zero, Viking,
+            Thermador, KitchenAid, LG, Whirlpool and more — with same-day service available.
+          </TabletDescription>
 
           <TabletButtonRow>
-            <motion.div
-              variants={buttonVariants}
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <PrimaryButton to='/contact#ap'>
-                <ButtonTextWhite>Contact Us</ButtonTextWhite>
-              </PrimaryButton>
-            </motion.div>
+            <PrimaryButton to='/contact#ap'>
+              <ButtonTextWhite>Contact Us</ButtonTextWhite>
+            </PrimaryButton>
 
-            <motion.div
-              variants={buttonVariants}
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <TabletSecondaryButton>
-                <a href='tel:+18055002705'>
-                  <TabletButtonTextBlack>Call Us</TabletButtonTextBlack>
-                </a>
-              </TabletSecondaryButton>
-            </motion.div>
+            <TabletSecondaryButton>
+              <a href='tel:+18055002705'>
+                <TabletButtonTextBlack>Call Us</TabletButtonTextBlack>
+              </a>
+            </TabletSecondaryButton>
           </TabletButtonRow>
 
-          <motion.div
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
-            variants={textVariants}
-          >
-            <RatingIcon src={rating} alt='⭐⭐⭐⭐⭐' loading='lazy' />
-          </motion.div>
+          <RatingIcon src={rating} alt='⭐⭐⭐⭐⭐' loading='lazy' />
         </DeckstopTitleWrapp>
 
         <DeckstopImageContainer>
           <TabletContentWrapper>
             <TabletImageRow>
               <MainWrapImage>
-                <motion.div
-                  initial='hidden'
-                  whileInView='visible'
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={imageVariants}
-                >
-                  <TabletImage
-                    src={fridge}
-                    alt='Why Airtexno Image 1'
-                    className='main-image'
-                    loading='lazy'
-                  />
-                </motion.div>
+                <TabletImage
+                  src={fridge1}
+                  alt='Why Airtexno Image 1'
+                  className='main-image'
+                  loading='lazy'
+                />
 
                 <TextWrapper className='tablet-text-wrapper'>
                   {[
-                    { icon: '🔧', text: 'Free diagnostics on the day of the request' },
-                    { icon: '⏱️', text: 'The specialist will arrive at your home in 45 minutes' },
-                    { icon: '🚚', text: 'Delivery of spare parts from our own warehouse' },
+                    { icon: '🔧', text: 'Free Diagnostic With Repair' },
+                    { icon: '⏱️', text: 'Same-Day Service Available' },
+                    { icon: '🚚', text: 'OEM Parts From Our Own Warehouse' },
                   ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial='hidden'
-                      whileInView='visible'
-                      viewport={{ once: true, amount: 0.2 }}
-                      variants={iconVariants}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <TextAndIconWrap>
-                        <span style={{ fontSize: '20px' }}>{item.icon}</span>
-                        <p>{item.text}</p>
-                      </TextAndIconWrap>
-                    </motion.div>
+                    <TextAndIconWrap key={index}>
+                      <span style={{ fontSize: '20px' }}>{item.icon}</span>
+                      <p>{item.text}</p>
+                    </TextAndIconWrap>
                   ))}
                 </TextWrapper>
               </MainWrapImage>
 
-              <motion.div
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ once: true, amount: 0.2 }}
-                variants={imageVariants}
-              >
-                <TabletImage
-                  src={fridge1}
-                  alt='Why Airtexno Image 2'
-                  className='secondary-image'
-                  loading='lazy'
-                />
-              </motion.div>
+              <TabletImage
+                src={fridge}
+                alt='Why Airtexno Image 2'
+                className='secondary-image'
+                loading='lazy'
+              />
             </TabletImageRow>
           </TabletContentWrapper>
         </DeckstopImageContainer>
@@ -210,108 +104,57 @@ export const Fridge: React.FC = () => {
   if (isTablet) {
     return (
       <TabletContainer>
-        <motion.div
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
-          variants={titleVariants}
-        >
-          <Title>
-            <span>Refrigeration</span> maintenance <span>and </span> setup services
-          </Title>
-        </motion.div>
+        <Title>
+          <span>Refrigerator</span> Repair <span> in </span> Thousand Oaks and Nearby Cities
+        </Title>
 
         <TabletContentWrapper>
           <TabletImageRow>
             <MainWrapImage>
-              <motion.div
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ once: true, amount: 0.2 }}
-                variants={imageVariants}
-              >
-                <TabletImage
-                  src={fridge}
-                  alt='Why Airtexno Image 1'
-                  className='main-image'
-                  loading='lazy'
-                />
-              </motion.div>
+              <TabletImage
+                src={fridge1}
+                alt='Why Airtexno Image 1'
+                className='main-image'
+                loading='lazy'
+              />
 
               <TextWrapper className='tablet-text-wrapper'>
                 {[
-                  { icon: '🔧', text: 'Free diagnostics on the day of the request' },
-                  { icon: '⏱️', text: 'The specialist will arrive in 45 minutes' },
-                  { icon: '🚚', text: 'Delivery of spare parts from warehouse' },
+                  { icon: '🔧', text: 'Free Diagnostic With Repair' },
+                  { icon: '⏱️', text: 'Same-Day Service Available' },
+                  { icon: '🚚', text: 'OEM Parts From Our Own Warehouse' },
                 ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial='hidden'
-                    whileInView='visible'
-                    viewport={{ once: true, amount: 0.2 }}
-                    variants={iconVariants}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <TextAndIconWrap>
-                      <span style={{ fontSize: '18px' }}>{item.icon}</span>
-                      <p>{item.text}</p>
-                    </TextAndIconWrap>
-                  </motion.div>
+                  <TextAndIconWrap key={index}>
+                    <span style={{ fontSize: '18px' }}>{item.icon}</span>
+                    <p>{item.text}</p>
+                  </TextAndIconWrap>
                 ))}
               </TextWrapper>
             </MainWrapImage>
 
-            <motion.div
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.2 }}
-              variants={imageVariants}
-            >
-              <TabletImage
-                src={fridge1}
-                alt='Why Airtexno Image 2'
-                className='secondary-image'
-                loading='lazy'
-              />
-            </motion.div>
+            <TabletImage
+              src={fridge}
+              alt='Why Airtexno Image 2'
+              className='secondary-image'
+              loading='lazy'
+            />
           </TabletImageRow>
 
-          <motion.div
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
-            variants={textVariants}
-          >
-            <TabletDescription>
-              We specialize in expert appliance repairs, bringing your home essentials back to life
-              with care and precision — so your family can get back to what matters.
-            </TabletDescription>
-          </motion.div>
+          <TabletDescription>
+            Expert refrigerator repair in Thousand Oaks & nearby areas. We service Sub-Zero, Viking,
+            Thermador, KitchenAid, LG, Whirlpool and more — with same-day service available.
+          </TabletDescription>
 
           <TabletButtonRow>
-            <motion.div
-              variants={buttonVariants}
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <PrimaryButton to='/contact#ap'>
-                <ButtonTextWhite>Contact Us</ButtonTextWhite>
-              </PrimaryButton>
-            </motion.div>
+            <PrimaryButton to='/contact#ap'>
+              <ButtonTextWhite>Contact Us</ButtonTextWhite>
+            </PrimaryButton>
 
-            <motion.div
-              variants={buttonVariants}
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <TabletSecondaryButton>
-                <a href='tel:+18055002705'>
-                  <TabletButtonTextBlack>Call Us</TabletButtonTextBlack>
-                </a>
-              </TabletSecondaryButton>
-            </motion.div>
+            <TabletSecondaryButton>
+              <a href='tel:+18055002705'>
+                <TabletButtonTextBlack>Call Us</TabletButtonTextBlack>
+              </a>
+            </TabletSecondaryButton>
           </TabletButtonRow>
         </TabletContentWrapper>
       </TabletContainer>
@@ -320,87 +163,43 @@ export const Fridge: React.FC = () => {
 
   return (
     <Container>
-      <motion.div
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true, amount: 0.2 }}
-        variants={titleVariants}
-      >
-        <Title>
-          <span>Refrigeration</span> maintenance <span>and </span> setup services
-        </Title>
-      </motion.div>
+      <Title>
+        <span>Refrigerator</span> Repair <span> in </span> Thousand Oaks and Nearby Cities
+      </Title>
 
       <ContentWrapper>
         <ImageContainer>
-          <motion.div
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
-            variants={imageVariants}
-          >
-            <Image src={fridge} alt='Why Airtexno Image 1' loading='lazy' />
-          </motion.div>
+          <Image src={fridge1} alt='Why Airtexno Image 1' loading='lazy' />
 
           <TextWrapper>
             {[
-              { icon: '🔧', text: 'Free diagnostics on the day of the request' },
-              { icon: '⏱️', text: 'The specialist will arrive in 45 minutes' },
-              { icon: '🚚', text: 'Delivery of spare parts from warehouse' },
+              { icon: '🔧', text: 'Free Diagnostic With Repair' },
+              { icon: '⏱️', text: 'Same-Day Service Available' },
+              { icon: '🚚', text: 'OEM Parts From Our Own Warehouse' },
             ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial='hidden'
-                whileInView='visible'
-                viewport={{ once: true, amount: 0.2 }}
-                variants={iconVariants}
-                transition={{ delay: index * 0.1 }}
-              >
-                <TextAndIconWrap>
-                  <span style={{ fontSize: '16px' }}>{item.icon}</span>
-                  <p>{item.text}</p>
-                </TextAndIconWrap>
-              </motion.div>
+              <TextAndIconWrap key={index}>
+                <span style={{ fontSize: '16px' }}>{item.icon}</span>
+                <p>{item.text}</p>
+              </TextAndIconWrap>
             ))}
           </TextWrapper>
         </ImageContainer>
 
-        <motion.div
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
-          variants={textVariants}
-        >
-          <Description>
-            We specialize in expert appliance repairs, bringing your home essentials back to life
-            with care and precision — so your family can get back to what matters.
-          </Description>
-        </motion.div>
+        <Description>
+          Expert refrigerator repair in Thousand Oaks & nearby areas. We service Sub-Zero, Viking,
+          Thermador, KitchenAid, LG, Whirlpool and more — with same-day service available.
+        </Description>
 
         <ButtonRow>
-          <motion.div
-            variants={buttonVariants}
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <PrimaryButton to='/contact#ap'>
-              <ButtonTextWhite>Contact Us</ButtonTextWhite>
-            </PrimaryButton>
-          </motion.div>
+          <PrimaryButton to='/contact#ap'>
+            <ButtonTextWhite>Contact Us</ButtonTextWhite>
+          </PrimaryButton>
 
-          <motion.div
-            variants={buttonVariants}
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <SecondaryButton>
-              <a href='tel:+18055002705'>
-                <ButtonTextBlack>Call Us</ButtonTextBlack>
-              </a>
-            </SecondaryButton>
-          </motion.div>
+          <SecondaryButton>
+            <a href='tel:+18055002705'>
+              <ButtonTextBlack>Call Us</ButtonTextBlack>
+            </a>
+          </SecondaryButton>
         </ButtonRow>
       </ContentWrapper>
     </Container>

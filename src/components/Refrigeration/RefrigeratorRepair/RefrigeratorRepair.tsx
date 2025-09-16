@@ -6,7 +6,7 @@ import 'swiper/css';
 import image1 from '../../../assets/icons/frigde/1.png';
 import image2 from '../../../assets/icons/frigde/2.png';
 import image3 from '../../../assets/icons/frigde/3.png';
-import image4 from '../../../assets/icons/frigde/4.png';
+import image4 from '../../../assets/icons/frigde/IMG_2543.png';
 import image5 from '../../../assets/icons/frigde/5.png';
 // Додайте імпорт зображень для нових типів холодильників
 import image6 from '../../../assets/icons/frigde/IceMakers.avif'; // Приклад

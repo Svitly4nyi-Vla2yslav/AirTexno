@@ -1,20 +1,27 @@
+import { delay } from 'framer-motion';
 import { NavLink } from 'react-router';
 import styled from 'styled-components';
+
+
+export const AnimatedElement = styled.div<{ $isVisible: boolean; $delay?: number }>`
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transform: ${({ $isVisible }) => ($isVisible ? 'translateY(0)' : 'translateY(20px)')};
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: ${({ $delay }) => ($delay ? `${delay}ms` : '0ms')};
+  
+  /* Запобігання проблемам з рендерингом */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+`;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 3rem;
-  min-width: 100vw;
-  min-height: 100vh;
-  overflow: auto;
+  width: 100%;
   padding: 1rem;
   padding-top: 100px;
-
-  /* Оптимізація для iOS */
-  -webkit-overflow-scrolling: touch;
-  transform: translateZ(0);
 
   @media (min-width: 768px) {
     gap: 2.5rem;
@@ -28,6 +35,26 @@ export const Container = styled.div`
   }
 `;
 
+export const TabletContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 56px;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 150px;
+
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    max-width: 1440px;
+  }
+`;
 export const Title = styled.p`
   font-family: var(--second-family);
   font-weight: 400;
@@ -276,31 +303,6 @@ export const TextAndIconWrap = styled.div`
   }
 `;
 
-export const TabletContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 56px;
-  min-width: 100%;
-  /* min-height: 100vh; */
-  overflow: auto;
-  padding: 1rem;
-  padding-top: 150px;
-
-  /* Оптимізація для iOS */
-  -webkit-overflow-scrolling: touch;
-  transform: translateZ(0);
-
-  @media (min-width: 1440px) {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    width: 100%;
-    max-width: 1440px;
-  }
-`;
 
 export const RatingIcon = styled.img`
   display: none;
