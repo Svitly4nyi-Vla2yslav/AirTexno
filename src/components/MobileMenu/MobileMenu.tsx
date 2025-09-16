@@ -9,11 +9,11 @@ import {
   MenuItem,
   Divider,
   ServiceLinkMobile,
-  ServiceTitleWrapper,
   ArrowDownMobile,
   DropdownMenuMobile,
   DropdownItemMobile,
   StyledNavLinkDrop,
+  ServiceContentWrapper,
 } from './MobileMenu.styled';
 import { styled } from 'styled-components';
 import { useLocation } from 'react-router-dom';
@@ -162,7 +162,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
   const [isBurgerOpen] = useState(false);
-  // Визначаємо, чи потрібен темний режим для поточної сторінки
+  
   const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer'].some(path =>
     location.pathname.startsWith(path)
   );
@@ -179,18 +179,20 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
     setIsServicesOpen(false);
   };
 
-  // Функція для визначення активної сторінки
+  const toggleServicesMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsServicesOpen(!isServicesOpen);
+  };
+
   const isActivePage = (path: string) => {
     const currentPath = location.pathname;
-
-    // Спеціальна логіка для головної сторінки
     if (path === '/home#hero') {
       return currentPath === '/' || currentPath === '/home';
     }
-
-    // Для інших сторінок перевіряємо початок шляху
     return currentPath.startsWith(path.split('#')[0]);
   };
+
   const isOverlayOpen = isServicesOpen || isBurgerOpen;
   const navLinks: NavLink[] = [
     { to: '/home#hero', label: 'Home' },
@@ -199,10 +201,8 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       label: 'Services',
       isService: true,
       subItems: [
-        { to: '/fridge#ap', label: 'Refrigerator Repair ' },
-        // Додайте інші сервіси тут
-        { to: '/dryer#ap', label: ' Dryer Repair' },
-        // { to: '/oven#ap', label: 'Oven Repair' },
+        { to: '/fridge#ap', label: 'Refrigerator Repair' },
+        { to: '/dryer#ap', label: 'Dryer Repair' },
       ],
     },
     { to: '/about#ap', label: 'About Us' },
@@ -254,21 +254,23 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <MenuLink to={link.to} onClick={closeMenu}>
-                      <ServiceTitleWrapper>
+                    <ServiceContentWrapper>
+                      <MenuLink to={link.to} onClick={closeMenu}>
                         <MenuItem $active={isActive}>
-                          {' '}
-                          <ArrowDownMobile
-                            src={Down}
-                            alt='▼'
-                            $overlayOpen={isOverlayOpen}
-                            $darkMode={isDarkMode}
-                            $isOpen={isServicesOpen}
-                          />
                           {link.label}
                         </MenuItem>
-                      </ServiceTitleWrapper>
-                    </MenuLink>
+                      </MenuLink>
+                      
+                      <ArrowDownMobile
+                        src={Down}
+                        alt='▼'
+                        $overlayOpen={isOverlayOpen}
+                        $darkMode={isDarkMode}
+                        $isOpen={isServicesOpen}
+                        onClick={toggleServicesMenu}
+                        className="arrow-button"
+                      />
+                    </ServiceContentWrapper>
 
                     <AnimatePresence>
                       {isServicesOpen && (

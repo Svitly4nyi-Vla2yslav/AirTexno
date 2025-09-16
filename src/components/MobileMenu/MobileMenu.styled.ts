@@ -8,11 +8,20 @@ export interface StyledProps {
   $isScrolled?: boolean;
   $overlayOpen?: boolean;
 }
+export const ServiceContentWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+`;
 
 // Додати ці стилі до існуючого файлу
+
 export const ServiceLinkMobile = styled.div`
   position: relative;
   cursor: pointer;
+  width: 100%;
 `;
 
 export const ServiceTitleWrapper = styled.div`
@@ -20,27 +29,40 @@ export const ServiceTitleWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 16px 0;
-`;
-export const ArrowDownMobile = styled.img<{ $isOpen: boolean; $overlayOpen?: boolean; $darkMode?: boolean }>`
-  width: 16px;
-  height: 16px;
-  transition: transform 0.3s ease;
-  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
-  // Додайте ці стилі для кращої видимості
-  display: block;
-  min-width: 16px;
-  margin-left: 8px;
-   width: auto;
-    filter: ${({ $overlayOpen, $darkMode }) =>
-      $overlayOpen
-        ? 'brightness(0)'
-        : $darkMode
-        ? 'brightness(0)'
-        : 'brightness(0) invert(1)'};
-    transition: filter 0.3s ease-in-out;
 `;
 
+export const ArrowDownMobile = styled.img<{ 
+  $isOpen: boolean; 
+  $overlayOpen?: boolean;
+  $darkMode?: boolean;
+}>`
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  cursor: pointer;
+  flex-shrink: 0;
+  
+  /* Стилі для різних режимів */
+  filter: ${({ $overlayOpen, $darkMode }) => {
+    if ($overlayOpen) return 'brightness(0) saturate(100%)';
+    if ($darkMode) return 'brightness(0) saturate(100%)';
+    return 'brightness(0) invert(1)';
+  }};
+
+  &:hover {
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg) scale(1.1)' : 'rotate(0deg) scale(1.1)')};
+  }
+
+  /* Додаткові стилі для кнопки */
+  padding: 8px;
+  margin: -8px;
+  border-radius: 4px;
+  
+  &:active {
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg) scale(0.95)' : 'rotate(0deg) scale(0.95)')};
+  }
+`;
 export const DropdownMenuMobile = styled(motion.div)`
   padding-left: 20px;
   overflow: hidden;
