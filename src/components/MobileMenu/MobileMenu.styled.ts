@@ -36,8 +36,8 @@ export const ArrowDownMobile = styled.img<{
   $darkMode?: boolean;
   $isOpen: boolean;
 }>`
-  width: 44px;
-  height: 44px;
+  /* width: 44px;
+  height: 44px; */
   transition: transform 0.3s ease;
   transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   cursor: pointer;
@@ -60,14 +60,14 @@ export const ArrowDownMobile = styled.img<{
 
   /* Покращення для тачскрінів */
   @media (max-width: 768px) {
-    width: 44px;
-  height: 44px;
+    /* width: 44px;
+  height: 44px; */
     padding: 16px;
     margin: -16px;
 
     /* Забезпечуємо достатній розмір для торкання */
-    min-width: 44px;
-    min-height: 44px;
+    /* min-width: 44px;
+    min-height: 44px; */
   }
 
   /* Для iOS та Android оптимізація */
