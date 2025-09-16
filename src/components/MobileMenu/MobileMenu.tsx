@@ -163,7 +163,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const location = useLocation();
   const [isBurgerOpen] = useState(false);
   // Визначаємо, чи потрібен темний режим для поточної сторінки
-  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge'].some(path =>
+  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer'].some(path =>
     location.pathname.startsWith(path)
   );
 
@@ -191,7 +191,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
     // Для інших сторінок перевіряємо початок шляху
     return currentPath.startsWith(path.split('#')[0]);
   };
-const isOverlayOpen = isServicesOpen || isBurgerOpen;
+  const isOverlayOpen = isServicesOpen || isBurgerOpen;
   const navLinks: NavLink[] = [
     { to: '/home#hero', label: 'Home' },
     {
@@ -199,9 +199,9 @@ const isOverlayOpen = isServicesOpen || isBurgerOpen;
       label: 'Services',
       isService: true,
       subItems: [
-        { to: '/fridge#ap', label: 'Repair Refrigerator' },
+        { to: '/fridge#ap', label: 'Refrigerator Repair ' },
         // Додайте інші сервіси тут
-        // { to: '/washer#ap', label: 'Washer Repair' },
+        { to: '/dryer#ap', label: ' Dryer Repair' },
         // { to: '/oven#ap', label: 'Oven Repair' },
       ],
     },

@@ -10,6 +10,7 @@ import Service from './pages/ServicePages/Service';
 import ArticleDetail from './components/NewsTips/NewsSection';
 import Refrigeration from './pages/Refrigeration/Refrigeration';
 import { AnimatePresence } from 'framer-motion';
+import Dryer from './pages/Dryer/Dryer';
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   return <div style={{ width: '100%', position: 'relative' }}>{children}</div>;
 };
@@ -137,6 +138,14 @@ export const App: React.FC = () => {
             element={
               <PageWrapper>
                 <Refrigeration />
+              </PageWrapper>
+            }
+          />
+             <Route
+            path='/dryer'
+            element={
+              <PageWrapper>
+                <Dryer />
               </PageWrapper>
             }
           />
