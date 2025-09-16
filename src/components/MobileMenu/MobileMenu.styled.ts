@@ -43,7 +43,7 @@ export const ArrowDownMobile = styled.img<{
   cursor: pointer;
   flex-shrink: 0;
   object-fit: contain;
-  background-color: #d079508e;
+  background-color: #5099d08e;
   border-radius: 50%;
 
   /* Збільшуємо область кліку для тачскрінів */
