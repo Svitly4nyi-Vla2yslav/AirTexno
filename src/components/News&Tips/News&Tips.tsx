@@ -161,7 +161,7 @@ const NewsAndTips: React.FC = () => {
   const slidesPerView = isMobile ? 1 : isTablet ? 2 : 3;
   const shouldLoop = articles.length > slidesPerView;
 
-  // Функції для миттєвого спрацьовування кнопок
+  // Функції для навігації
   const handlePrevClick = () => {
     if (swiperRef.current) {
       swiperRef.current.slidePrev();
@@ -205,19 +205,21 @@ const NewsAndTips: React.FC = () => {
           onSwiper={swiper => (swiperRef.current = swiper)}
           spaceBetween={20}
           autoplay={{
-            delay: 1,
+            delay: 3000, // Нормальна затримка
             disableOnInteraction: false,
-            waitForTransition: true,
             pauseOnMouseEnter: true,
           }}
-          speed={8600}
+          speed={1000} // Нормальна швидкість
           loop={shouldLoop}
           slidesPerView={slidesPerView}
           centeredSlides={isMobile}
-          touchRatio={1.5}
-          touchAngle={45}
-          simulateTouch={true}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}
+          // Додайте ці параметри для покращеної роботи
           allowTouchMove={true}
+          grabCursor={true}
         >
           {articles.map((article, _index) => (
             <SwiperSlide key={article.id}>
@@ -255,12 +257,13 @@ const NewsAndTips: React.FC = () => {
         </Swiper>
 
         <NavigationContainer>
-          <NavButton 
+          <NavButton
             onClick={handlePrevClick}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            className='swiper-button-prev' // Додайте клас для навігації
           >
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+            {/* <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
               <path
                 d='M15 18L9 12L15 6'
                 stroke='white'
@@ -268,15 +271,16 @@ const NewsAndTips: React.FC = () => {
                 strokeLinecap='round'
                 strokeLinejoin='round'
               />
-            </svg>
+            </svg> */}
           </NavButton>
 
-          <NavButton 
+          <NavButton
             onClick={handleNextClick}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            className='swiper-button-next' // Додайте клас для навігації
           >
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+            {/* <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
               <path
                 d='M9 18L15 12L9 6'
                 stroke='white'
@@ -284,7 +288,7 @@ const NewsAndTips: React.FC = () => {
                 strokeLinecap='round'
                 strokeLinejoin='round'
               />
-            </svg>
+            </svg> */}
           </NavButton>
         </NavigationContainer>
       </SwiperContainer>
@@ -306,10 +310,34 @@ export const StyledNavLink = styled(NavLink)`
 const SwiperContainer = styled.div`
   width: 100%;
   padding: 20px 0;
+  position: relative;
 
   .swiper-slide {
     width: 100%;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Стилі для стандартних кнопок навігації Swiper */
+  .swiper-button-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: transparent;
+    &:hover {
+      background-color: #dbdbd8;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-family: swiper-icons;
+    font-size: 20px;
+    height: 20px;
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+    /* color: transparent; */
   }
 `;
 
@@ -319,6 +347,7 @@ export const NavigationContainer = styled.div`
   margin-top: 20px;
   width: 100%;
   justify-content: flex-end;
+  position: absolute;
 `;
 
 const NavButton = styled(motion.button)`
@@ -328,7 +357,7 @@ const NavButton = styled(motion.button)`
   width: 50px;
   height: 50px;
   border-radius: 8px;
-  background-color: #DBDBD8;
+  background-color: #dbdbd8;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -337,7 +366,7 @@ const NavButton = styled(motion.button)`
   &:hover,
   &:focus,
   &:active {
-    background-color: #3098EE;
+    background-color: #3098ee;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(48, 152, 238, 0.3);
   }

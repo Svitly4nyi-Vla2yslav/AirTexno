@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, easeOut } from 'framer-motion';
 import styled from 'styled-components';
 import { Alert, AlertType } from './Alert';
-import Cont from '../../assets/icons/contact.webp';
+import Cont from '../../assets/icons/contact.jpg';
 import { CloseButton, ModalContent, ModalOverlay } from '../Footer/Footer.styled';
 import ContentContainer from '../Footer/PoliciesContent';
 

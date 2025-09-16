@@ -23,13 +23,13 @@ import {
   SwiperContainer,
 } from './CasesSection.styled';
 
-import ReviewImage2 from '../../assets/icons/7 (2).webp';
+import ReviewImage2 from '../../assets/icons/cases/photo_2025-09-16_22-58-10.jpg';
 import ReviewImage1 from '../../assets/icons/cases/Review Image 1.png';
-import ReviewImage3 from '../../assets/icons/8 (2).webp';
-import ReviewImage6 from '../../assets/icons/9 (2).webp';
-import ReviewImage4 from '../../assets/icons/5.webp';
-import ReviewImage7 from '../../assets/icons/10 (2).webp';
-import ReviewImage5 from '../../assets/icons/6 (2).webp';
+import ReviewImage3 from '../../assets/icons/cases/photo_2025-09-16_22-58-06.jpg';
+import ReviewImage6 from '../../assets/icons/cases/photo_2025-09-16_22-58-01.jpg';
+import ReviewImage4 from '../../assets/icons/cases/photo_2025-09-16_22-58-19.jpg';
+import ReviewImage7 from '../../assets/icons/cases/photo_2025-09-16_22-57-47.jpg';
+import ReviewImage5 from '../../assets/icons/cases/photo_2025-09-16_22-58-14.jpg';
 import { Blue } from '../WhyAirtexnoSection/WhyAirtexnoSection.styled';
 
 export default function CasesSection() {
