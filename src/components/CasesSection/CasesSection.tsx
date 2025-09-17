@@ -52,28 +52,28 @@ export default function CasesSection() {
 
   const cards = [
     {
-      image: ReviewImage2,
+      image: ReviewImage3,
       description:
         'A broken washing machine that stopped mid-cycle was fully restored by our team in just one visit. The family can now enjoy clean laundry again without stress.',
       title: 'Quick Fix for a Washing Machine Breakdown',
       type: 'Washing Machine Repair',
     },
     {
-      image: ReviewImage3,
+      image: ReviewImage2,
       description:
         'We installed a brand-new dishwasher for a busy household, ensuring proper water connections and energy efficiency. The client now saves both time and water daily.',
       title: 'Professional Dishwasher Installation',
       type: 'Dishwasher Installation',
     },
     {
-      image: ReviewImage4,
+      image: ReviewImage5,
       description:
         'A fridge that was leaking water and not cooling properly was diagnosed and repaired. The customer avoided costly food spoilage and gained reliable performance again.',
       title: 'Refrigerator Leak and Cooling Repair',
       type: 'Refrigerator Repair',
     },
     {
-      image: ReviewImage5,
+      image: ReviewImage4,
       description:
         'The dryer was overheating and shutting down after a few minutes. Our experts replaced faulty parts and cleaned the vent system, restoring safe and efficient drying.',
       title: 'Dryer Overheating Problem Solved',
