@@ -24,7 +24,7 @@ import {
 } from './CasesSection.styled';
 
 import ReviewImage2 from '../../assets/icons/cases/photo_2025-09-16_22-58-10.jpg';
-import ReviewImage1 from '../../assets/icons/cases/Review Image 1.png';
+import ReviewImage1 from '../../assets/icons/cases/Знімок екрана 2025-09-17 200622.png';
 import ReviewImage3 from '../../assets/icons/cases/photo_2025-09-16_22-58-06.jpg';
 import ReviewImage6 from '../../assets/icons/cases/photo_2025-09-16_22-58-01.jpg';
 import ReviewImage4 from '../../assets/icons/cases/photo_2025-09-16_22-58-19.jpg';

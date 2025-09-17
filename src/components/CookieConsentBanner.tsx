@@ -35,36 +35,36 @@ interface CookieSettings {
 }
 
 const CookieConsentBanner: React.FC = () => {
-    const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [cookieSettings, setCookieSettings] = useState<CookieSettings>({
-    necessary: { 
-      enabled: true, 
-      title: "Necessary Cookies", 
-      description: "Essential for the website to function properly. Cannot be disabled." 
+    necessary: {
+      enabled: true,
+      title: 'Necessary Cookies',
+      description: 'Essential for the website to function properly. Cannot be disabled.',
     },
-    analytics: { 
-      enabled: false, 
-      title: "Analytics Cookies", 
-      description: "Help us understand how visitors interact with our website through analytics." 
+    analytics: {
+      enabled: false,
+      title: 'Analytics Cookies',
+      description: 'Help us understand how visitors interact with our website through analytics.',
     },
-    advertising: { 
-      enabled: false, 
-      title: "Advertising Cookies", 
-      description: "Used to deliver relevant advertisements and measure campaign performance." 
+    advertising: {
+      enabled: false,
+      title: 'Advertising Cookies',
+      description: 'Used to deliver relevant advertisements and measure campaign performance.',
     },
-    functional: { 
-      enabled: false, 
-      title: "Functional Cookies", 
-      description: "Enable enhanced functionality and personalization across the website." 
-    }
+    functional: {
+      enabled: false,
+      title: 'Functional Cookies',
+      description: 'Enable enhanced functionality and personalization across the website.',
+    },
   });
 
   useEffect(() => {
     const hasConsent = localStorage.getItem('cookieConsent');
     const savedSettings = localStorage.getItem('cookieSettings');
-    
+
     if (!hasConsent) {
       setShowBanner(true);
     } else {
@@ -78,14 +78,17 @@ const CookieConsentBanner: React.FC = () => {
   const updateConsentMode = (_granted: boolean) => {
     if (typeof window !== 'undefined') {
       if (!window.dataLayer) window.dataLayer = [];
-      if (!window.gtag) window.gtag = function() { window.dataLayer.push(arguments); };
-      
+      if (!window.gtag)
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+
       window.gtag('consent', 'update', {
-        'ad_storage': cookieSettings.advertising.enabled ? 'granted' : 'denied',
-        'analytics_storage': cookieSettings.analytics.enabled ? 'granted' : 'denied',
-        'personalization_storage': cookieSettings.functional.enabled ? 'granted' : 'denied',
-        'functionality_storage': cookieSettings.functional.enabled ? 'granted' : 'denied',
-        'security_storage': 'granted'
+        ad_storage: cookieSettings.advertising.enabled ? 'granted' : 'denied',
+        analytics_storage: cookieSettings.analytics.enabled ? 'granted' : 'denied',
+        personalization_storage: cookieSettings.functional.enabled ? 'granted' : 'denied',
+        functionality_storage: cookieSettings.functional.enabled ? 'granted' : 'denied',
+        security_storage: 'granted',
       });
     }
   };
@@ -95,9 +98,9 @@ const CookieConsentBanner: React.FC = () => {
       necessary: { ...cookieSettings.necessary, enabled: true },
       analytics: { ...cookieSettings.analytics, enabled: true },
       advertising: { ...cookieSettings.advertising, enabled: true },
-      functional: { ...cookieSettings.functional, enabled: true }
+      functional: { ...cookieSettings.functional, enabled: true },
     };
-    
+
     setCookieSettings(newSettings);
     localStorage.setItem('cookieConsent', 'granted');
     localStorage.setItem('cookieSettings', JSON.stringify(newSettings));
@@ -110,9 +113,9 @@ const CookieConsentBanner: React.FC = () => {
       necessary: { ...cookieSettings.necessary, enabled: true },
       analytics: { ...cookieSettings.analytics, enabled: false },
       advertising: { ...cookieSettings.advertising, enabled: false },
-      functional: { ...cookieSettings.functional, enabled: false }
+      functional: { ...cookieSettings.functional, enabled: false },
     };
-    
+
     setCookieSettings(newSettings);
     localStorage.setItem('cookieConsent', 'denied');
     localStorage.setItem('cookieSettings', JSON.stringify(newSettings));
@@ -125,10 +128,10 @@ const CookieConsentBanner: React.FC = () => {
   };
 
   const handleSaveSettings = () => {
- const consentGiven = Object.entries(cookieSettings)
-  .filter(([key, _]) => key !== 'necessary') // Тепер 'key' - це рядок ('necessary', 'analytics'...)
-  .some(([_, setting]) => setting.enabled); // А 'setting' - це значення {enabled: ..., title: ...}
-    
+    const consentGiven = Object.entries(cookieSettings)
+      .filter(([key, _]) => key !== 'necessary') // Тепер 'key' - це рядок ('necessary', 'analytics'...)
+      .some(([_, setting]) => setting.enabled); // А 'setting' - це значення {enabled: ..., title: ...}
+
     localStorage.setItem('cookieConsent', consentGiven ? 'granted' : 'denied');
     localStorage.setItem('cookieSettings', JSON.stringify(cookieSettings));
     updateConsentMode(consentGiven);
@@ -138,13 +141,13 @@ const CookieConsentBanner: React.FC = () => {
 
   const toggleSetting = (settingKey: keyof CookieSettings) => {
     if (settingKey === 'necessary') return;
-    
+
     setCookieSettings(prev => ({
       ...prev,
       [settingKey]: {
         ...prev[settingKey],
-        enabled: !prev[settingKey].enabled
-      }
+        enabled: !prev[settingKey].enabled,
+      },
     }));
   };
 
@@ -153,12 +156,11 @@ const CookieConsentBanner: React.FC = () => {
       necessary: { ...prev.necessary, enabled: true },
       analytics: { ...prev.analytics, enabled: true },
       advertising: { ...prev.advertising, enabled: true },
-      functional: { ...prev.functional, enabled: true }
+      functional: { ...prev.functional, enabled: true },
     }));
   };
 
   if (!showBanner) return null;
-
 
   const handleCloseModal = () => {
     setShowPrivacyPolicy(false);
@@ -178,29 +180,25 @@ const CookieConsentBanner: React.FC = () => {
           <BannerContent>
             <Title>🍪 We Use Cookies</Title>
             <Description>
-              We use cookies and similar technologies to enhance your browsing experience, 
-              analyze site traffic, personalize content, and serve targeted advertisements. 
-              By clicking "Accept All", you consent to the use of all cookies. You can 
-              customize your preferences in the settings.
+              We use cookies and similar technologies to enhance your browsing experience, analyze
+              site traffic, personalize content, and serve targeted advertisements. By clicking
+              "Accept All", you consent to the use of all cookies. You can customize your
+              preferences in the settings.
             </Description>
-            
+
             <LinksContainer>
-            
-              <TextO onClick={handlePrivacyClick} style={{ cursor: 'pointer', color: "var(--blue-500)" }}>
-                 Privacy and Terms
+              <TextO
+                onClick={handlePrivacyClick}
+                style={{ cursor: 'pointer', color: 'var(--blue-500)' }}
+              >
+                Privacy and Terms
               </TextO>
             </LinksContainer>
 
             <ButtonsContainer>
-              <SettingsButton onClick={handleSettings}>
-                Preferences
-              </SettingsButton>
-              <RejectButton onClick={handleRejectAll}>
-                Reject All
-              </RejectButton>
-              <AcceptButton onClick={handleAcceptAll}>
-                Accept All
-              </AcceptButton>
+              <SettingsButton onClick={handleSettings}>Preferences</SettingsButton>
+              <RejectButton onClick={handleRejectAll}>Reject All</RejectButton>
+              <AcceptButton onClick={handleAcceptAll}>Accept All</AcceptButton>
             </ButtonsContainer>
           </BannerContent>
         </BannerContainer>
@@ -227,7 +225,8 @@ const CookieConsentBanner: React.FC = () => {
 
               <ModalBody>
                 <SettingsDescription>
-                  Manage your cookie preferences. You can enable or disable different types of cookies below.
+                  Manage your cookie preferences. You can enable or disable different types of
+                  cookies below.
                 </SettingsDescription>
 
                 {Object.entries(cookieSettings).map(([key, setting]) => (
@@ -245,25 +244,19 @@ const CookieConsentBanner: React.FC = () => {
                 ))}
 
                 <SelectionButtons>
-                  <SelectAllButton onClick={handleSelectAll}>
-                    Select All
-                  </SelectAllButton>
-                  <RejectAllButton onClick={handleRejectAll}>
-                    Reject All
-                  </RejectAllButton>
+                  <SelectAllButton onClick={handleSelectAll}>Select All</SelectAllButton>
+                  <RejectAllButton onClick={handleRejectAll}>Reject All</RejectAllButton>
                 </SelectionButtons>
               </ModalBody>
 
               <ModalFooter>
-                <SaveButton onClick={handleSaveSettings}>
-                  Save Preferences
-                </SaveButton>
+                <SaveButton onClick={handleSaveSettings}>Save Preferences</SaveButton>
               </ModalFooter>
             </ModalContentC>
           </ModalOverlayC>
         )}
       </AnimatePresence>
-        {showPrivacyPolicy && (
+      {showPrivacyPolicy && (
         <ModalOverlay onClick={handleCloseModal}>
           <ModalContent onClick={e => e.stopPropagation()}>
             <CloseButton onClick={handleCloseModal}>×</CloseButton>
@@ -287,7 +280,7 @@ const BannerContainer = styled(motion.div)`
   /* max-width: 600px; */
   margin: 0 auto;
   border: 1px solid #e0e0e0;
-/* width: 100vh; */
+  /* width: 100vh; */
   @media (max-width: 768px) {
     left: 10px;
     right: 10px;
@@ -297,7 +290,7 @@ const BannerContainer = styled(motion.div)`
 
 const BannerContent = styled.div`
   padding: 24px;
-  
+
   @media (max-width: 768px) {
     padding: 20px;
   }
@@ -309,7 +302,7 @@ const Title = styled.h3`
   font-size: 18px;
   color: #242424;
   margin-bottom: 12px;
-  
+
   @media (max-width: 768px) {
     font-size: 16px;
   }
@@ -322,7 +315,7 @@ const Description = styled.p`
   line-height: 1.5;
   color: #666;
   margin-bottom: 16px;
-  
+
   @media (max-width: 768px) {
     font-size: 13px;
   }
@@ -332,14 +325,12 @@ const LinksContainer = styled.div`
   display: flex;
   gap: 16px;
   margin-bottom: 20px;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 8px;
   }
 `;
-
-
 
 // const CookieLink = styled.a`
 //   font-family: var(--font-family);
@@ -347,7 +338,7 @@ const LinksContainer = styled.div`
 //   font-size: 14px;
 //   color: var(--blue-500);
 //   text-decoration: underline;
-  
+
 //   &:hover {
 //     color: var(--blue-600);
 //   }
@@ -358,7 +349,7 @@ const ButtonsContainer = styled.div`
   gap: 12px;
   justify-content: flex-end;
   flex-wrap: wrap;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -373,11 +364,11 @@ const BaseButton = styled.button`
   cursor: pointer;
   border: none;
   transition: all 0.2s ease;
-  
+
   &:hover {
     transform: translateY(-1px);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
@@ -387,7 +378,7 @@ const SettingsButton = styled(BaseButton)`
   background: transparent;
   color: #666;
   border: 1px solid #ddd;
-  
+
   &:hover {
     background: #f5f5f5;
   }
@@ -397,7 +388,7 @@ const RejectButton = styled(BaseButton)`
   background: transparent;
   color: #666;
   border: 1px solid #ddd;
-  
+
   &:hover {
     background: #f5f5f5;
   }
@@ -406,7 +397,7 @@ const RejectButton = styled(BaseButton)`
 const AcceptButton = styled(BaseButton)`
   background: var(--blue-500);
   color: white;
-  
+
   &:hover {
     background: var(--blue-500);
   }
@@ -455,7 +446,7 @@ const CloseButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   color: #666;
-  
+
   &:hover {
     color: #242424;
   }
@@ -479,7 +470,7 @@ const SettingItem = styled.div`
   align-items: flex-start;
   padding: 16px 0;
   border-bottom: 1px solid #f0f0f0;
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -514,16 +505,16 @@ const ToggleSwitch = styled.input.attrs({ type: 'checkbox' })`
   position: relative;
   cursor: pointer;
   transition: background 0.2s ease;
-  
+
   &:checked {
     background: var(--blue-500);
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -535,7 +526,7 @@ const ToggleSwitch = styled.input.attrs({ type: 'checkbox' })`
     left: 2px;
     transition: transform 0.2s ease;
   }
-  
+
   &:checked::before {
     transform: translateX(20px);
   }
@@ -551,7 +542,7 @@ const SelectAllButton = styled(BaseButton)`
   background: transparent;
   color: var(--blue-500);
   border: 1px solid var(--blue-500);
-  
+
   &:hover {
     background: var(--blue-50);
   }
@@ -561,7 +552,7 @@ const RejectAllButton = styled(BaseButton)`
   background: transparent;
   color: #666;
   border: 1px solid #ddd;
-  
+
   &:hover {
     background: #f5f5f5;
   }
@@ -577,7 +568,7 @@ const SaveButton = styled(BaseButton)`
   background: var(--blue-500);
   color: white;
   padding: 12px 24px;
-  
+
   &:hover {
     background: var(--blue-600);
   }
