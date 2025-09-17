@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               <Text to='/about#ap'>About Us</Text>
               <Text to='/tips#app'>Tips</Text>
               <Text to='/contact#ap'>Contacts</Text>
-              <TextO onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
+  <TextO onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>            
                 Privacy and Terms
               </TextO>
             </LinksWrapper>

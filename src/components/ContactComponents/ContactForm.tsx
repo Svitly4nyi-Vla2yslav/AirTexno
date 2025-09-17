@@ -90,6 +90,17 @@ export const ContactForm: React.FC = (): JSX.Element => {
           type: 'success',
           message: 'Form submitted successfully! We will contact you soon.',
         });
+
+        // Track form submission in GTM if consent given
+        const hasConsent = localStorage.getItem('cookieConsent') === 'granted';
+        if (hasConsent && typeof window !== 'undefined' && window.dataLayer) {
+          window.dataLayer.push({
+            event: "formSubmissionSuccess",
+            formType: "contact",
+            formId: "contact-form",
+            formTimestamp: new Date().toISOString()
+          });
+        }
       } else {
         throw new Error('Failed to submit form');
       }
@@ -99,6 +110,16 @@ export const ContactForm: React.FC = (): JSX.Element => {
         type: 'error',
         message: 'There was an error submitting the form. Please try again.',
       });
+
+      // Track form error if consent given
+      const hasConsent = localStorage.getItem('cookieConsent') === 'granted';
+      if (hasConsent && typeof window !== 'undefined' && window.dataLayer) {
+        window.dataLayer.push({
+          event: "formSubmissionError",
+          formType: "contact",
+          errorType: "network_error"
+        });
+      }
     }
   };
 
