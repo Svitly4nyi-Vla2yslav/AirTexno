@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
-import Down from '../../assets/icons/chevron-down.svg';
 
 
 export interface StyledProps {
@@ -27,14 +26,19 @@ export const ServiceLinkMobile = styled.div`
 `;
 
 // 🔥 Arrow тепер button, а не img
+// MobileMenu.styled.tsx
 export const ArrowDownMobile = styled.button<{
   $overlayOpen?: boolean;
   $darkMode?: boolean;
   $isOpen: boolean;
 }>`
-display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 40px;
   height: 40px;
+
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -45,11 +49,6 @@ display: flex;
       : $darkMode
       ? '#38b1f3ff'
       : '#242424'};
-
-  background-image: url(${Down});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 14px 14px;
 
   transition: transform 0.3s ease, background-color 0.3s ease;
 
@@ -68,10 +67,14 @@ display: flex;
     background-color: rgba(80, 150, 208, 0.35);
   }
 
-  img{
-    display: flex;
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+    pointer-events: none;
   }
 `;
+
 
 export const DropdownMenuMobile = styled(motion.div)`
   padding-left: 20px;

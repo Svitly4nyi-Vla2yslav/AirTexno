@@ -18,7 +18,6 @@ import {
 } from './MobileMenu.styled';
 import { styled } from 'styled-components';
 import { useLocation } from 'react-router-dom';
-import Down from '../../assets/icons/chevron-down.svg';
 
 const Container = styled.div`
   display: flex;
@@ -158,7 +157,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
   const [isBurgerOpen] = useState(false);
-  
+
   const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer'].some(path =>
     location.pathname.startsWith(path)
   );
@@ -248,20 +247,32 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                   <ServiceLinkMobile key={index}>
                     <ServiceContentWrapper>
                       <MenuLink to={link.to} onClick={closeMenu}>
-                        <MenuItem $active={isActive}>
-                          {link.label}
-                        </MenuItem>
+                        <MenuItem $active={isActive}>{link.label}</MenuItem>
                       </MenuLink>
-                      
+
                       <ArrowDownMobile
                         $overlayOpen={isOverlayOpen}
                         $darkMode={isDarkMode}
                         $isOpen={isServicesOpen}
                         onClick={toggleServicesMenu}
                         onTouchStart={toggleServicesMenu}
-                        aria-label="Toggle services menu"
+                        aria-label='Toggle services menu'
                       >
-                        <img src={Down} alt="▼" />
+                        <svg
+                          width='20'
+                          height='20'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M6 9l6 6 6-6'
+                            stroke='white'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
                       </ArrowDownMobile>
                     </ServiceContentWrapper>
 
