@@ -1,6 +1,9 @@
+// MobileMenu.styled.tsx
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import Down from '../../assets/icons/chevron-down.svg';
+
 
 export interface StyledProps {
   $isOpen?: boolean;
@@ -8,6 +11,7 @@ export interface StyledProps {
   $isScrolled?: boolean;
   $overlayOpen?: boolean;
 }
+
 export const ServiceContentWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -16,69 +20,58 @@ export const ServiceContentWrapper = styled.div`
   gap: 16px;
 `;
 
-// Додати ці стилі до існуючого файлу
-
 export const ServiceLinkMobile = styled.div`
   position: relative;
   cursor: pointer;
   width: 100%;
 `;
 
-export const ServiceTitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
-export const ArrowDownMobile = styled.img<{
+// 🔥 Arrow тепер button, а не img
+export const ArrowDownMobile = styled.button<{
   $overlayOpen?: boolean;
   $darkMode?: boolean;
   $isOpen: boolean;
 }>`
-  /* width: 44px;
-  height: 44px; */
-  transition: transform 0.3s ease;
-  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
-  cursor: pointer;
-  flex-shrink: 0;
-  object-fit: contain;
-  background-color: #5096d08e;
+display: flex;
+  width: 40px;
+  height: 40px;
+  border: none;
   border-radius: 50%;
+  cursor: pointer;
 
-  /* Збільшуємо область кліку для тачскрінів */
-  padding: 12px;
-  margin: -12px;
-
-  /* Стилі для темного/світлого режиму */
-  filter: ${({ $overlayOpen, $darkMode }) =>
+  background: ${({ $overlayOpen, $darkMode }) =>
     $overlayOpen
-      ? 'brightness(1) saturate(100%)'
+      ? '#4a96e2ff'
       : $darkMode
-      ? 'brightness(1) saturate(100%)'
-      : 'brightness(1) invert(1)'};
+      ? '#38b1f3ff'
+      : '#242424'};
 
-  /* Покращення для тачскрінів */
-  @media (max-width: 768px) {
-    /* width: 44px;
-  height: 44px; */
-    padding: 16px;
-    margin: -16px;
+  background-image: url(${Down});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
 
-    /* Забезпечуємо достатній розмір для торкання */
-    /* min-width: 44px;
-    min-height: 44px; */
-  }
+  transition: transform 0.3s ease, background-color 0.3s ease;
 
-  /* Для iOS та Android оптимізація */
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 
+  &:hover {
+    background-color: rgba(80, 150, 208, 0.2);
+  }
+
   &:active {
-    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg) scale(0.95)' : 'rotate(0deg) scale(0.95)')};
+    transform: ${({ $isOpen }) =>
+      $isOpen ? 'rotate(180deg) scale(0.9)' : 'rotate(0deg) scale(0.9)'};
+    background-color: rgba(80, 150, 208, 0.35);
+  }
+
+  img{
+    display: flex;
   }
 `;
-
 
 export const DropdownMenuMobile = styled(motion.div)`
   padding-left: 20px;
@@ -112,63 +105,6 @@ export const StyledNavLinkDrop = styled(NavLink)`
   }
 `;
 
-// Додати ці стилі до існуючого файлу
-export const ServiceMenuItem = styled.div`
-  position: relative;
-`;
-
-export const ServiceMenuLink = styled(NavLink)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 16px 0;
-  color: #242424;
-  text-decoration: none;
-  font-family: 'Geist', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-`;
-
-export const DropdownArrow = styled.img<{ $isOpen: boolean }>`
-  width: 16px;
-  height: 16px;
-  transition: transform 0.3s ease;
-  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
-`;
-
-export const ServiceDropdownMenu = styled.div`
-  padding-left: 20px;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s ease;
-
-  &.open {
-    max-height: 200px;
-  }
-`;
-
-export const ServiceDropdownItem = styled.div`
-  padding: 12px 0;
-`;
-
-export const ServiceSubLink = styled(NavLink)`
-  color: #666;
-  text-decoration: none;
-  font-family: 'Geist', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  display: block;
-
-  &:hover {
-    color: var(--purple-400);
-  }
-
-  &.active {
-    color: var(--purple-400);
-    font-weight: 500;
-  }
-`;
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -200,8 +136,8 @@ export const Line = styled(motion.div)<StyledProps>`
   width: 20px;
   height: 2px;
   background: ${({ $isOpen, $darkMode }) => {
-    if ($isOpen) return 'black'; // Чорний колір при відкритому меню
-    return $darkMode ? 'black' : 'white'; // Чорний на темних сторінках, білий на світлих
+    if ($isOpen) return 'black';
+    return $darkMode ? 'black' : 'white';
   }};
   border-radius: 2px;
   transition: background 0.3s ease;
@@ -233,11 +169,7 @@ export const MenuOverlay = styled(motion.div)`
   }
   @media screen and (min-width: 768px) {
     &::before {
-      content: '';
-      position: absolute;
       top: 13%;
-      left: 0;
-      width: 100%;
     }
   }
 `;
@@ -265,7 +197,6 @@ export const MenuItem = styled.p<{ $active?: boolean }>`
   line-height: 0.9em;
   display: flex;
   width: 100%;
-  transition: color 0.3s ease;
   flex-direction: row-reverse;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -277,49 +208,6 @@ export const MenuItem = styled.p<{ $active?: boolean }>`
     color: #3098ee;
   }
 `;
-
-// export const ServiceLinkMobile = styled.div`
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
-// `;
-
-// export const DropdownMenuMobile = styled(motion.div)`
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   padding-left: 20px;
-//   margin-top: 8px;
-//   overflow: hidden;
-// `;
-
-// export const DropdownItemMobile = styled.div`
-//   padding: 10px 0;
-// `;
-
-// export const ArrowDownMobile = styled.img<{ $isOpen: boolean }>`
-//   margin-left: 8px;
-//   transition: transform 0.3s ease;
-//   transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
-// `;
-
-// export const ServiceTitleWrapper = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   width: 100%;
-//   cursor: pointer;
-
-//   span {
-//     flex-grow: 1;
-//   }
-
-//   ${ArrowDownMobile} {
-//     padding: 8px;
-//     margin-right: -8px;
-//   }
-// `;
 
 export const Divider = styled.div<{ $active?: boolean }>`
   background-color: ${({ $active }) => ($active ? '#3098EE' : '#c3c2c2ff')};

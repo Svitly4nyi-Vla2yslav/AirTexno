@@ -1,3 +1,4 @@
+// BurgerMenu.tsx
 import { useEffect, useState } from 'react';
 import { AnimatePresence, easeInOut } from 'framer-motion';
 import {
@@ -47,7 +48,6 @@ const Item = styled.p`
   width: 100%;
 `;
 
-// Контейнер для всього футера
 const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,13 +68,11 @@ const FooterContainer = styled.div`
   }
 `;
 
-// Верхня напівпрозора смужка
 const OverlayBar = styled.div`
   background: rgba(33, 33, 33, 0.3);
   width: 100%;
 `;
 
-// Контейнер для тексту
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,7 +81,6 @@ const TextContainer = styled.div`
   width: 100%;
 `;
 
-// Стиль для тексту "Designed by TRBN"
 const TextBold = styled.p`
   color: #242424;
   font-family: 'Geist', sans-serif;
@@ -93,7 +90,6 @@ const TextBold = styled.p`
   width: fit-content;
 `;
 
-// Стиль для тексту "Copyright ..."
 const TextNormal = styled.p`
   color: #242424;
   font-family: 'Geist', sans-serif;
@@ -179,10 +175,10 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
     setIsServicesOpen(false);
   };
 
-  const toggleServicesMenu = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsServicesOpen(!isServicesOpen);
+  const toggleServicesMenu = (e?: React.SyntheticEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+    setIsServicesOpen(prev => !prev);
   };
 
   const isActivePage = (path: string) => {
@@ -249,11 +245,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
 
               if (link.isService && link.subItems) {
                 return (
-                  <ServiceLinkMobile
-                    key={index}
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
-                  >
+                  <ServiceLinkMobile key={index}>
                     <ServiceContentWrapper>
                       <MenuLink to={link.to} onClick={closeMenu}>
                         <MenuItem $active={isActive}>
@@ -262,14 +254,15 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                       </MenuLink>
                       
                       <ArrowDownMobile
-                        src={Down}
-                        alt='▼'
                         $overlayOpen={isOverlayOpen}
                         $darkMode={isDarkMode}
                         $isOpen={isServicesOpen}
                         onClick={toggleServicesMenu}
-                        className="arrow-button"
-                      />
+                        onTouchStart={toggleServicesMenu}
+                        aria-label="Toggle services menu"
+                      >
+                        <img src={Down} alt="▼" />
+                      </ArrowDownMobile>
                     </ServiceContentWrapper>
 
                     <AnimatePresence>
