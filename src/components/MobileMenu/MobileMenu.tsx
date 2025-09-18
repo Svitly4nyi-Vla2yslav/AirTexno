@@ -174,11 +174,11 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
     setIsServicesOpen(false);
   };
 
-  const toggleServicesMenu = (e?: React.SyntheticEvent) => {
-    e?.preventDefault();
-    e?.stopPropagation();
-    setIsServicesOpen(prev => !prev);
-  };
+  // const toggleServicesMenu = (e?: React.SyntheticEvent) => {
+  //   e?.preventDefault();
+  //   e?.stopPropagation();
+  //   setIsServicesOpen(prev => !prev);
+  // };
 
   const isActivePage = (path: string) => {
     const currentPath = location.pathname;
@@ -249,13 +249,17 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                       <MenuLink to={link.to} onClick={closeMenu}>
                         <MenuItem $active={isActive}>{link.label}</MenuItem>
                       </MenuLink>
-
                       <ArrowDownMobile
+                        type='button'
                         $overlayOpen={isOverlayOpen}
                         $darkMode={isDarkMode}
                         $isOpen={isServicesOpen}
-                        onClick={toggleServicesMenu}
-                        onTouchStart={toggleServicesMenu}
+                        onClick={e => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsServicesOpen(prev => !prev);
+                          e.currentTarget.blur(); // скидаємо фокус після кліку
+                        }}
                         aria-label='Toggle services menu'
                       >
                         <svg

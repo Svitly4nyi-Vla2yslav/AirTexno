@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 
-
 export interface StyledProps {
   $isOpen?: boolean;
   $darkMode?: boolean;
@@ -25,8 +24,6 @@ export const ServiceLinkMobile = styled.div`
   width: 100%;
 `;
 
-// 🔥 Arrow тепер button, а не img
-// MobileMenu.styled.tsx
 export const ArrowDownMobile = styled.button<{
   $overlayOpen?: boolean;
   $darkMode?: boolean;
@@ -38,19 +35,15 @@ export const ArrowDownMobile = styled.button<{
 
   width: 40px;
   height: 40px;
-
   border: none;
   border-radius: 50%;
   cursor: pointer;
 
-  background: ${({ $overlayOpen, $darkMode }) =>
-    $overlayOpen
-      ? '#4a96e2ff'
-      : $darkMode
-      ? '#38b1f3ff'
-      : '#242424'};
+  background: ${({ $overlayOpen, $darkMode }) => ($overlayOpen ? '#4a96e2ff' : $darkMode ? '#38b1f3ff' : '#242424')};
 
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
 
   transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 
@@ -62,8 +55,7 @@ export const ArrowDownMobile = styled.button<{
   }
 
   &:active {
-    transform: ${({ $isOpen }) =>
-      $isOpen ? 'rotate(180deg) scale(0.9)' : 'rotate(0deg) scale(0.9)'};
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg) scale(0.9)' : 'rotate(0deg) scale(0.9)')};
     background-color: rgba(80, 150, 208, 0.35);
   }
 
@@ -71,10 +63,9 @@ export const ArrowDownMobile = styled.button<{
     width: 20px;
     height: 20px;
     stroke: white;
-    pointer-events: none;
+    pointer-events: none; // щоб клік не йшов у svg
   }
 `;
-
 
 export const DropdownMenuMobile = styled(motion.div)`
   padding-left: 20px;
