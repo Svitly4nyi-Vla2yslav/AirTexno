@@ -40,9 +40,9 @@ const slides = [
   },
   {
     img: image5,
-    title: 'LG Electric Wall Oven',
+    title: 'Viking Wall Oven',
     description:
-      'Modern electric ovens can stop heating due to faulty elements, sensors, or control boards. We repair temperature issues and restore consistent baking.',
+      'Viking ovens often face issues such as incorrect temperature (jumping up and down), faulty bake igniter that needs replacement, or door not closing properly which requires new hinges. The temperature sensor can also fail and cause heating problems.',
   },
  
 
@@ -152,7 +152,7 @@ const OvenTypes: React.FC = () => {
         <HeaderSection>
           <Subtitle>Oven Repair</Subtitle>
           <Title>
-            WE REPAIR <span> ALL TYPES OF OVENS </span> BRANDS AND MODELS.
+            WE REPAIR <span> ALL TYPES OF OVENS </span> all brands and models.
           </Title>
         </HeaderSection>
       </motion.div>
