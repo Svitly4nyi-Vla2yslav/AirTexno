@@ -107,7 +107,7 @@ export const Hero: React.FC = () => {
           left: '10%',
           width: '8px',
           height: '8px',
-          background: 'rgba(48, 152, 238, 0.6)',
+          // background: 'rgba(48, 152, 238, 0.6)',
           borderRadius: '50%',
           zIndex: 2,
         }}
@@ -124,7 +124,7 @@ export const Hero: React.FC = () => {
           right: '15%',
           width: '12px',
           height: '12px',
-          background: 'rgba(48, 152, 238, 0.4)',
+          // background: 'rgba(48, 152, 238, 0.4)',
           borderRadius: '50%',
           zIndex: 2,
         }}
@@ -142,7 +142,7 @@ export const Hero: React.FC = () => {
           left: '20%',
           width: '6px',
           height: '6px',
-          background: 'rgba(48, 152, 238, 0.3)',
+          // background: 'rgba(48, 152, 238, 0.3)',
           borderRadius: '50%',
           zIndex: 2,
         }}
@@ -207,7 +207,7 @@ export const Hero: React.FC = () => {
           right: '5%',
           width: '2px',
           height: '100px',
-          background: 'linear-gradient(to bottom, transparent, #3098EE, transparent)',
+          // background: 'linear-gradient(to bottom, transparent, #3098EE, transparent)',
           zIndex: 2,
         }}
         initial={{ opacity: 0, height: 0 }}
@@ -223,7 +223,7 @@ export const Hero: React.FC = () => {
           left: '5%',
           width: '100px',
           height: '2px',
-          background: 'linear-gradient(to right, transparent, #3098EE, transparent)',
+          // background: 'linear-gradient(to right, transparent, #3098EE, transparent)',
           zIndex: 2,
         }}
         initial={{ opacity: 0, width: 0 }}

@@ -34,7 +34,7 @@ const Header: React.FC = () => {
 
   // Визначаємо, чи потрібен темний режим для поточної сторінки
   useEffect(() => {
-    const darkPaths = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer'];
+    const darkPaths = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer', '/oven-repair'];
     setIsDarkMode(darkPaths.some(path => location.pathname.startsWith(path)));
   }, [location.pathname]);
 
@@ -157,6 +157,16 @@ const Header: React.FC = () => {
                         onClick={() => setIsServicesOpen(false)}
                       >
                       Dryer  Repair 
+                      </StyledNavLink>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <StyledNavLink
+                        to='/oven-repair#ap'
+                        $overlayOpen={isOverlayOpen}
+                        $darkMode={isDarkMode}
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                      Oven Repair 
                       </StyledNavLink>
                     </DropdownItem>
                   </DropdownMenu>

@@ -11,6 +11,7 @@ import Refrigeration from './pages/Refrigeration/Refrigeration';
 import { AnimatePresence } from 'framer-motion';
 import Dryer from './pages/Dryer/Dryer';
 import CookieConsentBanner from './components/CookieConsentBanner';
+import OvenRepair from './pages/OvenRepair/OvenRepair';
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   return <div style={{ width: '100%', position: 'relative' }}>{children}</div>;
@@ -177,6 +178,14 @@ export const App: React.FC = () => {
               element={
                 <PageWrapper>
                   <Dryer />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/oven-repair'
+              element={
+                <PageWrapper>
+                  <OvenRepair />
                 </PageWrapper>
               }
             />

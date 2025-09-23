@@ -158,7 +158,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const location = useLocation();
   const [isBurgerOpen] = useState(false);
 
-  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer'].some(path =>
+  const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer', '/oven-repair'].some(path =>
     location.pathname.startsWith(path)
   );
 
@@ -198,6 +198,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       subItems: [
         { to: '/fridge#ap', label: 'Refrigerator Repair' },
         { to: '/dryer#ap', label: 'Dryer Repair' },
+        { to: '/oven-repair#ap', label: 'Oven Repair' },
       ],
     },
     { to: '/about#ap', label: 'About Us' },
