@@ -84,7 +84,7 @@ exports.handler = async function(event, context) {
     <p><strong>Power Type:</strong> ${escapeHtml(formData.power || '—')}</p>
     <p><strong>Additional Details:</strong> ${escapeHtml(formData.details || 'None')}</p>
     <hr />
-    <p><strong>Submission Date:</strong> ${submissionDate} (${tz})</p>
+    <p><strong>Submission Date:</strong> ${submissionDate}</p>
   `;
 
   const mailText = `
