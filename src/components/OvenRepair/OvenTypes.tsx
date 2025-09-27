@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
 import styled, { keyframes } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import 'swiper/swiper-bundle.css'; // Завантаження всіх стилів Swiper
 import image1 from '../../assets/icons/Oven/oven1.png';
 import image2 from '../../assets/icons/Oven/LGElectricWallOven (2).png';
 import image3 from '../../assets/icons/Oven/Wolf Gas Range Oven.png';
