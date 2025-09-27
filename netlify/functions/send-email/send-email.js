@@ -85,7 +85,6 @@ exports.handler = async function(event, context) {
     <p><strong>Additional Details:</strong> ${escapeHtml(formData.details || 'None')}</p>
     <hr />
     <p><strong>Submission Date:</strong> ${submissionDate} (${tz})</p>
-    <p><em>Note:</em> timestamp used: ${baseDate.toISOString()}</p>
   `;
 
   const mailText = `
