@@ -1,15 +1,19 @@
 // send-email.js
 const nodemailer = require('nodemailer');
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
   };
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: JSON.stringify({ message: 'CORS preflight successful' }) };
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ message: 'CORS preflight successful' }),
+    };
   }
 
   if (event.httpMethod !== 'POST') {
@@ -21,7 +25,11 @@ exports.handler = async function(event, context) {
   try {
     formData = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
   } catch (err) {
-    return { statusCode: 400, headers, body: JSON.stringify({ message: 'Invalid JSON body', error: err.message }) };
+    return {
+      statusCode: 400,
+      headers,
+      body: JSON.stringify({ message: 'Invalid JSON body', error: err.message }),
+    };
   }
 
   // Простенька валідація
@@ -29,7 +37,7 @@ exports.handler = async function(event, context) {
     return {
       statusCode: 400,
       headers,
-      body: JSON.stringify({ message: 'Missing required fields: service, name, email' })
+      body: JSON.stringify({ message: 'Missing required fields: service, name, email' }),
     };
   }
 
@@ -40,7 +48,7 @@ exports.handler = async function(event, context) {
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ message: 'Email credentials not configured' })
+      body: JSON.stringify({ message: 'Email credentials not configured' }),
     };
   }
 
@@ -59,7 +67,7 @@ exports.handler = async function(event, context) {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-    hour12: false
+    hour12: false,
   });
 
   // Підготовка транспорту
@@ -67,8 +75,8 @@ exports.handler = async function(event, context) {
     service: 'gmail',
     auth: {
       user: GMAIL_USER,
-      pass: GMAIL_PASS // зазвичай app password
-    }
+      pass: GMAIL_PASS, // зазвичай app password
+    },
   });
 
   // Підготовка вмісту листа
@@ -109,7 +117,7 @@ Timestamp used (UTC): ${baseDate.toISOString()}
     subject: `New Service Request: ${formData.service} for ${formData.appliance || '—'}`,
     text: mailText,
     html: mailHtml,
-    replyTo: formData.email // щоб можна було відповісти клієнту напряму
+    replyTo: formData.email, // щоб можна було відповісти клієнту напряму
   };
 
   try {
@@ -118,7 +126,7 @@ Timestamp used (UTC): ${baseDate.toISOString()}
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ message: 'Email sent successfully', messageId: info.messageId })
+      body: JSON.stringify({ message: 'Email sent successfully', messageId: info.messageId }),
     };
   } catch (error) {
     console.error('Error sending email:', error);
@@ -128,8 +136,8 @@ Timestamp used (UTC): ${baseDate.toISOString()}
       body: JSON.stringify({
         message: 'Error sending email',
         error: error.message,
-        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
-      })
+        details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+      }),
     };
   }
 };
