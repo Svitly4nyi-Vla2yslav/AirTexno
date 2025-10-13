@@ -14,7 +14,6 @@ declare global {
     dataLayer: any[];
     gtag: (...args: any[]) => void;
 
-    // Гвард від дубльованих подій
     __fbSent?: Record<string, boolean>;
   }
 }
