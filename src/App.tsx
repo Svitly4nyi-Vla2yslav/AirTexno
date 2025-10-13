@@ -42,10 +42,10 @@ export const App: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Initialize Consent Mode (страховка для SPA)
+    // Страховка для Consent Mode у SPA
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
-      window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
+      window.gtag = window.gtag || function() { window.dataLayer.push(arguments as any); };
 
       window.gtag('consent', 'default', {
         ad_storage: 'denied',
@@ -80,12 +80,12 @@ export const App: React.FC = () => {
     }
   }, []);
 
-  // PageView на кожну зміну маршруту
+  // PageView на кожну зміну маршруту (антидубль усередині lib)
   useEffect(() => {
     trackPageView();
   }, [location.pathname, location.search]);
 
-  // Реакція на зміну згоди з CookieConsentBanner
+  // Після зміни згоди — відправимо актуальний PageView
   useEffect(() => {
     const onConsentChanged = async () => {
       await trackPageView();
@@ -94,7 +94,7 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('cookie-consent-changed', onConsentChanged as EventListener);
   }, []);
 
-  // Клік по tel: → Contact
+  // Клік по tel: → Contact (антидубль усередині lib)
   useEffect(() => {
     const onClick = (e: Event) => {
       const target = e.target as HTMLElement | null;
@@ -106,7 +106,7 @@ export const App: React.FC = () => {
     return () => document.removeEventListener('click', onClick, true);
   }, []);
 
-  // Submit форм з класом contact-form → Lead
+  // Submit форм із класом contact-form → Lead (антидубль усередині lib + локальний guard)
   useEffect(() => {
     const onSubmit = (e: Event) => {
       const f = e.target as HTMLFormElement;
