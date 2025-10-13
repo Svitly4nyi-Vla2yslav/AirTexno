@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+// @ts-ignore
 import 'swiper/css';
 import Joshua from '../../assets/icons/feedback/unnamed.png';
 import avatarAlex from '../../assets/icons/feedback/Ellipse 4aleksey.png';

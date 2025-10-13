@@ -12,6 +12,15 @@ import { AnimatePresence } from 'framer-motion';
 import Dryer from './pages/Dryer/Dryer';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import OvenRepair from './pages/OvenRepair/OvenRepair';
+import { trackPageView, trackContactPhone, trackLead } from './components/metaPixel';
+
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   return <div style={{ width: '100%', position: 'relative' }}>{children}</div>;
@@ -33,32 +42,84 @@ export const App: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Initialize Consent Mode
+    // Initialize Consent Mode (страховка для SPA)
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
-      
-      // Default consent - denied until user gives consent
+
       window.gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'analytics_storage': 'denied',
-        'personalization_storage': 'denied',
-        'functionality_storage': 'denied',
-        'security_storage': 'granted',
-        'wait_for_update': 500
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        personalization_storage: 'denied',
+        functionality_storage: 'denied',
+        security_storage: 'granted',
+        wait_for_update: 500
       });
 
-      // Check if user already gave consent
+      const savedSettings = localStorage.getItem('cookieSettings');
       const consent = localStorage.getItem('cookieConsent');
-      if (consent === 'granted') {
+
+      if (savedSettings) {
+        const s = JSON.parse(savedSettings);
         window.gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'analytics_storage': 'granted',
-          'personalization_storage': 'granted',
-          'functionality_storage': 'granted'
+          ad_storage: s?.advertising?.enabled ? 'granted' : 'denied',
+          analytics_storage: s?.analytics?.enabled ? 'granted' : 'denied',
+          personalization_storage: s?.functional?.enabled ? 'granted' : 'denied',
+          functionality_storage: s?.functional?.enabled ? 'granted' : 'denied',
+          security_storage: 'granted'
+        });
+      } else if (consent === 'granted') {
+        window.gtag('consent', 'update', {
+          ad_storage: 'granted',
+          analytics_storage: 'granted',
+          personalization_storage: 'granted',
+          functionality_storage: 'granted',
+          security_storage: 'granted'
         });
       }
     }
+  }, []);
+
+  // PageView на кожну зміну маршруту
+  useEffect(() => {
+    trackPageView();
+  }, [location.pathname, location.search]);
+
+  // Реакція на зміну згоди з CookieConsentBanner
+  useEffect(() => {
+    const onConsentChanged = async () => {
+      await trackPageView();
+    };
+    window.addEventListener('cookie-consent-changed', onConsentChanged as EventListener);
+    return () => window.removeEventListener('cookie-consent-changed', onConsentChanged as EventListener);
+  }, []);
+
+  // Клік по tel: → Contact
+  useEffect(() => {
+    const onClick = (e: Event) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const a = target.closest('a[href^="tel:"]') as HTMLAnchorElement | null;
+      if (a) trackContactPhone();
+    };
+    document.addEventListener('click', onClick, true);
+    return () => document.removeEventListener('click', onClick, true);
+  }, []);
+
+  // Submit форм з класом contact-form → Lead
+  useEffect(() => {
+    const onSubmit = (e: Event) => {
+      const f = e.target as HTMLFormElement;
+      if (f && f.matches('form.contact-form')) {
+        if (!(f as any).__leadTracked) {
+          (f as any).__leadTracked = true;
+          trackLead();
+          setTimeout(() => { (f as any).__leadTracked = false; }, 5000);
+        }
+      }
+    };
+    document.addEventListener('submit', onSubmit, true);
+    return () => document.removeEventListener('submit', onSubmit, true);
   }, []);
 
   return (

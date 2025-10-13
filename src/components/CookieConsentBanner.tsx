@@ -93,8 +93,13 @@ const CookieConsentBanner: React.FC = () => {
     }
   };
 
+  const dispatchConsentChanged = (granted: boolean, settings: CookieSettings) => {
+    const ev = new CustomEvent('cookie-consent-changed', { detail: { granted, settings } });
+    window.dispatchEvent(ev);
+  };
+
   const handleAcceptAll = () => {
-    const newSettings = {
+    const newSettings: CookieSettings = {
       necessary: { ...cookieSettings.necessary, enabled: true },
       analytics: { ...cookieSettings.analytics, enabled: true },
       advertising: { ...cookieSettings.advertising, enabled: true },
@@ -105,11 +110,12 @@ const CookieConsentBanner: React.FC = () => {
     localStorage.setItem('cookieConsent', 'granted');
     localStorage.setItem('cookieSettings', JSON.stringify(newSettings));
     updateConsentMode(true);
+    dispatchConsentChanged(true, newSettings);
     setShowBanner(false);
   };
 
   const handleRejectAll = () => {
-    const newSettings = {
+    const newSettings: CookieSettings = {
       necessary: { ...cookieSettings.necessary, enabled: true },
       analytics: { ...cookieSettings.analytics, enabled: false },
       advertising: { ...cookieSettings.advertising, enabled: false },
@@ -120,6 +126,7 @@ const CookieConsentBanner: React.FC = () => {
     localStorage.setItem('cookieConsent', 'denied');
     localStorage.setItem('cookieSettings', JSON.stringify(newSettings));
     updateConsentMode(false);
+    dispatchConsentChanged(false, newSettings);
     setShowBanner(false);
   };
 
@@ -129,12 +136,13 @@ const CookieConsentBanner: React.FC = () => {
 
   const handleSaveSettings = () => {
     const consentGiven = Object.entries(cookieSettings)
-      .filter(([key, _]) => key !== 'necessary') // Тепер 'key' - це рядок ('necessary', 'analytics'...)
-      .some(([_, setting]) => setting.enabled); // А 'setting' - це значення {enabled: ..., title: ...}
+      .filter(([key, _]) => key !== 'necessary')
+      .some(([_, setting]) => (setting as any).enabled);
 
     localStorage.setItem('cookieConsent', consentGiven ? 'granted' : 'denied');
     localStorage.setItem('cookieSettings', JSON.stringify(cookieSettings));
     updateConsentMode(consentGiven);
+    dispatchConsentChanged(consentGiven, cookieSettings);
     setShowSettingsModal(false);
     setShowBanner(false);
   };
@@ -168,6 +176,7 @@ const CookieConsentBanner: React.FC = () => {
   const handlePrivacyClick = () => {
     setShowPrivacyPolicy(true);
   };
+
   return (
     <>
       <AnimatePresence>
@@ -256,6 +265,7 @@ const CookieConsentBanner: React.FC = () => {
           </ModalOverlayC>
         )}
       </AnimatePresence>
+
       {showPrivacyPolicy && (
         <ModalOverlay onClick={handleCloseModal}>
           <ModalContent onClick={e => e.stopPropagation()}>
@@ -277,10 +287,9 @@ const BannerContainer = styled(motion.div)`
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   z-index: 10000;
-  /* max-width: 600px; */
   margin: 0 auto;
   border: 1px solid #e0e0e0;
-  /* width: 100vh; */
+
   @media (max-width: 768px) {
     left: 10px;
     right: 10px;
@@ -331,18 +340,6 @@ const LinksContainer = styled.div`
     gap: 8px;
   }
 `;
-
-// const CookieLink = styled.a`
-//   font-family: var(--font-family);
-//   font-weight: 500;
-//   font-size: 14px;
-//   color: var(--blue-500);
-//   text-decoration: underline;
-
-//   &:hover {
-//     color: var(--blue-600);
-//   }
-// `;
 
 const ButtonsContainer = styled.div`
   display: flex;

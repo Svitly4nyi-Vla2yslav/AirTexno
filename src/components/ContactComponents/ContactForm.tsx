@@ -268,7 +268,8 @@ export const ContactForm: React.FC = (): JSX.Element => {
           whileInView='visible'
           viewport={{ once: true, amount: 0.2 }}
         >
-          <FormContainer onSubmit={handleSubmit}>
+          {/* ВАЖЛИВО: className="contact-form" і id="contact-form" */}
+          <FormContainer className="contact-form" id="contact-form" onSubmit={handleSubmit}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -491,7 +492,7 @@ const Container = styled.div`
   align-items: center;
   gap: 28px;
   margin-bottom: 40px;
-  -webkit-overflow-scrolling: touch; /* Важливо для iOS скролу */
+  -webkit-overflow-scrolling: touch;
 
   @media screen and (max-width: 767px) {
     gap: 24px;
@@ -523,9 +524,8 @@ const FormContainer = styled.form`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   -webkit-tap-highlight-color: transparent;
 
-  /* Важливо для iOS */
   -webkit-overflow-scrolling: touch;
-  transform: translateZ(0); /* Фікс для анімацій */
+  transform: translateZ(0);
 
   @media screen and (max-width: 767px) {
     padding: 16px;
@@ -644,7 +644,7 @@ const Input = styled.input`
   }
 
   @media screen and (max-width: 767px) {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
     padding: 14px 12px;
     margin-bottom: 16px;
   }
@@ -705,7 +705,7 @@ const Select = styled.select`
   }
 
   @media screen and (max-width: 767px) {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
     padding: 14px 40px 14px 12px;
   }
 `;
@@ -729,7 +729,7 @@ const Textarea = styled.textarea`
   }
 
   @media screen and (max-width: 767px) {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
     min-height: 100px;
   }
 `;
@@ -880,13 +880,11 @@ const Button = styled.button`
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
-  /* Фокус для доступності */
   &:focus {
     outline: 2px solid var(--blue-500);
     outline-offset: 2px;
   }
 
-  /* Активний стан */
   &:active {
     transform: translateY(0);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
