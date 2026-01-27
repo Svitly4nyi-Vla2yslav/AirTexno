@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
                 Designed by TRBN
               </TextO>
 
-              <TextO size='14px'>Copyright © 2025 Airtexno - All Rights Reserved.</TextO>
+              <TextO size='14px'>Copyright © 2026 Airtexno - All Rights Reserved.</TextO>
             </CopyrightContainer>
           </BottomBlock>
         </FooterContent>
