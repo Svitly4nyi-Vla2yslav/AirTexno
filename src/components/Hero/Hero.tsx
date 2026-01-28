@@ -213,11 +213,20 @@ export const Hero: React.FC = () => {
         )}
 
         <ContentWrapper>
+          <motion.div
+            initial='hidden'
+            animate={hasAnimated ? 'visible' : 'hidden'}
+            variants={textVariants}
+          >
+            <ReviewsWidget />
+          </motion.div>
+          
           <TextBlock>
             <motion.div
               initial='hidden'
               animate={hasAnimated ? 'visible' : 'hidden'}
               variants={textVariants}
+              transition={{ delay: 0.1 }}
             >
               <HeroTitle>THOUSAND OAKS APPLIANCE REPAIR</HeroTitle>
             </motion.div>
@@ -226,7 +235,7 @@ export const Hero: React.FC = () => {
               initial='hidden'
               animate={hasAnimated ? 'visible' : 'hidden'}
               variants={textVariants}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.2 }}
             >
               <HeroSubtitle>
                 We provide reliable appliance repair services, so your fridge, oven, or washer works
@@ -240,6 +249,7 @@ export const Hero: React.FC = () => {
               initial='hidden'
               animate={hasAnimated ? 'visible' : 'hidden'}
               variants={buttonVariants}
+              transition={{ delay: 0.3 }}
             >
               <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
             </motion.div>
@@ -248,22 +258,13 @@ export const Hero: React.FC = () => {
               initial='hidden'
               animate={hasAnimated ? 'visible' : 'hidden'}
               variants={buttonVariants}
-              transition={{ delay: 0.05 }}
+              transition={{ delay: 0.35 }}
             >
               <TransparentButton>
                 <a href='tel:+18055002705'>📞 (805) 500-2705</a>
               </TransparentButton>
             </motion.div>
           </ButtonGroup>
-          
-          <motion.div
-            initial='hidden'
-            animate={hasAnimated ? 'visible' : 'hidden'}
-            variants={buttonVariants}
-            transition={{ delay: 0.15 }}
-          >
-            <ReviewsWidget />
-          </motion.div>
         </ContentWrapper>
       </HeroContainer>
     </>

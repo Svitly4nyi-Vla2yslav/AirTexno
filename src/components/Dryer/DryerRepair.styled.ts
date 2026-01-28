@@ -200,7 +200,8 @@ export const SecondaryButton = styled.button`
   border: 1px solid var(--black-500);
   border-radius: 8px;
   padding: 10px 20px;
-  width: 119px;
+  width: fit-content;
+  min-width: 180px;
   height: 40px;
   background: transparent;
   transition: all 0.3s ease;
@@ -428,7 +429,8 @@ export const TabletSecondaryButton = styled.button`
   border: 1px solid #242424;
   border-radius: 8px;
   background: transparent;
-  width: 119px;
+  width: fit-content;
+  min-width: 180px;
   height: 40px;
   transition: all 0.3s ease;
 

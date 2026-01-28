@@ -73,7 +73,7 @@ const StickyBar = styled.div<{ $isVisible: boolean }>`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9999;
   background: white;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
   border-top: 2px solid #e5e5e5;
@@ -82,7 +82,7 @@ const StickyBar = styled.div<{ $isVisible: boolean }>`
 
   /* Hide on desktop/tablet */
   @media screen and (min-width: 768px) {
-    display: none;
+    display: none !important;
   }
 `;
 

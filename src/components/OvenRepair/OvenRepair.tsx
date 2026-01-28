@@ -24,11 +24,9 @@ import {
   MainWrapImage,
   DeckstopTitleWrapp,
   DeckstopImageContainer,
-  RatingIcon,
 } from './OvenRepair.styled';
 import fridge from '../../assets/icons/Oven/oven1.png';
 import fridge1 from '../../assets/icons/Oven/oven.jpg';
-import rating from '../../assets/icons/frigde/star-red.svg';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../ReviewsWidget/ReviewsWidget';
 

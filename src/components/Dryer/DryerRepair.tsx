@@ -24,11 +24,9 @@ import {
   MainWrapImage,
   DeckstopTitleWrapp,
   DeckstopImageContainer,
-  RatingIcon,
 } from './DryerRepair.styled';
 import fridge from '../../assets/icons/Dryer/dr1.jpg';
 import fridge1 from '../../assets/icons/Dryer/dr.jpg';
-import rating from '../../assets/icons/frigde/star-red.svg';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../ReviewsWidget/ReviewsWidget';
 

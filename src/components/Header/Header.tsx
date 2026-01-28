@@ -9,7 +9,6 @@ import {
   TabletContainer,
   ContainerLink,
   LinkInfo,
-  TransparentButton,
   LangButtonContainer,
   ArrowDown,
   DropdownItem,
@@ -195,7 +194,7 @@ const Header: React.FC = () => {
           <TabletContainer>
             <ContainerLink>
               <LinkInfo $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
-                <a href='tel:+18055002705'>+1 (805) 500-2705</a>
+                <a href='tel:+18055002705'>(805) 500-2705</a>
               </LinkInfo>
               <LinkInfo $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
                 Mon–Sat: 8AM–6PM | Sun: 9AM–4PM
@@ -220,10 +219,7 @@ const Header: React.FC = () => {
         )}
         <LangButtonContainer>
           <div style={{ display: 'flex', gap: 16 }}>
-            <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
-            <TransparentButton $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
-              <a href='tel:+18055002705'>📞 (805) 500-2705</a>
-            </TransparentButton>
+            {!isMobile && <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>}
             {isMobile && <BurgerMenu isOpen={isBurgerOpen} setIsOpen={setIsBurgerOpen} />}
           </div>
         </LangButtonContainer>

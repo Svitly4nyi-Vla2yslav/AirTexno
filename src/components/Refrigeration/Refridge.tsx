@@ -24,11 +24,9 @@ import {
   MainWrapImage,
   DeckstopTitleWrapp,
   DeckstopImageContainer,
-  RatingIcon,
 } from './Refridge.styled';
 import fridge from '../../assets/icons/frigde/fridge.png';
 import fridge1 from '../../assets/icons/frigde/fridge1.png';
-import rating from '../../assets/icons/frigde/star-red.svg';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../ReviewsWidget/ReviewsWidget';
 
