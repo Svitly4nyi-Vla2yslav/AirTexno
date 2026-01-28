@@ -11,14 +11,16 @@ export const StickyMobileBar: React.FC = () => {
   useEffect(() => {
     // Show sticky bar only when hero block is scrolled out of view
     const handleScroll = () => {
-      // Находим Hero блок по его контейнеру
-      const heroElement = document.querySelector('section') || document.querySelector('[class*="HeroContainer"]');
+      // Находим Hero блок - сначала по ID, потом по селектору
+      const heroElement = document.getElementById('header') || 
+                          document.querySelector('[id="header"]') ||
+                          document.querySelector('div[class*="HeroContainer"]');
       
       if (heroElement) {
         const heroRect = heroElement.getBoundingClientRect();
         const heroBottom = heroRect.bottom;
         
-        // Показываем когда Hero уходит вверх (bottom < 20% viewport)
+        // Показываем когда Hero почти ушел вверх (bottom < 20% viewport)
         setIsVisible(heroBottom < window.innerHeight * 0.2);
       } else {
         // Fallback: если не нашли Hero, используем scroll position
@@ -28,7 +30,8 @@ export const StickyMobileBar: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    // Важно: проверяем с небольшой задержкой, чтобы DOM успел загрузиться
+    setTimeout(handleScroll, 100);
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

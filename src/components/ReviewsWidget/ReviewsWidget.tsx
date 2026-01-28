@@ -21,12 +21,14 @@ export const ReviewsWidget: React.FC = () => {
         </svg>
       </GoogleLogo>
       <ReviewInfo>
-        <RatingText>{RATING}</RatingText>
-        <Stars>
-          {[...Array(5)].map((_, i) => (
-            <Star key={i}>⭐</Star>
-          ))}
-        </Stars>
+        <TopRow>
+          <RatingText>{RATING}</RatingText>
+          <Stars>
+            {[...Array(5)].map((_, i) => (
+              <Star key={i}>⭐</Star>
+            ))}
+          </Stars>
+        </TopRow>
         <ReviewCount>{REVIEW_COUNT} reviews</ReviewCount>
       </ReviewInfo>
     </WidgetContainer>
@@ -69,7 +71,13 @@ const GoogleLogo = styled.div`
 const ReviewInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
+`;
+
+const TopRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
 `;
 
 const RatingText = styled.div`
