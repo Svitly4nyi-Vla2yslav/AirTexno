@@ -7,13 +7,22 @@ const PHONE_DISPLAY = '(805) 500-2705';
 
 export const StickyMobileBar: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  
+  console.log('StickyMobileBar render:', { isVisible });
 
   useEffect(() => {
     const handleScroll = () => {
-      // Простая и надежная логика: показываем sticky bar после 500px скролла
-      // Это примерно когда Hero секция уходит из вида на любом мобильном устройстве
-      const scrollThreshold = 500;
-      setIsVisible(window.scrollY > scrollThreshold);
+      const scrollY = window.scrollY;
+      const shouldShow = scrollY > 500;
+      
+      // Debug logging
+      console.log('StickyMobileBar scroll:', { 
+        scrollY, 
+        shouldShow, 
+        currentVisible: isVisible 
+      });
+      
+      setIsVisible(shouldShow);
     };
 
     window.addEventListener('scroll', handleScroll);
