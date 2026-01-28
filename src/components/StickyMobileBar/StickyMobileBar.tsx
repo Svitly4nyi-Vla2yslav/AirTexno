@@ -12,12 +12,17 @@ export const StickyMobileBar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      // Try multiple scroll sources
+      const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
       const shouldShow = scrollY > 500;
       
       // Debug logging
       console.log('StickyMobileBar scroll:', { 
-        scrollY, 
+        windowScrollY: window.scrollY,
+        pageYOffset: window.pageYOffset,
+        docScrollTop: document.documentElement.scrollTop,
+        bodyScrollTop: document.body.scrollTop,
+        finalScrollY: scrollY,
         shouldShow, 
         currentVisible: isVisible 
       });
@@ -25,10 +30,16 @@ export const StickyMobileBar: React.FC = () => {
       setIsVisible(shouldShow);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Listen to scroll on multiple elements
+    window.addEventListener('scroll', handleScroll, true); // capture phase
+    document.addEventListener('scroll', handleScroll, true);
+    
     handleScroll(); // Initial check
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll, true);
+      document.removeEventListener('scroll', handleScroll, true);
+    };
   }, []);
 
   const handlePhoneClick = () => {
