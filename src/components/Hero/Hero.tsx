@@ -9,11 +9,11 @@ import {
   HeroSubtitle,
   ButtonGroup,
   PrimaryButton,
+  SecondaryButton,
   VideoOverlay,
   VideoPlaceholder,
 } from './Hero.styled';
 import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal.mov';
-import { TransparentButton } from '../Header/Header.styled';
 import AutoVerticalSwiper from './Swipper';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../ReviewsWidget/ReviewsWidget';
@@ -88,6 +88,7 @@ const cacheVideoInLocalStorage = async (videoUrl: string, cacheKey: string): Pro
 export const Hero: React.FC = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [, setIsVideoLoading] = useState(false);
@@ -254,16 +255,18 @@ export const Hero: React.FC = () => {
               <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
             </motion.div>
 
-            <motion.div
-              initial='hidden'
-              animate={hasAnimated ? 'visible' : 'hidden'}
-              variants={buttonVariants}
-              transition={{ delay: 0.35 }}
-            >
-              <TransparentButton>
-                <a href='tel:+18055002705'>📞 (805) 500-2705</a>
-              </TransparentButton>
-            </motion.div>
+            {isMobile && (
+              <motion.div
+                initial='hidden'
+                animate={hasAnimated ? 'visible' : 'hidden'}
+                variants={buttonVariants}
+                transition={{ delay: 0.35 }}
+              >
+                <SecondaryButton>
+                  <a href='tel:+18055002705'>📞 (805) 500-2705</a>
+                </SecondaryButton>
+              </motion.div>
+            )}
           </ButtonGroup>
         </ContentWrapper>
       </HeroContainer>

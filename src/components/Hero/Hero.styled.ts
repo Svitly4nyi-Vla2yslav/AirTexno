@@ -219,12 +219,19 @@ export const SecondaryButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   white-space: nowrap;
-  width: 119px;
+  width: fit-content;
+  min-width: 180px;
   background: transparent;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 15px;
   color: var(--white);
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
   @media screen and (min-width: 768px) {
     font-family: var(--font-family);
     font-weight: 500;

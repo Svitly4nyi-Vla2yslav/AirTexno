@@ -108,6 +108,8 @@ export const DryerRepair: React.FC = () => {
         <Title>
           <span>Dryer</span> Repair <span> in </span> Thousand Oaks and Nearby Cities
         </Title>
+        
+        <ReviewsWidget />
 
         <TabletContentWrapper>
           <TabletImageRow>
@@ -169,6 +171,8 @@ export const DryerRepair: React.FC = () => {
       <Title>
         <span>Dryer</span> Repair <span> in </span> Thousand Oaks and Nearby Cities
       </Title>
+      
+      <ReviewsWidget />
 
       <ContentWrapper>
         <ImageContainer>
