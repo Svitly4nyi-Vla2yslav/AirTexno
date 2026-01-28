@@ -220,9 +220,9 @@ const Header: React.FC = () => {
         )}
         <LangButtonContainer>
           <div style={{ display: 'flex', gap: 16 }}>
-            <PrimaryButton to='/contact#ap'>Contact Us</PrimaryButton>
+            <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
             <TransparentButton $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
-              <a href='tel:+18055002705'>Call Us</a>
+              <a href='tel:+18055002705'>📞 (805) 500-2705</a>
             </TransparentButton>
             {isMobile && <BurgerMenu isOpen={isBurgerOpen} setIsOpen={setIsBurgerOpen} />}
           </div>

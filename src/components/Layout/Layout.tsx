@@ -2,6 +2,7 @@ import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import { StickyMobileBar } from '../StickyMobileBar/StickyMobileBar';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
@@ -59,6 +60,7 @@ export const Layout: React.FC = () => {
         <Outlet />
       </Suspense>
       <Footer />
+      <StickyMobileBar />
     </>
   );
 };

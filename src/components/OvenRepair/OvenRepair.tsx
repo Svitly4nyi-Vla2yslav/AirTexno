@@ -30,6 +30,7 @@ import fridge from '../../assets/icons/Oven/oven1.png';
 import fridge1 from '../../assets/icons/Oven/oven.jpg';
 import rating from '../../assets/icons/frigde/star-red.svg';
 import { useMediaQuery } from 'react-responsive';
+import { ReviewsWidget } from '../ReviewsWidget/ReviewsWidget';
 
 export const OvenRepairs: React.FC = () => {
   const isTablet = useMediaQuery({ query: '(min-width: 768px) and (max-width: 1439px)' });
@@ -54,17 +55,17 @@ export const OvenRepairs: React.FC = () => {
 
           <TabletButtonRow>
             <PrimaryButton to='/contact#ap'>
-              <ButtonTextWhite>Contact Us</ButtonTextWhite>
+              <ButtonTextWhite>Request Service</ButtonTextWhite>
             </PrimaryButton>
 
             <TabletSecondaryButton>
               <a href='tel:+18055002705'>
-                <TabletButtonTextBlack>Call Us</TabletButtonTextBlack>
+                <TabletButtonTextBlack>📞 (805) 500-2705</TabletButtonTextBlack>
               </a>
             </TabletSecondaryButton>
           </TabletButtonRow>
 
-          <RatingIcon src={rating} alt='⭐⭐⭐⭐⭐' loading='lazy' />
+          <ReviewsWidget />
         </DeckstopTitleWrapp>
 
         <DeckstopImageContainer>
@@ -155,12 +156,12 @@ export const OvenRepairs: React.FC = () => {
 
           <TabletButtonRow>
             <PrimaryButton to='/contact#ap'>
-              <ButtonTextWhite>Contact Us</ButtonTextWhite>
+              <ButtonTextWhite>Request Service</ButtonTextWhite>
             </PrimaryButton>
 
             <TabletSecondaryButton>
               <a href='tel:+18055002705'>
-                <TabletButtonTextBlack>Call Us</TabletButtonTextBlack>
+                <TabletButtonTextBlack>📞 (805) 500-2705</TabletButtonTextBlack>
               </a>
             </TabletSecondaryButton>
           </TabletButtonRow>
@@ -204,12 +205,12 @@ export const OvenRepairs: React.FC = () => {
 
         <ButtonRow>
           <PrimaryButton to='/contact#ap'>
-            <ButtonTextWhite>Contact Us</ButtonTextWhite>
+            <ButtonTextWhite>Request Service</ButtonTextWhite>
           </PrimaryButton>
 
           <SecondaryButton>
             <a href='tel:+18055002705'>
-              <ButtonTextBlack>Call Us</ButtonTextBlack>
+              <ButtonTextBlack>📞 (805) 500-2705</ButtonTextBlack>
             </a>
           </SecondaryButton>
         </ButtonRow>

@@ -167,7 +167,7 @@ const Professional: React.FC = () => {
 
             <ButtonGroup>
               <motion.div variants={buttonVariants} whileHover='hover' whileTap='tap'>
-                <PrimaryButton to='/contact#ap'>Contact Us</PrimaryButton>
+                <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
               </motion.div>
 
               <motion.div
@@ -177,7 +177,7 @@ const Professional: React.FC = () => {
                 transition={{ delay: 0.1 }}
               >
                 <a href='tel:+18055002705'>
-                  <SecondaryButton>Call Us</SecondaryButton>
+                  <SecondaryButton>📞 (805) 500-2705</SecondaryButton>
                 </a>
               </motion.div>
             </ButtonGroup>

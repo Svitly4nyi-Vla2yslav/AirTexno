@@ -266,7 +266,7 @@ const ServicesSection: React.FC = () => {
               <ButtonRow>
                 <motion.div variants={buttonPulseAnimation} whileTap='tap'>
                   <PrimaryButton to='/contact#ap'>
-                    <ButtonTextWhite>Contact Us</ButtonTextWhite>
+                    <ButtonTextWhite>Request Service</ButtonTextWhite>
                   </PrimaryButton>
                 </motion.div>
 
@@ -277,7 +277,7 @@ const ServicesSection: React.FC = () => {
                 >
                   <SecondaryButton>
                     <a href='tel:+18055002705'>
-                      <ButtonTextBlack>Call Us</ButtonTextBlack>
+                      <ButtonTextBlack>📞 (805) 500-2705</ButtonTextBlack>
                     </a>
                   </SecondaryButton>
                 </motion.div>

@@ -16,6 +16,7 @@ import HeroVideo from '../../assets/video/Sub_Zero_Refrigerator_Cinematic_Reveal
 import { TransparentButton } from '../Header/Header.styled';
 import AutoVerticalSwiper from './Swipper';
 import { useMediaQuery } from 'react-responsive';
+import { ReviewsWidget } from '../ReviewsWidget/ReviewsWidget';
 
 // Анімаційні варіанти для тексту - оптимізовані
 const textVariants = {
@@ -240,7 +241,7 @@ export const Hero: React.FC = () => {
               animate={hasAnimated ? 'visible' : 'hidden'}
               variants={buttonVariants}
             >
-              <PrimaryButton to='/contact#ap'>Contact Us</PrimaryButton>
+              <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
             </motion.div>
 
             <motion.div
@@ -250,10 +251,19 @@ export const Hero: React.FC = () => {
               transition={{ delay: 0.05 }}
             >
               <TransparentButton>
-                <a href='tel:+18055002705'>Call Us</a>
+                <a href='tel:+18055002705'>📞 (805) 500-2705</a>
               </TransparentButton>
             </motion.div>
           </ButtonGroup>
+          
+          <motion.div
+            initial='hidden'
+            animate={hasAnimated ? 'visible' : 'hidden'}
+            variants={buttonVariants}
+            transition={{ delay: 0.15 }}
+          >
+            <ReviewsWidget />
+          </motion.div>
         </ContentWrapper>
       </HeroContainer>
     </>

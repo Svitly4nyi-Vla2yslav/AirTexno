@@ -49,6 +49,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
     if (!formData.email) newErrors.email = true;
     if (!formData.phone) newErrors.phone = true;
     if (!formData.location) newErrors.location = true;
+    if (!formData.details) newErrors.details = true;
     return newErrors;
   };
 
@@ -186,7 +187,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
           >
             <a href='tel:+18055002705'>
               <Button>
-                <ButtonText>Call Us for Fast Repair</ButtonText>
+                <ButtonText>📞 (805) 500-2705 - Call for Fast Repair</ButtonText>
               </Button>
             </a>
           </motion.div>
@@ -283,7 +284,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
               />
             </motion.div>
 
-            <Label>What service do you need for your appliances?</Label>
+            <Label>What service do you need for your appliances? *</Label>
             <CheckboxGroup>
               <RadioLabel style={errors.service ? { borderColor: 'red' } : {}}>
                 <HiddenRadio
@@ -291,6 +292,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   value='Repair'
                   checked={service === 'Repair'}
                   onChange={e => setService(e.target.value)}
+                  required
                 />
                 <CustomRadio checked={service === 'Repair'} />
                 Repair
@@ -302,6 +304,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   value='Installation'
                   checked={service === 'Installation'}
                   onChange={e => setService(e.target.value)}
+                  required
                 />
                 <CustomRadio checked={service === 'Installation'} />
                 Installation
@@ -310,7 +313,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
             <TabletContainer>
               <LeftColumn>
-                <Label>Name</Label>
+                <Label>Name *</Label>
                 <Input
                   name='name'
                   type='text'
@@ -318,9 +321,10 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   value={formData.name}
                   onChange={handleChange}
                   style={errors.name ? { borderBottom: '1px solid red' } : {}}
+                  required
                 />
 
-                <Label>Email</Label>
+                <Label>Email *</Label>
                 <Input
                   name='email'
                   type='email'
@@ -328,9 +332,10 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   value={formData.email}
                   onChange={handleChange}
                   style={errors.email ? { borderBottom: '1px solid red' } : {}}
+                  required
                 />
 
-                <Label>Phone Number</Label>
+                <Label>Phone Number *</Label>
                 <Input
                   name='phone'
                   type='tel'
@@ -338,17 +343,19 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   value={formData.phone}
                   onChange={handleChange}
                   style={errors.phone ? { borderBottom: '1px solid red' } : {}}
+                  required
                 />
               </LeftColumn>
 
               <RightColumn>
-                <Label>In what location do you need the service?</Label>
+                <Label>In what location do you need the service? *</Label>
                 <SelectWrapper>
                   <Select
                     name='location'
                     value={formData.location}
                     onChange={handleChange}
                     style={errors.location ? { borderBottom: '1px solid red' } : {}}
+                    required
                   >
                     <option value=''>Select location</option>
                     <option>Agoura Hills</option>
@@ -368,84 +375,17 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   </Select>
                 </SelectWrapper>
 
-                <Label>What do you need repaired?</Label>
-                <SelectWrapper>
-                  <Select
-                    name='appliance'
-                    value={formData.appliance}
-                    onChange={handleChange}
-                    style={errors.appliance ? { borderBottom: '1px solid red' } : {}}
-                  >
-                    <option value=''>Select appliance</option>
-                    <option>Refrigerator</option>
-                    <option>Dryer</option>
-                    <option>Oven</option>
-                    <option>Ice Maker</option>
-                    <option>Washer</option>
-                    <option>Range</option>
-                    <option>Wine Cooler</option>
-                    <option>Freezer</option>
-                    <option>Air Conditioner</option>
-                    <option>Furnace</option>
-                    <option>Other</option>
-                  </Select>
-                </SelectWrapper>
-
-                <Label>Brand of appliance</Label>
-                <SelectWrapper>
-                  <Select
-                    name='brand'
-                    value={formData.brand}
-                    onChange={handleChange}
-                    style={errors.brand ? { borderBottom: '1px solid red' } : {}}
-                  >
-                    <option value=''>Select brand</option>
-                    <option>Amana</option>
-                    <option>Bosch</option>
-                    <option>Electrolux</option>
-                    <option>Fisher & Paykel</option>
-                    <option>Frigidaire</option>
-                    <option>GE</option>
-                    <option>Haier</option>
-                    <option>JennAir</option>
-                    <option>KitchenAid</option>
-                    <option>LG</option>
-                    <option>Maytag</option>
-                    <option>Samsung</option>
-                    <option>Sharp</option>
-                    <option>Sub-Zero</option>
-                    <option>Thermador</option>
-                    <option>Viking</option>
-                    <option>Whirlpool</option>
-                    <option>Wolf</option>
-                    <option>Other</option>
-                  </Select>
-                </SelectWrapper>
+                <Label>Please briefly describe the issue *</Label>
+                <Textarea
+                  name='details'
+                  placeholder='e.g., My Samsung Washer is not draining'
+                  value={formData.details}
+                  onChange={handleChange}
+                  style={errors.details ? { borderBottom: '1px solid red' } : {}}
+                  required
+                />
               </RightColumn>
             </TabletContainer>
-
-            <Label>What type of power does this appliance use?</Label>
-            <SelectWrapper>
-              <Select
-                name='power'
-                value={formData.power}
-                onChange={handleChange}
-                style={errors.power ? { borderBottom: '1px solid red' } : {}}
-              >
-                <option value=''>Select power</option>
-                <option>Electric</option>
-                <option>Natural Gas</option>
-                <option>Propane</option>
-              </Select>
-            </SelectWrapper>
-
-            <Label>Any details you'd like to add?</Label>
-            <Textarea
-              name='details'
-              placeholder="Any details you'd like to add?"
-              value={formData.details}
-              onChange={handleChange}
-            />
 
             <Disclaimer>
               By clicking "Submit" you hereby agree to our{' '}
