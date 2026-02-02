@@ -144,6 +144,107 @@ export const DropdownItem = styled.div`
   }
 `;
 
+export const DropdownItemWithSubmenu = styled.div`
+  position: relative;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background: rgba(147, 51, 234, 0.1);
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: var(--purple-400);
+    }
+    
+    &.active {
+      color: var(--purple-400);
+      font-weight: 600;
+    }
+  }
+
+  &::after {
+    content: '›';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #666;
+    transition: all 0.2s ease;
+  }
+
+  &:hover::after {
+    color: var(--purple-400);
+  }
+`;
+
+export const SubDropdownMenu = styled.div`
+  position: absolute;
+  left: 100%;
+  top: 0;
+  border-radius: 12px;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+  min-width: 220px;
+  z-index: 1001;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-left: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  transition: all 0.2s ease;
+
+  ${DropdownItemWithSubmenu}:hover & {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+`;
+
+export const SubDropdownItem = styled.div`
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(147, 51, 234, 0.1);
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    
+    &:hover {
+      color: var(--purple-400);
+    }
+    
+    &.active {
+      color: var(--purple-400);
+      font-weight: 600;
+    }
+  }
+`;
+
 export const NavbarContainer = styled.nav<StyledProps>`
   position: fixed;
   top: 0;

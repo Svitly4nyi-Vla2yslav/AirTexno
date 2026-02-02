@@ -12,7 +12,10 @@ import {
   LangButtonContainer,
   ArrowDown,
   DropdownItem,
+  DropdownItemWithSubmenu,
   DropdownMenu,
+  SubDropdownMenu,
+  SubDropdownItem,
   ServiceLink,
 } from './Header.styled';
 import { useMediaQuery } from 'react-responsive';
@@ -148,7 +151,7 @@ const Header: React.FC = () => {
                       Refrigerator  Repair 
                       </StyledNavLink>
                     </DropdownItem>
-                    <DropdownItem>
+                    <DropdownItemWithSubmenu>
                       <StyledNavLink
                         to='/dryer#ap'
                         $overlayOpen={isOverlayOpen}
@@ -157,19 +160,19 @@ const Header: React.FC = () => {
                       >
                       Dryer  Repair 
                       </StyledNavLink>
-                      <DropdownMenu style={{ position: 'relative', marginLeft: '1rem', marginTop: '0.5rem' }}>
-                        <DropdownItem>
+                      <SubDropdownMenu>
+                        <SubDropdownItem>
                           <StyledNavLink
                             to='/dryer/lg#ap'
                             $overlayOpen={isOverlayOpen}
                             $darkMode={isDarkMode}
                             onClick={() => setIsServicesOpen(false)}
                           >
-                          → LG Dryer
+                          LG Dryer
                           </StyledNavLink>
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </DropdownItem>
+                        </SubDropdownItem>
+                      </SubDropdownMenu>
+                    </DropdownItemWithSubmenu>
                     <DropdownItem>
                       <StyledNavLink
                         to='/oven-repair#ap'
