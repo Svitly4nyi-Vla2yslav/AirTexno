@@ -188,11 +188,17 @@ export const DropdownItemWithSubmenu = styled.div`
   &:hover::after {
     color: var(--purple-400);
   }
+
+  /* Сохраняем hover состояние когда курсор на подменю */
+  &:hover,
+  &:focus-within {
+    background: rgba(147, 51, 234, 0.1);
+  }
 `;
 
 export const SubDropdownMenu = styled.div`
   position: absolute;
-  left: 100%;
+  left: calc(100% - 8px);
   top: 0;
   border-radius: 12px;
   box-shadow: 
@@ -204,16 +210,29 @@ export const SubDropdownMenu = styled.div`
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  margin-left: 8px;
+  padding-left: 20px;
   opacity: 0;
   visibility: hidden;
   transform: translateX(-10px);
-  transition: all 0.2s ease;
+  transition: opacity 0.15s ease, visibility 0s linear 0.5s, transform 0.15s ease;
 
-  ${DropdownItemWithSubmenu}:hover & {
+  ${DropdownItemWithSubmenu}:hover &,
+  &:hover {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
+    transition: opacity 0.15s ease, visibility 0s linear 0s, transform 0.15s ease;
+  }
+
+  /* Создаем невидимую зону между основным меню и подменю для плавного перехода */
+  &::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background: transparent;
   }
 `;
 
