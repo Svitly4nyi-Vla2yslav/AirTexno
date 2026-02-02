@@ -5,13 +5,17 @@ import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
+import image1 from '../../assets/brands/oven/wolf/o_wolf_01.jpg';
+import image2 from '../../assets/brands/oven/wolf/o_wolf_02.jpg';
 
 const OvenWolf: React.FC = () => {
   return (
     <Container id='ap'>
       <OvenBrandHero 
         brandName="Wolf"
-        description="Expert Wolf oven repair in Thousand Oaks and Ventura County. We specialize in Wolf's premium cooking appliances including dual-fuel ranges, wall ovens, and professional cooktops. Factory-trained technicians and genuine Wolf parts guaranteed."
+        description="Wolf ovens and ranges are premium cooking systems designed for precision and performance. If your Wolf oven won't heat, temperature is unstable, burners won't ignite, or controls are acting up, Airtexno Appliance Repair can help with accurate diagnostics and reliable repairs. We focus on the root cause and provide repair options that protect your investment."
+        image1={image1}
+        image2={image2}
       />
       <Partners />
       <OvenBrandProblems brandName="Wolf" />

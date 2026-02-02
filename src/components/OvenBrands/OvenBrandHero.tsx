@@ -4,6 +4,8 @@ import {
   Title,
   Description,
   ContentWrapper,
+  ImageContainer,
+  Image,
   ButtonRow,
   PrimaryButton,
   SecondaryButton,
@@ -12,17 +14,23 @@ import {
   FeatureItem,
   TabletContainer,
 } from '../DryerLG/LGDryerHero.styled';
+import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../ReviewsWidget/ReviewsWidget';
 
 interface OvenBrandHeroProps {
   brandName: string;
   description?: string;
+  image1?: string;
+  image2?: string;
 }
 
 export const OvenBrandHero: React.FC<OvenBrandHeroProps> = ({ 
   brandName,
-  description 
+  description,
+  image1,
+  image2
 }) => {
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
   const defaultDescription = `Professional ${brandName} oven repair services in Thousand Oaks and Ventura County. Our expert technicians specialize in ${brandName} ovens, ranges, and cooking appliances. We provide fast, reliable repairs with genuine parts and experienced service.`;
 
   return (
@@ -42,15 +50,15 @@ export const OvenBrandHero: React.FC<OvenBrandHeroProps> = ({
           <FeaturesList>
             <FeatureItem>
               <span>🔧</span>
-              <p>Certified {brandName} technicians</p>
+              <p>Brand-specific diagnostics for {brandName}</p>
             </FeatureItem>
             <FeatureItem>
               <span>⏱️</span>
-              <p>Same-day service available</p>
+              <p>Same-day service available in Ventura County</p>
             </FeatureItem>
             <FeatureItem>
               <span>🚚</span>
-              <p>Genuine {brandName} parts from our warehouse</p>
+              <p>OEM parts from our own warehouse</p>
             </FeatureItem>
           </FeaturesList>
 
@@ -63,7 +71,21 @@ export const OvenBrandHero: React.FC<OvenBrandHeroProps> = ({
             </SecondaryButton>
           </ButtonRow>
         </ContentWrapper>
+
+        {isDesktop && image1 && image2 && (
+          <ImageContainer>
+            <Image src={image1} alt={`${brandName} Oven Repair Service`} loading='lazy' />
+            <Image src={image2} alt={`${brandName} Professional Repair`} loading='lazy' />
+          </ImageContainer>
+        )}
       </TabletContainer>
+
+      {!isDesktop && image1 && image2 && (
+        <ImageContainer>
+          <Image src={image1} alt={`${brandName} Oven Repair Service`} loading='lazy' />
+          <Image src={image2} alt={`${brandName} Professional Repair`} loading='lazy' />
+        </ImageContainer>
+      )}
     </Container>
   );
 };

@@ -5,13 +5,17 @@ import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
+import image1 from '../../assets/brands/oven/thermador/o_the_01.jpg';
+import image2 from '../../assets/brands/oven/thermador/o_the_02.jpg';
 
 const OvenThermador: React.FC = () => {
   return (
     <Container id='ap'>
       <OvenBrandHero 
         brandName="Thermador"
-        description="Expert Thermador oven repair in Thousand Oaks and Ventura County. We specialize in Thermador's luxury cooking appliances including professional-grade wall ovens, ranges, and steam ovens. Certified technicians, genuine parts, and exceptional service."
+        description="Thermador ovens are premium appliances with advanced electronics and precise temperature control. If your Thermador oven won't heat, shows error codes, bakes unevenly, or has control panel issues, we can help. Airtexno Appliance Repair provides brand-specific Thermador oven diagnosis and reliable repairs focused on safety and long-term performance."
+        image1={image1}
+        image2={image2}
       />
       <Partners />
       <OvenBrandProblems brandName="Thermador" />

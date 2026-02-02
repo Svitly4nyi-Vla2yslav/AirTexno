@@ -5,13 +5,17 @@ import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
+import image1 from '../../assets/brands/oven/viking/o_vik_01.jpg';
+import image2 from '../../assets/brands/oven/viking/o_vik_02.jpg';
 
 const OvenViking: React.FC = () => {
   return (
     <Container id='ap'>
       <OvenBrandHero 
         brandName="Viking"
-        description="Professional Viking oven repair in Thousand Oaks and Ventura County. Our technicians are experienced with Viking's professional-grade ranges, wall ovens, and cooking equipment. We provide fast, expert repairs with authentic Viking parts."
+        description="Viking ranges and ovens are powerful, high-end cooking appliances that require brand-specific troubleshooting. If your Viking oven won't heat, burners won't ignite, temperatures are inconsistent, or you see error behavior, Airtexno Appliance Repair can help. We diagnose the root cause, explain your options clearly, and perform reliable repairs for long-term performance."
+        image1={image1}
+        image2={image2}
       />
       <Partners />
       <OvenBrandProblems brandName="Viking" />

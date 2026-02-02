@@ -5,13 +5,17 @@ import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
+import image1 from '../../assets/brands/oven/kitchenaid/o_Kad_01.jpg';
+import image2 from '../../assets/brands/oven/kitchenaid/o_kad_02.jpg';
 
 const OvenKitchenAid: React.FC = () => {
   return (
     <Container id='ap'>
       <OvenBrandHero 
         brandName="KitchenAid"
-        description="Professional KitchenAid oven repair in Thousand Oaks and Ventura County. Our certified technicians specialize in all KitchenAid cooking appliances including wall ovens, ranges, and double ovens. Fast, reliable service with genuine parts."
+        description="If your KitchenAid oven won't heat, won't turn on, bakes unevenly, or has control panel issues, you need accurate diagnostics—not guesses. Airtexno Appliance Repair provides professional KitchenAid oven repair with a clear, step-by-step process and transparent recommendations, so you can get back to safe, reliable cooking."
+        image1={image1}
+        image2={image2}
       />
       <Partners />
       <OvenBrandProblems brandName="KitchenAid" />
