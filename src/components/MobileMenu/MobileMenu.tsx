@@ -145,6 +145,10 @@ type NavLink = {
   subItems?: Array<{
     to: string;
     label: string;
+    subItems?: Array<{
+      to: string;
+      label: string;
+    }>;
   }>;
 };
 
@@ -155,6 +159,7 @@ type BurgerMenuProps = {
 
 const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isDryerSubmenuOpen, setIsDryerSubmenuOpen] = useState(false);
   const location = useLocation();
   const [isBurgerOpen] = useState(false);
 
@@ -172,6 +177,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const closeMenu = () => {
     setIsOpen(false);
     setIsServicesOpen(false);
+    setIsDryerSubmenuOpen(false);
   };
 
   // const toggleServicesMenu = (e?: React.SyntheticEvent) => {
@@ -197,8 +203,13 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       isService: true,
       subItems: [
         { to: '/fridge#ap', label: 'Refrigerator Repair' },
-        { to: '/dryer#ap', label: 'Dryer Repair' },
-        { to: '/dryer/lg#ap', label: '  → LG Dryer' },
+        { 
+          to: '/dryer#ap', 
+          label: 'Dryer Repair',
+          subItems: [
+            { to: '/dryer/lg#ap', label: 'LG' },
+          ],
+        },
         { to: '/oven-repair#ap', label: 'Oven Repair' },
       ],
     },
@@ -290,17 +301,95 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                           exit='closed'
                           variants={dropdownVariants}
                         >
-                          {link.subItems.map((subItem, subIndex) => (
-                            <DropdownItemMobile key={subIndex}>
-                              <StyledNavLinkDrop
-                                to={subItem.to}
-                                onClick={closeMenu}
-                                className={isActivePage(subItem.to) ? 'active' : ''}
-                              >
-                                {subItem.label}
-                              </StyledNavLinkDrop>
-                            </DropdownItemMobile>
-                          ))}
+                          {link.subItems.map((subItem, subIndex) => {
+                            const hasSubMenu = subItem.subItems && subItem.subItems.length > 0;
+                            const isSubItemActive = isActivePage(subItem.to);
+                            
+                            if (hasSubMenu) {
+                              return (
+                                <div key={subIndex}>
+                                  <DropdownItemMobile>
+                                    <ServiceContentWrapper style={{ padding: '0' }}>
+                                      <StyledNavLinkDrop
+                                        to={subItem.to}
+                                        onClick={closeMenu}
+                                        className={isSubItemActive ? 'active' : ''}
+                                        style={{ flex: 1 }}
+                                      >
+                                        {subItem.label}
+                                      </StyledNavLinkDrop>
+                                      <ArrowDownMobile
+                                        type='button'
+                                        $overlayOpen={isOverlayOpen}
+                                        $darkMode={isDarkMode}
+                                        $isOpen={isDryerSubmenuOpen}
+                                        onClick={e => {
+                                          e.preventDefault();
+                                          e.stopPropagation();
+                                          setIsDryerSubmenuOpen(prev => !prev);
+                                          e.currentTarget.blur();
+                                        }}
+                                        aria-label='Toggle dryer submenu'
+                                        style={{ marginRight: '8px' }}
+                                      >
+                                        <svg
+                                          width='16'
+                                          height='16'
+                                          viewBox='0 0 24 24'
+                                          fill='none'
+                                          xmlns='http://www.w3.org/2000/svg'
+                                        >
+                                          <path
+                                            d='M6 9l6 6 6-6'
+                                            stroke='white'
+                                            strokeWidth='2'
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                          />
+                                        </svg>
+                                      </ArrowDownMobile>
+                                    </ServiceContentWrapper>
+                                  </DropdownItemMobile>
+                                  
+                                  <AnimatePresence>
+                                    {isDryerSubmenuOpen && (
+                                      <DropdownMenuMobile
+                                        initial='closed'
+                                        animate='open'
+                                        exit='closed'
+                                        variants={dropdownVariants}
+                                        style={{ marginLeft: '20px' }}
+                                      >
+                                        {subItem.subItems!.map((nestedItem, nestedIndex) => (
+                                          <DropdownItemMobile key={nestedIndex}>
+                                            <StyledNavLinkDrop
+                                              to={nestedItem.to}
+                                              onClick={closeMenu}
+                                              className={isActivePage(nestedItem.to) ? 'active' : ''}
+                                            >
+                                              {nestedItem.label}
+                                            </StyledNavLinkDrop>
+                                          </DropdownItemMobile>
+                                        ))}
+                                      </DropdownMenuMobile>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+                              );
+                            }
+                            
+                            return (
+                              <DropdownItemMobile key={subIndex}>
+                                <StyledNavLinkDrop
+                                  to={subItem.to}
+                                  onClick={closeMenu}
+                                  className={isSubItemActive ? 'active' : ''}
+                                >
+                                  {subItem.label}
+                                </StyledNavLinkDrop>
+                              </DropdownItemMobile>
+                            );
+                          })}
                         </DropdownMenuMobile>
                       )}
                     </AnimatePresence>
