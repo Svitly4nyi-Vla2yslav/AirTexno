@@ -168,7 +168,7 @@ const Header: React.FC = () => {
                             $darkMode={isDarkMode}
                             onClick={() => setIsServicesOpen(false)}
                           >
-                          LG Dryer
+                          LG
                           </StyledNavLink>
                         </SubDropdownItem>
                       </SubDropdownMenu>

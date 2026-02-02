@@ -125,8 +125,8 @@ export const DropdownItem = styled.div`
     background: rgba(147, 51, 234, 0.1);
   }
 
-  a {
-    color: #333;
+  a, ${StyledNavLink} {
+    color: #333 !important;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -134,11 +134,11 @@ export const DropdownItem = styled.div`
     transition: color 0.2s ease;
     
     &:hover {
-      color: var(--purple-400);
+      color: var(--purple-400) !important;
     }
     
     &.active {
-      color: var(--purple-400);
+      color: var(--purple-400) !important;
       font-weight: 600;
     }
   }
@@ -154,8 +154,8 @@ export const DropdownItemWithSubmenu = styled.div`
     background: rgba(147, 51, 234, 0.1);
   }
 
-  a {
-    color: #333;
+  a, ${StyledNavLink} {
+    color: #333 !important;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -165,11 +165,11 @@ export const DropdownItemWithSubmenu = styled.div`
     transition: color 0.2s ease;
     
     &:hover {
-      color: var(--purple-400);
+      color: var(--purple-400) !important;
     }
     
     &.active {
-      color: var(--purple-400);
+      color: var(--purple-400) !important;
       font-weight: 600;
     }
   }
@@ -225,8 +225,8 @@ export const SubDropdownItem = styled.div`
     background: rgba(147, 51, 234, 0.1);
   }
 
-  a {
-    color: #333;
+  a, ${StyledNavLink} {
+    color: #333 !important;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -235,11 +235,11 @@ export const SubDropdownItem = styled.div`
     white-space: nowrap;
     
     &:hover {
-      color: var(--purple-400);
+      color: var(--purple-400) !important;
     }
     
     &.active {
-      color: var(--purple-400);
+      color: var(--purple-400) !important;
       font-weight: 600;
     }
   }
