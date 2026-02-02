@@ -159,9 +159,16 @@ type BurgerMenuProps = {
 
 const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isDryerSubmenuOpen, setIsDryerSubmenuOpen] = useState(false);
+  const [openSubmenus, setOpenSubmenus] = useState<{ [key: number]: boolean }>({});
   const location = useLocation();
   const [isBurgerOpen] = useState(false);
+
+  const toggleSubmenu = (subIndex: number) => {
+    setOpenSubmenus(prev => ({
+      ...prev,
+      [subIndex]: !prev[subIndex]
+    }));
+  };
 
   const isDarkMode = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer', '/oven-repair'].some(path =>
     location.pathname.startsWith(path)
@@ -177,7 +184,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
   const closeMenu = () => {
     setIsOpen(false);
     setIsServicesOpen(false);
-    setIsDryerSubmenuOpen(false);
+    setOpenSubmenus({});
   };
 
   // const toggleServicesMenu = (e?: React.SyntheticEvent) => {
@@ -210,7 +217,16 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
             { to: '/dryer/lg#ap', label: 'LG' },
           ],
         },
-        { to: '/oven-repair#ap', label: 'Oven Repair' },
+        { 
+          to: '/oven-repair#ap', 
+          label: 'Oven Repair',
+          subItems: [
+            { to: '/oven-repair/kitchenaid#ap', label: 'KitchenAid' },
+            { to: '/oven-repair/thermador#ap', label: 'Thermador' },
+            { to: '/oven-repair/viking#ap', label: 'Viking' },
+            { to: '/oven-repair/wolf#ap', label: 'Wolf' },
+          ],
+        },
       ],
     },
     { to: '/about#ap', label: 'About Us' },
@@ -306,6 +322,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                             const isSubItemActive = isActivePage(subItem.to);
                             
                             if (hasSubMenu) {
+                              const isSubmenuOpen = openSubmenus[subIndex] || false;
                               return (
                                 <div key={subIndex}>
                                   <DropdownItemMobile>
@@ -322,14 +339,14 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                                         type='button'
                                         $overlayOpen={isOverlayOpen}
                                         $darkMode={isDarkMode}
-                                        $isOpen={isDryerSubmenuOpen}
+                                        $isOpen={isSubmenuOpen}
                                         onClick={e => {
                                           e.preventDefault();
                                           e.stopPropagation();
-                                          setIsDryerSubmenuOpen(prev => !prev);
+                                          toggleSubmenu(subIndex);
                                           e.currentTarget.blur();
                                         }}
-                                        aria-label='Toggle dryer submenu'
+                                        aria-label={`Toggle ${subItem.label} submenu`}
                                         style={{ marginRight: '8px' }}
                                       >
                                         <svg
@@ -352,7 +369,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
                                   </DropdownItemMobile>
                                   
                                   <AnimatePresence>
-                                    {isDryerSubmenuOpen && (
+                                    {isSubmenuOpen && (
                                       <DropdownMenuMobile
                                         initial='closed'
                                         animate='open'

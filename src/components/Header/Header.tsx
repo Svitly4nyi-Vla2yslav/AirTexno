@@ -173,7 +173,7 @@ const Header: React.FC = () => {
                         </SubDropdownItem>
                       </SubDropdownMenu>
                     </DropdownItemWithSubmenu>
-                    <DropdownItem>
+                    <DropdownItemWithSubmenu>
                       <StyledNavLink
                         to='/oven-repair#ap'
                         $overlayOpen={isOverlayOpen}
@@ -182,7 +182,49 @@ const Header: React.FC = () => {
                       >
                       Oven Repair 
                       </StyledNavLink>
-                    </DropdownItem>
+                      <SubDropdownMenu>
+                        <SubDropdownItem>
+                          <StyledNavLink
+                            to='/oven-repair/kitchenaid#ap'
+                            $overlayOpen={isOverlayOpen}
+                            $darkMode={isDarkMode}
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                          KitchenAid
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink
+                            to='/oven-repair/thermador#ap'
+                            $overlayOpen={isOverlayOpen}
+                            $darkMode={isDarkMode}
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                          Thermador
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink
+                            to='/oven-repair/viking#ap'
+                            $overlayOpen={isOverlayOpen}
+                            $darkMode={isDarkMode}
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                          Viking
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink
+                            to='/oven-repair/wolf#ap'
+                            $overlayOpen={isOverlayOpen}
+                            $darkMode={isDarkMode}
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                          Wolf
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                      </SubDropdownMenu>
+                    </DropdownItemWithSubmenu>
                   </DropdownMenu>
                 )}
               </ServiceLink>

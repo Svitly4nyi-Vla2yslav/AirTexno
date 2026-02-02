@@ -13,6 +13,10 @@ import Dryer from './pages/Dryer/Dryer';
 import DryerLG from './pages/DryerLG/DryerLG';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import OvenRepair from './pages/OvenRepair/OvenRepair';
+import OvenKitchenAid from './pages/OvenKitchenAid/OvenKitchenAid';
+import OvenThermador from './pages/OvenThermador/OvenThermador';
+import OvenViking from './pages/OvenViking/OvenViking';
+import OvenWolf from './pages/OvenWolf/OvenWolf';
 import { trackPageView, trackContactPhone, trackLead } from './components/metaPixel';
 
 
@@ -256,6 +260,38 @@ export const App: React.FC = () => {
               element={
                 <PageWrapper>
                   <OvenRepair />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/oven-repair/kitchenaid'
+              element={
+                <PageWrapper>
+                  <OvenKitchenAid />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/oven-repair/thermador'
+              element={
+                <PageWrapper>
+                  <OvenThermador />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/oven-repair/viking'
+              element={
+                <PageWrapper>
+                  <OvenViking />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/oven-repair/wolf'
+              element={
+                <PageWrapper>
+                  <OvenWolf />
                 </PageWrapper>
               }
             />
