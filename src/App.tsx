@@ -17,6 +17,11 @@ import OvenKitchenAid from './pages/OvenKitchenAid/OvenKitchenAid';
 import OvenThermador from './pages/OvenThermador/OvenThermador';
 import OvenViking from './pages/OvenViking/OvenViking';
 import OvenWolf from './pages/OvenWolf/OvenWolf';
+import RefrigeratorGEMonogram from './pages/RefrigeratorGEMonogram/RefrigeratorGEMonogram';
+import RefrigeratorKitchenAid from './pages/RefrigeratorKitchenAid/RefrigeratorKitchenAid';
+import RefrigeratorSubZero from './pages/RefrigeratorSubZero/RefrigeratorSubZero';
+import RefrigeratorThermador from './pages/RefrigeratorThermador/RefrigeratorThermador';
+import RefrigeratorViking from './pages/RefrigeratorViking/RefrigeratorViking';
 import { trackPageView, trackContactPhone, trackLead } from './components/metaPixel';
 
 
@@ -292,6 +297,46 @@ export const App: React.FC = () => {
               element={
                 <PageWrapper>
                   <OvenWolf />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/fridge/ge-monogram'
+              element={
+                <PageWrapper>
+                  <RefrigeratorGEMonogram />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/fridge/kitchenaid'
+              element={
+                <PageWrapper>
+                  <RefrigeratorKitchenAid />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/fridge/sub-zero'
+              element={
+                <PageWrapper>
+                  <RefrigeratorSubZero />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/fridge/thermador'
+              element={
+                <PageWrapper>
+                  <RefrigeratorThermador />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/fridge/viking'
+              element={
+                <PageWrapper>
+                  <RefrigeratorViking />
                 </PageWrapper>
               }
             />

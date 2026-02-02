@@ -209,7 +209,17 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       label: 'Services',
       isService: true,
       subItems: [
-        { to: '/fridge#ap', label: 'Refrigerator Repair' },
+        { 
+          to: '/fridge#ap', 
+          label: 'Refrigerator Repair',
+          subItems: [
+            { to: '/fridge/ge-monogram#ap', label: 'GE Monogram' },
+            { to: '/fridge/kitchenaid#ap', label: 'KitchenAid' },
+            { to: '/fridge/sub-zero#ap', label: 'Sub-Zero' },
+            { to: '/fridge/thermador#ap', label: 'Thermador' },
+            { to: '/fridge/viking#ap', label: 'Viking' },
+          ],
+        },
         { 
           to: '/dryer#ap', 
           label: 'Dryer Repair',

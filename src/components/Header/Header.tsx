@@ -11,7 +11,6 @@ import {
   LinkInfo,
   LangButtonContainer,
   ArrowDown,
-  DropdownItem,
   DropdownItemWithSubmenu,
   DropdownMenu,
   SubDropdownMenu,
@@ -141,16 +140,43 @@ const Header: React.FC = () => {
                 </StyledNavLink>
                 {isServicesOpen && (
                   <DropdownMenu>
-                    <DropdownItem>
+                    <DropdownItemWithSubmenu>
                       <StyledNavLink
                         to='/fridge#ap'
                         $overlayOpen={isOverlayOpen}
                         $darkMode={isDarkMode}
                         onClick={() => setIsServicesOpen(false)}
                       >
-                      Refrigerator  Repair 
+                      Refrigerator Repair
                       </StyledNavLink>
-                    </DropdownItem>
+                      <SubDropdownMenu>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/fridge/ge-monogram#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          GE Monogram
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/fridge/kitchenaid#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          KitchenAid
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/fridge/sub-zero#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Sub-Zero
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/fridge/thermador#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Thermador
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/fridge/viking#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Viking
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                      </SubDropdownMenu>
+                    </DropdownItemWithSubmenu>
                     <DropdownItemWithSubmenu>
                       <StyledNavLink
                         to='/dryer#ap'
