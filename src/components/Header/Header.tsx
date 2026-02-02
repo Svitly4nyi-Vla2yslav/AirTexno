@@ -157,6 +157,18 @@ const Header: React.FC = () => {
                       >
                       Dryer  Repair 
                       </StyledNavLink>
+                      <DropdownMenu style={{ position: 'relative', marginLeft: '1rem', marginTop: '0.5rem' }}>
+                        <DropdownItem>
+                          <StyledNavLink
+                            to='/dryer/lg#ap'
+                            $overlayOpen={isOverlayOpen}
+                            $darkMode={isDarkMode}
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                          → LG Dryer
+                          </StyledNavLink>
+                        </DropdownItem>
+                      </DropdownMenu>
                     </DropdownItem>
                     <DropdownItem>
                       <StyledNavLink

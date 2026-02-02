@@ -10,6 +10,7 @@ import ArticleDetail from './components/NewsTips/NewsSection';
 import Refrigeration from './pages/Refrigeration/Refrigeration';
 import { AnimatePresence } from 'framer-motion';
 import Dryer from './pages/Dryer/Dryer';
+import DryerLG from './pages/DryerLG/DryerLG';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import OvenRepair from './pages/OvenRepair/OvenRepair';
 import { trackPageView, trackContactPhone, trackLead } from './components/metaPixel';
@@ -239,6 +240,14 @@ export const App: React.FC = () => {
               element={
                 <PageWrapper>
                   <Dryer />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/lg'
+              element={
+                <PageWrapper>
+                  <DryerLG />
                 </PageWrapper>
               }
             />

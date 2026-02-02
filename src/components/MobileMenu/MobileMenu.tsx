@@ -198,6 +198,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
       subItems: [
         { to: '/fridge#ap', label: 'Refrigerator Repair' },
         { to: '/dryer#ap', label: 'Dryer Repair' },
+        { to: '/dryer/lg#ap', label: '  → LG Dryer' },
         { to: '/oven-repair#ap', label: 'Oven Repair' },
       ],
     },
