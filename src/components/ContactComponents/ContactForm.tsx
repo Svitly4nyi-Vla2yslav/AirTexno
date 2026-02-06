@@ -34,22 +34,35 @@ export const ContactForm: React.FC = (): JSX.Element => {
     setShowPrivacyPolicy(false);
   };
 
+  const formatPhone = (value: string): string => {
+    const digits = value.replace(/\D/g, '').slice(0, 10);
+    if (digits.length === 0) return '';
+    if (digits.length <= 3) return `(${digits}`;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    if (name === 'phone') {
+      setFormData(prev => ({ ...prev, phone: formatPhone(value) }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
     setErrors(prev => ({ ...prev, [name]: false }));
   };
 
   const validate = () => {
     const newErrors: Record<string, boolean> = {};
     if (!service) newErrors.service = true;
-    if (!formData.name) newErrors.name = true;
-    if (!formData.email) newErrors.email = true;
-    if (!formData.phone) newErrors.phone = true;
+    if (!formData.name.trim()) newErrors.name = true;
+    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = true;
+    const phoneDigits = formData.phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) newErrors.phone = true;
     if (!formData.location) newErrors.location = true;
-    if (!formData.details) newErrors.details = true;
+    if (!formData.details.trim()) newErrors.details = true;
     return newErrors;
   };
 
@@ -92,9 +105,8 @@ export const ContactForm: React.FC = (): JSX.Element => {
           message: 'Form submitted successfully! We will contact you soon.',
         });
 
-        // Track form submission in GTM if consent given
-        const hasConsent = localStorage.getItem('cookieConsent') === 'granted';
-        if (hasConsent && typeof window !== 'undefined' && window.dataLayer) {
+        // Track form submission in GTM (consent granted by default for US audience)
+        if (typeof window !== 'undefined' && window.dataLayer) {
           window.dataLayer.push({
             event: "formSubmissionSuccess",
             formType: "contact",
@@ -112,9 +124,8 @@ export const ContactForm: React.FC = (): JSX.Element => {
         message: 'There was an error submitting the form. Please try again.',
       });
 
-      // Track form error if consent given
-      const hasConsent = localStorage.getItem('cookieConsent') === 'granted';
-      if (hasConsent && typeof window !== 'undefined' && window.dataLayer) {
+      // Track form error in GTM
+      if (typeof window !== 'undefined' && window.dataLayer) {
         window.dataLayer.push({
           event: "formSubmissionError",
           formType: "contact",
@@ -270,7 +281,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
           viewport={{ once: true, amount: 0.2 }}
         >
           {/* ВАЖЛИВО: className="contact-form" і id="contact-form" */}
-          <FormContainer className="contact-form" id="contact-form" onSubmit={handleSubmit}>
+          <FormContainer className="contact-form" id="contact-form" onSubmit={handleSubmit} noValidate>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -291,8 +302,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   name='service'
                   value='Repair'
                   checked={service === 'Repair'}
-                  onChange={e => setService(e.target.value)}
-                  required
+                  onChange={e => { setService(e.target.value); setErrors(prev => ({ ...prev, service: false })); }}
                 />
                 <CustomRadio checked={service === 'Repair'} />
                 Repair
@@ -303,8 +313,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   name='service'
                   value='Installation'
                   checked={service === 'Installation'}
-                  onChange={e => setService(e.target.value)}
-                  required
+                  onChange={e => { setService(e.target.value); setErrors(prev => ({ ...prev, service: false })); }}
                 />
                 <CustomRadio checked={service === 'Installation'} />
                 Installation
@@ -313,49 +322,45 @@ export const ContactForm: React.FC = (): JSX.Element => {
 
             <TabletContainer>
               <LeftColumn>
-                <Label>Name *</Label>
+                <Label style={errors.name ? { color: '#e53935' } : {}}>Name *</Label>
                 <Input
                   name='name'
                   type='text'
                   placeholder='Your Name'
                   value={formData.name}
                   onChange={handleChange}
-                  style={errors.name ? { borderBottom: '1px solid red' } : {}}
-                  required
+                  style={errors.name ? { borderBottom: '2px solid #e53935' } : {}}
                 />
 
-                <Label>Email *</Label>
+                <Label style={errors.email ? { color: '#e53935' } : {}}>Email *</Label>
                 <Input
                   name='email'
                   type='email'
                   placeholder='Your Email'
                   value={formData.email}
                   onChange={handleChange}
-                  style={errors.email ? { borderBottom: '1px solid red' } : {}}
-                  required
+                  style={errors.email ? { borderBottom: '2px solid #e53935' } : {}}
                 />
 
-                <Label>Phone Number *</Label>
+                <Label style={errors.phone ? { color: '#e53935' } : {}}>Phone Number *</Label>
                 <Input
                   name='phone'
                   type='tel'
-                  placeholder='Your Phone Number'
+                  placeholder='(805) 500-2705'
                   value={formData.phone}
                   onChange={handleChange}
-                  style={errors.phone ? { borderBottom: '1px solid red' } : {}}
-                  required
+                  style={errors.phone ? { borderBottom: '2px solid #e53935' } : {}}
                 />
               </LeftColumn>
 
               <RightColumn>
-                <Label>In what location do you need the service? *</Label>
+                <Label style={errors.location ? { color: '#e53935' } : {}}>In what location do you need the service? *</Label>
                 <SelectWrapper>
                   <Select
                     name='location'
                     value={formData.location}
                     onChange={handleChange}
-                    style={errors.location ? { borderBottom: '1px solid red' } : {}}
-                    required
+                    style={errors.location ? { borderBottom: '2px solid #e53935' } : {}}
                   >
                     <option value=''>Select location</option>
                     <option>Agoura Hills</option>
@@ -375,14 +380,13 @@ export const ContactForm: React.FC = (): JSX.Element => {
                   </Select>
                 </SelectWrapper>
 
-                <Label>Please briefly describe the issue *</Label>
+                <Label style={errors.details ? { color: '#e53935' } : {}}>Please briefly describe the issue *</Label>
                 <Textarea
                   name='details'
                   placeholder='e.g., My Samsung Washer is not draining'
                   value={formData.details}
                   onChange={handleChange}
-                  style={errors.details ? { borderBottom: '1px solid red' } : {}}
-                  required
+                  style={errors.details ? { borderBottom: '2px solid #e53935' } : {}}
                 />
               </RightColumn>
             </TabletContainer>

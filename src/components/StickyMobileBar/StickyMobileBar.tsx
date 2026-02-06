@@ -74,7 +74,7 @@ export const StickyMobileBar: React.FC = () => {
 
         {/* Request Service Button */}
         <RequestButton
-          to='/contact#ap'
+          to='/contact'
           onClick={handleRequestClick}
         >
           <CalendarIcon>📅</CalendarIcon>

@@ -63,7 +63,7 @@ export const OvenBrandHero: React.FC<OvenBrandHeroProps> = ({
           </FeaturesList>
 
           <ButtonRow>
-            <PrimaryButton to='/contact#ap'>
+            <PrimaryButton to='/contact'>
               <ButtonText>Request Service</ButtonText>
             </PrimaryButton>
             <SecondaryButton>

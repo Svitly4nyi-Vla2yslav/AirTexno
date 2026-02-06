@@ -167,7 +167,7 @@ const Professional: React.FC = () => {
 
             <ButtonGroup>
               <motion.div variants={buttonVariants} whileHover='hover' whileTap='tap'>
-                <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
+                <PrimaryButton to='/contact'>Request Service</PrimaryButton>
               </motion.div>
 
               <motion.div

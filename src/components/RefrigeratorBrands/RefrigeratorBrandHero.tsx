@@ -63,7 +63,7 @@ export const RefrigeratorBrandHero: React.FC<RefrigeratorBrandHeroProps> = ({
           </FeaturesList>
 
           <ButtonRow>
-            <PrimaryButton to='/contact#ap'>
+            <PrimaryButton to='/contact'>
               <ButtonText>Request Service</ButtonText>
             </PrimaryButton>
             <SecondaryButton>

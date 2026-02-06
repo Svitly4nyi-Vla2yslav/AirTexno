@@ -50,7 +50,7 @@ export const DryerRepair: React.FC = () => {
           </TabletDescription>
 
           <TabletButtonRow>
-            <PrimaryButton to='/contact#ap'>
+            <PrimaryButton to='/contact'>
               <ButtonTextWhite>Request Service</ButtonTextWhite>
             </PrimaryButton>
 
@@ -151,7 +151,7 @@ export const DryerRepair: React.FC = () => {
           </TabletDescription>
 
           <TabletButtonRow>
-            <PrimaryButton to='/contact#ap'>
+            <PrimaryButton to='/contact'>
               <ButtonTextWhite>Request Service</ButtonTextWhite>
             </PrimaryButton>
 
@@ -200,7 +200,7 @@ export const DryerRepair: React.FC = () => {
         </Description>
 
         <ButtonRow>
-          <PrimaryButton to='/contact#ap'>
+          <PrimaryButton to='/contact'>
             <ButtonTextWhite>Request Service</ButtonTextWhite>
           </PrimaryButton>
 

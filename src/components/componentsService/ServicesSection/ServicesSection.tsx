@@ -207,7 +207,7 @@ const ServicesSection: React.FC = () => {
               </motion.div>
 
               <motion.div variants={buttonPulseAnimation} whileTap='tap'>
-                <Button to='/fridge#ap'>
+                <Button to='/fridge'>
                   <ButtonText>Learn more</ButtonText>
                 </Button>
               </motion.div>
@@ -265,7 +265,7 @@ const ServicesSection: React.FC = () => {
 
               <ButtonRow>
                 <motion.div variants={buttonPulseAnimation} whileTap='tap'>
-                  <PrimaryButton to='/contact#ap'>
+                  <PrimaryButton to='/contact'>
                     <ButtonTextWhite>Request Service</ButtonTextWhite>
                   </PrimaryButton>
                 </motion.div>
@@ -304,7 +304,7 @@ const ServicesSection: React.FC = () => {
               </motion.div>
 
               <motion.div variants={buttonPulseAnimation} whileTap='tap'>
-                <Button to='/fridge#ap'>
+                <Button to='/fridge'>
                   <ButtonText>Learn more</ButtonText>
                 </Button>
               </motion.div>

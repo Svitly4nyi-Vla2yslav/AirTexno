@@ -52,7 +52,7 @@ export const OvenRepairs: React.FC = () => {
           </TabletDescription>
 
           <TabletButtonRow>
-            <PrimaryButton to='/contact#ap'>
+            <PrimaryButton to='/contact'>
               <ButtonTextWhite>Request Service</ButtonTextWhite>
             </PrimaryButton>
 
@@ -155,7 +155,7 @@ export const OvenRepairs: React.FC = () => {
           </TabletDescription>
 
           <TabletButtonRow>
-            <PrimaryButton to='/contact#ap'>
+            <PrimaryButton to='/contact'>
               <ButtonTextWhite>Request Service</ButtonTextWhite>
             </PrimaryButton>
 
@@ -206,7 +206,7 @@ export const OvenRepairs: React.FC = () => {
         </Description>
 
         <ButtonRow>
-          <PrimaryButton to='/contact#ap'>
+          <PrimaryButton to='/contact'>
             <ButtonTextWhite>Request Service</ButtonTextWhite>
           </PrimaryButton>
 

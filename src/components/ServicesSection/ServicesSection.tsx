@@ -148,7 +148,7 @@ const ServicesSection: React.FC = () => {
             >
               <InfoBlock>
                 <InfoText>Do you want to know more about our service?</InfoText>
-                <Button to='/fridge#ap'>
+                <Button to='/fridge'>
                   <ButtonText>Learn more</ButtonText>
                 </Button>
               </InfoBlock>
@@ -192,7 +192,7 @@ const ServicesSection: React.FC = () => {
 
               <motion.div variants={fadeInRight}>
                 <ButtonRow>
-                  <PrimaryButton to='/contact#ap'>
+                  <PrimaryButton to='/contact'>
                     <ButtonTextWhite>Request Service</ButtonTextWhite>
                   </PrimaryButton>
                   <SecondaryButton>
@@ -214,7 +214,7 @@ const ServicesSection: React.FC = () => {
           >
             <InfoBlock>
               <InfoText>Do you want to know more about our service?</InfoText>
-              <Button to='/fridge#ap'>
+              <Button to='/fridge'>
                 <ButtonText>Learn more</ButtonText>
               </Button>
             </InfoBlock>

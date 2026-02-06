@@ -47,13 +47,16 @@ const Footer: React.FC = () => {
             </FullWidthText>
 
             <LinksWrapper>
-              <Text to='/home#hero'>Home</Text>
-              <Text to='/service#all'>Services</Text>
-              <Text to='/about#ap'>About Us</Text>
-              <Text to='/tips#app'>Tips</Text>
-              <Text to='/contact#ap'>Contacts</Text>
+              <Text to='/home'>Home</Text>
+              <Text to='/service'>Services</Text>
+              <Text to='/about'>About Us</Text>
+              <Text to='/tips'>Tips</Text>
+              <Text to='/contact'>Contacts</Text>
   <TextO onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>            
                 Privacy and Terms
+              </TextO>
+              <TextO onClick={handlePrivacyClick} style={{ cursor: 'pointer' }}>
+                Do Not Sell or Share My Personal Information
               </TextO>
             </LinksWrapper>
           </InfoBlock>

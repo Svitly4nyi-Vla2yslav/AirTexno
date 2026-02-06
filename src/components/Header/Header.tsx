@@ -48,7 +48,7 @@ const Header: React.FC = () => {
     e.preventDefault();
 
     if (window.location.pathname !== '/home') {
-      navigate('/home#header');
+      navigate('/home');
     } else {
       // Чекаємо поки DOM оновиться
       setTimeout(() => {
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
     <NavbarContainer $isScrolled={isScrolled} $darkMode={isDarkMode}>
       <HeaderWrapper>
         <Logo
-          to='/home#header'
+          to='/home'
           onClick={handleLogoClick}
           $overlayOpen={isOverlayOpen}
           $darkMode={isDarkMode}
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
         {!isMobile && (
           <NavList>
             <NavItem>
-              <StyledNavLink to='/home#hero' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
+              <StyledNavLink to='/home' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
                 Home
               </StyledNavLink>
             </NavItem>
@@ -125,7 +125,7 @@ const Header: React.FC = () => {
             >
               <ServiceLink>
                 <StyledNavLink
-                  to='/service#all'
+                  to='/service'
                   $overlayOpen={isOverlayOpen}
                   $darkMode={isDarkMode}
                   style={{ padding: '10px 0px' }}
@@ -142,7 +142,7 @@ const Header: React.FC = () => {
                   <DropdownMenu>
                     <DropdownItemWithSubmenu>
                       <StyledNavLink
-                        to='/fridge#ap'
+                        to='/fridge'
                         $overlayOpen={isOverlayOpen}
                         $darkMode={isDarkMode}
                         onClick={() => setIsServicesOpen(false)}
@@ -151,27 +151,27 @@ const Header: React.FC = () => {
                       </StyledNavLink>
                       <SubDropdownMenu>
                         <SubDropdownItem>
-                          <StyledNavLink to='/fridge/ge-monogram#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          <StyledNavLink to='/fridge/ge-monogram' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
                           GE Monogram
                           </StyledNavLink>
                         </SubDropdownItem>
                         <SubDropdownItem>
-                          <StyledNavLink to='/fridge/kitchenaid#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          <StyledNavLink to='/fridge/kitchenaid' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
                           KitchenAid
                           </StyledNavLink>
                         </SubDropdownItem>
                         <SubDropdownItem>
-                          <StyledNavLink to='/fridge/sub-zero#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          <StyledNavLink to='/fridge/sub-zero' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
                           Sub-Zero
                           </StyledNavLink>
                         </SubDropdownItem>
                         <SubDropdownItem>
-                          <StyledNavLink to='/fridge/thermador#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          <StyledNavLink to='/fridge/thermador' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
                           Thermador
                           </StyledNavLink>
                         </SubDropdownItem>
                         <SubDropdownItem>
-                          <StyledNavLink to='/fridge/viking#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          <StyledNavLink to='/fridge/viking' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
                           Viking
                           </StyledNavLink>
                         </SubDropdownItem>
@@ -179,7 +179,7 @@ const Header: React.FC = () => {
                     </DropdownItemWithSubmenu>
                     <DropdownItemWithSubmenu>
                       <StyledNavLink
-                        to='/dryer#ap'
+                        to='/dryer'
                         $overlayOpen={isOverlayOpen}
                         $darkMode={isDarkMode}
                         onClick={() => setIsServicesOpen(false)}
@@ -189,7 +189,7 @@ const Header: React.FC = () => {
                       <SubDropdownMenu>
                         <SubDropdownItem>
                           <StyledNavLink
-                            to='/dryer/lg#ap'
+                            to='/dryer/lg'
                             $overlayOpen={isOverlayOpen}
                             $darkMode={isDarkMode}
                             onClick={() => setIsServicesOpen(false)}
@@ -201,7 +201,7 @@ const Header: React.FC = () => {
                     </DropdownItemWithSubmenu>
                     <DropdownItemWithSubmenu>
                       <StyledNavLink
-                        to='/oven-repair#ap'
+                        to='/oven-repair'
                         $overlayOpen={isOverlayOpen}
                         $darkMode={isDarkMode}
                         onClick={() => setIsServicesOpen(false)}
@@ -211,7 +211,7 @@ const Header: React.FC = () => {
                       <SubDropdownMenu>
                         <SubDropdownItem>
                           <StyledNavLink
-                            to='/oven-repair/kitchenaid#ap'
+                            to='/oven-repair/kitchenaid'
                             $overlayOpen={isOverlayOpen}
                             $darkMode={isDarkMode}
                             onClick={() => setIsServicesOpen(false)}
@@ -221,7 +221,7 @@ const Header: React.FC = () => {
                         </SubDropdownItem>
                         <SubDropdownItem>
                           <StyledNavLink
-                            to='/oven-repair/thermador#ap'
+                            to='/oven-repair/thermador'
                             $overlayOpen={isOverlayOpen}
                             $darkMode={isDarkMode}
                             onClick={() => setIsServicesOpen(false)}
@@ -231,7 +231,7 @@ const Header: React.FC = () => {
                         </SubDropdownItem>
                         <SubDropdownItem>
                           <StyledNavLink
-                            to='/oven-repair/viking#ap'
+                            to='/oven-repair/viking'
                             $overlayOpen={isOverlayOpen}
                             $darkMode={isDarkMode}
                             onClick={() => setIsServicesOpen(false)}
@@ -241,7 +241,7 @@ const Header: React.FC = () => {
                         </SubDropdownItem>
                         <SubDropdownItem>
                           <StyledNavLink
-                            to='/oven-repair/wolf#ap'
+                            to='/oven-repair/wolf'
                             $overlayOpen={isOverlayOpen}
                             $darkMode={isDarkMode}
                             onClick={() => setIsServicesOpen(false)}
@@ -257,17 +257,17 @@ const Header: React.FC = () => {
             </NavItem>
 
             <NavItem>
-              <StyledNavLink to='/about#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
+              <StyledNavLink to='/about' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
                 About Us
               </StyledNavLink>
             </NavItem>
             <NavItem>
-              <StyledNavLink to='/tips#app' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
+              <StyledNavLink to='/tipsp' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
                 Tips
               </StyledNavLink>
             </NavItem>
             <NavItem>
-              <StyledNavLink to='/contact#ap' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
+              <StyledNavLink to='/contact' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
                 Contact
               </StyledNavLink>
             </NavItem>
@@ -302,7 +302,7 @@ const Header: React.FC = () => {
         )}
         <LangButtonContainer>
           <div style={{ display: 'flex', gap: 16 }}>
-            {!isMobile && <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>}
+            {!isMobile && <PrimaryButton to='/contact'>Request Service</PrimaryButton>}
             {isMobile && <BurgerMenu isOpen={isBurgerOpen} setIsOpen={setIsBurgerOpen} />}
           </div>
         </LangButtonContainer>

@@ -125,17 +125,16 @@
   }
   </script>
 
-  <!-- Consent defaults for gtag (Meta Pixel не ініціюємо до згоди) -->
+  <!-- Consent defaults: granted for US-only audience (CCPA opt-out model, no prior consent needed) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'analytics_storage': 'denied',
-      'personalization_storage': 'denied',
-      'functionality_storage': 'denied',
-      'security_storage': 'granted',
-      'wait_for_update': 500
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'personalization_storage': 'granted',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted'
     });
   </script>
 </head>

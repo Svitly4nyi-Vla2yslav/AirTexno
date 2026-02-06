@@ -195,53 +195,53 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
 
   const isActivePage = (path: string) => {
     const currentPath = location.pathname;
-    if (path === '/home#hero') {
+    if (path === '/home') {
       return currentPath === '/' || currentPath === '/home';
     }
-    return currentPath.startsWith(path.split('#')[0]);
+    return currentPath.startsWith(path);
   };
 
   const isOverlayOpen = isServicesOpen || isBurgerOpen;
   const navLinks: NavLink[] = [
-    { to: '/home#hero', label: 'Home' },
+    { to: '/home', label: 'Home' },
     {
-      to: '/service#all',
+      to: '/service',
       label: 'Services',
       isService: true,
       subItems: [
         { 
-          to: '/fridge#ap', 
+          to: '/fridge', 
           label: 'Refrigerator Repair',
           subItems: [
-            { to: '/fridge/ge-monogram#ap', label: 'GE Monogram' },
-            { to: '/fridge/kitchenaid#ap', label: 'KitchenAid' },
-            { to: '/fridge/sub-zero#ap', label: 'Sub-Zero' },
-            { to: '/fridge/thermador#ap', label: 'Thermador' },
-            { to: '/fridge/viking#ap', label: 'Viking' },
+            { to: '/fridge/ge-monogram', label: 'GE Monogram' },
+            { to: '/fridge/kitchenaid', label: 'KitchenAid' },
+            { to: '/fridge/sub-zero', label: 'Sub-Zero' },
+            { to: '/fridge/thermador', label: 'Thermador' },
+            { to: '/fridge/viking', label: 'Viking' },
           ],
         },
         { 
-          to: '/dryer#ap', 
+          to: '/dryer', 
           label: 'Dryer Repair',
           subItems: [
-            { to: '/dryer/lg#ap', label: 'LG' },
+            { to: '/dryer/lg', label: 'LG' },
           ],
         },
         { 
-          to: '/oven-repair#ap', 
+          to: '/oven-repair', 
           label: 'Oven Repair',
           subItems: [
-            { to: '/oven-repair/kitchenaid#ap', label: 'KitchenAid' },
-            { to: '/oven-repair/thermador#ap', label: 'Thermador' },
-            { to: '/oven-repair/viking#ap', label: 'Viking' },
-            { to: '/oven-repair/wolf#ap', label: 'Wolf' },
+            { to: '/oven-repair/kitchenaid', label: 'KitchenAid' },
+            { to: '/oven-repair/thermador', label: 'Thermador' },
+            { to: '/oven-repair/viking', label: 'Viking' },
+            { to: '/oven-repair/wolf', label: 'Wolf' },
           ],
         },
       ],
     },
-    { to: '/about#ap', label: 'About Us' },
-    { to: '/tips#app', label: 'Tips' },
-    { to: '/contact#ap', label: 'Contact' },
+    { to: '/about', label: 'About Us' },
+    { to: '/tips', label: 'Tips' },
+    { to: '/contact', label: 'Contact' },
   ];
 
   return (

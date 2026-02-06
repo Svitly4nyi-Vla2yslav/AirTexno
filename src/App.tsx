@@ -11,7 +11,7 @@ import Refrigeration from './pages/Refrigeration/Refrigeration';
 import { AnimatePresence } from 'framer-motion';
 import Dryer from './pages/Dryer/Dryer';
 import DryerLG from './pages/DryerLG/DryerLG';
-import CookieConsentBanner from './components/CookieConsentBanner';
+// Cookie consent banner removed — CCPA opt-out model for US audience
 import OvenRepair from './pages/OvenRepair/OvenRepair';
 import OvenKitchenAid from './pages/OvenKitchenAid/OvenKitchenAid';
 import OvenThermador from './pages/OvenThermador/OvenThermador';
@@ -52,41 +52,18 @@ export const App: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Страховка для Consent Mode у SPA
+    // Consent Mode: granted by default for US audience (CCPA opt-out model)
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function() { window.dataLayer.push(arguments as any); };
 
       window.gtag('consent', 'default', {
-        ad_storage: 'denied',
-        analytics_storage: 'denied',
-        personalization_storage: 'denied',
-        functionality_storage: 'denied',
-        security_storage: 'granted',
-        wait_for_update: 500
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+        personalization_storage: 'granted',
+        functionality_storage: 'granted',
+        security_storage: 'granted'
       });
-
-      const savedSettings = localStorage.getItem('cookieSettings');
-      const consent = localStorage.getItem('cookieConsent');
-
-      if (savedSettings) {
-        const s = JSON.parse(savedSettings);
-        window.gtag('consent', 'update', {
-          ad_storage: s?.advertising?.enabled ? 'granted' : 'denied',
-          analytics_storage: s?.analytics?.enabled ? 'granted' : 'denied',
-          personalization_storage: s?.functional?.enabled ? 'granted' : 'denied',
-          functionality_storage: s?.functional?.enabled ? 'granted' : 'denied',
-          security_storage: 'granted'
-        });
-      } else if (consent === 'granted') {
-        window.gtag('consent', 'update', {
-          ad_storage: 'granted',
-          analytics_storage: 'granted',
-          personalization_storage: 'granted',
-          functionality_storage: 'granted',
-          security_storage: 'granted'
-        });
-      }
     }
   }, []);
 
@@ -95,14 +72,7 @@ export const App: React.FC = () => {
     trackPageView();
   }, [location.pathname, location.search]);
 
-  // Після зміни згоди — відправимо актуальний PageView
-  useEffect(() => {
-    const onConsentChanged = async () => {
-      await trackPageView();
-    };
-    window.addEventListener('cookie-consent-changed', onConsentChanged as EventListener);
-    return () => window.removeEventListener('cookie-consent-changed', onConsentChanged as EventListener);
-  }, []);
+  // Cookie consent banner removed — no need to listen for consent changes
 
   // Клік по tel: → Contact (антидубль усередині lib)
   useEffect(() => {
@@ -351,8 +321,7 @@ export const App: React.FC = () => {
           </Route>
         </Routes>
         
-        {/* Cookie Consent Banner */}
-        <CookieConsentBanner />
+        {/* Cookie consent banner removed — CCPA opt-out model, no prior consent needed */}
         
       </AnimatePresence>
     </>

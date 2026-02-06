@@ -55,7 +55,7 @@ export const LGDryerHero: React.FC = () => {
           </FeaturesList>
 
           <ButtonRow>
-            <PrimaryButton to='/contact#ap'>
+            <PrimaryButton to='/contact'>
               <ButtonText>Request Service</ButtonText>
             </PrimaryButton>
             <SecondaryButton>

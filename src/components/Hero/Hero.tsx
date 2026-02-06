@@ -252,7 +252,7 @@ export const Hero: React.FC = () => {
               variants={buttonVariants}
               transition={{ delay: 0.3 }}
             >
-              <PrimaryButton to='/contact#ap'>Request Service</PrimaryButton>
+              <PrimaryButton to='/contact'>Request Service</PrimaryButton>
             </motion.div>
 
             {isMobile && (
