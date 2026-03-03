@@ -23,6 +23,7 @@ import RefrigeratorSubZero from './pages/RefrigeratorSubZero/RefrigeratorSubZero
 import RefrigeratorThermador from './pages/RefrigeratorThermador/RefrigeratorThermador';
 import RefrigeratorViking from './pages/RefrigeratorViking/RefrigeratorViking';
 import { trackPageView, trackContactPhone, trackLead } from './components/metaPixel';
+import Seo from './components/Seo';
 
 
 declare global {
@@ -104,9 +105,9 @@ export const App: React.FC = () => {
 
   return (
     <> 
+      <Seo />
       <AnimatePresence mode='wait'>
         <Routes location={location} key={location.pathname}>
-          <Route path='/' element={<Navigate to='/home' />} />
           <Route path='/' element={<Layout />}>
             <Route
               index
@@ -118,11 +119,7 @@ export const App: React.FC = () => {
             />
             <Route
               path='/home'
-              element={
-                <PageWrapper>
-                  <Home />
-                </PageWrapper>
-              }
+              element={<Navigate to='/' replace />}
             />
             <Route
               path='/service'
