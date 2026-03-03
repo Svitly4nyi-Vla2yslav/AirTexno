@@ -262,7 +262,7 @@ const Header: React.FC = () => {
               </StyledNavLink>
             </NavItem>
             <NavItem>
-              <StyledNavLink to='/tipsp' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
+              <StyledNavLink to='/tips' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
                 Tips
               </StyledNavLink>
             </NavItem>

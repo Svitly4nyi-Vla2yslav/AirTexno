@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useLayoutEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -36,6 +36,12 @@ export const Layout: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  useLayoutEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
       const element = document.getElementById(id);
@@ -46,12 +52,16 @@ export const Layout: React.FC = () => {
         }, 400);
       }
     } else {
-      window.scrollTo({
-        top: 0,
-        behavior: 'auto',
+      // Force top scroll on every route change, including animated page transitions.
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
       });
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.search, location.hash]);
 
   return (
     <>
