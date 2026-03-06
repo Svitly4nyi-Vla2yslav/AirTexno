@@ -138,6 +138,17 @@ const ServicesSection: React.FC = () => {
             <motion.div variants={fadeInLeft}>
               <Title>& Maintenance</Title>
             </motion.div>
+            
+            <motion.div variants={fadeInLeft}>
+              <ul style={{marginTop: "20px", lineHeight: "1.8"}}>
+                <li><a href="/fridge">Refrigerator Repair</a></li>
+                <li><a href="/fridge/sub-zero">Sub-Zero Refrigerator Repair</a></li>
+                <li><a href="/fridge/viking">Viking Refrigerator Repair</a></li>
+                <li><a href="/fridge/thermador">Thermador Refrigerator Repair</a></li>
+                <li><a href="/fridge/ge-monogram">GE Monogram Refrigerator Repair</a></li>
+                <li><a href="/fridge/kitchenaid">KitchenAid Refrigerator Repair</a></li>
+              </ul>
+            </motion.div>
           </motion.div>
 
           {isDesktop && (
