@@ -140,13 +140,67 @@ const ServicesSection: React.FC = () => {
             </motion.div>
             
             <motion.div variants={fadeInLeft}>
-              <ul style={{marginTop: "20px", lineHeight: "1.8"}}>
-                <li><a href="/fridge">Refrigerator Repair</a></li>
-                <li><a href="/fridge/sub-zero">Sub-Zero Refrigerator Repair</a></li>
-                <li><a href="/fridge/viking">Viking Refrigerator Repair</a></li>
-                <li><a href="/fridge/thermador">Thermador Refrigerator Repair</a></li>
-                <li><a href="/fridge/ge-monogram">GE Monogram Refrigerator Repair</a></li>
-                <li><a href="/fridge/kitchenaid">KitchenAid Refrigerator Repair</a></li>
+              <ul
+                style={{
+                  marginTop: "20px",
+                  paddingLeft: "18px",
+                  lineHeight: "1.8",
+                  listStyle: "none",
+                }}
+              >
+                <li>
+                  <a
+                    href="/fridge"
+                    style={{ color: "#000", fontSize: "18px", fontWeight: 500 }}
+                  >
+                    Refrigerator Repair
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/fridge/sub-zero"
+                    style={{ color: "#000", fontSize: "18px", fontWeight: 500 }}
+                  >
+                    Sub-Zero Refrigerator Repair
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/fridge/viking"
+                    style={{ color: "#000", fontSize: "18px", fontWeight: 500 }}
+                  >
+                    Viking Refrigerator Repair
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/fridge/thermador"
+                    style={{ color: "#000", fontSize: "18px", fontWeight: 500 }}
+                  >
+                    Thermador Refrigerator Repair
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/fridge/ge-monogram"
+                    style={{ color: "#000", fontSize: "18px", fontWeight: 500 }}
+                  >
+                    GE Monogram Refrigerator Repair
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="/fridge/kitchenaid"
+                    style={{ color: "#000", fontSize: "18px", fontWeight: 500 }}
+                  >
+                    KitchenAid Refrigerator Repair
+                  </a>
+                </li>
               </ul>
             </motion.div>
           </motion.div>
