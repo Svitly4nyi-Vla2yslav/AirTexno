@@ -251,6 +251,38 @@ const Header: React.FC = () => {
                         </SubDropdownItem>
                       </SubDropdownMenu>
                     </DropdownItemWithSubmenu>
+                    <DropdownItemWithSubmenu>
+                      <StyledNavLink
+                        to='/service'
+                        $overlayOpen={isOverlayOpen}
+                        $darkMode={isDarkMode}
+                        onClick={(e) => { e.preventDefault(); }}
+                      >
+                      Other Services
+                      </StyledNavLink>
+                      <SubDropdownMenu>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/thermostat' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Thermostat Repair
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer-vent-cleaning' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Dryer Vent Cleaning
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/ring-doorbell' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Ring Doorbell Installation
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/garbage-disposal' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Garbage Disposal
+                          </StyledNavLink>
+                        </SubDropdownItem>
+                      </SubDropdownMenu>
+                    </DropdownItemWithSubmenu>
                   </DropdownMenu>
                 )}
               </ServiceLink>

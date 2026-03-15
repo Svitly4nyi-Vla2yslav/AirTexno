@@ -227,14 +227,24 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
             { to: '/dryer/lg', label: 'LG' },
           ],
         },
-        { 
-          to: '/oven-repair', 
+        {
+          to: '/oven-repair',
           label: 'Oven Repair',
           subItems: [
             { to: '/oven-repair/kitchenaid', label: 'KitchenAid' },
             { to: '/oven-repair/thermador', label: 'Thermador' },
             { to: '/oven-repair/viking', label: 'Viking' },
             { to: '/oven-repair/wolf', label: 'Wolf' },
+          ],
+        },
+        {
+          to: '/service',
+          label: 'Other Services',
+          subItems: [
+            { to: '/thermostat', label: 'Thermostat Repair' },
+            { to: '/dryer-vent-cleaning', label: 'Dryer Vent Cleaning' },
+            { to: '/ring-doorbell', label: 'Ring Doorbell Installation' },
+            { to: '/garbage-disposal', label: 'Garbage Disposal' },
           ],
         },
       ],
