@@ -35,7 +35,7 @@ const Header: React.FC = () => {
 
   // Визначаємо, чи потрібен темний режим для поточної сторінки
   useEffect(() => {
-    const darkPaths = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer', '/oven-repair'];
+    const darkPaths = ['/contact', '/service', '/tips', '/pricing', '/fridge', '/dryer', '/oven-repair', '/thermostat', '/dryer-vent-cleaning', '/ring-doorbell', '/garbage-disposal'];
     setIsDarkMode(darkPaths.some(path => location.pathname.startsWith(path)));
   }, [location.pathname]);
 
