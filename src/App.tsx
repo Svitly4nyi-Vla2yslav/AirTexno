@@ -22,6 +22,10 @@ import RefrigeratorKitchenAid from './pages/RefrigeratorKitchenAid/RefrigeratorK
 import RefrigeratorSubZero from './pages/RefrigeratorSubZero/RefrigeratorSubZero';
 import RefrigeratorThermador from './pages/RefrigeratorThermador/RefrigeratorThermador';
 import RefrigeratorViking from './pages/RefrigeratorViking/RefrigeratorViking';
+import Thermostat from './pages/Thermostat/Thermostat';
+import DryerVentCleaning from './pages/DryerVentCleaning/DryerVentCleaning';
+import RingDoorbell from './pages/RingDoorbell/RingDoorbell';
+import GarbageDisposal from './pages/GarbageDisposal/GarbageDisposal';
 import { trackPageView, trackContactPhone, trackLead } from './components/metaPixel';
 import Seo from './components/Seo';
 
@@ -304,6 +308,38 @@ export const App: React.FC = () => {
               element={
                 <PageWrapper>
                   <RefrigeratorViking />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/thermostat'
+              element={
+                <PageWrapper>
+                  <Thermostat />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer-vent-cleaning'
+              element={
+                <PageWrapper>
+                  <DryerVentCleaning />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/ring-doorbell'
+              element={
+                <PageWrapper>
+                  <RingDoorbell />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/garbage-disposal'
+              element={
+                <PageWrapper>
+                  <GarbageDisposal />
                 </PageWrapper>
               }
             />
