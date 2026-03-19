@@ -10,7 +10,7 @@ import image4 from '../../../assets/icons/equipment/s2.webp';
 import image5 from '../../../assets/icons/equipment/s1.webp';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
-import Partners from '../../componentsService/PartnersBanner/PartnersBanner';
+import Partners from '../PartnersBanner/PartnersBanner';
 
 // Дані для слайдів
 const slides = [

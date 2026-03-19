@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '../../../node_modules/react-i18next';
 import { HeroTitle } from '../Hero/Hero.styled';
 import { Alert, AlertType } from './Alert';
 const FeedbackWrapper = styled.div`

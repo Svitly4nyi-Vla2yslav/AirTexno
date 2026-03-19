@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '../../../node_modules/react-i18next';
 
 type Language = 'en' | 'ru' | 'es' | 'ua';
 

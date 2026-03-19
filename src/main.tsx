@@ -6,9 +6,9 @@ import { GlobalStyle } from './GlobalStyle.ts';
 import { App} from './App.tsx';
 import { Global } from '@emotion/react';
 import React from 'react';
-import './i18n';
+import './i18n.ts';
 import 'modern-normalize/modern-normalize.css';
-import { LanguageProvider } from './components/LanguageSwitcher/LanguageContext';
+import { LanguageProvider } from './components/LanguageSwitcher/LanguageContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
