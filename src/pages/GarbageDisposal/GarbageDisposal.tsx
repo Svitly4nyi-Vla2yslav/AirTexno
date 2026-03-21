@@ -70,16 +70,16 @@ const GarbageDisposal: React.FC = () => {
           <ContentWrapper>
             <Title>
               <span>Garbage Disposal</span> Repair & Installation{' '}
-              <span>in Thousand Oaks</span>
+              <span>in </span>Thousand Oaks & Ventura County
             </Title>
 
             <ReviewsWidget />
 
             <Description>
               Professional garbage disposal repair, replacement, and
-              installation for kitchens in Thousand Oaks and nearby cities. We
+              installation for kitchens in Thousand Oaks and nearby cities. <InlineLink to="/about">Airtexno Appliance Repair</InlineLink>
               help homeowners with jammed disposals, humming units, leaks,
-              clogs, and replacement of old or damaged garbage disposals.
+              clogs, and replacement of old or damaged garbage disposals. Starting at: $95
             </Description>
 
             <FeaturesList>
@@ -146,7 +146,7 @@ const GarbageDisposal: React.FC = () => {
         <SectionContainer>
           <SectionTitle>What Our Garbage Disposal Service May Include</SectionTitle>
           <SectionDescription>
-            Airtexno Appliance Repair provides garbage disposal repair and
+            <InlineLink to="/about">Airtexno Appliance Repair</InlineLink> provides garbage disposal repair and
             installation in Thousand Oaks and nearby cities. We help homeowners
             restore kitchen sink disposal systems when the unit stops working
             properly or needs replacement.
@@ -256,6 +256,7 @@ const GarbageDisposal: React.FC = () => {
             <ServiceItem>Agoura Hills</ServiceItem>
             <ServiceItem>Camarillo</ServiceItem>
             <ServiceItem>Moorpark</ServiceItem>
+            <ServiceItem>Simi Valley</ServiceItem>
             <ServiceItem>Oak Park</ServiceItem>
           </ServiceList>
         </SectionContainer>
