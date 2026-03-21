@@ -14,6 +14,7 @@ import {
   ButtonText,
   FeaturesList,
   FeatureItem,
+  InlineLink,
 } from '../../components/DryerLG/LGDryerHero.styled';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../../components/ReviewsWidget/ReviewsWidget';
@@ -71,7 +72,7 @@ const DryerVentCleaning: React.FC = () => {
           <ContentWrapper>
             <Title>
               <span>Dryer Vent</span> Cleaning{' '}
-              <span>in Thousand Oaks</span>
+              <span>in </span>Thousand Oaks & Ventura County
             </Title>
 
             <ReviewsWidget />
@@ -80,7 +81,7 @@ const DryerVentCleaning: React.FC = () => {
               Professional dryer vent cleaning to improve airflow, reduce
               overheating, and help your dryer work more efficiently. Dryer vent
               cleaning also helps reduce potential fire hazards caused by lint
-              buildup inside the vent system.
+              buildup inside the vent system. Starting at: $95
             </Description>
 
             <FeaturesList>
@@ -147,7 +148,7 @@ const DryerVentCleaning: React.FC = () => {
         <SectionContainer>
           <SectionTitle>What Our Dryer Vent Cleaning Service May Include</SectionTitle>
           <SectionDescription>
-            Airtexno Appliance Repair provides professional dryer vent cleaning
+            <InlineLink to="/about">Airtexno Appliance Repair</InlineLink> provides professional dryer vent cleaning
             in Thousand Oaks and nearby cities. We help homeowners improve dryer
             performance, reduce overheating, and restore proper airflow through
             the vent line.
@@ -287,6 +288,7 @@ const DryerVentCleaning: React.FC = () => {
             <ServiceItem>Agoura Hills</ServiceItem>
             <ServiceItem>Camarillo</ServiceItem>
             <ServiceItem>Moorpark</ServiceItem>
+            <ServiceItem>Simi Valley</ServiceItem>
             <ServiceItem>Oak Park</ServiceItem>
           </ServiceList>
         </SectionContainer>
