@@ -71,14 +71,13 @@ const Thermostat: React.FC = () => {
           <ContentWrapper>
             <Title>
               <span>AC Thermostat</span> Replacement & Repair{' '}
-              <span>in Thousand Oaks</span>
+              <span>in </span>Thousand Oaks & Ventura County
             </Title>
 
             <ReviewsWidget />
 
             <Description>
-              Professional thermostat installation, repair, and smart thermostat
-              setup. Service call: $95 | Replacement starting from $150.
+              Expert AC thermostat installation, replacement, and repair in Thousand Oaks and throughout Ventura County. We work with standard and smart thermostats, including Nest, Ecobee, and other leading brands. Whether you're upgrading your system, troubleshooting wiring issues, or replacing a faulty unit, we provide clean, precise installation and reliable performance for your home comfort. Starting at: $95
             </Description>
 
             <FeaturesList>
@@ -145,7 +144,7 @@ const Thermostat: React.FC = () => {
         <SectionContainer>
           <SectionTitle>Thermostat Services We Provide</SectionTitle>
           <SectionDescription>
-            Airtexno Appliance Repair provides thermostat repair and replacement
+            <InlineLink to="/about"> Airtexno Appliance Repair</InlineLink> provides thermostat repair and replacement
             services in Thousand Oaks and nearby cities. Our technicians work
             with traditional thermostats, programmable models, and modern smart
             thermostats with Wi-Fi connectivity.
@@ -238,7 +237,9 @@ const Thermostat: React.FC = () => {
           </ServiceList>
           <SectionDescription>
             If this does not solve the issue, our technician can diagnose the
-            system and repair or replace the thermostat.
+            system and repair or replace the thermostat. Our service are: Thousand Oaks, Westlake
+            Village, Newbury Park, Camarillo, Moorpark, Simi Valley, Oak Park, Agoura Hills, and other
+            nearby Ventura County communities.
           </SectionDescription>
         </SectionContainer>
       </Section>
