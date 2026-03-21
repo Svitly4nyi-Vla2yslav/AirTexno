@@ -14,6 +14,7 @@ import {
   ButtonText,
   FeaturesList,
   FeatureItem,
+  InLineLink,
 } from '../../components/DryerLG/LGDryerHero.styled';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../../components/ReviewsWidget/ReviewsWidget';
@@ -37,28 +38,28 @@ const RingDoorbell: React.FC = () => {
 
   const faqData = [
     {
-      question: 'Do you install both wired and battery-powered Ring doorbells?',
+      question: 'Do you install both wired and battery-powered smart doorbells?',
       answer: 'Yes, we install both types. We can also check your existing wiring and transformer to determine the best option for your home.',
     },
     {
-      question: 'How long does Ring doorbell installation take?',
+      question: 'How long does video doorbell installation take?',
       answer: 'Most installations are completed within 30-60 minutes, including mounting, wiring connection, and basic device setup.',
     },
     {
-      question: 'Do I need to provide the Ring doorbell device?',
+      question: 'Do I need to provide the smart doorbell with camera device?',
       answer: 'Yes, please have the Ring device available before scheduling installation. If you are not sure which model is best, we can inspect the location and advise.',
     },
     {
-      question: 'Can you replace my old doorbell with a Ring?',
-      answer: 'Yes, we can remove your old doorbell and install a Ring in its place. We will check whether the existing wiring is compatible with the new device.',
+      question: 'Can you replace my old doorbell with a new smart doorbell?',
+      answer: 'Yes, we can remove your old doorbell and install a smart one in its place. We will check whether the existing wiring is compatible with the new device.',
     },
     {
-      question: 'Will you help set up the Ring app?',
-      answer: 'We provide basic device setup assistance including Wi-Fi connection. For full app configuration, Ring provides step-by-step guides in their app.',
+      question: 'Will you help set up the app?',
+      answer: 'We provide basic device setup assistance including Wi-Fi connection. For full app configuration, smart device provides step-by-step guides in their app.',
     },
     {
       question: 'What areas do you serve?',
-      answer: 'We serve Thousand Oaks, Westlake Village, Newbury Park, Agoura Hills, Camarillo, Moorpark, Oak Park, and nearby cities.',
+      answer: 'We serve Thousand Oaks, Westlake Village, Newbury Park, Agoura Hills, Camarillo, Moorpark, Simi Valley, Oak Park, and nearby cities.',
     },
   ];
 
@@ -69,17 +70,20 @@ const RingDoorbell: React.FC = () => {
         <TabletContainer>
           <ContentWrapper>
             <Title>
-              <span>Door Ring</span> Installation{' '}
-              <span>in Thousand Oaks</span>
+              <span>Smart Doorbell</span> Installation & Repair{' '}
+              <span>in</span> Thousand Oaks & Ventura County
             </Title>
 
             <ReviewsWidget />
 
             <Description>
-              Professional Ring doorbell installation for homeowners who want a
-              clean, secure, and properly working setup. We can install wired or
-              battery-powered Ring devices and help make sure everything is
-              mounted and working correctly.
+              <InLineLink to="/about">Airtexno Appliance Repair</InLineLink> provides smart doorbell
+              installation and repair for homeowners who need a new smart doorbell installed, an old unit replaced, wiring checked, or
+              an existing video doorbell repaired or re-mounted. We service Ring, Nest, Eufy, Arlo,
+              and other wired or battery-powered smart doorbells across Thousand Oaks and
+              Ventura County. Whether you need a new installation, troubleshooting, wiring,
+              replacement, or repair, we help make sure everything is mounted and working
+              correctly.
             </Description>
 
             <FeaturesList>
