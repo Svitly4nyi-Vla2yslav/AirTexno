@@ -86,6 +86,16 @@ export const Description = styled.p`
   }
 `;
 
+export const InlineLink = styled(NavLink)`
+  color: var(--blue-500);
+  text-decoration: none;
+  font-weight: 400;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
