@@ -14,7 +14,7 @@ import {
   ButtonText,
   FeaturesList,
   FeatureItem,
-  InLineLink,
+  InlineLink,
 } from '../../components/DryerLG/LGDryerHero.styled';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../../components/ReviewsWidget/ReviewsWidget';
@@ -77,7 +77,7 @@ const RingDoorbell: React.FC = () => {
             <ReviewsWidget />
 
             <Description>
-              <InLineLink to="/about">Airtexno Appliance Repair</InLineLink> provides smart doorbell
+              <InlineLink to="/about">Airtexno Appliance Repair</InlineLink> provides smart doorbell
               installation and repair for homeowners who need a new smart doorbell installed, an old unit replaced, wiring checked, or
               an existing video doorbell repaired or re-mounted. We service Ring, Nest, Eufy, Arlo,
               and other wired or battery-powered smart doorbells across Thousand Oaks and
