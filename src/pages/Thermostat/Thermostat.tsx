@@ -14,6 +14,7 @@ import {
   ButtonText,
   FeaturesList,
   FeatureItem,
+  InlineLink,
 } from '../../components/DryerLG/LGDryerHero.styled';
 import { useMediaQuery } from 'react-responsive';
 import { ReviewsWidget } from '../../components/ReviewsWidget/ReviewsWidget';
