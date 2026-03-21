@@ -149,23 +149,24 @@ const RingDoorbell: React.FC = () => {
       <Section>
         <SectionContainer>
           <SectionTitle>
-            What Our Ring Doorbell Installation Service May Include
+            What Our Smart Doorbell Installation Service May Include
           </SectionTitle>
           <SectionDescription>
-            Airtexno Appliance Repair provides Ring doorbell installation in
+            <InlineLink to="/about">Airtexno Appliance Repair</InlineLink> provides doorbell with camera installation in
             Thousand Oaks and nearby cities. We help homeowners install and set
-            up Ring doorbells neatly and professionally.
+            up smart doorbells neatly and professionally.
           </SectionDescription>
 
           <SectionGrid>
             <div>
               <ServiceList>
-                <ServiceItem>Installation of Ring doorbell device</ServiceItem>
+                <ServiceItem>Installation of smart doorbell device</ServiceItem>
+                <ServiceItem>Repair of smart doorbell device</ServiceItem>
                 <ServiceItem>Replacement of existing doorbell button</ServiceItem>
                 <ServiceItem>Mounting on exterior wall or door frame</ServiceItem>
                 <ServiceItem>Basic wiring connection for compatible systems</ServiceItem>
-                <ServiceItem>Battery-powered Ring installation</ServiceItem>
-                <ServiceItem>Wired Ring installation</ServiceItem>
+                <ServiceItem>Battery-powered camera doorbell installation</ServiceItem>
+                <ServiceItem>Wired video doorbell device installation</ServiceItem>
                 <ServiceItem>Basic device setup assistance</ServiceItem>
                 <ServiceItem>Checking doorbell transformer compatibility</ServiceItem>
               </ServiceList>
@@ -189,13 +190,14 @@ const RingDoorbell: React.FC = () => {
               loading='lazy'
             />
             <div>
-              <SectionTitle>Why Homeowners Install Ring Doorbells</SectionTitle>
+              <SectionTitle>Why Homeowners Install Smart Doorbells</SectionTitle>
               <ServiceList $single>
                 <ServiceItem>See who is at the door from a phone</ServiceItem>
                 <ServiceItem>Get motion alerts</ServiceItem>
                 <ServiceItem>Improve front door visibility</ServiceItem>
                 <ServiceItem>Replace an old or damaged doorbell</ServiceItem>
                 <ServiceItem>Add convenience for package deliveries</ServiceItem>
+                <ServiceItem>Get safety alerts</ServiceItem>
                 <ServiceItem>Upgrade to a modern smart home device</ServiceItem>
               </ServiceList>
             </div>
@@ -206,17 +208,18 @@ const RingDoorbell: React.FC = () => {
       {/* Wired vs Battery */}
       <Section>
         <SectionContainer>
-          <SectionTitle>Wired and Battery Ring Installation</SectionTitle>
+          <SectionTitle>Wired and Battery Smart Doorbell Installation</SectionTitle>
           <SectionDescription>
-            Some homeowners prefer a battery-powered Ring doorbell for easier
+            Some homeowners prefer a battery-powered video doorbell for easier
             installation, while others want a wired setup connected to the
             existing doorbell system. We can help with both options and check
             whether the existing location, wiring, and transformer are suitable
-            for installation.
+            for installation. We work with popular brands such
+            as Ring, Nest, Eufy, Arlo and other brands.
           </SectionDescription>
           <ServiceList $single>
-            <ServiceItem>Battery-powered Ring installation</ServiceItem>
-            <ServiceItem>Basic wired Ring installation</ServiceItem>
+            <ServiceItem>Battery-powered smart doorbell device installation</ServiceItem>
+            <ServiceItem>Basic wired doorbell with camera installation</ServiceItem>
             <ServiceItem>Replacement of old doorbell button with smart doorbell</ServiceItem>
             <ServiceItem>Checking basic compatibility before installation</ServiceItem>
           </ServiceList>
@@ -232,7 +235,7 @@ const RingDoorbell: React.FC = () => {
             check:
           </SectionDescription>
           <ServiceList $single>
-            <ServiceItem>Make sure you have the Ring device available</ServiceItem>
+            <ServiceItem>Make sure you have the smart device available</ServiceItem>
             <ServiceItem>Check whether you want a wired or battery-powered installation</ServiceItem>
             <ServiceItem>Confirm your home Wi-Fi signal is strong near the front door</ServiceItem>
             <ServiceItem>If replacing an old doorbell, note whether the current button still works</ServiceItem>
@@ -256,6 +259,7 @@ const RingDoorbell: React.FC = () => {
             <ServiceItem>Agoura Hills</ServiceItem>
             <ServiceItem>Camarillo</ServiceItem>
             <ServiceItem>Moorpark</ServiceItem>
+            <ServiceItem>Simi Valley</ServiceItem>
             <ServiceItem>Oak Park</ServiceItem>
           </ServiceList>
         </SectionContainer>
