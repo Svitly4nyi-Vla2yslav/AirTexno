@@ -38,7 +38,7 @@ export const RefrigeratorBrandHero: React.FC<RefrigeratorBrandHeroProps> = ({
       <TabletContainer>
         <ContentWrapper>
           <Title>
-            <span>{brandName} Refrigerator</span> Repair <span>in Thousand Oaks & Ventura County</span>
+            <span>{brandName} Refrigerator</span> Repair <span>in </span>Thousand Oaks & Ventura County
           </Title>
 
           <ReviewsWidget />
