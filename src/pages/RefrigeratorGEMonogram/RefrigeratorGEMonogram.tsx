@@ -15,7 +15,7 @@ const RefrigeratorGEMonogram: React.FC = () => {
     <Container id='ap'>
       <RefrigeratorBrandHero 
         brandName="GE Monogram"
-        description="If your GE Monogram refrigerator is not cooling, leaking water, making unusual noise, or showing error codes, you need a technician who understands high-end built-in refrigeration. At <InlineLink to="/about">Airtexno Appliance Repair</InlineLink>, we specialize in diagnosing GE Monogram refrigerator and freezer problems with a technician-first approach: confirm the root cause, explain it clearly, and repair it for long-term reliability. We serve Thousand Oaks and nearby Ventura County cities with convenient in-home service for built-in units so you do not need to move the appliance or risk cabinet damage."
+        description="If your GE Monogram refrigerator is not cooling, leaking water, making unusual noise, or showing error codes, you need a technician who understands high-end built-in refrigeration. At Airtexno Appliance Repair, we specialize in diagnosing GE Monogram refrigerator and freezer problems with a technician-first approach: confirm the root cause, explain it clearly, and repair it for long-term reliability. We serve Thousand Oaks and nearby Ventura County cities with convenient in-home service for built-in units so you do not need to move the appliance or risk cabinet damage."
         image1={image1}
         image2={image2}
       />
