@@ -6,7 +6,6 @@ import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
-import {Container as InlineLink} from '../../components/DryerLG/LGDryerHero.styled';
 import image1 from '../../assets/brands/refrigerator/ge-monogram/r_gem_01.jpg';
 import image2 from '../../assets/brands/refrigerator/ge-monogram/r_gem_02.jpg';
 
