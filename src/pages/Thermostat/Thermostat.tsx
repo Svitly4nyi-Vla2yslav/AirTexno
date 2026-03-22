@@ -238,10 +238,26 @@ const Thermostat: React.FC = () => {
           </ServiceList>
           <SectionDescription>
             If this does not solve the issue, our technician can diagnose the
-            system and repair or replace the thermostat. Our service are: Thousand Oaks, Westlake
-            Village, Newbury Park, Camarillo, Moorpark, Simi Valley, Oak Park, Agoura Hills, and other
-            nearby Ventura County communities.
+            system and repair or replace the thermostat. Same-Day service available.
+            <InlineLink to="/about">Airtexno Appliance Repair</InlineLink> works with standard and smart thermostats, including Nest, Ecobee, and other leading brands.
           </SectionDescription>
+        </SectionContainer>
+      </Section>
+
+      {/* Service Area */}
+      <Section>
+        <SectionContainer>
+          <SectionTitle>Service Area</SectionTitle>
+          <ServiceList>
+            <ServiceItem>Thousand Oaks</ServiceItem>
+            <ServiceItem>Westlake Village</ServiceItem>
+            <ServiceItem>Newbury Park</ServiceItem>
+            <ServiceItem>Agoura Hills</ServiceItem>
+            <ServiceItem>Camarillo</ServiceItem>
+            <ServiceItem>Moorpark</ServiceItem>
+            <ServiceItem>Simi Valley</ServiceItem>
+            <ServiceItem>Oak Park</ServiceItem>
+          </ServiceList>
         </SectionContainer>
       </Section>
 
