@@ -66,6 +66,75 @@ const RefrigeratorGEMonogram: React.FC = () => {
 
 export default RefrigeratorGEMonogram;
 
+const Section = styled.section<{ $highlight?: boolean }>`
+  width: 100%;
+  padding: 4rem 1rem;
+  background: ${({ $highlight }) => ($highlight ? 'var(--gray-50)' : 'white')};
+
+  @media (min-width: 1440px) {
+    padding: 6rem 2rem;
+  }
+`;
+
+const SectionContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+const SectionTitle = styled.h2`
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--blue-500);
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    font-size: 48px;
+  }
+`;
+
+const SectionDescription = styled.p`
+  font-family: var(--main-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--black-500);
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+`;
+
+const ServiceList = styled.ul<{ $single?: boolean }>`
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: ${({ $single }) => ($single ? '1fr' : '1fr 1fr')};
+  }
+`;
+const ServiceItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: var(--main-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--black-500);
+
+  &:before {
+    content: '✓';
+    color: var(--blue-500);
+    font-weight: bold;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+`;
+
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
