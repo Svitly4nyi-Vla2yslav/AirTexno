@@ -11,6 +11,15 @@ import Refrigeration from './pages/Refrigeration/Refrigeration';
 import { AnimatePresence } from 'framer-motion';
 import Dryer from './pages/Dryer/Dryer';
 import DryerLG from './pages/DryerLG/DryerLG';
+import DryerSamsung from './pages/DryerSamsung/DryerSamsung';
+import DryerGE from './pages/DryerGE/DryerGE';
+import DryerMaytag from './pages/DryerMaytag/DryerMaytag';
+import DryerWhirlpool from './pages/DryerWhirlpool/DryerWhirlpool';
+import DryerKenmore from './pages/DryerKenmore/DryerKenmore';
+import DryerMiele from './pages/DryerMiele/DryerMiele';
+import DryerBosch from './pages/DryerBosch/DryerBosch';
+import DryerSpeedQueen from './pages/DryerSpeedQueen/DryerSpeedQueen';
+import DryerElectrolux from './pages/DryerElectrolux/DryerElectrolux';
 // Cookie consent banner removed — CCPA opt-out model for US audience
 import OvenRepair from './pages/OvenRepair/OvenRepair';
 import OvenKitchenAid from './pages/OvenKitchenAid/OvenKitchenAid';
@@ -228,6 +237,78 @@ export const App: React.FC = () => {
               element={
                 <PageWrapper>
                   <DryerLG />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/samsung'
+              element={
+                <PageWrapper>
+                  <DryerSamsung />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/ge'
+              element={
+                <PageWrapper>
+                  <DryerGE />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/maytag'
+              element={
+                <PageWrapper>
+                  <DryerMaytag />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/whirlpool'
+              element={
+                <PageWrapper>
+                  <DryerWhirlpool />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/kenmore'
+              element={
+                <PageWrapper>
+                  <DryerKenmore />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/miele'
+              element={
+                <PageWrapper>
+                  <DryerMiele />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/bosch'
+              element={
+                <PageWrapper>
+                  <DryerBosch />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/speed-queen'
+              element={
+                <PageWrapper>
+                  <DryerSpeedQueen />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path='/dryer/electrolux'
+              element={
+                <PageWrapper>
+                  <DryerElectrolux />
                 </PageWrapper>
               }
             />

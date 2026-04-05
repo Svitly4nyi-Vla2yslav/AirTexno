@@ -225,6 +225,15 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
           label: 'Dryer Repair',
           subItems: [
             { to: '/dryer/lg', label: 'LG' },
+            { to: '/dryer/samsung', label: 'Samsung' },
+            { to: '/dryer/ge', label: 'GE' },
+            { to: '/dryer/maytag', label: 'Maytag' },
+            { to: '/dryer/whirlpool', label: 'Whirlpool' },
+            { to: '/dryer/kenmore', label: 'Kenmore' },
+            { to: '/dryer/miele', label: 'Miele' },
+            { to: '/dryer/bosch', label: 'Bosch' },
+            { to: '/dryer/speed-queen', label: 'Speed Queen' },
+            { to: '/dryer/electrolux', label: 'Electrolux' },
           ],
         },
         {

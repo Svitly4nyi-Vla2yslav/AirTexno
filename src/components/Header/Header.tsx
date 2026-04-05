@@ -188,14 +188,34 @@ const Header: React.FC = () => {
                       </StyledNavLink>
                       <SubDropdownMenu>
                         <SubDropdownItem>
-                          <StyledNavLink
-                            to='/dryer/lg'
-                            $overlayOpen={isOverlayOpen}
-                            $darkMode={isDarkMode}
-                            onClick={() => setIsServicesOpen(false)}
-                          >
-                          LG
-                          </StyledNavLink>
+                          <StyledNavLink to='/dryer/lg' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>LG</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/samsung' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Samsung</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/ge' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>GE</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/maytag' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Maytag</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/whirlpool' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Whirlpool</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/kenmore' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Kenmore</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/miele' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Miele</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/bosch' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Bosch</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/speed-queen' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Speed Queen</StyledNavLink>
+                        </SubDropdownItem>
+                        <SubDropdownItem>
+                          <StyledNavLink to='/dryer/electrolux' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>Electrolux</StyledNavLink>
                         </SubDropdownItem>
                       </SubDropdownMenu>
                     </DropdownItemWithSubmenu>
