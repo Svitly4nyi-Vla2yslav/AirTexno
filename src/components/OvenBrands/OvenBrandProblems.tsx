@@ -87,55 +87,99 @@ const ListItem = styled.li`
 
 interface OvenBrandProblemsProps {
   brandName: string;
+  models?: string[];
+  problems?: string[];
+  diagnostics?: { title: string; text: string }[];
+  problemsIntro?: string;
 }
 
-export const OvenBrandProblems: React.FC<OvenBrandProblemsProps> = ({ brandName }) => {
+export const OvenBrandProblems: React.FC<OvenBrandProblemsProps> = ({
+  brandName,
+  models,
+  problems,
+  diagnostics,
+  problemsIntro,
+}) => {
+  const defaultProblems = [
+    'Oven not heating or uneven temperature',
+    'Self-cleaning cycle issues',
+    'Control panel errors and malfunctions',
+    'Door won\'t close properly or seal issues',
+    'Burner or heating element problems',
+    'Ignition system failures (gas ovens)',
+    'Fan or convection issues',
+    'Error codes and diagnostic alerts',
+  ];
+
+  const defaultDiagnostics = [
+    { title: 'Temperature testing', text: 'We verify heating accuracy and distribution' },
+    { title: 'Component inspection', text: 'Check heating elements, igniters, and thermostats' },
+    { title: 'Control board diagnosis', text: 'Test electronic controls and sensors' },
+    { title: 'Safety system check', text: 'Inspect door locks, gas valves, and safety cutoffs' },
+    { title: 'Calibration', text: 'Ensure temperature accuracy for precise cooking' },
+  ];
+
+  const actualProblems = problems || defaultProblems;
+  const actualDiagnostics = diagnostics || defaultDiagnostics;
+
   return (
     <Section>
       <Container>
-        <Title>{brandName} Oven Services We Provide</Title>
-        <Description>
-          We specialize in professional {brandName} oven repair for all models including wall ovens, 
-          ranges, double ovens, and combination units. Our technicians are trained to work with 
-          {brandName}'s advanced cooking technology.
-        </Description>
+        <Title>{brandName} Oven Units We Commonly Service</Title>
+        {models && models.length > 0 ? (
+          <ModelsList>
+            {models.map((model, i) => (
+              <ModelItem key={i}><span>•</span> {model}</ModelItem>
+            ))}
+          </ModelsList>
+        ) : (
+          <Description>
+            We specialize in professional {brandName} oven repair for all models including wall ovens,
+            ranges, double ovens, and combination units.
+          </Description>
+        )}
 
         <SubTitle>Common {brandName} Oven Problems We Fix</SubTitle>
+        {problemsIntro && <Description>{problemsIntro}</Description>}
         <List>
-          <ListItem>Oven not heating or uneven temperature</ListItem>
-          <ListItem>Self-cleaning cycle issues</ListItem>
-          <ListItem>Control panel errors and malfunctions</ListItem>
-          <ListItem>Door won't close properly or seal issues</ListItem>
-          <ListItem>Burner or heating element problems</ListItem>
-          <ListItem>Ignition system failures (gas ovens)</ListItem>
-          <ListItem>Fan or convection issues</ListItem>
-          <ListItem>Error codes and diagnostic alerts</ListItem>
+          {actualProblems.map((p, i) => <ListItem key={i}>{p}</ListItem>)}
         </List>
 
-        <SubTitle>Our Diagnostic Process</SubTitle>
+        <SubTitle>How We Diagnose {brandName} Oven Issues</SubTitle>
         <List>
-          <ListItem>
-            <strong>Temperature testing:</strong> We verify heating accuracy and distribution
-          </ListItem>
-          <ListItem>
-            <strong>Component inspection:</strong> Check heating elements, igniters, and thermostats
-          </ListItem>
-          <ListItem>
-            <strong>Control board diagnosis:</strong> Test electronic controls and sensors
-          </ListItem>
-          <ListItem>
-            <strong>Safety system check:</strong> Inspect door locks, gas valves, and safety cutoffs
-          </ListItem>
-          <ListItem>
-            <strong>Calibration:</strong> Ensure temperature accuracy for precise cooking
-          </ListItem>
+          {actualDiagnostics.map((d, i) => (
+            <ListItem key={i}>
+              <strong>{d.title}:</strong> {d.text}
+            </ListItem>
+          ))}
         </List>
 
         <Description>
-          After diagnosis, we provide clear recommendations and use only genuine {brandName} parts 
-          to ensure your oven performs like new.
+          After diagnosis, you get clear recommendations and repair options based on reliability and total cost—not guesswork.
         </Description>
       </Container>
     </Section>
   );
 };
+
+const ModelsList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+`;
+
+const ModelItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: var(--main-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--black-500);
+
+  span {
+    color: var(--blue-500);
+    font-weight: 500;
+  }
+`;

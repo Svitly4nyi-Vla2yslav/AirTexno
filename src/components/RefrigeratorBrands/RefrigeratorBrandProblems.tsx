@@ -87,55 +87,102 @@ const ListItem = styled.li`
 
 interface RefrigeratorBrandProblemsProps {
   brandName: string;
+  models?: string[];
+  problems?: string[];
+  diagnostics?: { title: string; text: string }[];
+  introText?: string;
+  closingText?: string;
+  problemsIntro?: string;
 }
 
-export const RefrigeratorBrandProblems: React.FC<RefrigeratorBrandProblemsProps> = ({ brandName }) => {
+export const RefrigeratorBrandProblems: React.FC<RefrigeratorBrandProblemsProps> = ({
+  brandName,
+  models,
+  problems,
+  diagnostics,
+  introText,
+  closingText,
+  problemsIntro,
+}) => {
+  const defaultProblems = [
+    'Not cooling or inadequate cooling',
+    'Freezer not freezing properly',
+    'Water leaking inside or outside',
+    'Ice maker not working or making noise',
+    'Unusual noises (buzzing, clicking, humming)',
+    'Error codes or display malfunctions',
+    'Door seal problems or air leaks',
+    'Compressor or cooling system issues',
+  ];
+
+  const defaultDiagnostics = [
+    { title: 'Temperature testing', text: 'We verify cooling performance in all compartments' },
+    { title: 'System inspection', text: 'Check compressor, evaporator, and condenser operation' },
+    { title: 'Control board diagnosis', text: 'Test electronic controls and temperature sensors' },
+    { title: 'Seal and airflow check', text: 'Inspect door seals, fans, and air circulation' },
+    { title: 'Ice maker service', text: 'Diagnose water supply, ice production, and dispenser' },
+  ];
+
+  const actualProblems = problems || defaultProblems;
+  const actualDiagnostics = diagnostics || defaultDiagnostics;
+
   return (
     <Section>
       <Container>
-        <Title>{brandName} Refrigerator Services We Provide</Title>
-        <Description>
-          We specialize in professional {brandName} refrigerator repair for all models including 
-          built-in refrigerators, French door models, side-by-side units, and freezer compartments. 
-          Our technicians are trained to work with {brandName}'s advanced cooling technology.
-        </Description>
+        <Title>{brandName} Refrigerator Units We Commonly Service</Title>
+        {models && models.length > 0 ? (
+          <ModelsList>
+            {models.map((model, i) => (
+              <ModelItem key={i}><span>•</span> {model}</ModelItem>
+            ))}
+          </ModelsList>
+        ) : (
+          <Description>
+            {introText || `We specialize in professional ${brandName} refrigerator repair for all models including built-in refrigerators, French door models, side-by-side units, and freezer compartments.`}
+          </Description>
+        )}
 
         <SubTitle>Common {brandName} Refrigerator Problems We Fix</SubTitle>
+        {problemsIntro && <Description>{problemsIntro}</Description>}
         <List>
-          <ListItem>Not cooling or inadequate cooling</ListItem>
-          <ListItem>Freezer not freezing properly</ListItem>
-          <ListItem>Water leaking inside or outside</ListItem>
-          <ListItem>Ice maker not working or making noise</ListItem>
-          <ListItem>Unusual noises (buzzing, clicking, humming)</ListItem>
-          <ListItem>Error codes or display malfunctions</ListItem>
-          <ListItem>Door seal problems or air leaks</ListItem>
-          <ListItem>Compressor or cooling system issues</ListItem>
+          {actualProblems.map((p, i) => <ListItem key={i}>{p}</ListItem>)}
         </List>
 
-        <SubTitle>Our Diagnostic Process</SubTitle>
+        <SubTitle>How We Diagnose {brandName} Refrigerators & Freezers</SubTitle>
         <List>
-          <ListItem>
-            <strong>Temperature testing:</strong> We verify cooling performance in all compartments
-          </ListItem>
-          <ListItem>
-            <strong>System inspection:</strong> Check compressor, evaporator, and condenser operation
-          </ListItem>
-          <ListItem>
-            <strong>Control board diagnosis:</strong> Test electronic controls and temperature sensors
-          </ListItem>
-          <ListItem>
-            <strong>Seal and airflow check:</strong> Inspect door seals, fans, and air circulation
-          </ListItem>
-          <ListItem>
-            <strong>Ice maker service:</strong> Diagnose water supply, ice production, and dispenser
-          </ListItem>
+          {actualDiagnostics.map((d, i) => (
+            <ListItem key={i}>
+              <strong>{d.title}:</strong> {d.text}
+            </ListItem>
+          ))}
         </List>
 
         <Description>
-          After diagnosis, we provide clear recommendations and use only genuine {brandName} parts 
-          to ensure your refrigerator performs reliably for years to come.
+          {closingText || `After diagnosis, you get clear recommendations and repair options based on reliability and total cost—not guesswork.`}
         </Description>
       </Container>
     </Section>
   );
 };
+
+const ModelsList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+`;
+
+const ModelItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: var(--main-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--black-500);
+
+  span {
+    color: var(--blue-500);
+    font-weight: 500;
+  }
+`;

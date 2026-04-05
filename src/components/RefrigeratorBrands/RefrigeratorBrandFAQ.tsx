@@ -94,16 +94,17 @@ const Answer = styled.div<{ $isOpen: boolean }>`
 
 interface RefrigeratorBrandFAQProps {
   brandName: string;
+  faqData?: { question: string; answer: string }[];
 }
 
-export const RefrigeratorBrandFAQ: React.FC<RefrigeratorBrandFAQProps> = ({ brandName }) => {
+export const RefrigeratorBrandFAQ: React.FC<RefrigeratorBrandFAQProps> = ({ brandName, faqData: customFaqData }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const faqData = [
+  const faqData = customFaqData || [
     {
       question: `Why is my ${brandName} refrigerator not cooling?`,
       answer: `Common causes include compressor failure, refrigerant leaks, faulty temperature controls, or airflow blockage. We diagnose the exact cause to avoid unnecessary part replacements.`,

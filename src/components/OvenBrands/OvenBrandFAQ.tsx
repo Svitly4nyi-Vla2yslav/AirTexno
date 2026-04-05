@@ -94,16 +94,17 @@ const Answer = styled.div<{ $isOpen: boolean }>`
 
 interface OvenBrandFAQProps {
   brandName: string;
+  faqData?: { question: string; answer: string }[];
 }
 
-export const OvenBrandFAQ: React.FC<OvenBrandFAQProps> = ({ brandName }) => {
+export const OvenBrandFAQ: React.FC<OvenBrandFAQProps> = ({ brandName, faqData: customFaqData }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const faqData = [
+  const faqData = customFaqData || [
     {
       question: `How long does ${brandName} oven repair take?`,
       answer: `Most ${brandName} oven repairs are completed in one visit, typically 1-2 hours. Complex issues may require ordering specific parts, but we'll provide a clear timeline upfront.`,

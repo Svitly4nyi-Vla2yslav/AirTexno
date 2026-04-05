@@ -18,8 +18,84 @@ const OvenViking: React.FC = () => {
         image2={image2}
       />
       <Partners />
-      <OvenBrandProblems brandName="Viking" />
-      <OvenBrandFAQ brandName="Viking" />
+      <OvenBrandProblems
+        brandName="Viking"
+        models={[
+          "Viking gas and electric ranges",
+          "Dual-fuel ranges (gas cooktop + electric oven)",
+          "Single and double oven configurations (model-dependent)",
+          "Convection ovens and specialty cooking modes",
+        ]}
+        problems={[
+          "Oven not heating or weak heat (bake/broil issues)",
+          "Burners clicking but not lighting, uneven flame, or weak ignition",
+          "Gas odor or delayed ignition (urgent safety issue)",
+          "Uneven baking or inaccurate temperatures",
+          "Convection fan not running or noisy fan",
+          "Control/display problems or intermittent operation",
+          "Self-clean issues, door lock problems, or stuck door",
+        ]}
+        problemsIntro="Many symptoms can have multiple causes. A structured diagnosis is the fastest way to avoid replacing the wrong part and to reduce repeat failures."
+        diagnostics={[
+          {
+            title: "Safety and power checks",
+            text: "We confirm proper electrical supply and safe gas operation before deeper testing.",
+          },
+          {
+            title: "Ignition and gas system testing (when applicable)",
+            text: "We test igniters, flame sensing, valves, and burner performance.",
+          },
+          {
+            title: "Oven heating performance testing",
+            text: "We check bake/broil circuits and verify temperature stability under load.",
+          },
+          {
+            title: "Control and wiring inspection",
+            text: "We inspect control boards, harnesses, and connections for heat-related damage.",
+          },
+          {
+            title: "Airflow and convection evaluation",
+            text: "We verify fan operation and airflow behavior for consistent baking results.",
+          },
+        ]}
+      />
+      <OvenBrandFAQ
+        brandName="Viking"
+        faqData={[
+          {
+            question: "Why do my Viking burners keep clicking?",
+            answer: "Continuous clicking can be caused by moisture, ignition switch problems, misalignment, or wiring faults. Diagnosis identifies the specific cause so the fix lasts.",
+          },
+          {
+            question: "My Viking oven won't heat—what are common causes?",
+            answer: "Possible causes include heating component failure, control/relay issues, sensor problems, or power faults. Testing confirms the root cause.",
+          },
+          {
+            question: "I smell gas near the range—what should I do?",
+            answer: "Turn off the gas supply if safe, ventilate the area, avoid flames/sparks, and schedule service. Gas odor should be treated as urgent.",
+          },
+          {
+            question: "Why is baking uneven or temperature inaccurate?",
+            answer: "It may be sensor calibration drift, airflow/convection issues, or heat output problems. We verify performance with real measurements.",
+          },
+          {
+            question: "Can you repair dual-fuel models?",
+            answer: "Yes. Dual-fuel ranges require careful testing of both gas and electric systems.",
+          },
+          {
+            question: "Is it worth repairing a Viking range?",
+            answer: "Often yes—especially for premium units. The best answer depends on the specific failure and overall condition.",
+          },
+          {
+            question: "Do you service built-in Viking ovens?",
+            answer: "Yes, when access allows. We work carefully around cabinetry and surrounding finishes.",
+          },
+          {
+            question: "How quickly can you come out?",
+            answer: "Availability varies, but we aim for prompt scheduling for no-heat and safety-related issues.",
+          },
+        ]}
+      />
       <ReviewCardContainer />
       <TeamMember />
       <ContactForm />
