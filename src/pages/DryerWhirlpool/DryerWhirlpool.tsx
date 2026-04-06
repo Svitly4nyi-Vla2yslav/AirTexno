@@ -1,12 +1,14 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/whirlpool/whirlpool_01.jpg';
 import img2 from '../../assets/brands/dryer/whirlpool/whirlpool_02.jpg';
+import img3 from '../../assets/brands/dryer/whirlpool/whirlpool_03.jpg';
+import img4 from '../../assets/brands/dryer/whirlpool/whirlpool_04.jpg';
 
 const DryerWhirlpool: React.FC = () => {
   return (
@@ -64,6 +66,13 @@ const DryerWhirlpool: React.FC = () => {
         ]}
         brandSpecificTitle="Why homeowners call us for Whirlpool dryer repair"
         brandSpecificText="Whirlpool dryers are common in many homes because they are practical and familiar, but when they stop heating, stop tumbling properly, or begin making noise, the problem is rarely solved by guesswork. Homeowners call Airtexno Appliance Repair because they want a clear answer, honest communication, and service based on real diagnosis instead of random part swapping. A Whirlpool dryer that runs without heat, dries slowly, or overheats can be affected by airflow issues, worn moving parts, heating failures, sensor problems, or control-related faults. Similar symptoms can come from very different causes, so a careful inspection is the best way to avoid wasting time and money."
+      />
+      <PhotoGallery
+        brandName="Whirlpool Dryer"
+        photos={[
+          { src: img3, alt: 'Whirlpool dryer repair work' },
+          { src: img4, alt: 'Whirlpool dryer maintenance' },
+        ]}
       />
       <DryerBrandFAQ
         faqData={[

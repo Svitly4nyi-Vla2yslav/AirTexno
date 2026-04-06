@@ -25,7 +25,7 @@ import { ContactForm } from '../../components/ContactComponents/ContactForm';
 
 import image1 from '../../assets/brands/thermostat/therm_01.jpg';
 import image2 from '../../assets/brands/thermostat/therm_02.jpg';
-import image3 from '../../assets/brands/thermostat/therm_03.png';
+import image3 from '../../assets/brands/thermostat/therm_06.jpg';
 import image4 from '../../assets/brands/thermostat/therm_04.jpg';
 import image5 from '../../assets/brands/thermostat/therm_05.jpg';
 

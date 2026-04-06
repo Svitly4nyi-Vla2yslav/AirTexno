@@ -1,12 +1,18 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/bosch/bosch_01.jpg';
 import img2 from '../../assets/brands/dryer/bosch/bosch_02.jpg';
+import img3 from '../../assets/brands/dryer/bosch/bosch_03.jpg';
+import img4 from '../../assets/brands/dryer/bosch/bosch_04.jpg';
+import img5 from '../../assets/brands/dryer/bosch/bosch_05.jpg';
+import img6 from '../../assets/brands/dryer/bosch/bosch_06.jpg';
+import img7 from '../../assets/brands/dryer/bosch/bosch_07.jpg';
+import img8 from '../../assets/brands/dryer/bosch/bosch_08.jpg';
 
 const DryerBosch: React.FC = () => {
   return (
@@ -46,6 +52,17 @@ const DryerBosch: React.FC = () => {
         ]}
         brandSpecificTitle="Bosch heat pump & condenser dryer issues"
         brandSpecificText="Unlike traditional vented dryers, Bosch dryers often rely on internal condensation systems. Moisture is collected inside a reservoir or pumped to a drain line. If airflow channels become restricted or sensors fail, the dryer may stop early or display warning messages. These systems require proper testing of sensors, pumps, and airflow paths to determine what is affecting performance."
+      />
+      <PhotoGallery
+        brandName="Bosch Dryer"
+        photos={[
+          { src: img3, alt: 'Bosch dryer repair work' },
+          { src: img4, alt: 'Bosch dryer maintenance' },
+          { src: img5, alt: 'Bosch dryer service' },
+          { src: img6, alt: 'Bosch dryer diagnostics' },
+          { src: img7, alt: 'Bosch dryer component repair' },
+          { src: img8, alt: 'Bosch dryer technician work' },
+        ]}
       />
       <DryerBrandFAQ faqData={[
         {

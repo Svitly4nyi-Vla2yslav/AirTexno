@@ -1,12 +1,14 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/ge/ge_01.jpg';
 import img2 from '../../assets/brands/dryer/ge/ge_02.jpg';
+import img3 from '../../assets/brands/dryer/ge/ge_03.jpg';
+import img4 from '../../assets/brands/dryer/ge/ge_04.jpg';
 
 const geModels = [
   'GE electric dryers and GE gas dryers',
@@ -97,6 +99,13 @@ const DryerGE: React.FC = () => {
         diagnostics={geDiagnostics}
         brandSpecificTitle="Why GE Dryer Symptoms Can Be Misleading"
         brandSpecificText="One reason GE dryer problems should be tested carefully is that the same symptom can have more than one explanation. For example, a dryer that takes too long to dry may be dealing with weak heating, poor airflow, cycle-management issues, or a moisture-sensing problem. A machine that shuts off early may be overheating, reacting to vent restriction, or experiencing a control-related interruption. Because of that, we do not treat a symptom as proof of one specific failed part. We evaluate how the dryer behaves, how it heats, how air moves through it, and whether the cycle logic appears normal for the selected setting."
+      />
+      <PhotoGallery
+        brandName="GE Dryer"
+        photos={[
+          { src: img3, alt: 'GE dryer repair work' },
+          { src: img4, alt: 'GE dryer maintenance' },
+        ]}
       />
       <DryerBrandFAQ faqData={geFAQ} />
       <ReviewCardContainer />

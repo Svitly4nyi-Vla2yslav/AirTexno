@@ -23,10 +23,10 @@ import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 
-import image1 from '../../assets/brands/garbage-disposal/gd_01.jpg';
-import image2 from '../../assets/brands/garbage-disposal/gd_02.jpg';
-import image3 from '../../assets/brands/garbage-disposal/gd_03.png';
-import image4 from '../../assets/brands/garbage-disposal/gd_04.png';
+import image1 from '../../assets/brands/garbage-disposal/gd_real_01.jpg';
+import image2 from '../../assets/brands/garbage-disposal/gd_real_03.jpg';
+import image3 from '../../assets/brands/garbage-disposal/gd_real_02.jpg';
+import image4 from '../../assets/brands/garbage-disposal/gd_real_05.jpg';
 
 const GarbageDisposal: React.FC = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });

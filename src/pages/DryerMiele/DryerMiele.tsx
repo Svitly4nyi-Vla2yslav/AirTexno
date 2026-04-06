@@ -1,12 +1,16 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/miele/miele_01.jpg';
 import img2 from '../../assets/brands/dryer/miele/miele_02.jpg';
+import img3 from '../../assets/brands/dryer/miele/miele_03.jpg';
+import img4 from '../../assets/brands/dryer/miele/miele_04.jpg';
+import img5 from '../../assets/brands/dryer/miele/miele_05.jpg';
+import img6 from '../../assets/brands/dryer/miele/miele_06.jpg';
 
 const DryerMiele: React.FC = () => {
   return (
@@ -66,6 +70,15 @@ const DryerMiele: React.FC = () => {
         ]}
         brandSpecificTitle="What makes Miele dryer repair different"
         brandSpecificText="Miele dryers often behave differently from many standard American dryer models. Depending on the unit, drying results may be affected not only by heat output, but also by sensor readings, condenser performance, air circulation, drainage handling, lint buildup in less obvious areas, and cycle programming. That means symptoms such as long dry times, cool or barely warm laundry, condensation-related messages, or stopping before clothes are dry should not be diagnosed by assumption alone. The same complaint can come from multiple causes, and premium appliances usually benefit from a more methodical inspection."
+      />
+      <PhotoGallery
+        brandName="Miele Dryer"
+        photos={[
+          { src: img3, alt: 'Miele dryer repair work' },
+          { src: img4, alt: 'Miele dryer maintenance' },
+          { src: img5, alt: 'Miele dryer service' },
+          { src: img6, alt: 'Miele dryer diagnostics' },
+        ]}
       />
       <DryerBrandFAQ
         faqData={[

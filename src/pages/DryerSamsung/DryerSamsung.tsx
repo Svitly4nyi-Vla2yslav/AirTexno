@@ -1,12 +1,14 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/samsung/samsung_01.jpg';
 import img2 from '../../assets/brands/dryer/samsung/samsung_02.jpg';
+import img3 from '../../assets/brands/dryer/samsung/samsung_03.jpg';
+import img4 from '../../assets/brands/dryer/samsung/samsung_04.jpg';
 
 const samsungModels = [
   'Samsung electric dryers',
@@ -86,6 +88,13 @@ const DryerSamsung: React.FC = () => {
         diagnostics={samsungDiagnostics}
         brandSpecificTitle="Samsung Dryer Error Code Diagnostics"
         brandSpecificText="Many Samsung dryers display diagnostic error codes when the appliance detects a system malfunction. These alerts may indicate airflow restrictions, sensor problems, heating failures, or electronic control issues. Proper troubleshooting requires testing the components related to the error code instead of simply resetting the machine."
+      />
+      <PhotoGallery
+        brandName="Samsung Dryer"
+        photos={[
+          { src: img3, alt: 'Samsung dryer repair work' },
+          { src: img4, alt: 'Samsung dryer maintenance' },
+        ]}
       />
       <DryerBrandFAQ faqData={samsungFAQ} />
       <ReviewCardContainer />

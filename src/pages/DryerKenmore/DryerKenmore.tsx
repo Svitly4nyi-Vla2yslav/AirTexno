@@ -1,12 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/kenmore/kenmore_01.jpg';
 import img2 from '../../assets/brands/dryer/kenmore/kenmore_02.jpg';
+import img3 from '../../assets/brands/dryer/kenmore/kenmore_03.jpg';
+import img4 from '../../assets/brands/dryer/kenmore/kenmore_04.jpg';
+import img5 from '../../assets/brands/dryer/kenmore/kenmore_05.jpg';
 
 const DryerKenmore: React.FC = () => {
   return (
@@ -64,6 +67,14 @@ const DryerKenmore: React.FC = () => {
         ]}
         brandSpecificTitle="Why Kenmore dryer repair often requires careful model matching"
         brandSpecificText="Kenmore is a broad appliance brand, and many Kenmore dryers share design patterns with different manufacturers depending on the series and production history. That means the name on the front does not always tell the whole story about the internal configuration. For repair purposes, this matters because heating systems, drum supports, sensors, controls, and safety components may vary significantly from one Kenmore model to another. Instead of treating every Kenmore dryer the same, we look at how the specific machine is built and how the symptom appears during operation. This helps narrow down whether the issue is heat generation, airflow restriction, cycling behavior, drive-system wear, or control failure."
+      />
+      <PhotoGallery
+        brandName="Kenmore Dryer"
+        photos={[
+          { src: img3, alt: 'Kenmore dryer repair work' },
+          { src: img4, alt: 'Kenmore dryer maintenance' },
+          { src: img5, alt: 'Kenmore dryer service' },
+        ]}
       />
       <DryerBrandFAQ
         faqData={[

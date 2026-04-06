@@ -1,12 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/maytag/maytag_01.jpg';
 import img2 from '../../assets/brands/dryer/maytag/maytag_02.jpg';
+import img3 from '../../assets/brands/dryer/maytag/maytag_03.jpg';
+import img4 from '../../assets/brands/dryer/maytag/maytag_04.jpg';
+import img5 from '../../assets/brands/dryer/maytag/maytag_05.jpg';
 
 const maytagModels = [
   'Maytag electric dryers and Maytag gas dryers',
@@ -101,6 +104,14 @@ const DryerMaytag: React.FC = () => {
         diagnostics={maytagDiagnostics}
         brandSpecificTitle="Why Customers Call Us for Maytag Dryer Repair"
         brandSpecificText="Dryer problems are disruptive, especially when the appliance is heating poorly, damaging clothes, or stopping in the middle of a cycle. Customers call Airtexno Appliance Repair because they want practical diagnosis, straightforward communication, and professional service. If your Maytag dryer is running but not heating, taking too long to dry, making loud sounds, or repeatedly shutting off, it may be caused by airflow restriction, worn drive parts, heating failure, control problems, or safety cutoffs."
+      />
+      <PhotoGallery
+        brandName="Maytag Dryer"
+        photos={[
+          { src: img3, alt: 'Maytag dryer repair work' },
+          { src: img4, alt: 'Maytag dryer maintenance' },
+          { src: img5, alt: 'Maytag dryer service' },
+        ]}
       />
       <DryerBrandFAQ faqData={maytagFAQ} />
       <ReviewCardContainer />
