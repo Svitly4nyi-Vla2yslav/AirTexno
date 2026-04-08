@@ -409,7 +409,7 @@ export const App: React.FC = () => {
               }
             />
             <Route
-              path='/ring-doorbell'
+              path='/smart-doorbell'
               element={
                 <PageWrapper>
                   <RingDoorbell />
