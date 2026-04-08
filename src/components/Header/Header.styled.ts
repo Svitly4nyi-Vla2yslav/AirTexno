@@ -9,7 +9,7 @@ export interface StyledProps {
 
 // Спочатку оголошуємо всі базові компоненти
 export const StyledNavLink = styled(NavLink)<StyledProps>`
-  color: ${({ $overlayOpen, $darkMode }) =>
+  color: ${({ $overlayOpen }) =>
     $overlayOpen
       ? '#000000'
       : '#FFFFFF'};
