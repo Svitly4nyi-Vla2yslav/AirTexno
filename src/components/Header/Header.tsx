@@ -292,8 +292,8 @@ const Header: React.FC = () => {
                           </StyledNavLink>
                         </SubDropdownItem>
                         <SubDropdownItem>
-                          <StyledNavLink to='/ring-doorbell' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
-                          Ring Doorbell Installation
+                          <StyledNavLink to='/smart-doorbell' $overlayOpen={isOverlayOpen} $darkMode={isDarkMode} onClick={() => setIsServicesOpen(false)}>
+                          Smart Doorbell Installation
                           </StyledNavLink>
                         </SubDropdownItem>
                         <SubDropdownItem>
