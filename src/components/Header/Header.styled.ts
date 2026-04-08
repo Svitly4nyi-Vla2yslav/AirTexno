@@ -12,8 +12,6 @@ export const StyledNavLink = styled(NavLink)<StyledProps>`
   color: ${({ $overlayOpen, $darkMode }) =>
     $overlayOpen
       ? '#000000'
-      : $darkMode
-      ? '#000000'
       : '#FFFFFF'};
   text-decoration: none;
   font-weight: 500;
