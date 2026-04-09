@@ -77,8 +77,8 @@ const GarbageDisposal: React.FC = () => {
             <ReviewsWidget />
 
             <Description>
-              Professional garbage disposal repair, replacement, and
-              installation for kitchens in Thousand Oaks and nearby cities. <InlineLink to="/about">Airtexno Appliance Repair</InlineLink>
+              Not working? Humming but not spinning? Leaking under sink? Professional garbage disposal repair, replacement, and
+              installation for kitchens in Thousand Oaks and nearby cities. <InlineLink to="/about">Airtexno Appliance Repair</InlineLink> 
               help homeowners with jammed disposals, humming units, leaks,
               clogs, and replacement of old or damaged garbage disposals. Starting at: $95
             </Description>
@@ -94,7 +94,7 @@ const GarbageDisposal: React.FC = () => {
               </FeatureItem>
               <FeatureItem>
                 <span>🏠</span>
-                <p>Professional installation of new units</p>
+                <p>Call Now — Technician Available Today</p>
               </FeatureItem>
             </FeaturesList>
 
@@ -241,7 +241,7 @@ const GarbageDisposal: React.FC = () => {
           </ServiceList>
           <SectionDescription>
             If the disposal is jammed, humming, leaking, or still not working
-            after a reset, we will be happy to help.
+            after a reset, we will be happy to help. Same-Day service available. Call Now for Fast Fix.
           </SectionDescription>
         </SectionContainer>
       </Section>
