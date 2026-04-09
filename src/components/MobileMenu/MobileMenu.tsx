@@ -252,7 +252,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: BurgerMenuProps) => {
           subItems: [
             { to: '/thermostat', label: 'Thermostat Repair' },
             { to: '/dryer-vent-cleaning', label: 'Dryer Vent Cleaning' },
-            { to: '/ring-doorbell', label: 'Ring Doorbell Installation' },
+            { to: '/smart-doorbell', label: 'Smart Doorbell Installation' },
             { to: '/garbage-disposal', label: 'Garbage Disposal' },
           ],
         },
