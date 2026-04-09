@@ -9,8 +9,10 @@ export interface StyledProps {
 
 // Спочатку оголошуємо всі базові компоненти
 export const StyledNavLink = styled(NavLink)<StyledProps>`
-  color: ${({ $overlayOpen }) =>
+  color: ${({ $overlayOpen, $darkMode }) =>
     $overlayOpen
+      ? '#000000'
+      : $darkMode 
       ? '#000000'
       : '#FFFFFF'};
   text-decoration: none;
@@ -269,16 +271,18 @@ export const NavbarContainer = styled.nav<StyledProps>`
   width: 100%;
   z-index: 3100;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: transparent;
+  background: rgba(0, 0, 0, 0.39);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   transition: all 180ms ease;
   will-change: transform;
   padding: 10px;
   ${({ $isScrolled }) =>
     $isScrolled &&
     css`
-      background: rgba(0, 0, 0, 0.39);
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
+      background: rgba(0, 0, 0, 0.5);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
     `}
   @media screen and (min-width: 768px) {
     padding: 10px;
