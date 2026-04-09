@@ -42,7 +42,7 @@ export default defineConfig({
         '/oven-repair/wolf',
         '/thermostat',
         '/dryer-vent-cleaning',
-        '/ring-doorbell',
+        '/smart-doorbell',
         '/garbage-disposal',
         '/about',
         '/tips',
