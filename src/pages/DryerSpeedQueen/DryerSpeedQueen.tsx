@@ -1,12 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/speed-queen/sq_01.jpg';
 import img2 from '../../assets/brands/dryer/speed-queen/sq_02.jpg';
+import img3 from '../../assets/brands/dryer/speed-queen/sq_03.jpg';
+import img4 from '../../assets/brands/dryer/speed-queen/sq_04.jpg';
+import img5 from '../../assets/brands/dryer/speed-queen/sq_05.jpg';
 
 const DryerSpeedQueen: React.FC = () => {
   return (
@@ -46,6 +49,14 @@ const DryerSpeedQueen: React.FC = () => {
         ]}
         brandSpecificTitle="Why Speed Queen dryers often need a different repair approach"
         brandSpecificText="On many brands, customers expect more electronics-related complaints. With Speed Queen, we often see a different pattern: machines that have worked for years and then develop one specific fault tied to airflow, heating, drive wear, support rollers, belt tension, or a safety device. The machine may still look solid overall, which makes accurate diagnosis especially important because the best repair is often targeted and practical — not a full rebuild. We pay close attention to how the dryer behaves under load, whether the airflow supports proper drying, and whether internal wear is starting to affect the drum system."
+      />
+      <PhotoGallery
+        brandName="Speed Queen Dryer"
+        photos={[
+          { src: img3, alt: 'Speed Queen dryer repair work' },
+          { src: img4, alt: 'Speed Queen dryer maintenance' },
+          { src: img5, alt: 'Speed Queen dryer service' },
+        ]}
       />
       <DryerBrandFAQ faqData={[
         {
