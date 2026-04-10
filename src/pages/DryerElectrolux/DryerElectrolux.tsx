@@ -1,12 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ } from '../../components/DryerBrands';
+import { DryerBrandHero, DryerBrandProblems, DryerBrandFAQ, PhotoGallery } from '../../components/DryerBrands';
 import Partners from '../../components/PartnersBanner/PartnersBanner';
 import ReviewCardContainer from '../../components/Feedback/Feedback';
 import { TeamMember } from '../../components/AboutUS/TeamMember/TeamMember';
 import { ContactForm } from '../../components/ContactComponents/ContactForm';
 import img1 from '../../assets/brands/dryer/electrolux/elx_01.jpg';
 import img2 from '../../assets/brands/dryer/electrolux/elx_02.jpg';
+import img3 from '../../assets/brands/dryer/electrolux/elx_03.jpg';
+import img4 from '../../assets/brands/dryer/electrolux/elx_04.jpg';
+import img5 from '../../assets/brands/dryer/electrolux/elx_05.jpg';
 
 const DryerElectrolux: React.FC = () => {
   return (
@@ -46,6 +49,14 @@ const DryerElectrolux: React.FC = () => {
         ]}
         brandSpecificTitle="Why Electrolux dryer problems often involve performance, not just power"
         brandSpecificText="Some dryers fail in obvious ways — they stop turning on or stop heating completely. Electrolux dryers can also develop a different kind of complaint: they still run, the controls still respond, but drying quality drops. That can happen when moisture sensing becomes inaccurate, airflow changes reduce efficiency, or heat and cycle behavior stop working together the way the machine was designed to. Because of that, diagnosis should not focus only on whether the dryer powers on. It should also look at how the cycle is progressing, whether the load is being sensed correctly, and whether the machine is delivering consistent drying results across normal household use."
+      />
+      <PhotoGallery
+        brandName="Electrolux Dryer"
+        photos={[
+          { src: img3, alt: 'Electrolux dryer repair work' },
+          { src: img4, alt: 'Electrolux dryer maintenance' },
+          { src: img5, alt: 'Electrolux dryer service' },
+        ]}
       />
       <DryerBrandFAQ faqData={[
         {
