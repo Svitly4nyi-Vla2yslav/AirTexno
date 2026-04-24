@@ -41,7 +41,7 @@ const RefrigeratorGEMonogram: React.FC = () => {
           "Excessive frost in the freezer or freezer drawer",
           "Freezer door/drawer not sealing (frost, moisture, warm spots)",
         ]}
-        problemsIntro="Many symptoms look similar from the outside. For example, a \u201cnot cooling\u201d complaint may be caused by an airflow restriction, a fan failure, a sensor/control issue, or a sealed-system problem. Correct testing is the fastest way to avoid unnecessary parts and repeat breakdowns."
+        problemsIntro="Many issues look similar from the outside. Correct testing is the fastest way to avoid unnecessary parts and repeat breakdowns."
         diagnostics={[
           { title: "Temperature and airflow verification", text: "We measure actual compartment temperatures and confirm airflow patterns." },
           { title: "Defrost and fan system checks", text: "We evaluate frost patterns, fans, and defrost components that affect airflow." },
