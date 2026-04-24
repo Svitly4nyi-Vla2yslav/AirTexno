@@ -41,7 +41,7 @@ const RefrigeratorThermador: React.FC = () => {
           "Excessive frost in the freezer or freezer drawer",
           "Freezer door/drawer not sealing (frost, moisture, warm spots)",
         ]}
-        problemsIntro="Many symptoms look similar from the outside. A \u201cnot cooling\u201d complaint may be caused by an airflow restriction, a fan failure, a defrost issue, a sensor/control problem, or a sealed-system fault. Correct testing is the fastest way to avoid unnecessary parts and repeat breakdowns."
+        problemsIntro="Many symptoms look similar from the outside. A 'not cooling' complaint may be caused by an airflow restriction, a fan failure, a defrost issue, a sensor/control problem, or a sealed-system fault. Correct testing is the fastest way to avoid unnecessary parts and repeat breakdowns."
         diagnostics={[
           { title: "Temperature and airflow verification", text: "We measure actual compartment temperatures and confirm airflow patterns." },
           { title: "Defrost and fan system checks", text: "We evaluate frost patterns, fans, and defrost components that affect airflow." },
@@ -50,7 +50,7 @@ const RefrigeratorThermador: React.FC = () => {
           { title: "Sealed system assessment (only when indicated)", text: "When symptoms point to compressor or refrigerant issues, we explain realistic repair options." },
           { title: "Freezer-specific checks", text: "We verify freezer airflow and frost patterns, test freezer temperature sensors/thermistors, inspect the evaporator fan and defrost system, and confirm proper door/drawer sealing. For units with ice makers, we also evaluate freezer temperature stability and water/ice components to ensure consistent ice production and reliable freezing." },
         ]}
-        closingText="After diagnosis, you receive clear recommendations and repair options based on reliability and total cost\u2014not guesswork."
+        closingText="After diagnosis, you receive clear recommendations and repair options based on reliability and total cost - not guesswork."
       />
       <RefrigeratorBrandFAQ
         brandName="Thermador"
