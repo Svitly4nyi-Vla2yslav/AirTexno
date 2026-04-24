@@ -41,7 +41,7 @@ const RefrigeratorSubZero: React.FC = () => {
           "Freezer temperature swings or inconsistent freezing",
           "Excessive frost in the freezer or freezer drawer",
         ]}
-        problemsIntro="Many of these symptoms can have multiple causes. For example, \u201cnot cooling\u201d might be airflow-related, defrost-related, sensor-related, or sealed-system-related. That\u2019s why correct testing matters."
+        problemsIntro="Many of these symptoms can have multiple causes. For example, 'not cooling' might be airflow-related, defrost-related, sensor-related, or sealed-system-related. That\u2019s why correct testing matters."
         diagnostics={[
           { title: "Temperature and airflow checks", text: "Verify actual compartment temperatures and confirm proper airflow patterns." },
           { title: "Fan and defrost system evaluation", text: "Check evaporator fan operation, frost patterns, defrost components, and airflow restrictions." },
@@ -50,7 +50,7 @@ const RefrigeratorSubZero: React.FC = () => {
           { title: "Sealed system assessment (only when indicated)", text: "When symptoms suggest compressor or refrigerant issues, proceed with deeper testing and provide realistic options." },
           { title: "Freezer-specific checks", text: "We verify freezer airflow and frost patterns, test freezer temperature sensors/thermistors, inspect the evaporator fan and defrost system, and confirm proper door/drawer sealing. For units with ice makers, we also evaluate freezer temperature stability and water/ice components to ensure consistent ice production and reliable freezing." },
         ]}
-        closingText="After diagnosis, you\u2019ll get a clear explanation of what failed, why it likely happened, and the best repair plan based on reliability\u2014not just the cheapest short-term option."
+        closingText="After diagnosis, you'll get a clear explanation of what failed, why it likely happened, and the best repair plan based on reliability - not just the cheapest short-term option."
       />
       <RefrigeratorBrandFAQ
         brandName="Sub-Zero"
