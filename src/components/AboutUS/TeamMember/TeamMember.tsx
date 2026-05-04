@@ -53,7 +53,7 @@ export const TeamMember: React.FC = () => {
     },
     {
       question: 'How much does a service call cost?',
-      answer: 'Our service call fee is $75. This amount is applied toward the total repair cost if you approve the repair.',
+      answer: 'Our service call fee is $95. This amount is applied toward the total repair cost if you approve the repair.',
     },
     {
       question: 'Why is my LG washer not draining?',
