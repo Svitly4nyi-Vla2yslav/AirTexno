@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, easeOut } from 'framer-motion';
 import styled from 'styled-components';
 import { Alert, AlertType } from './Alert';
+import { getAttribution } from '../../utils/attribution';
 import Cont from '../../assets/icons/contact.jpg';
 import { CloseButton, ModalContent, ModalOverlay } from '../Footer/Footer.styled';
 import ContentContainer from '../Footer/PoliciesContent';
@@ -76,6 +77,7 @@ export const ContactForm: React.FC = (): JSX.Element => {
     }
 
     try {
+      const attribution = getAttribution();
       const response = await fetch('/.netlify/functions/send-email', {
         method: 'POST',
         headers: {
@@ -84,6 +86,9 @@ export const ContactForm: React.FC = (): JSX.Element => {
         body: JSON.stringify({
           service,
           ...formData,
+          ...attribution,
+          submitted_page: typeof window !== 'undefined' ? window.location.href : '',
+          timestampUTC: new Date().toISOString(),
         }),
       });
 

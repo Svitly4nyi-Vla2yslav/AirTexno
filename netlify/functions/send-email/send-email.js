@@ -79,6 +79,31 @@ exports.handler = async function (event, context) {
     },
   });
 
+  // Lead source / attribution (UTM tags + ad-click IDs captured on the landing page)
+  const attributionFields = [
+    ['Source', formData.utm_source],
+    ['Medium', formData.utm_medium],
+    ['Campaign', formData.utm_campaign],
+    ['Term (keyword)', formData.utm_term],
+    ['Content', formData.utm_content],
+    ['Google Click ID (gclid)', formData.gclid],
+    ['Google Click ID (gbraid)', formData.gbraid],
+    ['Google Click ID (wbraid)', formData.wbraid],
+    ['Facebook Click ID (fbclid)', formData.fbclid],
+  ];
+  const presentAttribution = attributionFields.filter(([, value]) => value);
+  const hasAttribution = presentAttribution.length > 0;
+
+  const attributionHtml = hasAttribution
+    ? presentAttribution
+        .map(([label, value]) => `<p><strong>${label}:</strong> ${escapeHtml(value)}</p>`)
+        .join('\n    ')
+    : '<p><em>Direct / no campaign data</em></p>';
+
+  const attributionText = hasAttribution
+    ? presentAttribution.map(([label, value]) => `${label}: ${value}`).join('\n')
+    : 'Direct / no campaign data';
+
   // Підготовка вмісту листа
   const mailHtml = `
     <h2>New Service Request</h2>
@@ -91,6 +116,12 @@ exports.handler = async function (event, context) {
     <p><strong>Brand:</strong> ${escapeHtml(formData.brand || '—')}</p>
     <p><strong>Power Type:</strong> ${escapeHtml(formData.power || '—')}</p>
     <p><strong>Additional Details:</strong> ${escapeHtml(formData.details || 'None')}</p>
+    <hr />
+    <h3>Lead Source</h3>
+    ${attributionHtml}
+    <p><strong>Landing Page:</strong> ${escapeHtml(formData.landing_page || '—')}</p>
+    <p><strong>Submitted From:</strong> ${escapeHtml(formData.submitted_page || '—')}</p>
+    <p><strong>Referrer:</strong> ${escapeHtml(formData.referrer || '—')}</p>
     <hr />
     <p><strong>Submission Date:</strong> ${submissionDate}</p>
   `;
@@ -107,6 +138,12 @@ Brand: ${formData.brand || '—'}
 Power Type: ${formData.power || '—'}
 Additional Details: ${formData.details || 'None'}
 
+--- Lead Source ---
+${attributionText}
+Landing Page: ${formData.landing_page || '—'}
+Submitted From: ${formData.submitted_page || '—'}
+Referrer: ${formData.referrer || '—'}
+
 Submission Date: ${submissionDate} (${tz})
 Timestamp used (UTC): ${baseDate.toISOString()}
   `;
@@ -114,7 +151,9 @@ Timestamp used (UTC): ${baseDate.toISOString()}
   const mailOptions = {
     from: GMAIL_USER,
     to: 'Airtexnola@gmail.com', // змінити при потребі
-    subject: `New Service Request: ${formData.service} for ${formData.appliance || '—'}`,
+    subject: `New Service Request: ${formData.service} for ${formData.appliance || '—'}${
+      formData.utm_campaign ? ` — ${formData.utm_campaign}` : ''
+    }`,
     text: mailText,
     html: mailHtml,
     replyTo: formData.email, // щоб можна було відповісти клієнту напряму

@@ -36,6 +36,7 @@ import DryerVentCleaning from './pages/DryerVentCleaning/DryerVentCleaning';
 import RingDoorbell from './pages/RingDoorbell/RingDoorbell';
 import GarbageDisposal from './pages/GarbageDisposal/GarbageDisposal';
 import { trackPageView, trackContactPhone, trackLead } from './components/metaPixel';
+import { captureAttribution } from './utils/attribution';
 import Seo from './components/Seo';
 
 
@@ -80,6 +81,11 @@ export const App: React.FC = () => {
       });
     }
   }, []);
+
+  // Capture UTM / gclid from the entry URL so leads carry their ad source.
+  useEffect(() => {
+    captureAttribution();
+  }, [location.search]);
 
   // PageView на кожну зміну маршруту (антидубль усередині lib)
   useEffect(() => {
