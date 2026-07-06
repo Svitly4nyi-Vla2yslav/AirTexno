@@ -1,5 +1,76 @@
 // send-email.js
 const nodemailer = require('nodemailer');
+const { Pool } = require('pg');
+
+const LEAD_SITE = 'airtexno';
+
+const LEADS_TABLE = process.env.LEADS_TABLE;
+const TABLE_RE = /^[a-z_][a-z0-9_]*\.[a-z_][a-z0-9_]*$/i;
+if (LEADS_TABLE && !TABLE_RE.test(LEADS_TABLE)) {
+  throw new Error(`Invalid LEADS_TABLE format: ${LEADS_TABLE}`);
+}
+
+let pool = null;
+function getPool() {
+  if (!pool && process.env.DATABASE_URL) {
+    const cleaned = process.env.DATABASE_URL.replace(/([?&])sslmode=[^&]*(&|$)/g, (_m, p1, p2) =>
+      p1 === '?' && p2 === '' ? '' : p1 === '?' ? '?' : p2,
+    );
+    pool = new Pool({
+      connectionString: cleaned,
+      ssl: { rejectUnauthorized: false },
+      max: 3,
+      idleTimeoutMillis: 10_000,
+    });
+  }
+  return pool;
+}
+
+async function insertLead(event, formData) {
+  const p = getPool();
+  if (!p || !LEADS_TABLE) return;
+  const ua = event.headers['user-agent'] || null;
+  const xff = event.headers['x-forwarded-for'];
+  const ip = xff ? xff.split(',')[0].trim() : null;
+
+  const standardKeys = new Set([
+    'name',
+    'email',
+    'phone',
+    'service',
+    'details',
+    'utm_source',
+    'landing_page',
+    'submitted_page',
+  ]);
+  const extra = {};
+  for (const [key, value] of Object.entries(formData)) {
+    if (!standardKeys.has(key)) extra[key] = value;
+  }
+  const extraJson = Object.keys(extra).length > 0 ? JSON.stringify(extra) : null;
+
+  await p.query(
+    `INSERT INTO ${LEADS_TABLE}
+       (name, phone, email, service_slug, service_name, city_slug, city_name, message, source, page, user_agent, ip, site, extra)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14::jsonb)`,
+    [
+      formData.name || null,
+      formData.phone || null,
+      formData.email || null,
+      null,
+      formData.service || null,
+      null,
+      null,
+      formData.details || null,
+      formData.utm_source || null,
+      formData.submitted_page || formData.landing_page || null,
+      ua,
+      ip,
+      LEAD_SITE,
+      extraJson,
+    ],
+  );
+}
 
 exports.handler = async function (event, context) {
   const headers = {
@@ -159,26 +230,35 @@ Timestamp used (UTC): ${baseDate.toISOString()}
     replyTo: formData.email, // щоб можна було відповісти клієнту напряму
   };
 
-  try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', info.messageId);
+  const [mailResult, pgResult] = await Promise.allSettled([
+    transporter.sendMail(mailOptions),
+    insertLead(event, formData),
+  ]);
+
+  if (pgResult.status === 'rejected') {
+    console.error('pg insert failed:', pgResult.reason);
+  }
+
+  if (mailResult.status === 'fulfilled') {
+    console.log('Email sent:', mailResult.value.messageId);
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ message: 'Email sent successfully', messageId: info.messageId }),
-    };
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({
-        message: 'Error sending email',
-        error: error.message,
-        details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
-      }),
+      body: JSON.stringify({ message: 'Email sent successfully', messageId: mailResult.value.messageId }),
     };
   }
+
+  const error = mailResult.reason;
+  console.error('Error sending email:', error);
+  return {
+    statusCode: 500,
+    headers,
+    body: JSON.stringify({
+      message: 'Error sending email',
+      error: error.message,
+      details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+    }),
+  };
 };
 
 // Невелика утиліта для уникнення XSS при вставці в HTML
