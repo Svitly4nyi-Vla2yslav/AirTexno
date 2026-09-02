@@ -123,8 +123,8 @@ exports.handler = async function (event, context) {
     };
   }
 
-  // Таймзона (можна задати через EMAIL_TIMEZONE)
-  const tz = 'America/Los_Angeles';
+  // Таймзона: можна перевизначити через EMAIL_TIMEZONE без зміни коду.
+  const tz = process.env.EMAIL_TIMEZONE || 'America/Los_Angeles';
 
   // Якщо клієнт передав timestamp у UTC (наприклад: formData.timestampUTC) — використаємо його,
   // інакше беремо поточний час сервера.
