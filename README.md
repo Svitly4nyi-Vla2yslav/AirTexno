@@ -52,7 +52,7 @@ Lead attribution data can travel with the request, including UTM values, landing
 
 ## Environment variables
 
-The serverless email function reads deployment secrets from environment variables. Configure them in the deployment platform rather than committing credentials to the repository.
+The serverless email function reads deployment secrets and runtime configuration from environment variables. Configure them in the deployment platform rather than committing credentials to the repository.
 
 Required for email delivery:
 
@@ -60,6 +60,14 @@ Required for email delivery:
 GMAIL_USER=your_sender_account
 GMAIL_PASS=your_app_password
 ```
+
+Optional runtime configuration:
+
+```env
+EMAIL_TIMEZONE=America/Los_Angeles
+```
+
+`EMAIL_TIMEZONE` controls the local time rendered in service-request emails. When it is not set, the handler falls back to `America/Los_Angeles`, which matches AirTexno's Los Angeles service area and automatically follows daylight-saving changes through the IANA time-zone database.
 
 Optional lead persistence:
 
