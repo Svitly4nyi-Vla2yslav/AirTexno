@@ -75,9 +75,5 @@
     "vite": "^6.3.3",
     "vite-plugin-prerender": "^1.0.8",
     "vite-plugin-svgr": "^4.3.0"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": "eslint --cache --fix",
-    "*./src": "prettier --write"
   }
 }
