@@ -7,33 +7,20 @@ const PHONE_DISPLAY = '(805) 500-2705';
 
 export const StickyMobileBar: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  
-  console.log('StickyMobileBar render:', { isVisible });
 
   useEffect(() => {
     const handleScroll = () => {
-      // Try multiple scroll sources
+      // Support the common document scroll sources used across browsers/layouts.
       const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
       const shouldShow = scrollY > 500;
-      
-      // Debug logging
-      console.log('StickyMobileBar scroll:', { 
-        windowScrollY: window.scrollY,
-        pageYOffset: window.pageYOffset,
-        docScrollTop: document.documentElement.scrollTop,
-        bodyScrollTop: document.body.scrollTop,
-        finalScrollY: scrollY,
-        shouldShow, 
-        currentVisible: isVisible 
-      });
-      
+
       setIsVisible(shouldShow);
     };
 
-    // Listen to scroll on multiple elements
-    window.addEventListener('scroll', handleScroll, true); // capture phase
+    // Listen in capture phase because some layouts scroll nested containers.
+    window.addEventListener('scroll', handleScroll, true);
     document.addEventListener('scroll', handleScroll, true);
-    
+
     handleScroll(); // Initial check
 
     return () => {
