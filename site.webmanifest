@@ -1,6 +1,9 @@
 {
     "name": "Airtexno",
     "short_name": "Airtexno",
+    "description": "Local appliance repair and maintenance service in Thousand Oaks and nearby areas.",
+    "start_url": "/",
+    "scope": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
