@@ -240,7 +240,7 @@ const VideoPreloader: React.FC<Props> = ({ onComplete }) => {
             skipPreloader();
           }}
         >
-          <source src={introVideo} type="video/mp4" />
+          <source src={introVideo} type="video/webm" />
           Your browser does not support the video tag.
         </Video>
       )}
