@@ -107,7 +107,7 @@ const Header: React.FC = () => {
           $overlayOpen={isOverlayOpen}
           $darkMode={isDarkMode}
         >
-          <img src={logo} alt='Logo' />
+          <img src={logo} alt='AirTexno' />
         </Logo>
 
         {!isMobile && (
@@ -133,7 +133,8 @@ const Header: React.FC = () => {
                   Service
                   <ArrowDown
                     src={Down}
-                    alt='⬇️'
+                    alt=''
+                    aria-hidden='true'
                     $overlayOpen={isOverlayOpen}
                     $darkMode={isDarkMode}
                   />
@@ -337,7 +338,7 @@ const Header: React.FC = () => {
             </ContainerLink>
             <ContainerLink>
               <LinkInfo $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
-                <img src={loc} alt='🗺️' />
+                <img src={loc} alt='' aria-hidden='true' />
                 <a
                   href='https://maps.app.goo.gl/cJF4BwHPJFbYsQAMA'
                   target='_blank'
@@ -371,7 +372,7 @@ const Header: React.FC = () => {
           </ContainerLink>
           <ContainerLink>
             <LinkInfo $overlayOpen={isOverlayOpen} $darkMode={isDarkMode}>
-              <img src={loc} alt='🗺️' />
+              <img src={loc} alt='' aria-hidden='true' />
               <a
                 href='https://www.google.com/maps/place/Thousand+Oaks'
                 target='_blank'
