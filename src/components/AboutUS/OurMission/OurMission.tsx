@@ -93,7 +93,7 @@ const OurMission: React.FC = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInLeft}
             >
-              <img src={Person} alt='image' />
+              <img src={Person} alt='AirTexno technician servicing an appliance' />
             </motion.div>
 
             <CenteredSlideContainer>
@@ -191,7 +191,7 @@ const OurMission: React.FC = () => {
             variants={fadeInRight}
             transition={{ delay: 0.7 }}
           >
-            <TeamImage src={Team} alt='team' />
+            <TeamImage src={Team} alt='AirTexno appliance repair team' />
           </motion.div>
         </TeamContainer>
       </Content>
