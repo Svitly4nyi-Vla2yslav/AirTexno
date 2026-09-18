@@ -49,7 +49,8 @@ const LoadingScreen = () => {
     <LoaderContainer>
       <LogoImage
         src={logoImage}
-        alt="Loading"
+        alt=""
+        aria-hidden="true"
         variants={rotateVariants}
         initial="initial"
         animate="animate"
