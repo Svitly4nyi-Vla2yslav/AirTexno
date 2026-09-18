@@ -172,7 +172,7 @@ const TeamSection: React.FC = () => {
           <ImageRow>
             <motion.div custom={0} variants={imageMorphAnimation} whileHover='hover'>
               <ImageWrapp>
-                <TeamImage src={image} alt='Team Member 3' />
+                <TeamImage src={image} alt='Sunny, AirTexno lead technician' />
                 <TextInfo>
                   <h2>Sunny</h2>
                   <p>Lead Technician</p>
@@ -186,7 +186,7 @@ const TeamSection: React.FC = () => {
 
             <motion.div custom={1} variants={imageMorphAnimation} whileHover='hover'>
               <ImageWrapp>
-                <TeamImage src={image1} alt='Team Member 3' />
+                <TeamImage src={image1} alt='Stanley, AirTexno technician' />
                 <TextInfo>
                   <h2>Stanley</h2>
                   <p>Technician</p>
@@ -210,7 +210,7 @@ const TeamSection: React.FC = () => {
           <ImageRow>
             <motion.div custom={2} variants={imageMorphAnimation} whileHover='hover'>
               <ImageWrapp>
-                <TeamImage src={image2} alt='Team Member 3' />
+                <TeamImage src={image2} alt='Mark, AirTexno technician' />
                 <TextInfo>
                   <h2>Mark</h2>
                   <p>Technician</p>
@@ -221,7 +221,7 @@ const TeamSection: React.FC = () => {
 
             <motion.div custom={3} variants={imageMorphAnimation} whileHover='hover'>
               <ImageWrapp>
-                <TeamImage src={image3} alt='Team Member 3' />
+                <TeamImage src={image3} alt='Li, AirTexno technician' />
                 <TextInfo>
                   <h2>Li</h2>
                   <p>Technician</p>
