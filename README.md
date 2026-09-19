@@ -34,7 +34,13 @@ npm install
 npm run dev
 ```
 
-Useful checks before pushing changes:
+Preferred verification before pushing changes:
+
+```bash
+npm run check
+```
+
+`npm run check` runs linting first and then the production build. The individual commands remain available when only one check is needed:
 
 ```bash
 npm run lint
@@ -84,7 +90,7 @@ Never commit real passwords, database connection strings, API tokens or customer
 
 Netlify uses `npm run build` and publishes the `dist` directory. The repository also contains the serverless email handler under `netlify/functions/send-email/`.
 
-Before a production release, run both `npm run lint` and `npm run build`, then verify the service-request form in the deployed environment because email and database behavior depend on platform-side environment variables.
+Before a production release, run `npm run check`, then verify the service-request form in the deployed environment because email and database behavior depend on platform-side environment variables.
 
 ## License
 
