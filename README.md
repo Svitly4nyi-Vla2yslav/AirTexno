@@ -30,6 +30,8 @@ React/TypeScript website for AirTexno appliance repair and maintenance services.
 The Netlify configuration currently targets Node.js 18.
 
 ```bash
+git clone https://github.com/Svitly4nyi-Vla2yslav/AirTexno.git
+cd AirTexno
 npm install
 npm run dev
 ```
