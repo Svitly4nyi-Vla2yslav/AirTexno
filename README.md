@@ -36,6 +36,14 @@ npm install
 npm run dev
 ```
 
+`npm run dev` starts the Vite frontend only. To exercise the service-request flow together with the local Netlify function routing, run the project through Netlify Dev instead:
+
+```bash
+npx netlify dev
+```
+
+Netlify Dev uses the repository's `[dev]` configuration, proxies the Vite server and exposes the functions under the same `/.netlify/functions/*` paths used by the application. Email and optional database behavior still require the corresponding environment variables locally.
+
 Preferred verification before pushing changes:
 
 ```bash
