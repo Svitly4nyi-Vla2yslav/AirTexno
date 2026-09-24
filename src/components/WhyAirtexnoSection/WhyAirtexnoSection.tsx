@@ -258,7 +258,8 @@ const WhyAirtexnoSection: React.FC = () => {
                                 <IconWrapper className='icon-wrapper'>
                                   <img
                                     src={slide.icon}
-                                    alt={slide.title || 'icon'}
+                                    alt=''
+                                    aria-hidden='true'
                                     className='icon-image'
                                     loading='lazy'
                                   />
