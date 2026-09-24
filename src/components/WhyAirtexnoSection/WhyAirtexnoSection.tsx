@@ -19,21 +19,16 @@ import WhyAirtexnoImage1 from '../../assets/icons/WhyAirtexnoImage.png';
 import WhyAirtexnoImage2 from '../../assets/icons/2.webp';
 import WhyAirtexnoImage4 from '../../assets/icons/4.webp';
 import WhyAirtexnoImage3 from '../../assets/icons/3.webp';
-import buildung from '../../assets/icons/building-07.svg';
+import building from '../../assets/icons/building-07.svg';
 import clock from '../../assets/icons/clock.svg';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
 import 'swiper/css/bundle';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-coverflow';
 import { useMediaQuery } from 'react-responsive';
 import { debounce } from 'lodash';
 import type SwiperCore from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import 'swiper/css/effect-coverflow';
 
 const WhyAirtexnoSection: React.FC = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 743px)' });
@@ -95,7 +90,7 @@ const WhyAirtexnoSection: React.FC = () => {
       title: 'Manufacturer-Trained Technicians',
       text: 'Our team is trained to service leading brands like Sub-Zero, Viking, GE Monogram, and more — ensuring expert repairs done right the first time.',
       image: WhyAirtexnoImage1,
-      icon: buildung,
+      icon: building,
     },
     {
       title: 'Genuine Parts in Stock',
@@ -107,20 +102,20 @@ const WhyAirtexnoSection: React.FC = () => {
       title: 'Fast, Hassle-Free Service',
       text: 'One quick call and our Thousand Oaks team is on the way — no long waits, no hassle.',
       image: WhyAirtexnoImage3,
-      icon: buildung,
+      icon: building,
     },
     {
       title: 'Local & Fair Pricing',
       text: 'As a local Thousand Oaks company, we treat our community like neighbors. With direct access to parts and highly trained techs, we keep our prices fair — without steep markups. While costs keep rising everywhere, we work hard to keep appliance repair affordable.',
       image: WhyAirtexnoImage4,
-      icon: buildung,
+      icon: building,
     },
 
     {
       title: 'Fast, Hassle-Free Service',
       text: 'One quick call and our Thousand Oaks team is on the way — no long waits, no hassle.',
       image: WhyAirtexnoImage3,
-      icon: buildung,
+      icon: building,
     },
   ];
 
